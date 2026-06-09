@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="es" class="scroll-smooth" data-theme="light">
+<html lang="es" class="scroll-smooth" data-theme="dark">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -31,7 +31,7 @@
     <div class="hidden md:flex items-center font-semibold">
       <a href="#inicio"    class="pill-nav-link">Inicio</a>
       <a href="#servicios" class="pill-nav-link">Servicios</a>
-      <a href="#tecnologia" class="pill-nav-link">Tecnología</a>
+      <a href="#productos" class="pill-nav-link">Productos</a>
       <a href="#nosotros"  class="pill-nav-link">Nosotros</a>
     </div>
 
@@ -216,6 +216,54 @@
         </ul>
       </div>
 
+    </div>
+  </div>
+</section>
+
+<!-- ══ PRODUCTOS ════════════════════════════════════════════════ -->
+<section id="productos" class="py-24 sm:py-32 section-alt relative overflow-hidden">
+  <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-purple-500/5 rounded-full blur-[120px] pointer-events-none"></div>
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+    <div class="text-center max-w-2xl mx-auto mb-16">
+      <p class="text-purple-500 font-semibold tracking-wide text-sm mb-3 uppercase">Productos & Frameworks</p>
+      <h2 class="text-3xl sm:text-4xl md:text-5xl font-extrabold text-[color:var(--txt-1)] mb-6 tracking-tight" style="font-family:var(--font-display)">
+        Herramientas de próxima <span class="text-gradient">generación.</span>
+      </h2>
+      <p class="text-[color:var(--txt-2)] text-lg leading-relaxed">
+        Descubre nuestros productos in-house diseñados para acelerar y optimizar los flujos de trabajo de desarrollo con Inteligencia Artificial.
+      </p>
+    </div>
+
+    <div class="grid lg:grid-cols-1 gap-6 lg:gap-8 max-w-5xl mx-auto">
+      <div class="service-card flex flex-col md:flex-row gap-8 items-center" style="--c-bg: #8B5CF6; --i-bg: rgba(139, 92, 246, 0.1); --i-color: #8B5CF6; padding: 40px;">
+        <div class="flex-1">
+          <div class="sc-icon mb-4"><span class="material-symbols-rounded fill" style="font-size:32px">memory</span></div>
+          <h3 class="text-3xl font-extrabold text-[color:var(--txt-1)] mb-4" style="font-family:var(--font-display)">RASS Web</h3>
+          <p class="text-[color:var(--txt-2)] leading-relaxed text-base mb-8">
+            <strong>Ryou Adaptive SDD System</strong> es el primer Sistema Operativo de Desarrollo IA Adaptativo diseñado para OpenCode. Redefine la forma en la que programas con agentes, evitando el desperdicio de tokens y enfocándose en una arquitectura determinista donde el humano siempre lidera.
+          </p>
+          <a href="RASSWeb/index.html" class="inline-flex items-center justify-center gap-2 px-8 py-4 rounded-2xl font-bold text-sm text-white hover:-translate-y-1 transition-transform" style="background: linear-gradient(135deg, #6366F1, #8B5CF6); box-shadow: 0 10px 25px rgba(139, 92, 246, 0.3);">
+            Explorar el Framework <span class="material-symbols-rounded" style="font-size:20px">arrow_forward</span>
+          </a>
+        </div>
+        <div class="w-full md:w-1/2 rounded-2xl overflow-hidden border border-[color:var(--card-border)] bg-[#050b18] p-6 shadow-2xl relative">
+          <div class="absolute inset-0 bg-gradient-to-tr from-indigo-500/5 to-purple-500/10 blur-2xl"></div>
+          <div class="flex items-center gap-2 mb-4 border-b border-white/10 pb-3">
+            <div class="w-3 h-3 rounded-full bg-red-500/80"></div>
+            <div class="w-3 h-3 rounded-full bg-yellow-500/80"></div>
+            <div class="w-3 h-3 rounded-full bg-green-500/80"></div>
+            <span class="text-xs text-slate-500 font-mono ml-2">powershell</span>
+          </div>
+          <pre class="text-sm text-slate-300 font-mono leading-loose relative z-10"><code><span class="text-slate-500"># Inicializar RASS</span>
+<span class="text-blue-400">pwsh</span> .\install.ps1
+
+<span class="text-slate-500"># Configurar el Entorno</span>
+<span class="text-green-400">sdd-mode</span> architecture
+<span class="text-green-400">sdd-profile</span> premium
+
+<span class="text-purple-400">> Entorno recargado con éxito.</span></code></pre>
+        </div>
+      </div>
     </div>
   </div>
 </section>
