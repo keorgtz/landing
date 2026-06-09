@@ -28,11 +28,11 @@
 
     <div class="hidden md:block w-px h-5 mx-2" style="background:var(--card-border)"></div>
 
-    <div class="hidden md:flex items-center font-semibold">
-      <a href="#inicio"    class="pill-nav-link">Inicio</a>
-      <a href="#servicios" class="pill-nav-link">Servicios</a>
-      <a href="#productos" class="pill-nav-link">Productos</a>
-      <a href="#nosotros"  class="pill-nav-link">Nosotros</a>
+    <div class="flex items-center font-semibold overflow-x-auto max-w-[200px] sm:max-w-[300px] md:max-w-none" style="scrollbar-width: none;">
+      <a href="#inicio"    class="pill-nav-link whitespace-nowrap">Inicio</a>
+      <a href="#servicios" class="pill-nav-link whitespace-nowrap">Servicios</a>
+      <a href="#productos" class="pill-nav-link whitespace-nowrap">Productos</a>
+      <a href="#nosotros"  class="pill-nav-link whitespace-nowrap hidden sm:inline-block">Nosotros</a>
     </div>
 
     <div class="hidden md:block w-px h-5 mx-2" style="background:var(--card-border)"></div>
@@ -235,18 +235,18 @@
     </div>
 
     <div class="grid lg:grid-cols-1 gap-6 lg:gap-8 max-w-5xl mx-auto">
-      <div class="service-card flex flex-col md:flex-row gap-8 items-center" style="--c-bg: #8B5CF6; --i-bg: rgba(139, 92, 246, 0.1); --i-color: #8B5CF6; padding: 40px;">
-        <div class="flex-1">
-          <div class="sc-icon mb-4"><span class="material-symbols-rounded fill" style="font-size:32px">memory</span></div>
+      <div class="service-card flex flex-col md:flex-row gap-8 items-center p-6 md:p-10" style="--c-bg: #8B5CF6; --i-bg: rgba(139, 92, 246, 0.1); --i-color: #8B5CF6;">
+        <div class="flex-1 text-center md:text-left">
+          <div class="sc-icon mx-auto md:mx-0 mb-4"><span class="material-symbols-rounded fill" style="font-size:32px">memory</span></div>
           <h3 class="text-3xl font-extrabold text-[color:var(--txt-1)] mb-4" style="font-family:var(--font-display)">RASS Web</h3>
           <p class="text-[color:var(--txt-2)] leading-relaxed text-base mb-8">
             <strong>Ryou Adaptive SDD System</strong> es el primer Sistema Operativo de Desarrollo IA Adaptativo diseñado para OpenCode. Redefine la forma en la que programas con agentes, evitando el desperdicio de tokens y enfocándose en una arquitectura determinista donde el humano siempre lidera.
           </p>
-          <a href="RASSWeb/index.html" class="inline-flex items-center justify-center gap-2 px-8 py-4 rounded-2xl font-bold text-sm text-white hover:-translate-y-1 transition-transform" style="background: linear-gradient(135deg, #6366F1, #8B5CF6); box-shadow: 0 10px 25px rgba(139, 92, 246, 0.3);">
+          <a href="RASSWeb/index.html" class="inline-flex items-center justify-center w-full md:w-auto gap-2 px-8 py-4 rounded-2xl font-bold text-sm text-white hover:-translate-y-1 transition-transform" style="background: linear-gradient(135deg, #6366F1, #8B5CF6); box-shadow: 0 10px 25px rgba(139, 92, 246, 0.3);">
             Explorar el Framework <span class="material-symbols-rounded" style="font-size:20px">arrow_forward</span>
           </a>
         </div>
-        <div class="w-full md:w-1/2 rounded-2xl overflow-hidden border border-[color:var(--card-border)] bg-[#050b18] p-6 shadow-2xl relative">
+        <div class="w-full md:w-1/2 rounded-2xl overflow-hidden border border-[color:var(--card-border)] bg-[#050b18] p-4 md:p-6 shadow-2xl relative">
           <div class="absolute inset-0 bg-gradient-to-tr from-indigo-500/5 to-purple-500/10 blur-2xl"></div>
           <div class="flex items-center gap-2 mb-4 border-b border-white/10 pb-3">
             <div class="w-3 h-3 rounded-full bg-red-500/80"></div>
@@ -254,7 +254,7 @@
             <div class="w-3 h-3 rounded-full bg-green-500/80"></div>
             <span class="text-xs text-slate-500 font-mono ml-2">powershell</span>
           </div>
-          <pre class="text-sm text-slate-300 font-mono leading-loose relative z-10"><code><span class="text-slate-500"># Inicializar RASS</span>
+          <pre class="text-xs md:text-sm text-slate-300 font-mono leading-loose relative z-10 overflow-x-auto whitespace-pre-wrap sm:whitespace-pre"><code><span class="text-slate-500"># Inicializar RASS</span>
 <span class="text-blue-400">pwsh</span> .\install.ps1
 
 <span class="text-slate-500"># Configurar el Entorno</span>
@@ -268,8 +268,8 @@
   </div>
 </section>
 
-<!-- ══ BANNER CTA ════════════════════════════════════════════════ -->
-<section class="py-20 relative overflow-hidden" style="background: linear-gradient(135deg, var(--hero-from) 0%, var(--hero-to) 100%);">
+<!-- ══ BANNER CTA / CONTACTO ════════════════════════════════════════════════ -->
+<section id="contacto" class="py-20 relative overflow-hidden" style="background: linear-gradient(135deg, var(--hero-from) 0%, var(--hero-to) 100%);">
   <div class="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGNpcmNsZSBjeD0iMSIgY3k9IjEiIHI9IjEiIGZpbGw9InJnYmEoMCwwLDAsMC4wNSkiLz48L3N2Zz4=')] opacity-50"></div>
   <div class="max-w-4xl mx-auto px-4 text-center relative z-10">
     <h2 class="text-3xl sm:text-4xl font-extrabold text-[color:var(--txt-1)] mb-6 tracking-tight" style="font-family:var(--font-display)">
@@ -278,10 +278,16 @@
     <p class="text-[color:var(--txt-2)] text-lg mb-8 max-w-2xl mx-auto">
       Agenda una consulta gratuita y descubramos juntos cómo la tecnología puede resolver tus desafíos operativos hoy mismo.
     </p>
-    <a href="mailto:Kevin00ortizgtz@gmail.com" class="inline-flex items-center justify-center gap-2 px-8 py-4 rounded-2xl font-bold text-sm text-white bg-[color:var(--kr-blue)] shadow-[0_10px_20px_rgba(14,152,248,0.2)] hover:opacity-90 transition-opacity">
-      <span class="material-symbols-rounded" style="font-size:20px">mail</span>
-      Contactar a Keorsoft
-    </a>
+    <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
+      <a href="https://wa.me/523327633233" target="_blank" class="inline-flex items-center justify-center w-full sm:w-auto gap-2 px-8 py-4 rounded-2xl font-bold text-sm text-white bg-[#25D366] shadow-[0_10px_20px_rgba(37,211,102,0.2)] hover:opacity-90 transition-opacity">
+        <i class="fa-brands fa-whatsapp text-lg"></i>
+        WhatsApp: 33 2763 3233
+      </a>
+      <a href="tel:+523327633233" class="inline-flex items-center justify-center w-full sm:w-auto gap-2 px-8 py-4 rounded-2xl font-bold text-sm text-[color:var(--txt-1)] bg-[color:var(--card)] border border-[color:var(--card-border)] hover:bg-[color:var(--card-hover)] transition-colors">
+        <span class="material-symbols-rounded" style="font-size:20px">call</span>
+        Llamar directo
+      </a>
+    </div>
   </div>
 </section>
 
