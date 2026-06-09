@@ -244,7 +244,7 @@ p {
 /* Glass Cards */
 .grid-cards {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr));
     gap: 1.5rem;
     margin-top: 2rem;
 }
@@ -395,13 +395,26 @@ ul.custom-list li::before {
         position: relative;
         border-right: none;
         border-bottom: 1px solid var(--glass-border);
+        padding: 1.5rem;
+    }
+    .nav-menu {
+        flex-direction: row;
+        flex-wrap: wrap;
+        gap: 0.5rem;
+    }
+    .nav-link {
+        font-size: 0.85rem;
+        padding: 0.5rem 0.75rem;
     }
     .main-content {
         margin-left: 0;
+        padding: 1.5rem;
     }
     .pros-cons {
         grid-template-columns: 1fr;
     }
-    h1 { font-size: 2.5rem; }
-    section { min-height: auto; padding: 4rem 0; }
+    h1 { font-size: 2.25rem; }
+    h2 { font-size: 1.75rem; }
+    section { min-height: auto; padding: 3rem 0; }
+    .btn { width: 100%; justify-content: center; }
 }

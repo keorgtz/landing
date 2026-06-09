@@ -92,9 +92,27 @@
                         <li><strong>Premium:</strong> GPT-4o / Claude 3.5 Sonnet</li>
                         <li><strong>Balanced:</strong> GPT-4o-mini / Gemini 1.5 Flash</li>
                         <li><strong>Minimal:</strong> Gemma / Qwen / GLM</li>
-                        <li><strong>Local:</strong> llama.cpp / deepseek local</li>
-                    </ul>
+                        <li><strong>Modo Minimal:</strong> Ejecución rápida, ideal para iteraciones menores.</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- PLUGIN SECTION -->
+        <section id="plugin">
+            <h2>Dashboard Nativo para OpenCode</h2>
+            <p style="color: var(--text-muted); margin-bottom: 2rem;">Olvidate de tocar la terminal. RASS incluye un plugin visual completamente integrado para tu IDE (compatible con OpenCode y VS Code) que se instala automáticamente.</p>
+            <div class="glass-card" style="border-left: 4px solid var(--secondary);">
+                <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 1rem;">
+                    <i class="ph ph-squares-four" style="font-size: 2rem; color: var(--secondary);"></i>
+                    <h3 style="margin: 0;">Gestión Visual In-Session</h3>
                 </div>
+                <p>Abrí la paleta de comandos (<kbd style="background: rgba(255,255,255,0.1); padding: 2px 6px; border-radius: 4px; font-size: 0.8rem;">Ctrl+Shift+P</kbd>) y tipeá <strong>RASS: Open SDD Dashboard</strong>. Se abrirá un panel donde podés:</p>
+                <ul style="color: var(--text-muted); line-height: 1.6; margin-top: 0.5rem;">
+                    <li>Cambiar de Modo SDD y Perfil con un click de manera dinámica.</li>
+                    <li>Crear nuevos Modos definiendo sus fases gráficamente.</li>
+                    <li>Crear nuevos Perfiles de IA asignando modelos.</li>
+                    <li>Visualizar exactamente el entorno que la IA está usando en tiempo real.</li>
+                </ul>
             </div>
         </section>
 
@@ -175,39 +193,54 @@
         <!-- INSTALLATION SECTION -->
         <section id="installation">
             <span class="section-tag">Implementación</span>
-            <h2>Instalación y Guía</h2>
-            <p>Instalar RASS es cuestión de ejecutar un solo comando en tu PowerShell. El script inyectará la estructura `.opencode` en tu proyecto y cargará el módulo globalmente en tu perfil.</p>
+            <h2>Instalación Global y Unificada</h2>
+            <p style="color: var(--text-muted); margin-bottom: 2rem;">Integración transparente con PowerShell y OpenCode. Un solo script instala el motor CLI globalmente y el Dashboard nativo en tu editor, sin dependencias externas raras.</p>
 
             <div class="code-container">
                 <span class="lang">powershell</span>
-                <code># Cloná el repositorio de RASS
+                <code># 1. Cloná el repositorio de RASS
 git clone https://github.com/keorsoft/RASS.git
 cd RASS
 
-# Ejecutá el instalador
-.\install.ps1
+# 2. Ejecutá el instalador maestro
+pwsh .\install.ps1
 
-# Recargá tu perfil de PowerShell
-. $PROFILE</code>
+# El script generará la arquitectura de /.opencode/
+# y copiará automáticamente el plugin a ~/.vscode/extensions/</code>
             </div>
 
-            <h3>Uso básico</h3>
-            <p>Una vez instalado, podés cambiar dinámicamente el comportamiento de tu IA en cualquier proyecto:</p>
+            <h3 style="margin-top: 2rem;">Uso Básico</h3>
+            <p>Una vez instalado, podés cambiar dinámicamente el comportamiento de tu IA en cualquier proyecto de dos maneras:</p>
 
             <div class="code-container">
                 <span class="lang">powershell</span>
-                <code># Cambiar a modo arquitectura (rutas complejas)
+                <code># Opción A: Mediante CLI en PowerShell
 sdd-mode architecture
+sdd-profile premium
 
-# Usar el perfil balanceado (costo/beneficio)
-sdd-profile balanced</code>
+# Opción B: Mediante el Dashboard en OpenCode
+# Presioná Ctrl+Shift+P y ejecutá:
+> RASS: Open SDD Dashboard</code>
             </div>
             
             <div style="margin-top: 3rem; text-align: center; padding: 2rem; background: rgba(59, 130, 246, 0.1); border-radius: 16px; border: 1px solid rgba(59, 130, 246, 0.2);">
-                <h3 style="color: #60a5fa; margin-bottom: 0.5rem;">Listo para subir de nivel?</h3>
-                <p style="margin-bottom: 0;">Dejá de pelearnos con prompts interminables. Empezá a dirigir tu código.</p>
+                <h3 style="color: #60a5fa; margin-bottom: 0.5rem;">¿Listo para subir de nivel?</h3>
+                <p style="margin-bottom: 1.5rem;">Dejá de pelearnos con prompts interminables. Empezá a dirigir tu código.</p>
+                <div style="display: flex; flex-direction: column; sm:flex-direction: row; gap: 1rem; justify-content: center; align-items: center;">
+                    <a href="https://wa.me/523327633233" target="_blank" class="btn" style="background: #25D366; color: white;">
+                        <i class="ph ph-whatsapp-logo" style="font-size: 1.25rem;"></i> WhatsApp: 33 2763 3233
+                    </a>
+                    <a href="tel:+523327633233" class="btn btn-outline" style="color: #e2e8f0;">
+                        <i class="ph ph-phone" style="font-size: 1.25rem;"></i> Llamar directo
+                    </a>
+                </div>
             </div>
         </section>
+
+        <!-- FOOTER -->
+        <footer style="text-align: center; padding: 2rem 0; border-top: 1px solid var(--glass-border); margin-top: 2rem;">
+            <p style="font-size: 0.85rem; margin-bottom: 0;">&copy; 2026 Keorsoft. Todos los derechos reservados.</p>
+        </footer>
 
     </main>
 
