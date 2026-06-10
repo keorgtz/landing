@@ -34,7 +34,9 @@
             top: var(--nav-height);
             bottom: 0;
             width: 280px;
-            background: var(--bg-secondary);
+            background: rgba(10, 10, 10, 0.55);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
             border-right: 1px solid var(--border-subtle);
             padding: var(--space-6);
             overflow-y: auto;
@@ -143,8 +145,24 @@
         
         /* Body Background */
         body#docsPage {
-            background: linear-gradient(135deg, var(--bg-secondary) 0%, var(--bg-tertiary) 100%);
+            background: linear-gradient(160deg, var(--bg-secondary) 0%, var(--bg-primary) 45%, var(--bg-tertiary) 100%);
             background-attachment: fixed;
+            background-size: 100% 100%;
+            min-height: 100vh;
+            position: relative;
+        }
+
+        body#docsPage::before {
+            content: '';
+            position: fixed;
+            top: -20%;
+            right: -15%;
+            width: 700px;
+            height: 700px;
+            background: radial-gradient(circle, rgba(249, 115, 22, 0.1) 0%, transparent 70%);
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: -1;
         }
 
         /* Typography & Tables */
@@ -166,34 +184,6 @@
         .docs-section li {
             margin-bottom: var(--space-2);
         }
-        .table-wrap {
-            overflow-x: auto;
-            margin: var(--space-4) 0;
-            border: 1px solid var(--border-subtle);
-            border-radius: var(--radius-md);
-            background: var(--bg-primary);
-        }
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            font-size: var(--text-sm);
-        }
-        th, td {
-            padding: var(--space-3) var(--space-4);
-            text-align: left;
-            border-bottom: 1px solid var(--border-subtle);
-            color: var(--text-primary);
-        }
-        th {
-            background: var(--bg-secondary);
-            font-weight: 600;
-            color: var(--text-secondary);
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
-        }
-        tr:last-child td {
-            border-bottom: none;
-        }
 
         /* Cards & Code Blocks */
         .card {
@@ -205,7 +195,7 @@
             transition: all var(--transition-fast);
         }
         .card:hover {
-            border-color: var(--border-card-hover);
+            border-color: var(--border-accent);
         }
         .card-header {
             display: flex;
@@ -227,6 +217,32 @@
             justify-content: center;
             font-size: 1.2rem;
             background: rgba(255,255,255,0.05);
+            flex-shrink: 0;
+        }
+
+        .card-icon.emerald {
+            background: rgba(16, 185, 129, 0.1);
+            color: #10B981;
+        }
+
+        .card-icon.amber {
+            background: rgba(245, 158, 11, 0.1);
+            color: #F59E0B;
+        }
+
+        .card-icon.indigo {
+            background: rgba(99, 102, 241, 0.1);
+            color: #6366F1;
+        }
+
+        .card-icon.violet {
+            background: rgba(139, 92, 246, 0.1);
+            color: #8B5CF6;
+        }
+
+        .card-icon.orange {
+            background: rgba(249, 115, 22, 0.1);
+            color: #F97316;
         }
         .card-body {
             color: var(--text-secondary);
@@ -240,10 +256,21 @@
             font-size: var(--text-sm);
             color: #E6EDF3;
             overflow-x: auto;
-            white-space: pre-wrap;
-            word-wrap: break-word;
+
+            white-space: pre;
+            word-wrap: normal;
+
             margin: var(--space-4) 0;
             position: relative;
+
+            line-height: 1.7;
+            text-align: left;
+            tab-size: 4;
+        }
+        .code-block-wrap {
+            white-space: pre-wrap;
+            overflow-wrap: anywhere;
+            word-break: break-word;
         }
         .code-block[data-lang]::before {
             content: attr(data-lang);
@@ -269,24 +296,11 @@
         }
         /* Docs Hero */
         .docs-hero {
-            
             border-bottom: 1px solid var(--border-subtle);
             padding: var(--space-16) var(--space-8);
             position: relative;
-            overflow: hidden;
         }
-        
-        .docs-hero::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            right: -20%;
-            width: 600px;
-            height: 600px;
-            background: radial-gradient(circle, rgba(249, 115, 22, 0.08) 0%, transparent 70%);
-            border-radius: 50%;
-        }
-        
+
         .docs-hero-badge {
             display: inline-flex;
             align-items: center;
@@ -381,6 +395,7 @@
         .docs-section:nth-child(16) { animation-delay: 0.75s; }
         .docs-section:nth-child(17) { animation-delay: 0.8s; }
         .docs-section:nth-child(18) { animation-delay: 0.85s; }
+        .docs-section:nth-child(n+19) { animation-delay: 0.9s; }
         
         .docs-section-title {
             font-size: var(--text-2xl);
@@ -394,12 +409,13 @@
             border-bottom: 2px solid var(--border-subtle);
         }
         
-        .section-title i {
+        .docs-section-title i {
             font-size: var(--text-2xl);
             color: var(--accent-primary);
             background: rgba(249, 115, 22, 0.1);
             padding: 6px;
             border-radius: var(--radius-md);
+            line-height: 1;
         }
         
         .section-desc {
@@ -409,45 +425,13 @@
             line-height: 1.6;
         }
         
-        .section h3 {
-            font-size: var(--text-xl);
-            font-weight: 700;
-            color: var(--text-primary);
-            margin: var(--space-6) 0 var(--space-4);
-        }
-        
-        .section h4 {
+        .docs-section h4 {
             font-size: var(--text-lg);
             font-weight: 600;
             color: var(--text-primary);
             margin: var(--space-4) 0 var(--space-3);
         }
-        
-        .section p {
-            font-size: var(--text-sm);
-            color: var(--text-secondary);
-            line-height: 1.7;
-            margin-bottom: var(--space-4);
-        }
-        
-        .section ul {
-            margin-left: var(--space-4);
-            margin-bottom: var(--space-4);
-            color: var(--text-secondary);
-            line-height: 1.7;
-        }
-        
-        .section li {
-            margin-bottom: var(--space-1);
-        }
-        
-        .section ol {
-            margin-left: var(--space-4);
-            margin-bottom: var(--space-4);
-            color: var(--text-secondary);
-            line-height: 1.7;
-        }
-        
+
         /* Docs Cards */
         .docs-card {
             background: var(--bg-card);
@@ -1100,6 +1084,46 @@
                     Configuracion
                 </a>
             </div>
+
+            <div class="docs-nav-section">
+                <div class="docs-nav-section-title">Referencia</div>
+                <a href="#modos" class="docs-nav-item">
+                    <i class="ph ph-squares-four"></i>
+                    Modos
+                </a>
+                <a href="#agentes" class="docs-nav-item">
+                    <i class="ph ph-robot"></i>
+                    Agentes
+                </a>
+                <a href="#tareas" class="docs-nav-item">
+                    <i class="ph ph-check-square"></i>
+                    Tareas
+                </a>
+                <a href="#validacion" class="docs-nav-item">
+                    <i class="ph ph-check-circle"></i>
+                    Validacion
+                </a>
+                <a href="#compresion" class="docs-nav-item">
+                    <i class="ph ph-arrows-in"></i>
+                    Compresion
+                </a>
+                <a href="#snapshots" class="docs-nav-item">
+                    <i class="ph ph-clock-counter-clockwise"></i>
+                    Snapshots
+                </a>
+                <a href="#troubleshooting" class="docs-nav-item">
+                    <i class="ph ph-wrench"></i>
+                    Troubleshooting
+                </a>
+                <a href="#referencia" class="docs-nav-item">
+                    <i class="ph ph-book-open"></i>
+                    Comandos
+                </a>
+                <a href="#ejemplos" class="docs-nav-item">
+                    <i class="ph ph-code"></i>
+                    Ejemplos
+                </a>
+            </div>
         </aside>
 
         <!-- Main Content -->
@@ -1150,7 +1174,7 @@
             <div class="card" style="margin-bottom: var(--space-5);">
                 <div class="card-header">
                     <div class="card-icon amber">
-                        <i class="ph ph-checklist"></i>
+                        <i class="ph ph-list-checks"></i>
                     </div>
                     <div class="card-title">Prerrequisitos</div>
                 </div>
@@ -2251,9 +2275,7 @@ Verifica que no hay referencias circulares</pre>
                     <strong>No usaste ningún comando RACSP para trabajar.</strong> Solo abriste tus agentes normalmente, les pediste cosas en lenguaje natural, y RACSP operó en segundo plano: autoconfigurando perfiles SDD, compartiendo memoria, evitando conflictos, y optimizando tokens. Eso es RACSP v2.0.
                 </div>
             </div>
-        </section>
 
-        <section class="docs-section" id="documentacion-paralela">
             <h3>Escenario 5: Generación de Documentación en Paralelo</h3>
             <p>RACSP permite escalar la generación de documentación usando múltiples instancias de modelos rápidos en paralelo.</p>
             
@@ -2262,14 +2284,17 @@ Verifica que no hay referencias circulares</pre>
                     <div class="step-number">1</div>
                     <div class="step-content">
                         <div class="step-title">Configurar el Agente</div>
-                        <div class="step-desc">Define un agente optimizado para tareas paralelas de bajo costo.</div>
-<pre class="code-block" data-lang="json">{
-  "agent": {
-    "name": "documentation",
-    "config": {
-      "provider": "opencode",
-      "model_tier": "cheap",
-      "parallel": true
+                            <div class="step-desc">
+                                Define un agente optimizado para tareas paralelas de bajo costo.
+                            </div>
+
+                            <pre class="code-block" data-lang="json">{
+  <span class="string">"agent"</span>: {
+    <span class="string">"name"</span>: <span class="string">"documentation"</span>,
+    <span class="string">"config"</span>: {
+      <span class="string">"provider"</span>: <span class="string">"opencode"</span>,
+      <span class="string">"model_tier"</span>: <span class="string">"cheap"</span>,
+      <span class="string">"parallel"</span>: <span class="keyword">true</span>
     }
   }
 }</pre>
@@ -2758,11 +2783,11 @@ Verifica que no hay referencias circulares</pre>
                     </div>
                     <div class="card-body">
                         <ul style="list-style: none; padding: 0;">
-                            <li style="padding: var(--space-2) 0; border-bottom: 1px solid var(--gray-line);">
+                            <li style="padding: var(--space-2) 0; border-bottom: 1px solid var(--border-subtle);">
                                 <i class="ph ph-check-circle"></i>
                                 <strong>Compile Validator</strong> — Verifica compilación exitosa
                             </li>
-                            <li style="padding: var(--space-2) 0; border-bottom: 1px solid var(--gray-line);">
+                            <li style="padding: var(--space-2) 0; border-bottom: 1px solid var(--border-subtle);">
                                 <i class="ph ph-check-circle"></i>
                                 <strong>AST Validator</strong> — Validez sintáctica y estructural
                             </li>
@@ -2783,11 +2808,11 @@ Verifica que no hay referencias circulares</pre>
                     </div>
                     <div class="card-body">
                         <ul style="list-style: none; padding: 0;">
-                            <li style="padding: var(--space-2) 0; border-bottom: 1px solid var(--gray-line);">
+                            <li style="padding: var(--space-2) 0; border-bottom: 1px solid var(--border-subtle);">
                                 <i class="ph ph-plus-circle"></i>
                                 <strong>Consistency Validator</strong> — Cambios no disruptivos
                             </li>
-                            <li style="padding: var(--space-2) 0; border-bottom: 1px solid var(--gray-line);">
+                            <li style="padding: var(--space-2) 0; border-bottom: 1px solid var(--border-subtle);">
                                 <i class="ph ph-plus-circle"></i>
                                 <strong>Dependency Validator</strong> — Sin dependencias circulares
                             </li>
@@ -2827,12 +2852,12 @@ Verifica que no hay referencias circulares</pre>
                     <div class="grid-2" style="margin-top: var(--space-3);">
                         <div>
                             <div class="tag tag-orange" style="margin-bottom: var(--space-2);">Sin Compresión</div>
-<pre class="code-block" data-lang="text">Describe Clean Architecture con 4 capas: Domain, Application, Infrastructure, Presentation. Las dependencias apuntan hacia adentro. Las interfaces van en Domain o Application. Las implementaciones en Infrastructure...</pre>
+<pre class="code-block code-block-wrap" data-lang="text">Describe Clean Architecture con 4 capas: Domain, Application, Infrastructure, Presentation. Las dependencias apuntan hacia adentro. Las interfaces van en Domain o Application. Las implementaciones en Infrastructure...</pre>
                             <div style="text-align: center; margin-top: var(--space-2); color: var(--text-muted); font-size: var(--text-sm);">~2000 tokens</div>
                         </div>
                         <div>
                             <div class="tag tag-emerald" style="margin-bottom: var(--space-2);">Con Compresión</div>
-<pre class="code-block" data-lang="text">pattern:clean-architecture</pre>
+<pre class="code-block code-block-wrap" data-lang="text">pattern:clean-architecture</pre>
                             <div style="text-align: center; margin-top: var(--space-2); color: var(--text-muted); font-size: var(--text-sm);">~20 tokens</div>
                         </div>
                     </div>
@@ -2861,9 +2886,9 @@ Verifica que no hay referencias circulares</pre>
                     </div>
                     <div class="card-body">
                         <ul style="list-style: none; padding: 0;">
-                            <li style="padding: var(--space-2) 0; border-bottom: 1px solid var(--gray-line);">Cada 5 minutos durante ejecución</li>
-                            <li style="padding: var(--space-2) 0; border-bottom: 1px solid var(--gray-line);">Al completar una tarea</li>
-                            <li style="padding: var(--space-2) 0; border-bottom: 1px solid var(--gray-line);">Al cambiar de modo</li>
+                            <li style="padding: var(--space-2) 0; border-bottom: 1px solid var(--border-subtle);">Cada 5 minutos durante ejecución</li>
+                            <li style="padding: var(--space-2) 0; border-bottom: 1px solid var(--border-subtle);">Al completar una tarea</li>
+                            <li style="padding: var(--space-2) 0; border-bottom: 1px solid var(--border-subtle);">Al cambiar de modo</li>
                             <li style="padding: var(--space-2) 0;">Al cambiar de rama Git</li>
                         </ul>
                     </div>
@@ -2878,9 +2903,9 @@ Verifica que no hay referencias circulares</pre>
                     </div>
                     <div class="card-body">
                         <ul style="list-style: none; padding: 0;">
-                            <li style="padding: var(--space-2) 0; border-bottom: 1px solid var(--gray-line);">10 snapshots temporales</li>
-                            <li style="padding: var(--space-2) 0; border-bottom: 1px solid var(--gray-line);">24 horas de retención</li>
-                            <li style="padding: var(--space-2) 0; border-bottom: 1px solid var(--gray-line);">Snapshots por rama</li>
+                            <li style="padding: var(--space-2) 0; border-bottom: 1px solid var(--border-subtle);">10 snapshots temporales</li>
+                            <li style="padding: var(--space-2) 0; border-bottom: 1px solid var(--border-subtle);">24 horas de retención</li>
+                            <li style="padding: var(--space-2) 0; border-bottom: 1px solid var(--border-subtle);">Snapshots por rama</li>
                             <li style="padding: var(--space-2) 0;">Compresión 92%</li>
                         </ul>
                     </div>
@@ -2908,27 +2933,27 @@ Verifica que no hay referencias circulares</pre>
                 </div>
                 <div class="card-body">
                     <div style="margin-bottom: var(--space-4);">
-                        <div style="font-weight: 600; color: var(--gray-dark); margin-bottom: var(--space-2);">RACSP CLI no encontrado</div>
+                        <div style="font-weight: 600; color: var(--text-primary); margin-bottom: var(--space-2);">RACSP CLI no encontrado</div>
 <pre class="code-block" data-lang="bash"><span class="prompt">$</span> cd RACSP/ryou-cli
 <span class="prompt">$</span> npm run build
 <span class="prompt">$</span> npm link</pre>
                     </div>
 
                     <div style="margin-bottom: var(--space-4);">
-                        <div style="font-weight: 600; color: var(--gray-dark); margin-bottom: var(--space-2);">Brain no sincroniza</div>
+                        <div style="font-weight: 600; color: var(--text-primary); margin-bottom: var(--space-2);">Brain no sincroniza</div>
 <pre class="code-block" data-lang="bash"><span class="prompt">$</span> ryou sync --brain
 <span class="prompt">$</span> ryou diagnostics --brain</pre>
                     </div>
 
                     <div style="margin-bottom: var(--space-4);">
-                        <div style="font-weight: 600; color: var(--gray-dark); margin-bottom: var(--space-2);">Validación fallando</div>
+                        <div style="font-weight: 600; color: var(--text-primary); margin-bottom: var(--space-2);">Validación fallando</div>
 <pre class="code-block" data-lang="bash"><span class="prompt">$</span> ryou diagnostics --full
 <span class="prompt">$</span> ryou repair --fix
 <span class="prompt">$</span> ryou validate --stage compile-validator --verbose</pre>
                     </div>
 
                     <div>
-                        <div style="font-weight: 600; color: var(--gray-dark); margin-bottom: var(--space-2);">Reparar instalación</div>
+                        <div style="font-weight: 600; color: var(--text-primary); margin-bottom: var(--space-2);">Reparar instalación</div>
 <pre class="code-block" data-lang="bash"><span class="prompt">$</span> ryou repair --verify     <span class="comment"># Verificar integridad</span>
 <span class="prompt">$</span> ryou repair --fix        <span class="comment"># Reparar automáticamente</span>
 <span class="prompt">$</span> ryou repair --reinstall  <span class="comment"># Reinstalar completamente</span></pre>
@@ -3109,7 +3134,7 @@ Verifica que no hay referencias circulares</pre>
         });
         
         // Active sidebar navigation
-        const sections = document.querySelectorAll('.section');
+        const sections = document.querySelectorAll('.docs-section');
         const sidebarItems = document.querySelectorAll('.docs-nav-item');
         
         window.addEventListener('scroll', () => {
