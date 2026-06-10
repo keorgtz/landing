@@ -1,0 +1,3134 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="RACSP - Guia de Uso completa. Protocolo multi-agente transparente y nativo para desarrollo impulsado por IA.">
+    <meta name="author" content="Kevin Ortiz / Keorsoft">
+    <title>RACSP — Guia de Uso</title>
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Phosphor Icons -->
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    
+    <!-- Styles -->
+    <link rel="stylesheet" href="css/styles.css">
+    
+    <!-- Docs Layout Styles -->
+    <style>
+        /* Docs Layout */
+        .docs-layout {
+            display: flex;
+            min-height: 100vh;
+            padding-top: var(--nav-height);
+        }
+        
+        /* Sidebar */
+        .docs-sidebar {
+            position: fixed;
+            left: 0;
+            top: var(--nav-height);
+            bottom: 0;
+            width: 280px;
+            background: var(--bg-secondary);
+            border-right: 1px solid var(--border-subtle);
+            padding: var(--space-6);
+            overflow-y: auto;
+            z-index: 100;
+        }
+        
+        .docs-sidebar-brand {
+            display: flex;
+            align-items: center;
+            gap: var(--space-3);
+            padding: var(--space-3) var(--space-2);
+            margin-bottom: var(--space-6);
+            border-radius: var(--radius-md);
+            transition: background var(--transition-fast);
+        }
+        
+        .docs-sidebar-brand:hover {
+            background: var(--bg-tertiary);
+        }
+        
+        .docs-sidebar-brand i {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
+            border-radius: var(--radius-md);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-inverse);
+            font-size: var(--text-xl);
+            font-weight: 800;
+            box-shadow: 0 2px 8px rgba(249, 115, 22, 0.3);
+        }
+        
+        .docs-sidebar-brand-text {
+            font-size: var(--text-base);
+            font-weight: 800;
+            color: var(--text-primary);
+            line-height: 1.2;
+        }
+        
+        .docs-sidebar-brand-sub {
+            font-size: var(--text-xs);
+            color: var(--text-muted);
+            font-weight: 500;
+        }
+        
+        .docs-nav-section {
+            margin-bottom: var(--space-4);
+        }
+        
+        .docs-nav-section-title {
+            font-size: var(--text-xs);
+            font-weight: 700;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+            padding: var(--space-2) var(--space-3);
+            margin-bottom: var(--space-2);
+        }
+        
+        .docs-nav-item {
+            display: flex;
+            align-items: center;
+            gap: var(--space-3);
+            padding: var(--space-2) var(--space-3);
+            border-radius: var(--radius-md);
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: var(--text-sm);
+            font-weight: 500;
+            transition: all var(--transition-fast);
+            cursor: pointer;
+            margin-bottom: 2px;
+            position: relative;
+        }
+        
+        .docs-nav-item:hover {
+            background: rgba(255, 255, 255, 0.05);
+            color: var(--accent-primary);
+            transform: translateX(2px);
+        }
+        
+        .docs-nav-item.active {
+            background: rgba(249, 115, 22, 0.1);
+            color: var(--accent-primary);
+            box-shadow: 0 1px 3px rgba(249, 115, 22, 0.12);
+            font-weight: 600;
+        }
+        
+        .docs-nav-item.active::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 8px;
+            bottom: 8px;
+            width: 3px;
+            background: var(--accent-primary);
+            border-radius: 0 3px 3px 0;
+        }
+        
+        .docs-nav-item i {
+            font-size: var(--text-lg);
+            flex-shrink: 0;
+        }
+        
+        /* Body Background */
+        body#docsPage {
+            background: linear-gradient(135deg, var(--bg-secondary) 0%, var(--bg-tertiary) 100%);
+            background-attachment: fixed;
+        }
+
+        /* Typography & Tables */
+        .docs-section h3 {
+            font-size: var(--text-xl);
+            margin-top: var(--space-6);
+            margin-bottom: var(--space-3);
+            color: var(--text-primary);
+        }
+        .docs-section p {
+            margin-bottom: var(--space-4);
+            line-height: 1.6;
+        }
+        .docs-section ul, .docs-section ol {
+            padding-left: var(--space-6);
+            margin-bottom: var(--space-4);
+            line-height: 1.6;
+        }
+        .docs-section li {
+            margin-bottom: var(--space-2);
+        }
+        .table-wrap {
+            overflow-x: auto;
+            margin: var(--space-4) 0;
+            border: 1px solid var(--border-subtle);
+            border-radius: var(--radius-md);
+            background: var(--bg-primary);
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: var(--text-sm);
+        }
+        th, td {
+            padding: var(--space-3) var(--space-4);
+            text-align: left;
+            border-bottom: 1px solid var(--border-subtle);
+            color: var(--text-primary);
+        }
+        th {
+            background: var(--bg-secondary);
+            font-weight: 600;
+            color: var(--text-secondary);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+        tr:last-child td {
+            border-bottom: none;
+        }
+
+        /* Cards & Code Blocks */
+        .card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-subtle);
+            border-radius: var(--radius-lg);
+            padding: var(--space-6);
+            margin-bottom: var(--space-4);
+            transition: all var(--transition-fast);
+        }
+        .card:hover {
+            border-color: var(--border-card-hover);
+        }
+        .card-header {
+            display: flex;
+            align-items: center;
+            gap: var(--space-3);
+            margin-bottom: var(--space-4);
+        }
+        .card-title {
+            font-size: var(--text-lg);
+            font-weight: 700;
+            color: var(--text-primary);
+        }
+        .card-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: var(--radius-md);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            background: rgba(255,255,255,0.05);
+        }
+        .card-body {
+            color: var(--text-secondary);
+        }
+        .code-block {
+            background: #0D1117;
+            border: 1px solid var(--border-subtle);
+            border-radius: var(--radius-md);
+            padding: var(--space-4);
+            font-family: var(--font-mono);
+            font-size: var(--text-sm);
+            color: #E6EDF3;
+            overflow-x: auto;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+            margin: var(--space-4) 0;
+            position: relative;
+        }
+        .code-block[data-lang]::before {
+            content: attr(data-lang);
+            position: absolute;
+            top: 0;
+            right: 0;
+            background: var(--bg-tertiary);
+            color: var(--text-muted);
+            font-size: var(--text-xs);
+            padding: 2px 8px;
+            border-bottom-left-radius: var(--radius-md);
+        }
+        
+        /* Main Content */
+        .docs-main {
+            margin-left: 280px;
+            flex: 1;
+            padding: 3rem 4rem;
+            max-width: calc(900px + 8rem);
+            min-height: calc(100vh - var(--nav-height));
+            position: relative;
+            z-index: 1;
+        }
+        /* Docs Hero */
+        .docs-hero {
+            
+            border-bottom: 1px solid var(--border-subtle);
+            padding: var(--space-16) var(--space-8);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .docs-hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -20%;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(249, 115, 22, 0.08) 0%, transparent 70%);
+            border-radius: 50%;
+        }
+        
+        .docs-hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: var(--space-2);
+            background: rgba(249, 115, 22, 0.1);
+            padding: var(--space-2) var(--space-4);
+            border-radius: var(--radius-full);
+            font-size: var(--text-sm);
+            font-weight: 600;
+            color: var(--accent-secondary);
+            margin-bottom: var(--space-4);
+            border: 1px solid var(--border-accent);
+        }
+        
+        .docs-hero-title {
+            font-size: var(--text-4xl);
+            font-weight: 900;
+            line-height: 1.1;
+            margin-bottom: var(--space-4);
+            color: var(--text-primary);
+            letter-spacing: -0.02em;
+        }
+        
+        .docs-hero-subtitle {
+            font-size: var(--text-lg);
+            font-weight: 400;
+            color: var(--text-secondary);
+            max-width: 600px;
+            line-height: 1.6;
+        }
+        
+        .docs-hero-stats {
+            display: flex;
+            gap: var(--space-8);
+            margin-top: var(--space-8);
+        }
+        
+        .docs-hero-stat {
+            text-align: center;
+            padding: var(--space-3) var(--space-4);
+            border-radius: var(--radius-lg);
+            background: var(--bg-card);
+            border: 1px solid var(--border-subtle);
+            transition: background var(--transition-fast), transform var(--transition-fast);
+            min-width: 80px;
+        }
+        
+        .docs-hero-stat:hover {
+            background: var(--bg-card-hover);
+            transform: translateY(-2px);
+        }
+        
+        .docs-hero-stat-value {
+            font-size: var(--text-2xl);
+            font-weight: 800;
+            color: var(--accent-primary);
+            line-height: 1;
+        }
+        
+        .docs-hero-stat-label {
+            font-size: var(--text-xs);
+            color: var(--text-muted);
+            margin-top: var(--space-1);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+        
+        /* Docs Section */
+        .docs-section {
+            padding: var(--space-8) var(--space-8);
+            max-width: 900px;
+            margin-left: auto;
+            margin-right: auto;
+            scroll-margin-top: calc(var(--nav-height) + var(--space-4));
+            animation: fadeInUp 0.5s ease-out both;
+        }
+        
+        .docs-section:nth-child(2) { animation-delay: 0.05s; }
+        .docs-section:nth-child(3) { animation-delay: 0.1s; }
+        .docs-section:nth-child(4) { animation-delay: 0.15s; }
+        .docs-section:nth-child(5) { animation-delay: 0.2s; }
+        .docs-section:nth-child(6) { animation-delay: 0.25s; }
+        .docs-section:nth-child(7) { animation-delay: 0.3s; }
+        .docs-section:nth-child(8) { animation-delay: 0.35s; }
+        .docs-section:nth-child(9) { animation-delay: 0.4s; }
+        .docs-section:nth-child(10) { animation-delay: 0.45s; }
+        .docs-section:nth-child(11) { animation-delay: 0.5s; }
+        .docs-section:nth-child(12) { animation-delay: 0.55s; }
+        .docs-section:nth-child(13) { animation-delay: 0.6s; }
+        .docs-section:nth-child(14) { animation-delay: 0.65s; }
+        .docs-section:nth-child(15) { animation-delay: 0.7s; }
+        .docs-section:nth-child(16) { animation-delay: 0.75s; }
+        .docs-section:nth-child(17) { animation-delay: 0.8s; }
+        .docs-section:nth-child(18) { animation-delay: 0.85s; }
+        
+        .docs-section-title {
+            font-size: var(--text-2xl);
+            font-weight: 800;
+            color: var(--text-primary);
+            margin-bottom: var(--space-3);
+            display: flex;
+            align-items: center;
+            gap: var(--space-3);
+            padding-bottom: var(--space-3);
+            border-bottom: 2px solid var(--border-subtle);
+        }
+        
+        .section-title i {
+            font-size: var(--text-2xl);
+            color: var(--accent-primary);
+            background: rgba(249, 115, 22, 0.1);
+            padding: 6px;
+            border-radius: var(--radius-md);
+        }
+        
+        .section-desc {
+            font-size: var(--text-base);
+            color: var(--text-secondary);
+            margin-bottom: var(--space-6);
+            line-height: 1.6;
+        }
+        
+        .section h3 {
+            font-size: var(--text-xl);
+            font-weight: 700;
+            color: var(--text-primary);
+            margin: var(--space-6) 0 var(--space-4);
+        }
+        
+        .section h4 {
+            font-size: var(--text-lg);
+            font-weight: 600;
+            color: var(--text-primary);
+            margin: var(--space-4) 0 var(--space-3);
+        }
+        
+        .section p {
+            font-size: var(--text-sm);
+            color: var(--text-secondary);
+            line-height: 1.7;
+            margin-bottom: var(--space-4);
+        }
+        
+        .section ul {
+            margin-left: var(--space-4);
+            margin-bottom: var(--space-4);
+            color: var(--text-secondary);
+            line-height: 1.7;
+        }
+        
+        .section li {
+            margin-bottom: var(--space-1);
+        }
+        
+        .section ol {
+            margin-left: var(--space-4);
+            margin-bottom: var(--space-4);
+            color: var(--text-secondary);
+            line-height: 1.7;
+        }
+        
+        /* Docs Cards */
+        .docs-card {
+            background: var(--bg-card);
+            border-radius: var(--radius-lg);
+            padding: var(--space-6);
+            margin-bottom: var(--space-4);
+            border: 1px solid var(--border-subtle);
+            transition: box-shadow var(--transition-base), transform var(--transition-base);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+        }
+        
+        .docs-card:hover {
+            border-color: var(--border-accent);
+            transform: translateY(-1px);
+            box-shadow: var(--shadow-glow);
+        }
+        
+        .docs-card-header {
+            display: flex;
+            align-items: center;
+            gap: var(--space-3);
+            margin-bottom: var(--space-4);
+        }
+        
+        .docs-card-icon {
+            width: 36px;
+            height: 36px;
+            border-radius: var(--radius-md);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: var(--text-lg);
+        }
+        
+        .docs-card-icon.emerald {
+            background: rgba(16, 185, 129, 0.1);
+            color: #10B981;
+        }
+        
+        .docs-card-icon.amber {
+            background: rgba(245, 158, 11, 0.1);
+            color: #F59E0B;
+        }
+        
+        .docs-card-icon.indigo {
+            background: rgba(99, 102, 241, 0.1);
+            color: #6366F1;
+        }
+        
+        .docs-card-icon.violet {
+            background: rgba(139, 92, 246, 0.1);
+            color: #8B5CF6;
+        }
+        
+        .docs-card-icon.orange {
+            background: rgba(249, 115, 22, 0.1);
+            color: #F97316;
+        }
+        
+        .docs-card-title {
+            font-size: var(--text-base);
+            font-weight: 700;
+            color: var(--text-primary);
+        }
+        
+        .docs-card-body {
+            font-size: var(--text-sm);
+            color: var(--text-secondary);
+            line-height: 1.7;
+        }
+        
+        /* Code Blocks */
+        .docs-code-block {
+            background: #0d0d0d;
+            color: #E5E7EB;
+            border-radius: var(--radius-md);
+            padding: var(--space-4);
+            font-family: var(--font-mono);
+            font-size: var(--text-sm);
+            line-height: 1.6;
+            overflow-x: auto;
+            margin: var(--space-3) 0;
+            position: relative;
+            white-space: pre;
+            tab-size: 4;
+            word-wrap: normal;
+            border: 1px solid var(--border-subtle);
+            box-shadow: inset 0 1px 4px rgba(0, 0, 0, 0.3);
+        }
+        
+        .docs-code-block::before {
+            content: attr(data-lang);
+            position: absolute;
+            top: var(--space-2);
+            right: var(--space-3);
+            font-size: var(--text-xs);
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.04em;
+            font-weight: 600;
+        }
+        
+        .docs-code-block .comment {
+            color: #6B7280;
+            font-style: italic;
+        }
+        
+        .docs-code-block .keyword {
+            color: #C4B5FD;
+        }
+        
+        .docs-code-block .string {
+            color: #34D399;
+        }
+        
+        .docs-code-block .number {
+            color: #FBB95A;
+        }
+        
+        .docs-code-block .prompt {
+            color: #10B981;
+            font-weight: 600;
+        }
+        
+        /* Steps */
+        .steps {
+            display: flex;
+            flex-direction: column;
+            gap: 0;
+            position: relative;
+        }
+        
+        .step {
+            display: flex;
+            gap: var(--space-4);
+            align-items: flex-start;
+            padding: var(--space-3) 0;
+            position: relative;
+        }
+        
+        .step:not(:last-child)::before {
+            content: '';
+            position: absolute;
+            left: 20px;
+            top: 48px;
+            bottom: -8px;
+            width: 2px;
+            background: linear-gradient(to bottom, var(--accent-primary), rgba(249, 115, 22, 0.1));
+        }
+        
+        .step-number {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
+            color: var(--text-inverse);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: var(--text-sm);
+            font-weight: 800;
+            flex-shrink: 0;
+            margin-top: 2px;
+            box-shadow: 0 2px 8px rgba(249, 115, 22, 0.3);
+            position: relative;
+            z-index: 1;
+        }
+        
+        .step-icon {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: rgba(249, 115, 22, 0.1);
+            color: var(--accent-primary);
+            flex-shrink: 0;
+            margin-top: 2px;
+            font-size: var(--text-lg);
+            box-shadow: 0 1px 4px rgba(249, 115, 22, 0.12);
+            position: relative;
+            z-index: 1;
+        }
+        
+        .step-content {
+            flex: 1;
+        }
+        
+        .step-title {
+            font-size: var(--text-base);
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: var(--space-1);
+            display: flex;
+            align-items: center;
+            gap: var(--space-2);
+        }
+        
+        .step-desc {
+            font-size: var(--text-sm);
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+        
+        /* Tables */
+        .table-wrap {
+            overflow-x: auto;
+            border-radius: var(--radius-lg);
+            border: 1px solid var(--border-subtle);
+            margin: var(--space-3) 0;
+            background: var(--bg-card);
+            box-shadow: var(--shadow-sm);
+        }
+        
+        .table-wrap table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: var(--text-sm);
+        }
+        
+        .table-wrap th {
+            background: var(--bg-tertiary);
+            padding: var(--space-3) var(--space-4);
+            text-align: left;
+            font-weight: 700;
+            color: var(--text-primary);
+            border-bottom: 2px solid var(--border-subtle);
+            white-space: nowrap;
+            font-size: var(--text-xs);
+            text-transform: uppercase;
+            letter-spacing: 0.04em;
+        }
+        
+        .table-wrap td {
+            padding: var(--space-3) var(--space-4);
+            border-bottom: 1px solid var(--border-subtle);
+            color: var(--text-secondary);
+            transition: background var(--transition-fast);
+        }
+        
+        .table-wrap tbody tr:nth-child(even) {
+            background: rgba(255, 255, 255, 0.02);
+        }
+        
+        .table-wrap tbody tr:hover td {
+            background: rgba(249, 115, 22, 0.05);
+        }
+        
+        .table-wrap tbody tr:last-child td {
+            border-bottom: none;
+        }
+        
+        /* Tags */
+        .tag {
+            display: inline-flex;
+            align-items: center;
+            gap: var(--space-1);
+            padding: 3px 8px;
+            border-radius: var(--radius-sm);
+            font-size: var(--text-xs);
+            font-weight: 600;
+            letter-spacing: 0.01em;
+            transition: transform var(--transition-fast), box-shadow var(--transition-fast);
+            white-space: nowrap;
+        }
+        
+        .tag:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);
+        }
+        
+        .tag-emerald {
+            background: rgba(16, 185, 129, 0.15);
+            color: #10B981;
+        }
+        
+        .tag-amber {
+            background: rgba(245, 158, 11, 0.15);
+            color: #F59E0B;
+        }
+        
+        .tag-indigo {
+            background: rgba(99, 102, 241, 0.15);
+            color: #6366F1;
+        }
+        
+        .tag-violet {
+            background: rgba(139, 92, 246, 0.15);
+            color: #8B5CF6;
+        }
+        
+        .tag-orange {
+            background: rgba(249, 115, 22, 0.15);
+            color: #F97316;
+        }
+        
+        /* Badge Recommended */
+        .badge-recommended {
+            display: inline-flex;
+            align-items: center;
+            gap: var(--space-1);
+            padding: 3px 10px;
+            border-radius: var(--radius-full);
+            font-size: var(--text-xs);
+            font-weight: 800;
+            background: linear-gradient(135deg, #10B981, #6366F1);
+            color: var(--text-inverse);
+            text-transform: uppercase;
+            letter-spacing: 0.04em;
+            box-shadow: 0 2px 6px rgba(16, 185, 129, 0.3);
+        }
+        
+        /* Alerts */
+        .alert {
+            display: flex;
+            gap: var(--space-3);
+            padding: var(--space-4);
+            border-radius: var(--radius-lg);
+            margin: var(--space-3) 0;
+            align-items: flex-start;
+            position: relative;
+            overflow: hidden;
+            transition: box-shadow var(--transition-base), transform var(--transition-base);
+        }
+        
+        .alert:hover {
+            box-shadow: var(--shadow-md);
+        }
+        
+        .alert-emerald {
+            background: rgba(16, 185, 129, 0.08);
+            border: 1px solid rgba(16, 185, 129, 0.2);
+            border-left: 4px solid #10B981;
+        }
+        
+        .alert-amber {
+            background: rgba(245, 158, 11, 0.08);
+            border: 1px solid rgba(245, 158, 11, 0.2);
+            border-left: 4px solid #F59E0B;
+        }
+        
+        .alert-indigo {
+            background: rgba(99, 102, 241, 0.08);
+            border: 1px solid rgba(99, 102, 241, 0.2);
+            border-left: 4px solid #6366F1;
+        }
+        
+        .alert-orange {
+            background: rgba(249, 115, 22, 0.08);
+            border: 1px solid rgba(249, 115, 22, 0.2);
+            border-left: 4px solid #F97316;
+        }
+        
+        .alert-icon {
+            font-size: var(--text-xl);
+            flex-shrink: 0;
+            margin-top: 1px;
+        }
+        
+        .alert-emerald .alert-icon {
+            color: #10B981;
+        }
+        
+        .alert-amber .alert-icon {
+            color: #F59E0B;
+        }
+        
+        .alert-indigo .alert-icon {
+            color: #6366F1;
+        }
+        
+        .alert-orange .alert-icon {
+            color: #F97316;
+        }
+        
+        .alert-content {
+            font-size: var(--text-sm);
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+        
+        .alert-title {
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: var(--space-1);
+        }
+        
+        /* Grids */
+        .grid-2 {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: var(--space-4);
+        }
+        
+        .grid-3 {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: var(--space-4);
+        }
+        
+        .cap-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: var(--space-4);
+            margin-top: var(--space-4);
+        }
+        
+        .cap-item {
+            background: var(--bg-card);
+            border-radius: var(--radius-lg);
+            padding: var(--space-6);
+            border: 1px solid var(--border-subtle);
+            transition: box-shadow var(--transition-base), transform var(--transition-base);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+        }
+        
+        .cap-item:hover {
+            border-color: var(--border-accent);
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-glow);
+        }
+        
+        .cap-item-header {
+            display: flex;
+            align-items: center;
+            gap: var(--space-3);
+            margin-bottom: var(--space-4);
+        }
+        
+        .cap-item-icon {
+            width: 36px;
+            height: 36px;
+            border-radius: var(--radius-md);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: var(--text-lg);
+        }
+        
+        .cap-item-title {
+            font-size: var(--text-base);
+            font-weight: 700;
+            color: var(--text-primary);
+        }
+        
+        .cap-item-body {
+            font-size: var(--text-sm);
+            color: var(--text-secondary);
+            line-height: 1.7;
+        }
+        
+        .cap-item-body ul {
+            margin-left: var(--space-4);
+            margin-top: var(--space-2);
+        }
+        
+        .cap-item-body li {
+            margin-bottom: var(--space-1);
+        }
+        
+        /* Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+        
+        ::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        
+        ::-webkit-scrollbar-thumb {
+            background: var(--border-subtle);
+            border-radius: var(--radius-full);
+        }
+        
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--border-medium);
+        }
+        
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .docs-sidebar {
+                width: 240px;
+            }
+            .docs-main {
+                margin-left: 240px;
+                padding: 2rem;
+            }
+            .grid-3 {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .cap-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .docs-sidebar {
+                transform: translateX(-100%);
+                transition: transform var(--transition-base);
+                top: var(--nav-height);
+            }
+            .docs-sidebar.open {
+                transform: translateX(0);
+            }
+            .docs-main {
+                margin-left: 0;
+                padding: 1.5rem;
+            }
+            .docs-hero {
+                padding: var(--space-8) var(--space-4);
+            }
+            .docs-hero-title {
+                font-size: var(--text-2xl);
+            }
+            .docs-section {
+                padding: var(--space-6) var(--space-4);
+            }
+            .grid-2,
+            .grid-3 {
+                grid-template-columns: 1fr;
+            }
+            .cap-grid {
+                grid-template-columns: 1fr;
+            }
+            .docs-hero-stats {
+                flex-wrap: wrap;
+                gap: var(--space-4);
+            }
+        }
+        
+        /* Footer Social */
+        .footer-social {
+            display: flex;
+            gap: var(--space-4);
+        }
+        
+        .footer-social a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            border-radius: var(--radius-full);
+            background: var(--bg-tertiary);
+            border: 1px solid var(--border-subtle);
+            color: var(--text-muted);
+            font-size: var(--text-xl);
+            transition: all var(--transition-fast);
+        }
+        
+        .footer-social a:hover {
+            background: var(--accent-primary);
+            border-color: var(--accent-primary);
+            color: var(--text-inverse);
+            transform: translateY(-2px);
+        }
+        
+        /* Animation */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(16px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+<body id="docsPage">
+    <!-- Navigation -->
+    <nav class="nav" id="nav">
+        <div class="nav-container">
+            <a href="index.html" class="nav-logo">
+                <i class="ph-fill ph-hexagon"></i>
+                <span>RACSP</span>
+            </a>
+            
+            <ul class="nav-links" id="navLinks">
+                <li><a href="index.html" class="nav-link">Inicio</a></li>
+                <li><a href="index.html#caracteristicas" class="nav-link">Caracteristicas</a></li>
+                <li><a href="index.html#arquitectura" class="nav-link">Arquitectura</a></li>
+                <li><a href="index.html#protocolo" class="nav-link">Protocolo</a></li>
+                <li><a href="Docs.html" class="nav-link active">Documentacion</a></li>
+                <li><a href="https://github.com/keorgtz/RACSP.git" class="nav-link nav-link--external" target="_blank" rel="noopener noreferrer">
+                    <i class="ph-fill ph-github-logo"></i>
+                    GitHub
+                </a></li>
+            </ul>
+            
+            <button class="nav-toggle" id="navToggle" aria-label="Abrir menu de navegacion">
+                <i class="ph ph-list"></i>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Docs Layout -->
+    <div class="docs-layout">
+        <!-- Sidebar -->
+        <aside class="docs-sidebar" id="sidebar">
+            <a href="index.html" class="docs-sidebar-brand">
+                <i class="ph-fill ph-hexagon"></i>
+                <div>
+                    <div class="docs-sidebar-brand-text">RACSP</div>
+                    <div class="docs-sidebar-brand-sub">v2.0.0 · Protocolo SDD</div>
+                </div>
+            </a>
+
+            <div class="docs-nav-section">
+                <div class="docs-nav-section-title">Guia</div>
+                <a href="#instalacion" class="docs-nav-item active">
+                    <i class="ph ph-download"></i>
+                    Instalacion
+                </a>
+                <a href="#capacidades" class="docs-nav-item">
+                    <i class="ph ph-sparkle"></i>
+                    Capacidades
+                </a>
+                <a href="#sdd-profiles" class="docs-nav-item">
+                    <i class="ph ph-brain"></i>
+                    Perfiles SDD
+                </a>
+                <a href="#meta-orchestrator" class="docs-nav-item">
+                    <i class="ph ph-tree-structure"></i>
+                    Meta-Orquestador
+                </a>
+                <a href="#delegacion-inteligente" class="docs-nav-item">
+                    <i class="ph ph-arrows-left-right"></i>
+                    Delegacion
+                </a>
+                <a href="#brain-v2" class="docs-nav-item">
+                    <i class="ph ph-share-network"></i>
+                    Brain v2
+                </a>
+                <a href="#uso-practico" class="docs-nav-item">
+                    <i class="ph ph-wrench"></i>
+                    Uso Practico
+                </a>
+                <a href="#uso" class="docs-nav-item">
+                    <i class="ph ph-play-circle"></i>
+                    Uso Basico
+                </a>
+                <a href="#configuracion" class="docs-nav-item">
+                    <i class="ph ph-gear"></i>
+                    Configuracion
+                </a>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="docs-main">
+
+        <header class="docs-hero">
+            <div class="docs-hero-badge">
+                <i class="ph ph-rocket-launch"></i>
+                Ryou AI Cross SDD Protocol v2.0.0
+            </div>
+            <h1 class="docs-hero-title">Guía de Uso<br>RACSP</h1>
+            <p class="docs-hero-subtitle">Protocolo de orquestación multi-agente distribuido y agnóstico de proveedor. Múltiples sistemas de IA colaborando simultáneamente en el mismo proyecto con memoria compartida, ejecución determinista y validación externa.</p>
+            <div class="docs-hero-stats">
+                <div class="docs-hero-stat">
+                    <div class="docs-hero-stat-value">10</div>
+                    <div class="docs-hero-stat-label">Tipos de Agentes</div>
+                </div>
+                <div class="docs-hero-stat">
+                    <div class="docs-hero-stat-value">9</div>
+                    <div class="docs-hero-stat-label">Modos de Operación</div>
+                </div>
+                <div class="docs-hero-stat">
+                    <div class="docs-hero-stat-value">7+</div>
+                    <div class="docs-hero-stat-label">Proveedores IA</div>
+                </div>
+                <div class="docs-hero-stat">
+                    <div class="docs-hero-stat-value">80%</div>
+                    <div class="docs-hero-stat-label">Ahorro de Tokens</div>
+                </div>
+            </div>
+        </header>
+
+        <section class="docs-section" id="instalacion">
+            <h2 class="docs-section-title">
+                <i class="ph ph-download"></i>
+                Instalación — Protocolo de Proyecto
+            </h2>
+            <p class="section-desc">RACSP no es una herramienta que uses. Es un <strong>protocolo que vive en tu proyecto</strong>. Una vez instalado, simplemente abres tus agentes de IA normalmente en la carpeta del proyecto y cada uno se autoconfigura automáticamente.</p>
+
+            <div class="alert alert-indigo" style="margin-bottom: var(--space-5);">
+                <i class="ph ph-lightbulb alert-icon"></i>
+                <div class="alert-content">
+                    <div class="alert-title">Filosofía de RACSP</div>
+                    <strong>No uses comandos especiales.</strong> No necesitas <code>racsp-wrap</code> ni wrappers. Simplemente abre Claude Code, OpenCode, Antigravity o cualquier agente <strong>normalmente</strong> en la raíz de tu proyecto. Si detectan <code>.racsp/</code>, se autoconfiguran solos con su perfil SDD y empiezan a compartir memoria con los demás agentes.
+                </div>
+            </div>
+
+            <div class="card" style="margin-bottom: var(--space-5);">
+                <div class="card-header">
+                    <div class="card-icon amber">
+                        <i class="ph ph-checklist"></i>
+                    </div>
+                    <div class="card-title">Prerrequisitos</div>
+                </div>
+                <div class="card-body">
+                    <ul style="margin-left: var(--space-4);">
+                        <li><strong>Node.js 18+</strong> — Para compilar el CLI de RACSP (una sola vez)</li>
+                        <li><strong>Git 2.30+</strong> — Tu proyecto debe usar Git</li>
+                        <li><strong>Proyecto existente</strong> — RACSP se instala <em>dentro</em> de tu proyecto</li>
+                        <li><strong>Agentes de IA instalados</strong> — Claude Code, OpenCode, Gemini, Antigravity, Codex, etc.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <h3 style="font-size: var(--text-lg); font-weight: 600; margin: var(--space-5) 0 var(--space-3);">Instalación en 3 Pasos</h3>
+
+            <div class="steps">
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <div class="step-content">
+                        <div class="step-title">
+                            <i class="ph ph-download"></i>
+                            Compilar RACSP (Una Sola Vez)
+                        </div>
+                        <div class="step-desc">Descarga y compila el CLI de RACSP. Esto solo lo haces una vez por máquina.</div>
+                        <div style="background: #1C1E26; border-radius: var(--radius-md); overflow: hidden; margin: var(--space-3) 0; border: 1px solid #2D2F3B; box-shadow: 0 2px 8px rgba(0,0,0,.12);">
+                            <div style="display: flex; align-items: center; gap: var(--space-2); padding: var(--space-2) var(--space-3); background: #252733; border-bottom: 1px solid #2D2F3B;">
+                                <span style="width: 10px; height: 10px; border-radius: 50%; background: #FF5F56;"></span>
+                                <span style="width: 10px; height: 10px; border-radius: 50%; background: #FFBD2E;"></span>
+                                <span style="width: 10px; height: 10px; border-radius: 50%; background: #27C93F;"></span>
+                                <span style="margin-left: auto; font-size: var(--text-xs); color: var(--text-muted); font-family: var(--font-mono);">bash</span>
+                            </div>
+<pre class="code-block" data-lang="bash" style="margin: 0; border: none; box-shadow: none; border-radius: 0;"><span class="prompt">$</span> git clone https://github.com/keorgtz/RACSP.git
+<span class="prompt">$</span> cd RACSP/ryou-cli
+<span class="prompt">$</span> npm install && npm run build && npm link</pre>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <div class="step-content">
+                        <div class="step-title">
+                            <i class="ph ph-gear"></i>
+                            Instalar el Protocolo en tu Proyecto
+                        </div>
+                        <div class="step-desc">Ejecuta el setup wizard en la raíz de tu proyecto. Esto crea la carpeta <code>.racsp/</code> con todo el protocolo: Brain compartido, perfiles SDD por agente, reglas, y memoria.</div>
+                        <div style="background: #1C1E26; border-radius: var(--radius-md); overflow: hidden; margin: var(--space-3) 0; border: 1px solid #2D2F3B; box-shadow: 0 2px 8px rgba(0,0,0,.12);">
+                            <div style="display: flex; align-items: center; gap: var(--space-2); padding: var(--space-2) var(--space-3); background: #252733; border-bottom: 1px solid #2D2F3B;">
+                                <span style="width: 10px; height: 10px; border-radius: 50%; background: #FF5F56;"></span>
+                                <span style="width: 10px; height: 10px; border-radius: 50%; background: #FFBD2E;"></span>
+                                <span style="width: 10px; height: 10px; border-radius: 50%; background: #27C93F;"></span>
+                                <span style="margin-left: auto; font-size: var(--text-xs); color: var(--text-muted); font-family: var(--font-mono);">bash</span>
+                            </div>
+<pre class="code-block" data-lang="bash" style="margin: 0; border: none; box-shadow: none; border-radius: 0;"><span class="prompt">$</span> cd /path/to/tu-proyecto
+<span class="prompt">$</span> ryou setup</pre>
+                        </div>
+                        <p style="margin-top: var(--space-2); font-size: var(--text-sm); color: var(--text-muted);">
+                            El wizard detecta tu stack (.NET, Node, Python, etc.), crea la estructura <code>.racsp/</code>, y genera los perfiles SDD para cada agente que tengas instalado.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <div class="step-content">
+                        <div class="step-title">
+                            <i class="ph ph-rocket-launch"></i>
+                            Abrir tus Agentes y Trabajar Normalmente
+                        </div>
+                        <div class="step-desc">Ahora simplemente abres tus agentes en la carpeta del proyecto. Cada uno detectará <code>.racsp/</code> y se autoconfigurará automáticamente.</div>
+                        <div style="background: #1C1E26; border-radius: var(--radius-md); overflow: hidden; margin: var(--space-3) 0; border: 1px solid #2D2F3B; box-shadow: 0 2px 8px rgba(0,0,0,.12);">
+                            <div style="display: flex; align-items: center; gap: var(--space-2); padding: var(--space-2) var(--space-3); background: #252733; border-bottom: 1px solid #2D2F3B;">
+                                <span style="width: 10px; height: 10px; border-radius: 50%; background: #FF5F56;"></span>
+                                <span style="width: 10px; height: 10px; border-radius: 50%; background: #FFBD2E;"></span>
+                                <span style="width: 10px; height: 10px; border-radius: 50%; background: #27C93F;"></span>
+                                <span style="margin-left: auto; font-size: var(--text-xs); color: var(--text-muted); font-family: var(--font-mono);">bash</span>
+                            </div>
+<pre class="code-block" data-lang="bash" style="margin: 0; border: none; box-shadow: none; border-radius: 0;"><span class="comment"># Terminal 1 — Abres Claude Code normalmente</span>
+<span class="prompt">$</span> cd /path/to/tu-proyecto
+<span class="prompt">$</span> claude
+
+<span class="comment"># Terminal 2 — Abres OpenCode normalmente</span>
+<span class="prompt">$</span> cd /path/to/tu-proyecto
+<span class="prompt">$</span> opencode
+
+<span class="comment"># Terminal 3 — Abres Antigravity normalmente</span>
+<span class="prompt">$</span> cd /path/to/tu-proyecto
+<span class="prompt">$</span> antigravity</pre>
+                        </div>
+                        <p style="margin-top: var(--space-2);">Cada agente, al iniciar en la carpeta del proyecto:</p>
+                        <ol style="margin-left: var(--space-4); margin-top: var(--space-2);">
+                            <li>Detecta la carpeta <code>.racsp/</code></li>
+                            <li>Lee <code>.racsp/RACSP.md</code> para entender el protocolo</li>
+                            <li>Lee <code>.racsp/agents/&lt;agente&gt;/</code> para cargar su perfil SDD</li>
+                            <li>Lee <code>.racsp/BRAIN.md</code> para conocer el estado actual</li>
+                            <li>Lee <code>.racsp/AGENTS.md</code> para ver qué hacen los demás</li>
+                            <li>Se autoconfigura con sus modelos por fase SDD</li>
+                            <li>Empieza a compartir memoria automáticamente</li>
+                        </ol>
+                    </div>
+                </div>
+            </div>
+
+            <h3 style="font-size: var(--text-lg); font-weight: 600; margin: var(--space-5) 0 var(--space-3);">Flujo de Trabajo Real</h3>
+            <p style="margin-bottom: var(--space-3);">Así es como trabajas con RACSP una vez instalado. <strong>Sin comandos especiales. Sin wrappers. Solo abres tus agentes y les pides cosas.</strong></p>
+
+            <div class="card" style="margin-bottom: var(--space-4);">
+                <div class="card-header">
+                    <div class="card-icon emerald">
+                        <i class="ph ph-terminal"></i>
+                    </div>
+                    <div class="card-title">Ejemplo: Trabajando con Múltiples Agentes en Paralelo</div>
+                </div>
+                <div class="card-body">
+                    <p style="margin-bottom: var(--space-3);">Supón que tienes un proyecto Blazor + .NET y quieres avanzar rápido:</p>
+
+                    <div style="background: var(--bg-tertiary); padding: var(--space-4); border-radius: var(--radius-md); margin-bottom: var(--space-3);">
+                        <div style="font-weight: 600; color: #6366F1; margin-bottom: var(--space-2);">Terminal 1 — Claude Code</div>
+<pre class="code-block" data-lang="bash" style="margin: 0;"><span class="prompt">$</span> cd ~/proyectos/mi-app
+<span class="prompt">$</span> claude
+<span class="comment"># Claude detecta .racsp/ y carga su perfil SDD</span>
+<span class="comment"># Usuario le pide:</span>
+&gt; Crea el CRUD completo de Clientes con Clean Architecture</pre>
+                    </div>
+
+                    <div style="background: var(--bg-tertiary); padding: var(--space-4); border-radius: var(--radius-md); margin-bottom: var(--space-3);">
+                        <div style="font-weight: 600; color: #6366F1; margin-bottom: var(--space-2);">Terminal 2 — OpenCode</div>
+<pre class="code-block" data-lang="bash" style="margin: 0;"><span class="prompt">$</span> cd ~/proyectos/mi-app
+<span class="prompt">$</span> opencode
+<span class="comment"># OpenCode detecta .racsp/ y carga su perfil SDD</span>
+<span class="comment"># Lee BRAIN.md y ve que Claude está haciendo el CRUD de Clientes</span>
+<span class="comment"># Usuario le pide:</span>
+&gt; Crea la página Dashboard.razor con gráficos de ventas</pre>
+                    </div>
+
+                    <div style="background: var(--bg-tertiary); padding: var(--space-4); border-radius: var(--radius-md); margin-bottom: var(--space-3);">
+                        <div style="font-weight: 600; color: #6366F1; margin-bottom: var(--space-2);">Terminal 3 — Antigravity</div>
+<pre class="code-block" data-lang="bash" style="margin: 0;"><span class="prompt">$</span> cd ~/proyectos/mi-app
+<span class="prompt">$</span> antigravity
+<span class="comment"># Antigravity detecta .racsp/ y carga su perfil SDD</span>
+<span class="comment"># Lee BRAIN.md y ve el trabajo de Claude y OpenCode</span>
+<span class="comment"># Usuario le pide:</span>
+&gt; Genera los DTOs y Services para Productos y Órdenes</pre>
+                    </div>
+
+                    <p><strong>Resultado:</strong> Tres agentes trabajando simultáneamente en el mismo proyecto, compartiendo memoria a través de <code>.racsp/brain/</code>, sin que tú tuvieras que hacer nada especial. Cada uno usa sus modelos SDD óptimos y guarda su progreso en el Brain compartido.</p>
+                </div>
+            </div>
+
+            <h3 style="font-size: var(--text-lg); font-weight: 600; margin: var(--space-5) 0 var(--space-3);">Qué se Instala en tu Proyecto</h3>
+            <p style="margin-bottom: var(--space-3);">El comando <code>ryou setup</code> crea esta estructura dentro de tu proyecto:</p>
+
+            <pre class="code-block" data-lang="text">tu-proyecto/
+├── .racsp/                          ← Protocolo RACSP (todo aquí)
+│   ├── RACSP.md                     ← Manifiesto del protocolo
+│   ├── BRAIN.md                     ← Memoria viva del proyecto
+│   ├── AGENTS.md                    ← Quién está trabajando en qué
+│   ├── LOCK.md                      ← Archivos bloqueados por quién
+│   ├── CONTEXT.md                   ← Contexto técnico compartido
+│   ├── agents/                      ← Configuración por agente
+│   │   ├── claude/CLAUDE.md         ← Perfil SDD de Claude
+│   │   ├── opencode/opencode.json   ← Perfil SDD de OpenCode
+│   │   ├── gemini/GEMINI.md         ← Perfil SDD de Gemini
+│   │   ├── antigravity/ANTIGRAVITY.md
+│   │   ├── codex/CODEX.md
+│   │   └── ...
+│   ├── brain/                       ← Memoria compartida
+│   │   ├── memory/
+│   │   │   ├── architecture.md      ← Arquitectura del proyecto
+│   │   │   ├── conventions.md       ← Convenciones y patrones
+│   │   │   └── decisions.md         ← Decisiones arquitectónicas
+│   │   ├── context/
+│   │   │   ├── active-tasks.md      ← Tareas activas
+│   │   │   ├── completed-tasks.md   ← Tareas completadas
+│   │   │   └── current-state.md     ← Estado actual
+│   │   └── history/
+│   │       └── session-log.md       ← Historial de sesiones
+│   └── rules/
+│       ├── global-rules.md          ← Reglas globales
+│       └── meridianui.md            ← Reglas de diseño
+└── [tu código...]</pre>
+
+            <h3 style="font-size: var(--text-lg); font-weight: 600; margin: var(--space-5) 0 var(--space-3);">Cómo se Autoconfigura Cada Agente</h3>
+            <p style="margin-bottom: var(--space-3);">Cuando un agente abre tu proyecto, lee su configuración específica del protocolo:</p>
+
+            <div class="grid-2">
+                <div class="card">
+                    <div class="card-header">
+                        <div class="card-icon emerald">
+                            <i class="ph ph-robot"></i>
+                        </div>
+                        <div class="card-title">Claude Code</div>
+                    </div>
+                    <div class="card-body">
+                        <p>Lee <code>.racsp/agents/claude/CLAUDE.md</code> y se autoconfigura con:</p>
+                        <ul style="margin-left: var(--space-4); margin-top: var(--space-2);">
+                            <li>Opus para orquestar y diseñar</li>
+                            <li>Sonnet para construir y verificar</li>
+                            <li>Haiku para inicializar y archivar</li>
+                            <li>Brain sync automático</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-header">
+                        <div class="card-icon indigo">
+                            <i class="ph ph-robot"></i>
+                        </div>
+                        <div class="card-title">OpenCode</div>
+                    </div>
+                    <div class="card-body">
+                        <p>Lee <code>.racsp/agents/opencode/opencode.json</code> y se autoconfigura con:</p>
+                        <ul style="margin-left: var(--space-4); margin-top: var(--space-2);">
+                            <li>GLM-5.1 para orquestar y diseñar</li>
+                            <li>Kimi K2.6 para construir</li>
+                            <li>DeepSeek Flash para explorar</li>
+                            <li>DeepSeek V4 Pro para verificar</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-header">
+                        <div class="card-icon violet">
+                            <i class="ph ph-robot"></i>
+                        </div>
+                        <div class="card-title">Gemini CLI</div>
+                    </div>
+                    <div class="card-body">
+                        <p>Lee <code>.racsp/agents/gemini/GEMINI.md</code> y se autoconfigura con:</p>
+                        <ul style="margin-left: var(--space-4); margin-top: var(--space-2);">
+                            <li>Ultra para orquestar y diseñar</li>
+                            <li>Pro para construir y verificar</li>
+                            <li>Flash para explorar y archivar</li>
+                            <li>Ventana de contexto de 1M tokens</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-header">
+                        <div class="card-icon orange">
+                            <i class="ph ph-robot"></i>
+                        </div>
+                        <div class="card-title">Antigravity / Codex / Otros</div>
+                    </div>
+                    <div class="card-body">
+                        <p>Cada agente lee su propia configuración en <code>.racsp/agents/&lt;agente&gt;/</code> y carga:</p>
+                        <ul style="margin-left: var(--space-4); margin-top: var(--space-2);">
+                            <li>Sus modelos por fase SDD</li>
+                            <li>Reglas de Brain sync</li>
+                            <li>Contexto compartido del proyecto</li>
+                            <li>Convenciones y patrones</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <h3 style="font-size: var(--text-lg); font-weight: 600; margin: var(--space-5) 0 var(--space-3);">Reglas que los Agentes Acatan Automáticamente</h3>
+            <p style="margin-bottom: var(--space-3);">Al detectar <code>.racsp/</code>, cada agente sigue estas reglas sin que tú tengas que recordárselas:</p>
+
+            <div class="steps">
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <div class="step-content">
+                        <div class="step-title">Leer el Brain Antes de Actuar</div>
+                        <div class="step-desc">Antes de responder a cualquier solicitud, el agente lee <code>.racsp/BRAIN.md</code>, <code>.racsp/AGENTS.md</code> y <code>.racsp/LOCK.md</code> para conocer el estado actual y evitar conflictos.</div>
+                    </div>
+                </div>
+
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <div class="step-content">
+                        <div class="step-title">Usar su Perfil SDD Automáticamente</div>
+                        <div class="step-desc">El agente selecciona el modelo correcto según la fase SDD de la tarea. Si le pides arquitectura, usa Opus/GLM. Si le pides un CRUD, usa Sonnet/Kimi. Si le pides explorar, usa Flash.</div>
+                    </div>
+                </div>
+
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <div class="step-content">
+                        <div class="step-title">Bloquear Archivos Antes de Editar</div>
+                        <div class="step-desc">Antes de modificar cualquier archivo, el agente se registra en <code>.racsp/LOCK.md</code>. Si otro agente ya lo tiene bloqueado, espera o pide otra tarea.</div>
+                    </div>
+                </div>
+
+                <div class="step">
+                    <div class="step-number">4</div>
+                    <div class="step-content">
+                        <div class="step-title">Escribir en el Brain Después de Completar</div>
+                        <div class="step-desc">Al terminar, el agente actualiza <code>.racsp/BRAIN.md</code>, <code>.racsp/AGENTS.md</code>, libera sus locks en <code>.racsp/LOCK.md</code>, y registra su trabajo en <code>.racsp/brain/history/</code>.</div>
+                    </div>
+                </div>
+
+                <div class="step">
+                    <div class="step-number">5</div>
+                    <div class="step-content">
+                        <div class="step-title">Nunca Auto-Certificar</div>
+                        <div class="step-desc">El agente no dice "listo" y se va. Su trabajo queda registrado en el Brain como "pendiente de validación". Otro agente (Reviewer) o el pipeline de validación debe aprobarlo.</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="alert alert-emerald" style="margin-top: var(--space-4);">
+                <i class="ph ph-check-circle alert-icon"></i>
+                <div class="alert-content">
+                    <div class="alert-title">Listo para Trabajar</div>
+                    Una vez que <code>ryou setup</code> termina, simplemente abre tus agentes normalmente en la carpeta del proyecto. Cada uno detectará <code>.racsp/</code>, cargará su perfil SDD, y empezará a compartir memoria con los demás. <strong>No hay comandos especiales. No hay wrappers. Solo abres tus agentes y les pides cosas.</strong>
+                </div>
+            </div>
+        </section>
+        <section class="docs-section" id="capacidades">
+            <h2 class="docs-section-title">
+                <i class="ph ph-sparkle"></i>
+                Todas las Capacidades de RACSP
+            </h2>
+            <p class="section-desc">RACSP no es solo un orquestador: es un protocolo completo de colaboración multi-agente con memoria compartida, validación externa y recuperación automática.</p>
+
+            <div class="cap-grid">
+                <div class="cap-item">
+                    <div class="cap-item-header">
+                        <div class="cap-item-icon emerald" style="background: rgba(16, 185, 129, 0.1); color: #10B981;">
+                            <i class="ph ph-users"></i>
+                        </div>
+                        <div class="cap-item-title">Orquestación Multi-Agente</div>
+                    </div>
+                    <div class="cap-item-body">
+                        <ul>
+                            <li><strong>10 tipos de agentes</strong> especializados con roles definidos</li>
+                            <li><strong>Ejecución paralela</strong> de builders, reviewers y explorers simultáneamente</li>
+                            <li><strong>9 modos de operación</strong> adaptados a la complejidad de cada tarea</li>
+                            <li><strong>Enrutamiento por complejidad</strong> automático según el alcance del trabajo</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="cap-item">
+                    <div class="cap-item-header">
+                        <div class="cap-item-icon indigo" style="background: rgba(99, 102, 241, 0.1); color: #6366F1;">
+                            <i class="ph ph-memory"></i>
+                        </div>
+                        <div class="cap-item-title">Memoria y Persistencia</div>
+                    </div>
+                    <div class="cap-item-body">
+                        <ul>
+                            <li><strong>Brain compartido</strong> entre todos los agentes y sesiones</li>
+                            <li><strong>Auto-snapshots cada 5 minutos</strong> durante la ejecución activa</li>
+                            <li><strong>Linaje de tareas</strong> completo: quién hizo qué, cuándo y por qué</li>
+                            <li><strong>Sincronización multi-sesión</strong> para trabajo distribuido en el tiempo</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="cap-item">
+                    <div class="cap-item-header">
+                        <div class="cap-item-icon violet" style="background: rgba(139, 92, 246, 0.1); color: #8B5CF6;">
+                            <i class="ph ph-check-circle"></i>
+                        </div>
+                        <div class="cap-item-title">Validación Externa</div>
+                    </div>
+                    <div class="cap-item-body">
+                        <ul>
+                            <li><strong>La IA nunca auto-certifica</strong> — la validación es siempre externa</li>
+                            <li><strong>6 validadores</strong> requeridos y opcionales en pipeline</li>
+                            <li><strong>Validación por etapas</strong> antes, durante y después de la ejecución</li>
+                            <li><strong>Git hooks</strong> para validación automática pre-commit y post-merge</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="cap-item">
+                    <div class="cap-item-header">
+                        <div class="cap-item-icon amber" style="background: rgba(245, 158, 11, 0.1); color: #F59E0B;">
+                            <i class="ph ph-lightning"></i>
+                        </div>
+                        <div class="cap-item-title">Optimización y Eficiencia</div>
+                    </div>
+                    <div class="cap-item-body">
+                        <ul>
+                            <li><strong>Compresión semántica 60-80%</strong> mediante referencias simbólicas a patrones</li>
+                            <li><strong>Lazy loading</strong> de contexto: solo carga lo que necesita cada agente</li>
+                            <li><strong>Perfiles de proveedor</strong> para ajustar calidad/costo según el rol</li>
+                            <li><strong>Presupuesto de tokens</strong> por tarea con límites estrictos</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="cap-item">
+                    <div class="cap-item-header">
+                        <div class="cap-item-icon orange" style="background: rgba(249, 115, 22, 0.1); color: #F97316;">
+                            <i class="ph ph-share-network"></i>
+                        </div>
+                        <div class="cap-item-title">Integración y Adaptadores</div>
+                    </div>
+                    <div class="cap-item-body">
+                        <ul>
+                            <li><strong>Adaptador Claude Code</strong> para orquestar agentes de Anthropic</li>
+                            <li><strong>Adaptador OpenCode</strong> para integración con el ecosistema OpenCode</li>
+                            <li><strong>Adaptador Gemini CLI</strong> para agentes de Google</li>
+                            <li><strong>Adaptador API genérico</strong> para cualquier proveedor con endpoint REST</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="cap-item">
+                    <div class="cap-item-header">
+                        <div class="cap-item-icon indigo" style="background: rgba(99, 102, 241, 0.1); color: #6366F1;">
+                            <i class="ph ph-shield-check"></i>
+                        </div>
+                        <div class="cap-item-title">Resiliencia y Recuperación</div>
+                    </div>
+                    <div class="cap-item-body">
+                        <ul>
+                            <li><strong>Recuperación de sesión</strong> automática tras pérdida de conexión o cierre</li>
+                            <li><strong>Modo de recuperación de emergencia</strong> para estado corrupto o builds rotos</li>
+                            <li><strong>Detección de deriva semántica</strong> cuando el contexto se desvía del objetivo</li>
+                            <li><strong>Reintentos automáticos</strong> con backoff exponencial ante fallos transitorios</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="cap-item">
+                    <div class="cap-item-header">
+                        <div class="cap-item-icon emerald" style="background: rgba(16, 185, 129, 0.1); color: #10B981;">
+                            <i class="ph ph-check-square"></i>
+                        </div>
+                        <div class="cap-item-title">Gestión de Tareas y Workflow</div>
+                    </div>
+                    <div class="cap-item-body">
+                        <ul>
+                            <li><strong>Tareas atómicas</strong> de máximo 5 archivos para granularidad perfecta</li>
+                            <li><strong>Grafo de dependencias DAG</strong> con ordenamiento topológico automático</li>
+                            <li><strong>Plantillas de tareas</strong> reutilizables para patrones comunes</li>
+                            <li><strong>Máquina de estados</strong> por tarea: pending → assigned → running → validating → done</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="docs-section" id="sdd-profiles">
+            <h2 class="docs-section-title">
+                <i class="ph ph-brain"></i>
+                Perfiles SDD por Agente
+            </h2>
+            <p class="section-desc">Cada agente externo de RACSP v2.0 opera con su propio perfil SDD Adaptive, seleccionando el modelo óptimo para cada fase del pipeline. Esto maximiza la precisión donde se necesita y minimiza el costo donde no.</p>
+
+            <div class="card">
+                <div class="card-header">
+                    <div class="card-icon indigo">
+                        <i class="ph ph-table"></i>
+                    </div>
+                    <div class="card-title">Modelo Asignado por Fase y Agente</div>
+                </div>
+                <div class="card-body">
+                    <div class="table-wrap">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Agente</th>
+                                    <th>Orchestrator</th>
+                                    <th>Init</th>
+                                    <th>Explore</th>
+                                    <th>Propose</th>
+                                    <th>Design</th>
+                                    <th>Apply</th>
+                                    <th>Verify</th>
+                                    <th>Archive</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><strong>Claude</strong></td>
+                                    <td><span class="tag tag-violet">Opus</span></td>
+                                    <td><span class="tag tag-emerald">Haiku</span></td>
+                                    <td><span class="tag tag-indigo">Sonnet</span></td>
+                                    <td><span class="tag tag-violet">Opus</span></td>
+                                    <td><span class="tag tag-violet">Opus</span></td>
+                                    <td><span class="tag tag-indigo">Sonnet</span></td>
+                                    <td><span class="tag tag-indigo">Sonnet</span></td>
+                                    <td><span class="tag tag-emerald">Haiku</span></td>
+                                </tr>
+                                <tr>
+                                    <td><strong>OpenCode</strong></td>
+                                    <td><span class="tag tag-violet">GLM-5.1</span></td>
+                                    <td><span class="tag tag-emerald">DeepSeek Flash</span></td>
+                                    <td><span class="tag tag-emerald">DeepSeek Flash</span></td>
+                                    <td><span class="tag tag-violet">GLM-5.1</span></td>
+                                    <td><span class="tag tag-violet">GLM-5.1</span></td>
+                                    <td><span class="tag tag-indigo">Kimi K2.6</span></td>
+                                    <td><span class="tag tag-indigo">DeepSeek V4 Pro</span></td>
+                                    <td><span class="tag tag-emerald">DeepSeek Flash</span></td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Gemini</strong></td>
+                                    <td><span class="tag tag-violet">Ultra</span></td>
+                                    <td><span class="tag tag-emerald">Flash</span></td>
+                                    <td><span class="tag tag-emerald">Flash</span></td>
+                                    <td><span class="tag tag-violet">Ultra</span></td>
+                                    <td><span class="tag tag-violet">Ultra</span></td>
+                                    <td><span class="tag tag-indigo">Flash</span></td>
+                                    <td><span class="tag tag-indigo">Pro</span></td>
+                                    <td><span class="tag tag-emerald">Flash</span></td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Antigravity</strong></td>
+                                    <td><span class="tag tag-violet">Pro</span></td>
+                                    <td><span class="tag tag-emerald">Lite</span></td>
+                                    <td><span class="tag tag-emerald">Lite</span></td>
+                                    <td><span class="tag tag-violet">Pro</span></td>
+                                    <td><span class="tag tag-violet">Pro</span></td>
+                                    <td><span class="tag tag-indigo">Standard</span></td>
+                                    <td><span class="tag tag-indigo">Pro</span></td>
+                                    <td><span class="tag tag-emerald">Lite</span></td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Codex</strong></td>
+                                    <td><span class="tag tag-violet">o3</span></td>
+                                    <td><span class="tag tag-emerald">GPT-4.1-mini</span></td>
+                                    <td><span class="tag tag-emerald">GPT-4.1-mini</span></td>
+                                    <td><span class="tag tag-violet">o3</span></td>
+                                    <td><span class="tag tag-violet">o3</span></td>
+                                    <td><span class="tag tag-indigo">GPT-4.1</span></td>
+                                    <td><span class="tag tag-indigo">GPT-4.1</span></td>
+                                    <td><span class="tag tag-emerald">GPT-4.1-mini</span></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <p style="margin-top: var(--space-3);">Cada agente utiliza el <strong>modelo correcto en la fase correcta</strong>: flagship para razonar y diseñar, medium para aplicar con contexto, flash/lite para ejecutar tareas ultra-precisas. El resultado es máxima precisión con mínimo costo.</p>
+                </div>
+            </div>
+
+            <div class="alert alert-indigo" style="margin-top: var(--space-4);">
+                <i class="ph ph-info alert-icon"></i>
+                <div class="alert-content">
+                    <div class="alert-title">Adaptación Automática</div>
+                    Los perfiles SDD Adaptive se ajustan en tiempo real según la complejidad detectada de cada tarea. Si una fase requiere más capacidad de razonamiento, el perfil puede escalar automáticamente al modelo superior de ese agente sin intervención manual.
+                </div>
+            </div>
+
+            <div class="card" style="margin-top: var(--space-4); border: 2px solid #A5B4FC; box-shadow: 0 4px 20px rgba(99,102,241,.15);">
+                <div class="card-header">
+                    <div class="card-icon violet" style="background: linear-gradient(135deg, rgba(139, 92, 246, 0.1), rgba(99, 102, 241, 0.1)); color: #8B5CF6;">
+                        <i class="ph ph-star"></i>
+                    </div>
+                    <div style="flex: 1;">
+                        <div class="card-title" style="display: flex; align-items: center; gap: var(--space-2); flex-wrap: wrap;">
+                            Perfil por Defecto: RyouSet
+                            <span class="badge-recommended">
+                                <i class="ph ph-check-circle"></i>
+                                Recommended
+                            </span>
+                            <span class="tag tag-indigo" style="margin-left: auto;">DEFAULT</span>
+                        </div>
+                        <div style="font-size: var(--text-sm); color: var(--text-muted); margin-top: 2px;">Efficient full pipeline — Kimi K2.6 for daily implementation, GLM-5.1 reserved for deep reasoning only, DeepSeek V4 Pro for review.</div>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <p style="margin-bottom: var(--space-3);">RACSP v2.0 usa <strong>RyouSet</strong> como perfil SDD por defecto y recomendado. Optimizado para el ecosistema OpenCode Go con modelos de alta calidad por fase:</p>
+                    <div class="table-wrap">
+                        <table>
+                            <thead>
+                                <tr><th>Fase</th><th>Modelo Principal</th><th>Esfuerzo</th><th>Fallback</th></tr>
+                            </thead>
+                            <tbody>
+                                <tr><td><i class="ph ph-tree-structure"></i>Orchestrator</td><td><span class="tag tag-indigo">Kimi K2.6</span></td><td><span class="tag tag-amber">medium</span></td><td>GLM-5.1</td></tr>
+                                <tr><td><i class="ph ph-play"></i>Init</td><td><span class="tag tag-indigo">Kimi K2.6</span></td><td><span class="tag tag-emerald">low</span></td><td>DeepSeek V4 Flash</td></tr>
+                                <tr><td><i class="ph ph-compass"></i>Explore</td><td><span class="tag tag-indigo">Kimi K2.6</span></td><td><span class="tag tag-amber">medium</span></td><td>GLM-5.1</td></tr>
+                                <tr><td><i class="ph ph-brain"></i>Propose</td><td><span class="tag tag-violet">GLM-5.1</span></td><td><span class="tag tag-orange">high</span></td><td>Kimi K2.6</td></tr>
+                                <tr><td><i class="ph ph-buildings"></i>Design</td><td><span class="tag tag-indigo">Kimi K2.6</span></td><td><span class="tag tag-amber">medium</span></td><td>GLM-5.1</td></tr>
+                                <tr><td><i class="ph ph-hammer"></i>Apply</td><td><span class="tag tag-indigo">Kimi K2.6</span></td><td><span class="tag tag-amber">medium</span></td><td>GLM-5.1</td></tr>
+                                <tr><td><i class="ph ph-check-circle"></i>Verify</td><td><span class="tag tag-violet">DeepSeek V4 Pro</span></td><td><span class="tag tag-orange">high</span></td><td>GLM-5.1</td></tr>
+                                <tr><td><i class="ph ph-archive"></i>Archive</td><td><span class="tag tag-emerald">DeepSeek V4 Flash</span></td><td><span class="tag tag-emerald">low</span></td><td>—</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <p style="margin-top: var(--space-3);">Puedes sobrescribir el perfil por defecto editando los archivos de configuración en <code>.racsp/agents/&lt;agente&gt;/</code>.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="docs-section" id="meta-orchestrator">
+            <h2 class="docs-section-title">
+                <i class="ph ph-tree-structure"></i>
+                Meta-Orquestador Ryou
+            </h2>
+            <p class="section-desc">Ryou es el coordinador maestro de RACSP v2.0. No ejecuta código directamente: analiza, descompone y delega cada fase SDD al agente y modelo más adecuado.</p>
+
+            <div class="steps">
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <div class="step-content">
+                        <div class="step-title">Análisis de la Solicitud</div>
+                        <div class="step-desc">Ryou recibe la petición del usuario y la analiza con su modelo de orquestación (GLM-5.1 u Opus) para determinar complejidad, alcance y riesgos.</div>
+                    </div>
+                </div>
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <div class="step-content">
+                        <div class="step-title">Descomposición en Fases SDD</div>
+                        <div class="step-desc">Divide el trabajo en las 8 fases del pipeline: Orchestrator, Init, Explore, Propose, Design, Apply, Verify y Archive.</div>
+                    </div>
+                </div>
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <div class="step-content">
+                        <div class="step-title">Asignación Inteligente</div>
+                        <div class="step-desc">Para cada fase, Ryou selecciona el agente externo y el modelo específico según el perfil SDD Adaptive activo.</div>
+                    </div>
+                </div>
+                <div class="step">
+                    <div class="step-number">4</div>
+                    <div class="step-content">
+                        <div class="step-title">Ejecución Paralela Coordinada</div>
+                        <div class="step-desc">Ryou supervisa la ejecución en paralelo, sincronizando el Brain compartido y resolviendo dependencias entre agentes.</div>
+                    </div>
+                </div>
+                <div class="step">
+                    <div class="step-number">5</div>
+                    <div class="step-content">
+                        <div class="step-title">Validación y Sincronización</div>
+                        <div class="step-desc">Una vez completadas todas las fases, valida los resultados y sincroniza el estado final en el Brain compartido.</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card" style="margin-top: var(--space-5);">
+                <div class="card-header">
+                    <div class="card-icon violet">
+                        <i class="ph ph-share-network"></i>
+                    </div>
+                    <div class="card-title">Diagrama: Ryou en el Centro</div>
+                </div>
+                <div class="card-body">
+<pre class="code-block" data-lang="text">                         ┌─────────────┐
+                         │   Usuario   │
+                         └──────┬──────┘
+                                │
+                                ▼
+                    ┌───────────────────────┐
+                    │        Ryou           │
+                    │   (GLM-5.1 / Opus)    │
+                    │   Meta-Orquestador    │
+                    └───────────┬───────────┘
+                                │
+            ┌───────────────────┼───────────────────┐
+            │                   │                   │
+            ▼                   ▼                   ▼
+    ┌───────────────┐   ┌───────────────┐   ┌───────────────┐
+    │    Claude     │   │   OpenCode    │   │    Gemini     │
+    │  (Opus/Sonnet)│   │(GLM/Kimi/DS)  │   │ (Ultra/Flash) │
+    └───────────────┘   └───────────────┘   └───────────────┘
+            │                   │                   │
+            ▼                   ▼                   ▼
+    ┌───────────────┐   ┌───────────────┐   ┌───────────────┐
+    │  Antigravity  │   │     Codex     │   │   Brain v2    │
+    │ (Pro/Standard)│   │  (o3/GPT-4.1) │   │(Estado Unif.) │
+    └───────────────┘   └───────────────┘   └───────────────┘</pre>
+                    <p style="margin-top: var(--space-3);">Ryou permanece en el centro como <strong>único punto de coordinación</strong>. Los agentes externos orbitan alrededor, cada uno ejecutando las fases que mejor se adaptan a sus capacidades, todos escribiendo en el Brain compartido v2.</p>
+                </div>
+            </div>
+
+            <div class="alert alert-emerald" style="margin-top: var(--space-4);">
+                <i class="ph ph-check-circle alert-icon"></i>
+                <div class="alert-content">
+                    <div class="alert-title">Ventaja Clave</div>
+                    Ryou nunca gasta tokens de flagship en tareas mecánicas. Usa GLM-5.1 u Opus <strong>solo para orquestar</strong>, y delega el 100% de la ejecución a agentes especializados con modelos ajustados por fase.
+                </div>
+            </div>
+        </section>
+
+        <section class="docs-section" id="delegacion-inteligente">
+            <h2 class="docs-section-title">
+                <i class="ph ph-arrows-left-right"></i>
+                Delegación Inteligente
+            </h2>
+            <p class="section-desc">El principio central de RACSP v2.0: los modelos flagship y medium <strong>razonan</strong> y generan sub-tareas ultra-precisas; los modelos flash y lite <strong>ejecutan</strong> sin alucinar.</p>
+
+            <div class="card">
+                <div class="card-header">
+                    <div class="card-icon indigo">
+                        <i class="ph ph-stack"></i>
+                    </div>
+                    <div class="card-title">Matriz de Capacidades por Tier</div>
+                </div>
+                <div class="card-body">
+                    <div class="table-wrap">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Tier</th>
+                                    <th>Razonar</th>
+                                    <th>Ejecutar</th>
+                                    <th>Decidir</th>
+                                    <th>Uso en RACSP</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><span class="tag tag-violet">Flagship</span></td>
+                                    <td><span class="tag tag-emerald">Sí</span></td>
+                                    <td><span class="tag tag-emerald">Sí</span></td>
+                                    <td><span class="tag tag-emerald">Sí</span></td>
+                                    <td>Orchestrator, Propose, Design</td>
+                                </tr>
+                                <tr>
+                                    <td><span class="tag tag-indigo">Medium</span></td>
+                                    <td><span class="tag tag-amber">Limitado</span></td>
+                                    <td><span class="tag tag-emerald">Sí</span></td>
+                                    <td><span class="tag tag-amber">Con contexto</span></td>
+                                    <td>Apply, Verify</td>
+                                </tr>
+                                <tr>
+                                    <td><span class="tag tag-emerald">Flash / Lite</span></td>
+                                    <td><span class="tag tag-orange">No</span></td>
+                                    <td><span class="tag tag-emerald">Sí</span></td>
+                                    <td><span class="tag tag-orange">No</span></td>
+                                    <td>Init, Explore, Archive</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <h3>Anti-Alucinación por Diseño</h3>
+            <p>Los modelos flash y lite <strong>nunca</strong> reciben instrucciones ambiguas. Ryou garantiza que cada sub-tarea entregada a un modelo flash incluye:</p>
+            <ul>
+                <li>Archivos exactos a modificar (lista explícita)</li>
+                <li>Cambios exactos a realizar (diff o instrucción lineal)</li>
+                <li>Contexto mínimo necesario (sin ruido del proyecto completo)</li>
+                <li>Validación paso a paso (cada cambio verificable)</li>
+            </ul>
+            <p>Flash <strong>nunca</strong> decide qué archivos modificar, <strong>nunca</strong> resuelve símbolos por cuenta propia, y <strong>nunca</strong> infiere requisitos no explícitos.</p>
+
+            <h3>Ejemplo: CRUD de Catálogo</h3>
+            <div class="card">
+                <div class="card-header">
+                    <div class="card-icon amber">
+                        <i class="ph ph-list-bullets"></i>
+                    </div>
+                    <div class="card-title">Flujo de Delegación para un Catálogo CRUD</div>
+                </div>
+                <div class="card-body">
+                    <p style="margin-bottom: var(--space-3);"><strong>Paso 1 — Flagship razona (GLM-5.1 / Opus):</strong></p>
+<pre class="code-block" data-lang="text">Tarea original: "Implementar catálogo de Clientes"
+↓
+Descompone en 5 sub-tareas precisas:
+  1. Crear entidad Cliente en Domain/Entities/Cliente.cs
+  2. Crear interfaz IClienteRepository en Domain/Interfaces
+  3. Implementar repositorio en Infrastructure/Data
+  4. Crear controller API en API/Controllers
+  5. Generar tests unitarios en Tests/Domain</pre>
+
+                    <p style="margin-bottom: var(--space-3); margin-top: var(--space-4);"><strong>Paso 2 — Flash ejecuta en paralelo (DeepSeek Flash / Haiku):</strong></p>
+<pre class="code-block" data-lang="text">Agente Flash-1 → Recibe sub-tarea 1 + plantilla de entidad
+Agente Flash-2 → Recibe sub-tarea 2 + interfaz base
+Agente Flash-3 → Recibe sub-tarea 3 + DbContext existente
+Agente Flash-4 → Recibe sub-tarea 4 + convenciones de controller
+Agente Flash-5 → Recibe sub-tarea 5 + casos de prueba definidos</pre>
+
+                    <p style="margin-bottom: var(--space-3); margin-top: var(--space-4);"><strong>Paso 3 — Medium verifica (Sonnet / DeepSeek V4 Pro):</strong></p>
+<pre class="code-block" data-lang="text">Revisa coherencia entre entidad ↔ repositorio ↔ controller
+Valida que tests cubren al menos 80% de la entidad
+Verifica que no hay referencias circulares</pre>
+
+                    <div style="text-align: center; margin-top: var(--space-4); padding: var(--space-4); background: rgba(16, 185, 129, 0.1); border-radius: var(--radius-lg);">
+                        <div style="font-size: var(--text-3xl); font-weight: 700; color: #10B981;">80% ahorro de tokens</div>
+                        <div style="font-size: var(--text-sm); color: var(--text-muted); margin-top: var(--space-1);">Flash ejecuta el 70% de las tareas a 1/10 del costo</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="docs-section" id="brain-v2">
+            <h2 class="docs-section-title">
+                <i class="ph ph-share-network"></i>
+                Brain Compartido v2
+            </h2>
+            <p class="section-desc">En RACSP v2.0, cada agente opera con un <strong>contexto filtrado</strong>: solo ve lo que necesita. Pero todos escriben en el mismo <strong>estado de proyecto unificado</strong>, sincronizado en tiempo real.</p>
+
+            <div class="card">
+                <div class="card-header">
+                    <div class="card-icon indigo">
+                        <i class="ph ph-funnel"></i>
+                    </div>
+                    <div class="card-title">Contexto Filtrado por Agente</div>
+                </div>
+                <div class="card-body">
+                    <p>El Brain v2 no envía el proyecto completo a cada agente. En su lugar, construye una <strong>ventana de contexto personalizada</strong> según la fase y la tarea:</p>
+                    <ul>
+                        <li><strong>Init / Explore:</strong> Estructura de directorios, reglas de arquitectura, dependencias clave</li>
+                        <li><strong>Propose / Design:</strong> Patrones activos, ADRs relevantes, contratos de interfaz</li>
+                        <li><strong>Apply:</strong> Archivos objetivo, plantillas de código, tests de referencia</li>
+                        <li><strong>Verify:</strong> Diff generado, reglas de validación, historial de errores similares</li>
+                        <li><strong>Archive:</strong> Resumen de cambios, métricas de calidad, lecciones aprendidas</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="card" style="margin-top: var(--space-4);">
+                <div class="card-header">
+                    <div class="card-icon violet">
+                        <i class="ph ph-hard-drives"></i>
+                    </div>
+                    <div class="card-title">unified-state.json — Estado Unificado</div>
+                </div>
+                <div class="card-body">
+<pre class="code-block" data-lang="json">{
+  <span class="string">"version"</span>: <span class="string">"2.0"</span>,
+  <span class="string">"project"</span>: <span class="string">"MiApp"</span>,
+  <span class="string">"last_sync"</span>: <span class="string">"2026-06-09T14:32:00Z"</span>,
+  <span class="string">"agents_active"</span>: [
+    { <span class="string">"id"</span>: <span class="string">"claude-sonnet"</span>, <span class="string">"phase"</span>: <span class="string">"apply"</span>, <span class="string">"task"</span>: <span class="string">"TASK-014"</span> },
+    { <span class="string">"id"</span>: <span class="string">"opencode-glm"</span>, <span class="string">"phase"</span>: <span class="string">"design"</span>, <span class="string">"task"</span>: <span class="string">"TASK-015"</span> },
+    { <span class="string">"id"</span>: <span class="string">"gemini-flash"</span>, <span class="string">"phase"</span>: <span class="string">"explore"</span>, <span class="string">"task"</span>: <span class="string">"TASK-016"</span> },
+    { <span class="string">"id"</span>: <span class="string">"codex-o3"</span>, <span class="string">"phase"</span>: <span class="string">"verify"</span>, <span class="string">"task"</span>: <span class="string">"TASK-014"</span> }
+  ],
+  <span class="string">"files"</span>: {
+    <span class="string">"src/Domain/Cliente.cs"</span>: {
+      <span class="string">"checksum"</span>: <span class="string">"a3f7..."</span>,
+      <span class="string">"last_writer"</span>: <span class="string">"claude-sonnet"</span>,
+      <span class="string">"pending_review"</span>: <span class="keyword">false</span>
+    },
+    <span class="string">"src/API/Controllers/ClientesController.cs"</span>: {
+      <span class="string">"checksum"</span>: <span class="string">"b8e2..."</span>,
+      <span class="string">"last_writer"</span>: <span class="string">"opencode-glm"</span>,
+      <span class="string">"pending_review"</span>: <span class="keyword">true</span>
+    }
+  },
+  <span class="string">"conflicts"</span>: [],
+  <span class="string">"sync_interval_seconds"</span>: <span class="number">30</span>
+}</pre>
+                    <p style="margin-top: var(--space-3);">El archivo <code>unified-state.json</code> vive en <code>.racsp/brain/</code> y es la <strong>única fuente de verdad</strong> del estado del proyecto. Cada agente lee su slice filtrado y escribe sus actualizaciones atómicas.</p>
+                </div>
+            </div>
+
+            <h3>Sincronización Cruzada cada 30 Segundos</h3>
+            <p>Ryou coordina una sincronización automática del Brain cada 30 segundos durante la ejecución activa:</p>
+            <ul>
+                <li><strong>Pull:</strong> Cada agente obtiene el estado actualizado antes de iniciar su siguiente paso</li>
+                <li><strong>Merge:</strong> Los cambios no conflictivos se integran automáticamente</li>
+                <li><strong>Broadcast:</strong> Las actualizaciones críticas (archivos modificados, tests fallidos) se propagan inmediatamente</li>
+            </ul>
+
+            <h3>Detección y Resolución de Conflictos</h3>
+            <div class="alert alert-amber" style="margin-top: var(--space-3);">
+                <i class="ph ph-warning alert-icon"></i>
+                <div class="alert-content">
+                    <div class="alert-title">Estrategia de Resolución</div>
+                    <ul style="margin-left: var(--space-4); margin-top: var(--space-2);">
+                        <li><strong>Escritura en archivos distintos:</strong> Merge automático, sin intervención</li>
+                        <li><strong>Escritura en el mismo archivo (diff compatible):</strong> Merge automático con validación posterior</li>
+                        <li><strong>Escritura en el mismo archivo (diff conflictivo):</strong> Ryou pausa ambos agentes, reasigna a un flagship para resolver manualmente</li>
+                        <li><strong>Dependencias circulares detectadas:</strong> El grafo de tareas se recalcula y se reordena topológicamente</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="alert alert-emerald" style="margin-top: var(--space-4);">
+                <i class="ph ph-check-circle alert-icon"></i>
+                <div class="alert-content">
+                    <div class="alert-title">Garantía de Consistencia</div>
+                    Gracias al Brain Compartido v2, múltiples agentes pueden trabajar simultáneamente en el mismo proyecto sin pisarse. El estado unificado, la sincronización periódica y la resolución de conflictos garantizan que el resultado final sea coherente, completo y validado.
+                </div>
+            </div>
+        </section>
+
+        <section class="docs-section" id="uso-practico">
+            <h2 class="docs-section-title">
+                <i class="ph ph-wrench"></i>
+                Guía de Uso Práctico — Flujo Transparente
+            </h2>
+            <p class="section-desc">Así es como realmente usas RACSP: abres tus agentes normalmente en la carpeta del proyecto y cada uno se autoconfigura. Sin comandos especiales. Sin wrappers. Solo trabajas con tus agentes como siempre, pero ahora comparten memoria y usan sus perfiles SDD automáticamente.</p>
+
+            <div class="alert alert-indigo" style="margin-bottom: var(--space-5);">
+                <i class="ph ph-info alert-icon"></i>
+                <div class="alert-content">
+                    <div class="alert-title">Recuerda</div>
+                    <strong>No uses comandos RACSP para trabajar.</strong> Los comandos RACSP solo sirven para instalar, diagnosticar, o gestionar el protocolo. Para trabajar, simplemente abres tus agentes normalmente y les pides cosas. RACSP opera en segundo plano.
+                </div>
+            </div>
+
+            <h3>Escenario 1: CRUD de Clientes con Claude Code</h3>
+            <p>Abres Claude Code en tu proyecto y le pides un CRUD. Claude detecta <code>.racsp/</code>, carga su perfil SDD, y empieza a trabajar.</p>
+
+            <div class="steps">
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <div class="step-content">
+                        <div class="step-title">Abrir Claude Code Normalmente</div>
+                        <div class="step-desc">Navegas a tu proyecto y abres Claude como siempre.</div>
+<pre class="code-block" data-lang="bash"><span class="prompt">$</span> cd ~/proyectos/mi-app
+<span class="prompt">$</span> claude</pre>
+                        <p style="margin-top: var(--space-2);">Claude detecta <code>.racsp/</code> automáticamente y lee:</p>
+                        <ul style="margin-left: var(--space-4); margin-top: var(--space-2);">
+                            <li><code>.racsp/RACSP.md</code> — Entiende el protocolo</li>
+                            <li><code>.racsp/agents/claude/CLAUDE.md</code> — Carga su perfil SDD</li>
+                            <li><code>.racsp/BRAIN.md</code> — Ve el estado actual del proyecto</li>
+                            <li><code>.racsp/AGENTS.md</code> — Ve que nadie más está trabajando en Clientes</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <div class="step-content">
+                        <div class="step-title">Pedir el CRUD Normalmente</div>
+                        <div class="step-desc">Le pides a Claude lo que necesitas, en lenguaje natural.</div>
+<pre class="code-block" data-lang="text"><span class="prompt">&gt;</span> Crea el CRUD completo de Clientes con Clean Architecture:
+<span class="prompt">&gt;</span> - Entidad Cliente en Domain
+<span class="prompt">&gt;</span> - Repository e Interface en Infrastructure
+<span class="prompt">&gt;</span> - Service en Application
+<span class="prompt">&gt;</span> - Controller en API
+<span class="prompt">&gt;</span> - Página Razor en Presentation</pre>
+                        <p style="margin-top: var(--space-2);">Claude, usando su perfil SDD:</p>
+                        <ol style="margin-left: var(--space-4); margin-top: var(--space-2);">
+                            <li>Usa <strong>Opus</strong> para razonar sobre la arquitectura (fase Propose)</li>
+                            <li>Usa <strong>Sonnet</strong> para implementar el código (fase Apply)</li>
+                            <li>Bloquea los archivos en <code>.racsp/LOCK.md</code></li>
+                            <li>Escribe el código en tu proyecto</li>
+                            <li>Actualiza <code>.racsp/BRAIN.md</code> con el progreso</li>
+                            <li>Libera los locks en <code>.racsp/LOCK.md</code></li>
+                        </ol>
+                    </div>
+                </div>
+
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <div class="step-content">
+                        <div class="step-title">Claude Guarda Todo en el Brain</div>
+                        <div class="step-desc">Al terminar, Claude actualiza automáticamente la memoria compartida.</div>
+<pre class="code-block" data-lang="text"><span class="comment"># Claude actualiza .racsp/BRAIN.md:</span>
+## Trabajo Activo
+- <span class="string">"CRUD Clientes"</span> — Completado por Claude (Sonnet)
+  - Archivos: Cliente.cs, IClienteRepository.cs, ClienteRepository.cs,
+    ClienteService.cs, ClientesController.cs, Clientes.razor
+  - Estado: ✅ Pendiente de validación
+
+<span class="comment"># Claude actualiza .racsp/AGENTS.md:</span>
+| Agente | Estado | Tarea | Última Actualización |
+|--------|--------|-------|-------------------|
+| Claude | ✅ Listo | CRUD Clientes | hace 2 minutos |</pre>
+                    </div>
+                </div>
+            </div>
+
+            <h3>Escenario 2: Dashboard con OpenCode (en Paralelo)</h3>
+            <p>Mientras Claude hace el CRUD, abres OpenCode en otra terminal y le pides el Dashboard. OpenCode lee el Brain, ve que Claude está trabajando en Clientes, y evita conflictos.</p>
+
+            <div class="steps">
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <div class="step-content">
+                        <div class="step-title">Abrir OpenCode Normalmente</div>
+                        <div class="step-desc">En otra terminal, abres OpenCode en el mismo proyecto.</div>
+<pre class="code-block" data-lang="bash"><span class="comment"># Terminal 2 (simultáneo con Claude)</span>
+<span class="prompt">$</span> cd ~/proyectos/mi-app
+<span class="prompt">$</span> opencode</pre>
+                        <p style="margin-top: var(--space-2);">OpenCode detecta <code>.racsp/</code> y lee:</p>
+                        <ul style="margin-left: var(--space-4); margin-top: var(--space-2);">
+                            <li><code>.racsp/agents/opencode/opencode.json</code> — Carga su perfil SDD (GLM/Kimi/DeepSeek)</li>
+                            <li><code>.racsp/BRAIN.md</code> — Ve el estado del proyecto</li>
+                            <li><code>.racsp/AGENTS.md</code> — Ve que Claude está haciendo el CRUD de Clientes</li>
+                            <li><code>.racsp/LOCK.md</code> — Ve que archivos tiene bloqueados Claude</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <div class="step-content">
+                        <div class="step-title">Pedir el Dashboard Normalmente</div>
+                        <div class="step-desc">Le pides a OpenCode la vista del dashboard.</div>
+<pre class="code-block" data-lang="text"><span class="prompt">&gt;</span> Crea la página Dashboard.razor con:
+<span class="prompt">&gt;</span> - Gráfico de ventas mensuales
+<span class="prompt">&gt;</span> - Cards de métricas (clientes, órdenes, ingresos)
+<span class="prompt">&gt;</span> - Tabla de últimas transacciones
+<span class="prompt">&gt;</span> Usa MeridianUI y Blazor</pre>
+                        <p style="margin-top: var(--space-2);">OpenCode, usando su perfil SDD:</p>
+                        <ol style="margin-left: var(--space-4); margin-top: var(--space-2);">
+                            <li>Usa <strong>GLM-5.1</strong> para diseñar la estructura del dashboard (fase Design)</li>
+                            <li>Usa <strong>Kimi K2.6</strong> para implementar los componentes (fase Apply)</li>
+                            <li>Verifica <code>.racsp/LOCK.md</code> — no hay conflictos con Claude</li>
+                            <li>Bloquea sus archivos en <code>.racsp/LOCK.md</code></li>
+                            <li>Implementa el código</li>
+                            <li>Actualiza <code>.racsp/BRAIN.md</code> y libera locks</li>
+                        </ol>
+                    </div>
+                </div>
+
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <div class="step-content">
+                        <div class="step-title">Ambos Agentes Trabajan en Paralelo</div>
+                        <div class="step-desc">Claude y OpenCode trabajan simultáneamente sin conflictos porque RACSP coordina automáticamente.</div>
+<pre class="code-block" data-lang="text"><span class="comment"># Estado en .racsp/AGENTS.md mientras ambos trabajan:</span>
+| Agente   | Estado      | Tarea Actual       | Archivos               |
+|----------|-------------|-------------------|------------------------|
+| Claude   | 🟡 Trabajando | CRUD Clientes     | Domain/, Infrastructure/ |
+| OpenCode | 🟡 Trabajando | Dashboard UI      | Presentation/          |
+| Gemini   | ⚪ Inactivo   | —                 | —                      |
+
+<span class="comment"># No hay conflictos porque trabajan en carpetas distintas</span>
+<span class="comment"># y RACSP bloquea los archivos automáticamente</span></pre>
+                    </div>
+                </div>
+            </div>
+
+            <h3>Escenario 3: Catálogos CRUD con Antigravity (en Paralelo)</h3>
+            <p>Abres Antigravity y le pides que genere los catálogos de Productos y Órdenes. Antigravity lee el Brain, ve el trabajo de Claude y OpenCode, y genera código sin conflictos.</p>
+
+            <div class="steps">
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <div class="step-content">
+                        <div class="step-title">Abrir Antigravity Normalmente</div>
+                        <div class="step-desc">En una tercera terminal, abres Antigravity.</div>
+<pre class="code-block" data-lang="bash"><span class="comment"># Terminal 3 (simultáneo con Claude y OpenCode)</span>
+<span class="prompt">$</span> cd ~/proyectos/mi-app
+<span class="prompt">$</span> antigravity</pre>
+                    </div>
+                </div>
+
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <div class="step-content">
+                        <div class="step-title">Pedir los Catálogos Normalmente</div>
+                        <div class="step-desc">Le pides a Antigravity que genere los CRUDs restantes.</div>
+<pre class="code-block" data-lang="text"><span class="prompt">&gt;</span> Genera los catálogos CRUD para Productos y Órdenes
+<span class="prompt">&gt;</span> siguiendo el mismo patrón que el CRUD de Clientes
+<span class="prompt">&gt;</span> Usa Clean Architecture y las convenciones del proyecto</pre>
+                        <p style="margin-top: var(--space-2);">Antigravity:</p>
+                        <ol style="margin-left: var(--space-4); margin-top: var(--space-2);">
+                            <li>Lee <code>.racsp/brain/memory/conventions.md</code> — ve las convenciones del proyecto</li>
+                            <li>Lee <code>.racsp/brain/memory/architecture.md</code> — ve la estructura Clean Architecture</li>
+                            <li>Lee <code>.racsp/BRAIN.md</code> — ve que Claude ya hizo Clientes</li>
+                            <li>Usa su modelo <strong>Pro</strong> para entender el patrón</li>
+                            <li>Usa su modelo <strong>Standard</strong> para generar el código</li>
+                            <li>Bloquea archivos, genera, actualiza Brain</li>
+                        </ol>
+                    </div>
+                </div>
+
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <div class="step-content">
+                        <div class="step-title">Tres Agentes en Paralelo, Memoria Compartida</div>
+                        <div class="step-desc">Todos los agentes comparten el mismo Brain y avanzan simultáneamente.</div>
+<pre class="code-block" data-lang="text"><span class="comment"># Estado final en .racsp/BRAIN.md:</span>
+## Trabajo Completado Hoy
+1. ✅ CRUD Clientes — Claude (Sonnet) — Domain + Infra + API + UI
+2. ✅ Dashboard.razor — OpenCode (Kimi) — Presentation
+3. ✅ CRUD Productos — Antigravity (Standard) — Domain + Infra + API
+4. ✅ CRUD Órdenes — Antigravity (Standard) — Domain + Infra + API
+
+<span class="comment"># Todo coordinado automáticamente por RACSP</span>
+<span class="comment"># Sin que el usuario tuviera que usar ningún comando especial</span></pre>
+                    </div>
+                </div>
+            </div>
+
+            <h3>Escenario 4: Documentación con Cualquier Agente</h3>
+            <p>Cuando terminas, abres cualquier agente y le pides que genere la documentación. El agente lee el Brain y documenta todo lo que se hizo.</p>
+
+            <div class="steps">
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <div class="step-content">
+                        <div class="step-title">Abrir un Agente para Documentar</div>
+                        <div class="step-desc">Puedes usar Claude, OpenCode, o cualquier agente. Todos tienen acceso al mismo Brain.</div>
+<pre class="code-block" data-lang="bash"><span class="prompt">$</span> cd ~/proyectos/mi-app
+<span class="prompt">$</span> claude
+<span class="comment"># o opencode, o gemini, o cualquier otro</span></pre>
+                    </div>
+                </div>
+
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <div class="step-content">
+                        <div class="step-title">Pedir Documentación Normalmente</div>
+                        <div class="step-desc">El agente lee todo el historial del Brain y genera documentación completa.</div>
+<pre class="code-block" data-lang="text"><span class="prompt">&gt;</span> Genera la documentación técnica del proyecto:
+<span class="prompt">&gt;</span> - Resumen de lo implementado hoy
+<span class="prompt">&gt;</span> - API Reference de los controllers
+<span class="prompt">&gt;</span> - Diagrama de la arquitectura actual
+<span class="prompt">&gt;</span> - Guía de uso para desarrolladores</pre>
+                        <p style="margin-top: var(--space-2);">El agente usa su modelo <strong>flash/lite</strong> (Haiku, DeepSeek Flash, GPT-4.1-mini) porque es una tarea de síntesis que no requiere razonamiento profundo. Lee todo el Brain y genera la documentación.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="alert alert-emerald" style="margin-top: var(--space-4);">
+                <i class="ph ph-check-circle alert-icon"></i>
+                <div class="alert-content">
+                    <div class="alert-title">Así de Simple</div>
+                    <strong>No usaste ningún comando RACSP para trabajar.</strong> Solo abriste tus agentes normalmente, les pediste cosas en lenguaje natural, y RACSP operó en segundo plano: autoconfigurando perfiles SDD, compartiendo memoria, evitando conflictos, y optimizando tokens. Eso es RACSP v2.0.
+                </div>
+            </div>
+        </section>
+
+        <section class="docs-section" id="documentacion-paralela">
+            <h3>Escenario 5: Generación de Documentación en Paralelo</h3>
+            <p>RACSP permite escalar la generación de documentación usando múltiples instancias de modelos rápidos en paralelo.</p>
+            
+            <div class="steps">
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <div class="step-content">
+                        <div class="step-title">Configurar el Agente</div>
+                        <div class="step-desc">Define un agente optimizado para tareas paralelas de bajo costo.</div>
+<pre class="code-block" data-lang="json">{
+  "agent": {
+    "name": "documentation",
+    "config": {
+      "provider": "opencode",
+      "model_tier": "cheap",
+      "parallel": true
+    }
+  }
+}</pre>
+                    </div>
+                </div>
+
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <div class="step-content">
+                        <div class="step-title">Crear Tareas de Documentación en Paralelo</div>
+                        <div class="step-desc">Crea tres tareas de documentación que se ejecutarán simultáneamente: referencia API, resumen diario y ADR.</div>
+<pre class="code-block" data-lang="bash"><span class="prompt">$</span> ryou task create --id DOC-001 --title <span class="string">"API Reference"</span> --type docs
+<span class="prompt">$</span> ryou task create --id DOC-002 --title <span class="string">"Daily Summary"</span> --type docs
+<span class="prompt">$</span> ryou task create --id DOC-003 --title <span class="string">"ADR-014 Authentication"</span> --type docs</pre>
+                    </div>
+                </div>
+
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <div class="step-content">
+                        <div class="step-title">Asignar al Agente Documentation y Ejecutar en Paralelo</div>
+                        <div class="step-desc">Asigna las tres tareas al agente Documentation y ejecútalas en paralelo para maximizar eficiencia.</div>
+<pre class="code-block" data-lang="bash"><span class="prompt">$</span> ryou task assign DOC-001 documentation --provider opencode
+<span class="prompt">$</span> ryou task assign DOC-002 documentation --provider opencode
+<span class="prompt">$</span> ryou task assign DOC-003 documentation --provider opencode
+<span class="prompt">$</span> ryou task execute --parallel DOC-001 DOC-002 DOC-003</pre>
+                    </div>
+                </div>
+
+                <div class="step">
+                    <div class="step-number">4</div>
+                    <div class="step-content">
+                        <div class="step-title">Validar Calidad de Documentación</div>
+                        <div class="step-desc">Ejecuta validadores específicos para documentación: coherencia, completitud y formato Markdown.</div>
+<pre class="code-block" data-lang="bash"><span class="prompt">$</span> ryou validate --task DOC-001 --stage semantic-validator
+<span class="prompt">$</span> ryou validate --task DOC-002 --stage consistency-validator
+<span class="prompt">$</span> ryou validate --task DOC-003 --stage semantic-validator</pre>
+                    </div>
+                </div>
+
+                <div class="step">
+                    <div class="step-number">5</div>
+                    <div class="step-content">
+                        <div class="step-title">Automatizar con Git Hooks</div>
+                        <div class="step-desc">Configura un hook post-merge para regenerar documentación automáticamente después de cada merge.</div>
+<pre class="code-block" data-lang="bash"><span class="prompt">$</span> ryou hook create post-merge --agent documentation --task-template docs
+<span class="prompt">$</span> ryou hook enable post-merge</pre>
+                    </div>
+                </div>
+            </div>
+
+            <div class="alert alert-emerald" style="margin-top: var(--space-4);">
+                <i class="ph ph-check-circle alert-icon"></i>
+                <div class="alert-content">
+                    <div class="alert-title">Integración Completa</div>
+                    Los tres sistemas —Claude Code, Antigravity CLI y OpenCode— trabajan juntos bajo la orquestación de RACSP. Cada proveedor se usa para lo que mejor hace: Claude para implementación compleja con UI, Antigravity para CRUDs paralelos masivos, y OpenCode para documentación económica en paralelo. RACSP mantiene la memoria compartida, valida externamente y recupera automáticamente ante fallos.
+                </div>
+            </div>
+        </section>
+        <section class="docs-section" id="uso">
+            <h2 class="docs-section-title">
+                <i class="ph ph-play-circle"></i>
+                Uso Básico
+            </h2>
+            <p class="section-desc">Aprende los comandos esenciales para empezar a orquestar agentes de IA.</p>
+
+            <div class="grid-2">
+                <div class="card">
+                    <div class="card-header">
+                        <div class="card-icon emerald">
+                            <i class="ph ph-plus-circle"></i>
+                        </div>
+                        <div class="card-title">Crear una Tarea</div>
+                    </div>
+                    <div class="card-body">
+                        <p style="margin-bottom: var(--space-3);">Define un trabajo atómico con alcance exacto y requisitos de validación.</p>
+<pre class="code-block" data-lang="bash"><span class="prompt">$</span> ryou task create --template atomic
+<span class="comment"># Edita el archivo YAML generado</span>
+<span class="prompt">$</span> ryou task assign TASK-001 builder</pre>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-header">
+                        <div class="card-icon indigo">
+                            <i class="ph ph-users"></i>
+                        </div>
+                        <div class="card-title">Cambiar de Modo</div>
+                    </div>
+                    <div class="card-body">
+                        <p style="margin-bottom: var(--space-3);">Selecciona el modo de operación según la complejidad de la tarea.</p>
+<pre class="code-block" data-lang="bash"><span class="prompt">$</span> ryou mode build      <span class="comment"># Tareas simples</span>
+<span class="prompt">$</span> ryou mode swarm     <span class="comment"># Máximo paralelismo</span>
+<span class="prompt">$</span> ryou mode debug     <span class="comment"># Depuración</span></pre>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-header">
+                        <div class="card-icon violet">
+                            <i class="ph ph-check-circle"></i>
+                        </div>
+                        <div class="card-title">Validar Resultados</div>
+                    </div>
+                    <div class="card-body">
+                        <p style="margin-bottom: var(--space-3);">La IA nunca auto-certifica. La validación es siempre externa.</p>
+<pre class="code-block" data-lang="bash"><span class="prompt">$</span> ryou validate --task TASK-001
+<span class="prompt">$</span> ryou validate --all</pre>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-header">
+                        <div class="card-icon amber">
+                            <i class="ph ph-floppy-disk"></i>
+                        </div>
+                        <div class="card-title">Crear Snapshot</div>
+                    </div>
+                    <div class="card-body">
+                        <p style="margin-bottom: var(--space-3);">Captura el estado actual para poder reanudar más tarde.</p>
+<pre class="code-block" data-lang="bash"><span class="prompt">$</span> ryou snapshot create
+<span class="prompt">$</span> ryou snapshot list
+<span class="prompt">$</span> ryou snapshot restore snap-001</pre>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="docs-section" id="configuracion">
+            <h2 class="docs-section-title">
+                <i class="ph ph-gear"></i>
+                Configuración
+            </h2>
+            <p class="section-desc">Personaliza RACSP para tu stack, presupuesto y preferencias de proveedores.</p>
+
+            <div class="card">
+                <div class="card-header">
+                    <div class="card-icon indigo">
+                        <i class="ph ph-sliders-horizontal"></i>
+                    </div>
+                    <div class="card-title">Archivo de Configuración Principal</div>
+                </div>
+                <div class="card-body">
+                    <p style="margin-bottom: var(--space-3);">Ubicado en <code>.racsp/ryou.config.json</code>, controla modos, límites, validación y proveedores.</p>
+<pre class="code-block" data-lang="json">{
+  <span class="string">"racsp_version"</span>: <span class="string">"1.0.0"</span>,
+  <span class="string">"default_mode"</span>: <span class="string">"build"</span>,
+  <span class="string">"default_profile"</span>: <span class="string">"ryouset"</span>,
+  <span class="string">"features"</span>: {
+    <span class="string">"semantic_compression"</span>: <span class="keyword">true</span>,
+    <span class="string">"lazy_loading"</span>: <span class="keyword">true</span>,
+    <span class="string">"external_validation"</span>: <span class="keyword">true</span>,
+    <span class="string">"parallel_execution"</span>: <span class="keyword">true</span>
+  },
+  <span class="string">"limits"</span>: {
+    <span class="string">"max_concurrent_agents"</span>: <span class="number">10</span>,
+    <span class="string">"max_concurrent_builders"</span>: <span class="number">3</span>,
+    <span class="string">"max_task_retries"</span>: <span class="number">3</span>
+  },
+  <span class="string">"providers"</span>: {
+    <span class="string">"enabled"</span>: [<span class="string">"opencode"</span>, <span class="string">"claude"</span>, <span class="string">"gemini"</span>],
+    <span class="string">"default"</span>: <span class="string">"opencode"</span>
+  }
+}</pre>
+                </div>
+            </div>
+
+            <h3>Perfiles de Proveedor</h3>
+            <div class="table-wrap">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Perfil</th>
+                            <th>Descripción</th>
+                            <th>Presupuesto</th>
+                            <th>Uso Ideal</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><span class="tag tag-violet">premium</span></td>
+                            <td>Máxima calidad en todos los roles</td>
+                            <td>$500/mes</td>
+                            <td>Proyectos críticos</td>
+                        </tr>
+                        <tr>
+                            <td><span class="tag tag-indigo">balanced</span></td>
+                            <td>Calidad/costo equilibrado</td>
+                            <td>$100/mes</td>
+                            <td>Mayoría de proyectos</td>
+                        </tr>
+                        <tr>
+                            <td><span class="tag tag-amber">minimal</span></td>
+                            <td>Modelos económicos</td>
+                            <td>$20/mes</td>
+                            <td>Presupuesto limitado</td>
+                        </tr>
+                        <tr>
+                            <td><span class="tag tag-emerald">local</span></td>
+                            <td>Solo modelos locales</td>
+                            <td>$0/mes</td>
+                            <td>Privacidad total</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="alert alert-indigo" style="margin-top: var(--space-4);">
+                <i class="ph ph-info alert-icon"></i>
+                <div class="alert-content">
+                    <div class="alert-title">Configuración de Git Hooks</div>
+                    Instala hooks para validación automática antes de commits y sincronización post-merge:
+<pre class="code-block" data-lang="bash" style="margin-top: var(--space-3);"><span class="prompt">$</span> ryou install --git-hooks</pre>
+                </div>
+            </div>
+        </section>
+        <section class="docs-section" id="modos">
+            <h2 class="docs-section-title">
+                <i class="ph ph-squares-four"></i>
+                Modos RACSP
+            </h2>
+            <p class="section-desc">9 modos de operación adaptados a diferentes tipos de trabajo.</p>
+
+            <div class="grid-3">
+                <div class="card">
+                    <div class="card-header">
+                        <div class="card-icon emerald">
+                            <i class="ph ph-hammer"></i>
+                        </div>
+                        <div class="card-title">Build</div>
+                    </div>
+                    <div class="card-body">
+                        <p>Implementación rápida para tareas claras y bien definidas.</p>
+                        <div style="margin-top: var(--space-3);">
+                            <span class="tag tag-emerald">2 agentes</span>
+                            <span class="tag tag-amber">Standard</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-header">
+                        <div class="card-icon violet">
+                            <i class="ph ph-users"></i>
+                        </div>
+                        <div class="card-title">Swarm</div>
+                    </div>
+                    <div class="card-body">
+                        <p>Máximo paralelismo para grandes implementaciones multi-módulo.</p>
+                        <div style="margin-top: var(--space-3);">
+                            <span class="tag tag-violet">10 agentes</span>
+                            <span class="tag tag-amber">Strict</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-header">
+                        <div class="card-icon indigo">
+                            <i class="ph ph-buildings"></i>
+                        </div>
+                        <div class="card-title">Architecture</div>
+                    </div>
+                    <div class="card-body">
+                        <p>Diseño profundo de arquitectura, ADRs y contratos.</p>
+                        <div style="margin-top: var(--space-3);">
+                            <span class="tag tag-indigo">4 agentes</span>
+                            <span class="tag tag-amber">Strict</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-header">
+                        <div class="card-icon orange">
+                            <i class="ph ph-bug"></i>
+                        </div>
+                        <div class="card-title">Debug</div>
+                    </div>
+                    <div class="card-body">
+                        <p>Investigación y corrección de bugs, errores y memory leaks.</p>
+                        <div style="margin-top: var(--space-3);">
+                            <span class="tag tag-orange">3 agentes</span>
+                            <span class="tag tag-amber">Strict</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-header">
+                        <div class="card-icon amber">
+                            <i class="ph ph-arrows-clockwise"></i>
+                        </div>
+                        <div class="card-title">Refactor</div>
+                    </div>
+                    <div class="card-body">
+                        <p>Refactorización sistemática con garantías de seguridad.</p>
+                        <div style="margin-top: var(--space-3);">
+                            <span class="tag tag-amber">4 agentes</span>
+                            <span class="tag tag-amber">Strict</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-header">
+                        <div class="card-icon indigo">
+                            <i class="ph ph-warning"></i>
+                        </div>
+                        <div class="card-title">Emergency</div>
+                    </div>
+                    <div class="card-body">
+                        <p>Recuperación de fallos catastróficos, estado corrupto o builds rotos.</p>
+                        <div style="margin-top: var(--space-3);">
+                            <span class="tag tag-indigo">2 agentes</span>
+                            <span class="tag tag-violet">Maximum</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="docs-section" id="agentes">
+            <h2 class="docs-section-title">
+                <i class="ph ph-robot"></i>
+                Agentes
+            </h2>
+            <p class="section-desc">10 tipos de agentes especializados, cada uno con un rol definido y capacidades específicas.</p>
+
+            <div class="table-wrap">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Agente</th>
+                            <th>Rol</th>
+                            <th>Tier</th>
+                            <th>Paralelo</th>
+                            <th>Mejor Proveedor</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Orchestrator</strong></td>
+                            <td>Coordinación maestra</td>
+                            <td><span class="tag tag-violet">Premium</span></td>
+                            <td>No</td>
+                            <td>GLM / Claude</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Planner</strong></td>
+                            <td>Descomposición de trabajo</td>
+                            <td><span class="tag tag-violet">Premium</span></td>
+                            <td>No</td>
+                            <td>GLM / Claude</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Architect</strong></td>
+                            <td>Diseño de arquitectura</td>
+                            <td><span class="tag tag-violet">Premium</span></td>
+                            <td>No</td>
+                            <td>Claude / GLM</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Builder</strong></td>
+                            <td>Implementación de código</td>
+                            <td><span class="tag tag-indigo">Standard</span></td>
+                            <td><span class="tag tag-emerald">Sí</span></td>
+                            <td>Kimi / OpenCode</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Reviewer</strong></td>
+                            <td>Revisión de calidad</td>
+                            <td><span class="tag tag-violet">Premium</span></td>
+                            <td><span class="tag tag-emerald">Sí</span></td>
+                            <td>DeepSeek / Claude</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Debugger</strong></td>
+                            <td>Investigación de bugs</td>
+                            <td><span class="tag tag-violet">Premium</span></td>
+                            <td>No</td>
+                            <td>DeepSeek / OpenCode</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Validator</strong></td>
+                            <td>Validación externa</td>
+                            <td><span class="tag tag-violet">Premium</span></td>
+                            <td><span class="tag tag-emerald">Sí</span></td>
+                            <td>DeepSeek / Claude</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Explorer</strong></td>
+                            <td>Análisis de codebase</td>
+                            <td><span class="tag tag-amber">Cheap</span></td>
+                            <td><span class="tag tag-emerald">Sí</span></td>
+                            <td>Gemini / Local</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Cheap Worker</strong></td>
+                            <td>Tareas repetitivas</td>
+                            <td><span class="tag tag-amber">Cheap</span></td>
+                            <td><span class="tag tag-emerald">Sí</span></td>
+                            <td>DeepSeek / Gemini</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Documentation</strong></td>
+                            <td>Documentación y resúmenes</td>
+                            <td><span class="tag tag-amber">Cheap</span></td>
+                            <td><span class="tag tag-emerald">Sí</span></td>
+                            <td>DeepSeek / Gemini</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <section class="docs-section" id="tareas">
+            <h2 class="docs-section-title">
+                <i class="ph ph-check-square"></i>
+                Sistema de Tareas
+            </h2>
+            <p class="section-desc">Las tareas son la unidad atómica de trabajo en RACSP. Cada tarea tiene alcance exacto, salidas definidas y requisitos de validación.</p>
+
+            <div class="card">
+                <div class="card-header">
+                    <div class="card-icon indigo">
+                        <i class="ph ph-file-text"></i>
+                    </div>
+                    <div class="card-title">Formato de Tarea YAML</div>
+                </div>
+                <div class="card-body">
+<pre class="code-block" data-lang="yaml"><span class="keyword">racsp_version</span>: <span class="string">"1.0.0"</span>
+<span class="keyword">task</span>:
+  <span class="keyword">id</span>: <span class="string">"TASK-001"</span>
+  <span class="keyword">type</span>: <span class="string">"atomic"</span>
+  <span class="keyword">title</span>: <span class="string">"Implementar API de Registro"</span>
+  <span class="keyword">outputs</span>:
+    <span class="keyword">files</span>:
+      - <span class="keyword">path</span>: <span class="string">"src/API/Controllers/UsersController.cs"</span>
+        <span class="keyword">action</span>: <span class="string">"create"</span>
+    <span class="keyword">tests</span>:
+      - <span class="keyword">command</span>: <span class="string">"dotnet test"</span>
+        <span class="keyword">expected</span>: <span class="string">"pass"</span>
+  <span class="keyword">constraints</span>:
+    <span class="keyword">max_files</span>: <span class="number">4</span>
+    <span class="keyword">max_lines_per_file</span>: <span class="number">150</span>
+  <span class="keyword">dependencies</span>:
+    <span class="keyword">requires</span>: []
+    <span class="keyword">files_write</span>:
+      - <span class="string">"src/API/Controllers/UsersController.cs"</span>
+  <span class="keyword">budget</span>:
+    <span class="keyword">model_tier</span>: <span class="string">"standard"</span>
+    <span class="keyword">max_tokens</span>: <span class="number">8000</span>
+    <span class="keyword">max_time_minutes</span>: <span class="number">10</span></pre>
+                </div>
+            </div>
+
+            <div class="alert alert-amber" style="margin-top: var(--space-4);">
+                <i class="ph ph-warning alert-icon"></i>
+                <div class="alert-content">
+                    <div class="alert-title">Reglas de Tareas</div>
+                    <ul style="margin-left: var(--space-4); margin-top: var(--space-2);">
+                        <li>Máximo 5 archivos por tarea atómica</li>
+                        <li>Máximo 150 líneas por archivo</li>
+                        <li>Toda tarea debe tener requisitos de validación</li>
+                        <li>Toda tarea debe declarar su grafo de dependencias</li>
+                        <li>Toda tarea debe tener presupuesto de ejecución</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+        <section class="docs-section" id="validacion">
+            <h2 class="docs-section-title">
+                <i class="ph ph-check-circle"></i>
+                Validación
+            </h2>
+            <p class="section-desc">La IA nunca auto-certifica su trabajo. Toda finalización debe ser validada externamente por el pipeline de validación.</p>
+
+            <div class="grid-2">
+                <div class="card">
+                    <div class="card-header">
+                        <div class="card-icon emerald">
+                            <i class="ph ph-check-circle"></i>
+                        </div>
+                        <div class="card-title">Validadores Requeridos</div>
+                    </div>
+                    <div class="card-body">
+                        <ul style="list-style: none; padding: 0;">
+                            <li style="padding: var(--space-2) 0; border-bottom: 1px solid var(--gray-line);">
+                                <i class="ph ph-check-circle"></i>
+                                <strong>Compile Validator</strong> — Verifica compilación exitosa
+                            </li>
+                            <li style="padding: var(--space-2) 0; border-bottom: 1px solid var(--gray-line);">
+                                <i class="ph ph-check-circle"></i>
+                                <strong>AST Validator</strong> — Validez sintáctica y estructural
+                            </li>
+                            <li style="padding: var(--space-2) 0;">
+                                <i class="ph ph-check-circle"></i>
+                                <strong>Semantic Validator</strong> — Cumplimiento de patrones y convenciones
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-header">
+                        <div class="card-icon amber">
+                            <i class="ph ph-plus-circle"></i>
+                        </div>
+                        <div class="card-title">Validadores Opcionales</div>
+                    </div>
+                    <div class="card-body">
+                        <ul style="list-style: none; padding: 0;">
+                            <li style="padding: var(--space-2) 0; border-bottom: 1px solid var(--gray-line);">
+                                <i class="ph ph-plus-circle"></i>
+                                <strong>Consistency Validator</strong> — Cambios no disruptivos
+                            </li>
+                            <li style="padding: var(--space-2) 0; border-bottom: 1px solid var(--gray-line);">
+                                <i class="ph ph-plus-circle"></i>
+                                <strong>Dependency Validator</strong> — Sin dependencias circulares
+                            </li>
+                            <li style="padding: var(--space-2) 0;">
+                                <i class="ph ph-plus-circle"></i>
+                                <strong>Architecture Validator</strong> — Límites de capas respetados
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="alert alert-orange" style="margin-top: var(--space-4);">
+                <i class="ph ph-prohibit alert-icon"></i>
+                <div class="alert-content">
+                    <div class="alert-title">Principio Fundamental</div>
+                    <strong>La IA NUNCA auto-certifica finalización.</strong> La finalización DEBE ser validada externamente. El agente Validator es el guardián — ninguna tarea está completa sin su aprobación.
+                </div>
+            </div>
+        </section>
+
+        <section class="docs-section" id="compresion">
+            <h2 class="docs-section-title">
+                <i class="ph ph-arrows-in"></i>
+                Compresión Semántica
+            </h2>
+            <p class="section-desc">Reduce el uso de tokens en un 60-80% reemplazando descripciones completas con referencias simbólicas a patrones del registro.</p>
+
+            <div class="card">
+                <div class="card-header">
+                    <div class="card-icon violet">
+                        <i class="ph ph-brain"></i>
+                    </div>
+                    <div class="card-title">Cómo Funciona</div>
+                </div>
+                <div class="card-body">
+                    <div class="grid-2" style="margin-top: var(--space-3);">
+                        <div>
+                            <div class="tag tag-orange" style="margin-bottom: var(--space-2);">Sin Compresión</div>
+<pre class="code-block" data-lang="text">Describe Clean Architecture con 4 capas: Domain, Application, Infrastructure, Presentation. Las dependencias apuntan hacia adentro. Las interfaces van en Domain o Application. Las implementaciones en Infrastructure...</pre>
+                            <div style="text-align: center; margin-top: var(--space-2); color: var(--text-muted); font-size: var(--text-sm);">~2000 tokens</div>
+                        </div>
+                        <div>
+                            <div class="tag tag-emerald" style="margin-bottom: var(--space-2);">Con Compresión</div>
+<pre class="code-block" data-lang="text">pattern:clean-architecture</pre>
+                            <div style="text-align: center; margin-top: var(--space-2); color: var(--text-muted); font-size: var(--text-sm);">~20 tokens</div>
+                        </div>
+                    </div>
+                    <div style="text-align: center; margin-top: var(--space-4); padding: var(--space-4); background: rgba(16, 185, 129, 0.1); border-radius: var(--radius-lg);">
+                        <div style="font-size: var(--text-3xl); font-weight: 700; color: #10B981;">99% reducción</div>
+                        <div style="font-size: var(--text-sm); color: var(--text-muted); margin-top: var(--space-1);">De 2000 tokens a 20 tokens</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="docs-section" id="snapshots">
+            <h2 class="docs-section-title">
+                <i class="ph ph-clock-counter-clockwise"></i>
+                Snapshots y Reanudación
+            </h2>
+            <p class="section-desc">RACSP crea snapshots automáticos cada 5 minutos. Sobrevive a pérdida de sesión, truncamiento de contexto, cambio de proveedor y reinicio de conversación.</p>
+
+            <div class="grid-2">
+                <div class="card">
+                    <div class="card-header">
+                        <div class="card-icon emerald">
+                            <i class="ph ph-floppy-disk"></i>
+                        </div>
+                        <div class="card-title">Auto-Snapshots</div>
+                    </div>
+                    <div class="card-body">
+                        <ul style="list-style: none; padding: 0;">
+                            <li style="padding: var(--space-2) 0; border-bottom: 1px solid var(--gray-line);">Cada 5 minutos durante ejecución</li>
+                            <li style="padding: var(--space-2) 0; border-bottom: 1px solid var(--gray-line);">Al completar una tarea</li>
+                            <li style="padding: var(--space-2) 0; border-bottom: 1px solid var(--gray-line);">Al cambiar de modo</li>
+                            <li style="padding: var(--space-2) 0;">Al cambiar de rama Git</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-header">
+                        <div class="card-icon indigo">
+                            <i class="ph ph-clock-clockwise"></i>
+                        </div>
+                        <div class="card-title">Retención</div>
+                    </div>
+                    <div class="card-body">
+                        <ul style="list-style: none; padding: 0;">
+                            <li style="padding: var(--space-2) 0; border-bottom: 1px solid var(--gray-line);">10 snapshots temporales</li>
+                            <li style="padding: var(--space-2) 0; border-bottom: 1px solid var(--gray-line);">24 horas de retención</li>
+                            <li style="padding: var(--space-2) 0; border-bottom: 1px solid var(--gray-line);">Snapshots por rama</li>
+                            <li style="padding: var(--space-2) 0;">Compresión 92%</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+<pre class="code-block" data-lang="bash" style="margin-top: var(--space-4);"><span class="prompt">$</span> ryou snapshot create                    <span class="comment"># Crear snapshot manual</span>
+<span class="prompt">$</span> ryou snapshot list                      <span class="comment"># Listar snapshots</span>
+<span class="prompt">$</span> ryou snapshot restore snap-20260609-130000 <span class="comment"># Restaurar snapshot</span>
+<span class="prompt">$</span> ryou snapshot delete snap-20260609-120000 <span class="comment"># Eliminar snapshot</span></pre>
+        </section>
+        <section class="docs-section" id="troubleshooting">
+            <h2 class="docs-section-title">
+                <i class="ph ph-wrench"></i>
+                Troubleshooting
+            </h2>
+            <p class="section-desc">Soluciones a problemas comunes durante la instalación y operación de RACSP.</p>
+
+            <div class="card">
+                <div class="card-header">
+                    <div class="card-icon orange">
+                        <i class="ph ph-warning-circle"></i>
+                    </div>
+                    <div class="card-title">Problemas Comunes</div>
+                </div>
+                <div class="card-body">
+                    <div style="margin-bottom: var(--space-4);">
+                        <div style="font-weight: 600; color: var(--gray-dark); margin-bottom: var(--space-2);">RACSP CLI no encontrado</div>
+<pre class="code-block" data-lang="bash"><span class="prompt">$</span> cd RACSP/ryou-cli
+<span class="prompt">$</span> npm run build
+<span class="prompt">$</span> npm link</pre>
+                    </div>
+
+                    <div style="margin-bottom: var(--space-4);">
+                        <div style="font-weight: 600; color: var(--gray-dark); margin-bottom: var(--space-2);">Brain no sincroniza</div>
+<pre class="code-block" data-lang="bash"><span class="prompt">$</span> ryou sync --brain
+<span class="prompt">$</span> ryou diagnostics --brain</pre>
+                    </div>
+
+                    <div style="margin-bottom: var(--space-4);">
+                        <div style="font-weight: 600; color: var(--gray-dark); margin-bottom: var(--space-2);">Validación fallando</div>
+<pre class="code-block" data-lang="bash"><span class="prompt">$</span> ryou diagnostics --full
+<span class="prompt">$</span> ryou repair --fix
+<span class="prompt">$</span> ryou validate --stage compile-validator --verbose</pre>
+                    </div>
+
+                    <div>
+                        <div style="font-weight: 600; color: var(--gray-dark); margin-bottom: var(--space-2);">Reparar instalación</div>
+<pre class="code-block" data-lang="bash"><span class="prompt">$</span> ryou repair --verify     <span class="comment"># Verificar integridad</span>
+<span class="prompt">$</span> ryou repair --fix        <span class="comment"># Reparar automáticamente</span>
+<span class="prompt">$</span> ryou repair --reinstall  <span class="comment"># Reinstalar completamente</span></pre>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="docs-section" id="referencia">
+            <h2 class="docs-section-title">
+                <i class="ph ph-book-open"></i>
+                Referencia Rápida de Comandos
+            </h2>
+            <p class="section-desc">Todos los comandos del CLI de RACSP en una sola tabla.</p>
+
+            <div class="table-wrap">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Comando</th>
+                            <th>Descripción</th>
+                            <th>Ejemplo</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr><td><code>ryou install</code></td><td>Instalar RACSP</td><td><code>--project, --global</code></td></tr>
+                        <tr><td><code>ryou init</code></td><td>Inicializar proyecto</td><td><code>--template, --stack</code></td></tr>
+                        <tr><td><code>ryou mode</code></td><td>Cambiar modo</td><td><code>build, swarm, debug</code></td></tr>
+                        <tr><td><code>ryou task create</code></td><td>Crear tarea</td><td><code>--template atomic</code></td></tr>
+                        <tr><td><code>ryou task assign</code></td><td>Asignar tarea</td><td><code>TASK-001 builder</code></td></tr>
+                        <tr><td><code>ryou task status</code></td><td>Estado de tarea</td><td><code>TASK-001</code></td></tr>
+                        <tr><td><code>ryou validate</code></td><td>Validar</td><td><code>--task, --all</code></td></tr>
+                        <tr><td><code>ryou snapshot</code></td><td>Snapshot</td><td><code>create, restore, list</code></td></tr>
+                        <tr><td><code>ryou sync</code></td><td>Sincronizar</td><td><code>--brain, --agents</code></td></tr>
+                        <tr><td><code>ryou repair</code></td><td>Reparar</td><td><code>--fix, --verify</code></td></tr>
+                        <tr><td><code>ryou diagnostics</code></td><td>Diagnóstico</td><td><code>--full</code></td></tr>
+                        <tr><td><code>ryou uninstall</code></td><td>Desinstalar</td><td><code>--project, --global</code></td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <section class="docs-section" id="ejemplos">
+            <h2 class="docs-section-title">
+                <i class="ph ph-code"></i>
+                Ejemplos
+            </h2>
+            <p class="section-desc">Flujos de trabajo completos para escenarios comunes.</p>
+
+            <div class="card">
+                <div class="card-header">
+                    <div class="card-icon emerald">
+                        <i class="ph ph-rocket-launch"></i>
+                    </div>
+                    <div class="card-title">Ejemplo: Implementar un Endpoint API</div>
+                </div>
+                <div class="card-body">
+<pre class="code-block" data-lang="bash"><span class="comment"># 1. Cambiar a modo build (rápido)</span>
+<span class="prompt">$</span> ryou mode build
+
+<span class="comment"># 2. Crear tarea desde plantilla</span>
+<span class="prompt">$</span> ryou task create --template atomic
+<span class="comment"># Editar: title="Implementar POST /api/users"</span>
+<span class="comment"># Editar: outputs.files = [UsersController.cs, RegisterRequest.cs]</span>
+
+<span class="comment"># 3. Asignar al builder</span>
+<span class="prompt">$</span> ryou task assign TASK-001 builder-1
+
+<span class="comment"># 4. Esperar finalización y validar</span>
+<span class="prompt">$</span> ryou validate --task TASK-001
+
+<span class="comment"># 5. Crear snapshot</span>
+<span class="prompt">$</span> ryou snapshot create</pre>
+                </div>
+            </div>
+
+            <div class="card" style="margin-top: var(--space-4);">
+                <div class="card-header">
+                    <div class="card-icon violet">
+                        <i class="ph ph-users"></i>
+                    </div>
+                    <div class="card-title">Ejemplo: Feature Grande con Swarm</div>
+                </div>
+                <div class="card-body">
+<pre class="code-block" data-lang="bash"><span class="comment"># 1. Cambiar a modo swarm (máximo paralelismo)</span>
+<span class="prompt">$</span> ryou mode swarm
+
+<span class="comment"># 2. El planner descompone automáticamente en tareas</span>
+<span class="comment"># T-EXPLORE → T-PLAN → T-USER-API + T-PRODUCT-API + T-ORDER-API</span>
+<span class="comment"># → T-REVIEW-1 + T-REVIEW-2 → T-VALIDATE → T-DOCS</span>
+
+<span class="comment"># 3. Monitorear progreso</span>
+<span class="prompt">$</span> ryou task list --watch
+
+<span class="comment"># 4. Validar todo al final</span>
+<span class="prompt">$</span> ryou validate --all
+
+<span class="comment"># 5. Snapshot final</span>
+<span class="prompt">$</span> ryou snapshot create</pre>
+                </div>
+            </div>
+        </section>
+
+        
+        </main>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <a href="index.html" class="footer-logo">
+                        <i class="ph-fill ph-hexagon"></i>
+                        <span>RACSP</span>
+                    </a>
+                    <p class="footer-desc">Protocolo multi-agente transparente para desarrollo impulsado por IA.</p>
+                </div>
+                <div class="footer-links">
+                    <h4>Producto</h4>
+                    <ul>
+                        <li><a href="index.html#caracteristicas">Caracteristicas</a></li>
+                        <li><a href="index.html#arquitectura">Arquitectura</a></li>
+                        <li><a href="index.html#protocolo">Protocolo</a></li>
+                        <li><a href="Docs.html">Documentacion</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links">
+                    <h4>Recursos</h4>
+                    <ul>
+                        <li><a href="https://github.com/keorgtz/RACSP.git" target="_blank" rel="noopener noreferrer">GitHub</a></li>
+                        <li><a href="index.html#documentacion">Guia de Uso</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links">
+                    <h4>Contacto</h4>
+                    <ul>
+                        <li><a href="https://wa.me/523327633233" target="_blank" rel="noopener noreferrer">WhatsApp</a></li>
+                        <li><a href="mailto:Kevin00ortizgtz@gmail.com">Kevin00ortizgtz@gmail.com</a></li>
+                        <li><a href="../index.html">Keorsoft</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 Keorsoft. RACSP es Open Source bajo MIT License.</p>
+                <div class="footer-social">
+                    <a href="https://github.com/keorgtz/RACSP.git" target="_blank" rel="noopener noreferrer" aria-label="GitHub"><i class="ph ph-github-logo"></i></a>
+                    <a href="https://wa.me/523327633233" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp"><i class="ph ph-whatsapp-logo"></i></a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        const navToggle = document.getElementById('navToggle');
+        const navLinks = document.getElementById('navLinks');
+        
+        if (navToggle && navLinks) {
+            navToggle.addEventListener('click', () => {
+                navLinks.classList.toggle('open');
+                const icon = navToggle.querySelector('i');
+                if (icon) {
+                    icon.classList.toggle('ph-list');
+                    icon.classList.toggle('ph-x');
+                }
+            });
+        }
+        
+        // Smooth scroll para links internos
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            });
+        });
+        
+        // Active sidebar navigation
+        const sections = document.querySelectorAll('.section');
+        const sidebarItems = document.querySelectorAll('.docs-nav-item');
+        
+        window.addEventListener('scroll', () => {
+            let current = '';
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                if (scrollY >= sectionTop - 100) {
+                    current = section.getAttribute('id');
+                }
+            });
+            
+            sidebarItems.forEach(item => {
+                item.classList.remove('active');
+                if (item.getAttribute('href') === '#' + current) {
+                    item.classList.add('active');
+                }
+            });
+        });
+    </script>
+</body>
+</html>
+

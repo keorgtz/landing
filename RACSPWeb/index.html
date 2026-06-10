@@ -1,0 +1,634 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="RACSP - Ryou Adaptive Collaborative Sub-Agent Protocol. Protocolo multi-agente transparente y nativo para desarrollo impulsado por IA.">
+    <meta name="author" content="Kevin Ortiz / Keorsoft">
+    <title>RACSP — Protocolo Multi-Agente para Desarrollo con IA</title>
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Phosphor Icons -->
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    
+    <!-- Styles -->
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="nav" id="nav">
+        <div class="nav-container">
+            <a href="#" class="nav-logo">
+                <i class="ph-fill ph-hexagon"></i>
+                <span>RACSP</span>
+            </a>
+            
+            <ul class="nav-links" id="navLinks">
+                <li><a href="#inicio" class="nav-link active">Inicio</a></li>
+                <li><a href="#caracteristicas" class="nav-link">Características</a></li>
+                <li><a href="#arquitectura" class="nav-link">Arquitectura</a></li>
+                <li><a href="#protocolo" class="nav-link">Protocolo</a></li>
+                <li><a href="#documentacion" class="nav-link">Documentación</a></li>
+                <li><a href="https://github.com/keorgtz/RACSP.git" class="nav-link nav-link--external" target="_blank" rel="noopener noreferrer">
+                    <i class="ph-fill ph-github-logo"></i>
+                    GitHub
+                </a></li>
+            </ul>
+            
+            <button class="nav-toggle" id="navToggle" aria-label="Abrir menú de navegación">
+                <i class="ph ph-list"></i>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero" id="inicio">
+        <div class="hero-bg">
+            <div class="hero-grid"></div>
+            <div class="hero-glow hero-glow--1"></div>
+            <div class="hero-glow hero-glow--2"></div>
+        </div>
+        
+        <div class="container">
+            <div class="hero-content">
+                <div class="hero-badge">
+                    <span class="badge-dot"></span>
+                    <span>v2.0.0 Production-Grade</span>
+                </div>
+                
+                <h1 class="hero-title">
+                    El Protocolo Multi-Agente<br>
+                    que tu Proyecto Necesita
+                </h1>
+                
+                <p class="hero-subtitle">
+                    RACSP es un protocolo transparente y nativo para desarrollo impulsado por IA. 
+                    Vive dentro de cada proyecto como una carpeta <code>.racsp/</code>. 
+                    Los agentes se auto-configuran detectando el protocolo en la raíz del proyecto. 
+                    Sin wrappers, sin configuración global — solo abre tu agente y empieza.
+                </p>
+                
+                <div class="hero-cta">
+                    <a href="Docs.html" class="btn btn--primary">
+                        <i class="ph-fill ph-book-open-text"></i>
+                        Ver Documentación
+                    </a>
+                    <a href="https://github.com/keorgtz/RACSP.git" class="btn btn--secondary" target="_blank" rel="noopener noreferrer">
+                        <i class="ph-fill ph-github-logo"></i>
+                        Explorar en GitHub
+                    </a>
+                </div>
+                
+                <div class="hero-stats">
+                    <div class="stat">
+                        <span class="stat-value">7</span>
+                        <span class="stat-label">Adaptadores</span>
+                    </div>
+                    <div class="stat-divider"></div>
+                    <div class="stat">
+                        <span class="stat-value">5</span>
+                        <span class="stat-label">Archivos Core</span>
+                    </div>
+                    <div class="stat-divider"></div>
+                    <div class="stat">
+                        <span class="stat-value">1</span>
+                        <span class="stat-label">Comando</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="hero-scroll">
+            <span>Descubre más</span>
+            <i class="ph ph-caret-down"></i>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features" id="caracteristicas">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">Características</span>
+                <h2 class="section-title">Diseñado para Agentes,<br>Construido para Desarrolladores</h2>
+                <p class="section-subtitle">
+                    Cada característica de RACSP está pensada para eliminar fricción 
+                    y maximizar la colaboración entre agentes de IA.
+                </p>
+            </div>
+            
+            <div class="features-grid">
+                <article class="feature-card">
+                    <div class="feature-icon">
+                        <i class="ph-fill ph-magnifying-glass"></i>
+                    </div>
+                    <h3 class="feature-title">Auto-Detección</h3>
+                    <p class="feature-desc">
+                        Los agentes detectan automáticamente la carpeta <code>.racsp/</code> 
+                        en la raíz del proyecto y cargan su configuración sin intervención manual.
+                    </p>
+                </article>
+                
+                <article class="feature-card">
+                    <div class="feature-icon">
+                        <i class="ph-fill ph-brain"></i>
+                    </div>
+                    <h3 class="feature-title">Memoria Compartida</h3>
+                    <p class="feature-desc">
+                        Sistema Brain basado en Markdown: BRAIN.md, AGENTS.md, LOCK.md y CONTEXT.md 
+                        mantienen a todos los agentes sincronizados con el estado del proyecto.
+                    </p>
+                </article>
+                
+                <article class="feature-card">
+                    <div class="feature-icon">
+                        <i class="ph-fill ph-sliders-horizontal"></i>
+                    </div>
+                    <h3 class="feature-title">Perfiles SDD por Agente</h3>
+                    <p class="feature-desc">
+                        Cada agente puede tener su propio modelo y nivel de esfuerzo por fase. 
+                        RyouSet de RASS es el perfil por defecto, totalmente personalizable.
+                    </p>
+                </article>
+                
+                <article class="feature-card">
+                    <div class="feature-icon">
+                        <i class="ph-fill ph-plugs-connected"></i>
+                    </div>
+                    <h3 class="feature-title">7 Adaptadores</h3>
+                    <p class="feature-desc">
+                        Soporta Claude, OpenCode, Gemini, Antigravity, Codex, DeepSeek y Kimi. 
+                        Cada adaptador está optimizado para las capacidades específicas de su agente.
+                    </p>
+                </article>
+                
+                <article class="feature-card">
+                    <div class="feature-icon">
+                        <i class="ph-fill ph-download-simple"></i>
+                    </div>
+                    <h3 class="feature-title">Instalador Universal</h3>
+                    <p class="feature-desc">
+                        Auto-detecta el tipo de proyecto y configura los agentes automáticamente. 
+                        Un solo comando y RACSP está listo para trabajar.
+                    </p>
+                </article>
+                
+                <article class="feature-card">
+                    <div class="feature-icon">
+                        <i class="ph-fill ph-terminal"></i>
+                    </div>
+                    <h3 class="feature-title">Comando <code>ryou</code></h3>
+                    <p class="feature-desc">
+                        CLI simple e intuitivo. Desinstala automáticamente el antiguo <code>racsp-cli</code> 
+                        antes de instalar <code>ryou-cli</code>. Migración sin fricción.
+                    </p>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <!-- Architecture Section -->
+    <section class="architecture" id="arquitectura">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">Arquitectura</span>
+                <h2 class="section-title">Estructura del Protocolo</h2>
+                <p class="section-subtitle">
+                    RACSP organiza toda la configuración y memoria compartida 
+                    dentro de una carpeta <code>.racsp/</code> en la raíz del proyecto.
+                </p>
+            </div>
+            
+            <div class="architecture-content">
+                <div class="architecture-diagram">
+                    <div class="folder-tree">
+                        <div class="folder-item folder-item--root">
+                            <i class="ph-fill ph-folder"></i>
+                            <span>.racsp/</span>
+                        </div>
+                        <div class="folder-children">
+                            <div class="folder-item folder-item--file">
+                                <i class="ph-fill ph-file-text"></i>
+                                <span>RACSP.md</span>
+                                <span class="file-tag">Manifesto</span>
+                            </div>
+                            <div class="folder-item folder-item--file">
+                                <i class="ph-fill ph-file-text"></i>
+                                <span>BRAIN.md</span>
+                                <span class="file-tag">Memoria</span>
+                            </div>
+                            <div class="folder-item folder-item--file">
+                                <i class="ph-fill ph-file-text"></i>
+                                <span>AGENTS.md</span>
+                                <span class="file-tag">Actividad</span>
+                            </div>
+                            <div class="folder-item folder-item--file">
+                                <i class="ph-fill ph-file-text"></i>
+                                <span>LOCK.md</span>
+                                <span class="file-tag">Estado</span>
+                            </div>
+                            <div class="folder-item folder-item--file">
+                                <i class="ph-fill ph-file-text"></i>
+                                <span>CONTEXT.md</span>
+                                <span class="file-tag">Sesión</span>
+                            </div>
+                            <div class="folder-item folder-item--file">
+                                <i class="ph-fill ph-file-code"></i>
+                                <span>ryou.config.json</span>
+                                <span class="file-tag">Config</span>
+                            </div>
+                            <div class="folder-item folder-item--folder">
+                                <i class="ph-fill ph-folder"></i>
+                                <span>agents/</span>
+                            </div>
+                            <div class="folder-children folder-children--nested">
+                                <div class="folder-item folder-item--agent">
+                                    <i class="ph-fill ph-folder"></i>
+                                    <span>claude/</span>
+                                    <span class="file-tag file-tag--agent">CLAUDE.md</span>
+                                </div>
+                                <div class="folder-item folder-item--agent">
+                                    <i class="ph-fill ph-folder"></i>
+                                    <span>opencode/</span>
+                                    <span class="file-tag file-tag--agent">opencode.json</span>
+                                </div>
+                                <div class="folder-item folder-item--agent">
+                                    <i class="ph-fill ph-folder"></i>
+                                    <span>gemini/</span>
+                                </div>
+                                <div class="folder-item folder-item--agent">
+                                    <i class="ph-fill ph-folder"></i>
+                                    <span>antigravity/</span>
+                                </div>
+                                <div class="folder-item folder-item--agent">
+                                    <i class="ph-fill ph-folder"></i>
+                                    <span>codex/</span>
+                                </div>
+                                <div class="folder-item folder-item--agent">
+                                    <i class="ph-fill ph-folder"></i>
+                                    <span>deepseek/</span>
+                                </div>
+                                <div class="folder-item folder-item--agent">
+                                    <i class="ph-fill ph-folder"></i>
+                                    <span>kimi/</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="architecture-info">
+                    <div class="info-card">
+                        <div class="info-icon">
+                            <i class="ph-fill ph-lightning"></i>
+                        </div>
+                        <h4>Auto-Configuración</h4>
+                        <p>Cada agente lee su propia carpeta dentro de <code>agents/</code> y carga su perfil SDD personalizado.</p>
+                    </div>
+                    <div class="info-card">
+                        <div class="info-icon">
+                            <i class="ph-fill ph-arrows-clockwise"></i>
+                        </div>
+                        <h4>Sincronización Bidireccional</h4>
+                        <p>Los cambios en BRAIN.md se propagan automáticamente a todos los agentes activos.</p>
+                    </div>
+                    <div class="info-card">
+                        <div class="info-icon">
+                            <i class="ph-fill ph-shield-check"></i>
+                        </div>
+                        <h4>Aislamiento Seguro</h4>
+                        <p>LOCK.md previene conflictos entre agentes coordinando acceso concurrente.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- How It Works Section -->
+    <section class="how-it-works" id="protocolo">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">Cómo Funciona</span>
+                <h2 class="section-title">Cuatro Pasos para Empezar</h2>
+                <p class="section-subtitle">
+                    RACSP elimina toda la complejidad. Abre tu agente favorito y el protocolo 
+                    se activa automáticamente.
+                </p>
+            </div>
+            
+            <div class="steps">
+                <div class="step">
+                    <div class="step-number">01</div>
+                    <div class="step-content">
+                        <div class="step-icon">
+                            <i class="ph-fill ph-terminal-window"></i>
+                        </div>
+                        <h3 class="step-title">Abre tu Agente</h3>
+                        <p class="step-desc">
+                            Abre Claude, OpenCode, Gemini, Antigravity, Codex, DeepSeek o Kimi 
+                            en la carpeta raíz de tu proyecto. Sin wrappers, sin configuración global.
+                        </p>
+                    </div>
+                    <div class="step-connector">
+                        <i class="ph-fill ph-arrow-right"></i>
+                    </div>
+                </div>
+                
+                <div class="step">
+                    <div class="step-number">02</div>
+                    <div class="step-content">
+                        <div class="step-icon">
+                            <i class="ph-fill ph-magnifying-glass"></i>
+                        </div>
+                        <h3 class="step-title">Auto-Detecta <code>.racsp/</code></h3>
+                        <p class="step-desc">
+                            El agente escanea la raíz del proyecto, detecta la carpeta <code>.racsp/</code> 
+                            y reconoce que debe seguir el protocolo RACSP.
+                        </p>
+                    </div>
+                    <div class="step-connector">
+                        <i class="ph-fill ph-arrow-right"></i>
+                    </div>
+                </div>
+                
+                <div class="step">
+                    <div class="step-number">03</div>
+                    <div class="step-content">
+                        <div class="step-icon">
+                            <i class="ph-fill ph-sliders-horizontal"></i>
+                        </div>
+                        <h3 class="step-title">Carga Configuración</h3>
+                        <p class="step-desc">
+                            Lee el perfil SDD específico del agente desde <code>agents/&lt;nombre&gt;/</code>. 
+                            Modelo, esfuerzo y fases personalizadas por agente.
+                        </p>
+                    </div>
+                    <div class="step-connector">
+                        <i class="ph-fill ph-arrow-right"></i>
+                    </div>
+                </div>
+                
+                <div class="step">
+                    <div class="step-number">04</div>
+                    <div class="step-content">
+                        <div class="step-icon">
+                            <i class="ph-fill ph-rocket-launch"></i>
+                        </div>
+                        <h3 class="step-title">Sigue el Protocolo</h3>
+                        <p class="step-desc">
+                            El agente accede a BRAIN.md para contexto compartido, actualiza AGENTS.md 
+                            con su actividad y respeta LOCK.md para coordinación segura.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Protocol Files Section -->
+    <section class="protocol-files">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">Archivos Core</span>
+                <h2 class="section-title">Los 5 Pilares del Protocolo</h2>
+                <p class="section-subtitle">
+                    Cada archivo tiene un propósito específico en el ecosistema RACSP. 
+                    Juntos forman el sistema nervioso del protocolo.
+                </p>
+            </div>
+            
+            <div class="files-grid">
+                <div class="file-card">
+                    <div class="file-header">
+                        <i class="ph-fill ph-file-text"></i>
+                        <code>RACSP.md</code>
+                    </div>
+                    <h4>Protocol Manifest</h4>
+                    <p>Define la versión del protocolo, reglas globales y metadatos del proyecto. 
+                    Es el primer archivo que lee cualquier agente al detectar <code>.racsp/</code>.</p>
+                </div>
+                
+                <div class="file-card">
+                    <div class="file-header">
+                        <i class="ph-fill ph-file-text"></i>
+                        <code>BRAIN.md</code>
+                    </div>
+                    <h4>Shared Memory</h4>
+                    <p>Memoria compartida del proyecto en Markdown. Contiene contexto técnico, 
+                    decisiones arquitectónicas, patrones y conocimiento acumulado.</p>
+                </div>
+                
+                <div class="file-card">
+                    <div class="file-header">
+                        <i class="ph-fill ph-file-text"></i>
+                        <code>AGENTS.md</code>
+                    </div>
+                    <h4>Activity Tracker</h4>
+                    <p>Registro de actividad de todos los agentes. Quién hizo qué, cuándo y por qué. 
+                    Mantiene trazabilidad completa de las intervenciones.</p>
+                </div>
+                
+                <div class="file-card">
+                    <div class="file-header">
+                        <i class="ph-fill ph-file-text"></i>
+                        <code>LOCK.md</code>
+                    </div>
+                    <h4>State Lock</h4>
+                    <p>Coordina el estado actual y previene conflictos entre agentes concurrentes. 
+                    Sistema de bloqueo optimista para operaciones seguras.</p>
+                </div>
+                
+                <div class="file-card file-card--wide">
+                    <div class="file-header">
+                        <i class="ph-fill ph-file-text"></i>
+                        <code>CONTEXT.md</code>
+                    </div>
+                    <h4>Session Context</h4>
+                    <p>Contexto de la sesión actual. Variables temporales, estado de la conversación 
+                    y datos específicos de la interacción en curso. Se limpia entre sesiones.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CLI Commands Section -->
+    <section class="cli-section">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">CLI</span>
+                <h2 class="section-title">Comandos <code>ryou</code></h2>
+                <p class="section-subtitle">
+                    Una CLI simple y poderosa para gestionar todo el protocolo.
+                </p>
+            </div>
+            
+            <div class="cli-grid">
+                <div class="cli-card">
+                    <div class="cli-command">
+                        <span class="cli-prompt">$</span>
+                        <code>ryou setup</code>
+                    </div>
+                    <p>Wizard interactivo con dashboard visual. Configura el protocolo paso a paso.</p>
+                </div>
+                <div class="cli-card">
+                    <div class="cli-command">
+                        <span class="cli-prompt">$</span>
+                        <code>ryou install</code>
+                    </div>
+                    <p>Instala el protocolo en el proyecto actual. Auto-detecta tipo de proyecto.</p>
+                </div>
+                <div class="cli-card">
+                    <div class="cli-command">
+                        <span class="cli-prompt">$</span>
+                        <code>ryou agent &lt;nombre&gt;</code>
+                    </div>
+                    <p>Configura un agente específico. Crea su perfil SDD personalizado.</p>
+                </div>
+                <div class="cli-card">
+                    <div class="cli-command">
+                        <span class="cli-prompt">$</span>
+                        <code>ryou sync</code>
+                    </div>
+                    <p>Sincroniza la memoria compartida (BRAIN.md) entre todos los agentes.</p>
+                </div>
+                <div class="cli-card">
+                    <div class="cli-command">
+                        <span class="cli-prompt">$</span>
+                        <code>ryou diagnostics --full</code>
+                    </div>
+                    <p>Diagnóstico completo del sistema. Verifica configuración y estado de agentes.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Open Source Section -->
+    <section class="opensource" id="opensource">
+        <div class="container">
+            <div class="opensource-content">
+                <div class="opensource-header">
+                    <span class="section-tag">Open Source</span>
+                    <h2 class="section-title">Libre, Abierto y Production-Grade</h2>
+                    <p class="section-subtitle">
+                        RACSP es software libre bajo licencia MIT. 
+                        Desarrollado por Kevin Ortiz / Keorsoft para la comunidad.
+                    </p>
+                </div>
+                
+                <div class="badges">
+                    <div class="badge">
+                        <i class="ph-fill ph-tag"></i>
+                        <span>v2.0.0</span>
+                    </div>
+                    <div class="badge">
+                        <i class="ph-fill ph-scale"></i>
+                        <span>MIT License</span>
+                    </div>
+                    <div class="badge">
+                        <i class="ph-fill ph-check-circle"></i>
+                        <span>Production-Grade</span>
+                    </div>
+                    <div class="badge">
+                        <i class="ph-fill ph-plugs-connected"></i>
+                        <span>7 Adapters</span>
+                    </div>
+                </div>
+                
+                <div class="opensource-cta">
+                    <a href="https://github.com/keorgtz/RACSP.git" class="btn btn--primary btn--large" target="_blank" rel="noopener noreferrer">
+                        <i class="ph-fill ph-github-logo"></i>
+                        Ver en GitHub
+                    </a>
+                    <a href="Docs.html" class="btn btn--secondary btn--large">
+                        <i class="ph-fill ph-book-open-text"></i>
+                        Leer la Guía
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Documentation CTA Section -->
+    <section class="docs-cta" id="documentacion">
+        <div class="container">
+            <div class="docs-cta-content">
+                <div class="docs-cta-icon">
+                    <i class="ph-fill ph-book-bookmark"></i>
+                </div>
+                <h2 class="docs-cta-title">Guía Completa de Uso</h2>
+                <p class="docs-cta-desc">
+                    Documentación detallada con ejemplos prácticos, configuración avanzada, 
+                    troubleshooting y referencia completa de la API del protocolo.
+                </p>
+                <a href="Docs.html" class="btn btn--primary btn--large">
+                    <i class="ph-fill ph-arrow-right"></i>
+                    Acceder a la Guía
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <a href="#" class="footer-logo">
+                        <i class="ph-fill ph-hexagon"></i>
+                        <span>RACSP</span>
+                    </a>
+                    <p class="footer-desc">
+                        Ryou Adaptive Collaborative Sub-Agent Protocol. 
+                        Protocolo multi-agente transparente para desarrollo impulsado por IA.
+                    </p>
+                </div>
+                
+                <div class="footer-links">
+                    <h4>Protocolo</h4>
+                    <ul>
+                        <li><a href="#caracteristicas">Características</a></li>
+                        <li><a href="#arquitectura">Arquitectura</a></li>
+                        <li><a href="#protocolo">Cómo Funciona</a></li>
+                        <li><a href="#documentacion">Documentación</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-links">
+                    <h4>Recursos</h4>
+                    <ul>
+                        <li><a href="Docs.html">Guía de Uso</a></li>
+                        <li><a href="https://github.com/keorgtz/RACSP.git" target="_blank" rel="noopener noreferrer">GitHub</a></li>
+                        <li><a href="#">Changelog</a></li>
+                        <li><a href="#">Roadmap</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-links">
+                    <h4>Keorsoft</h4>
+                    <ul>
+                        <li><a href="../index.html">Sitio Principal</a></li>
+                        <li><a href="#">Sobre Nosotros</a></li>
+                        <li><a href="#">Contacto</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p> 2026 Keorsoft. Todos los derechos reservados.</p>
+                <p>Desarrollado por <a href="../index.html">Kevin Ortiz</a> con <i class="ph-fill ph-heart"></i></p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Back to Top -->
+    <button class="back-to-top" id="backToTop" aria-label="Volver arriba">
+        <i class="ph-fill ph-arrow-up"></i>
+    </button>
+
+    <!-- Scripts -->
+    <script src="js/main.js"></script>
+</body>
+</html>

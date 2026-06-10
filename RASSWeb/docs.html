@@ -1,0 +1,1633 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Documentacion — RASS v3.0.0</title>
+  <meta name="description" content="Documentacion completa de RASS (Ryou Adaptive SDD System) v3.0.0. Guia de instalacion, referencia de comandos, agentes, ModeProfiles y mas.">
+  <meta name="author" content="Kevin Ortiz / Keorsoft">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <script src="https://unpkg.com/@phosphor-icons/web"></script>
+
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+
+  <!-- Navigation -->
+  <nav class="nav" id="navbar">
+    <div class="nav-container">
+      <a href="index.html" class="nav-logo">
+        <i class="ph ph-hexagon"></i>
+        <span>RASS</span>
+      </a>
+      <ul class="nav-links">
+        <li><a href="index.html">Inicio</a></li>
+        <li><a href="index.html#caracteristicas">Caracteristicas</a></li>
+        <li><a href="index.html#arquitectura">Arquitectura</a></li>
+        <li><a href="index.html#agentes">Agentes</a></li>
+        <li><a href="index.html#instalacion">Instalacion</a></li>
+        <li><a href="docs.html" class="nav-docs-link active"><i class="ph ph-book-open"></i> Documentacion</a></li>
+      </ul>
+      <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Menu">
+        <i class="ph ph-list"></i>
+      </button>
+    </div>
+  </nav>
+
+  <!-- Mobile Menu -->
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="index.html">Inicio</a>
+    <a href="index.html#caracteristicas">Caracteristicas</a>
+    <a href="index.html#arquitectura">Arquitectura</a>
+    <a href="index.html#agentes">Agentes</a>
+    <a href="index.html#instalacion">Instalacion</a>
+    <a href="docs.html"><i class="ph ph-book-open"></i> Documentacion</a>
+  </div>
+
+  <!-- Docs Layout -->
+  <div class="docs-layout">
+
+    <!-- Sidebar -->
+    <aside class="docs-sidebar" id="docsSidebar">
+      <div class="docs-sidebar-header">
+        <h2>Documentacion RASS</h2>
+        <p>v3.0.0 — Referencia completa</p>
+      </div>
+      <input type="text" class="docs-search" id="docsSearch" placeholder="Buscar en documentacion...">
+      <nav>
+        <ul class="docs-nav" id="docsNav">
+          <li class="docs-nav-section">
+            <div class="docs-nav-title"><i class="ph ph-rocket"></i> Getting Started</div>
+            <ul class="docs-nav-items">
+              <li><a href="#que-es-rass">Que es RASS?</a></li>
+              <li><a href="#filosofia">Filosofia</a></li>
+              <li><a href="#arquitectura-general">Arquitectura General</a></li>
+            </ul>
+          </li>
+          <li class="docs-nav-section">
+            <div class="docs-nav-title"><i class="ph ph-download-simple"></i> Instalacion</div>
+            <ul class="docs-nav-items">
+              <li><a href="#requisitos">Requisitos</a></li>
+              <li><a href="#instalacion-global">Instalacion Global</a></li>
+              <li><a href="#instalacion-local">Instalacion Local</a></li>
+              <li><a href="#desinstalacion">Desinstalacion</a></li>
+            </ul>
+          </li>
+          <li class="docs-nav-section">
+            <div class="docs-nav-title"><i class="ph ph-lightbulb"></i> Conceptos Clave</div>
+            <ul class="docs-nav-items">
+              <li><a href="#modeprofiles">ModeProfiles</a></li>
+              <li><a href="#fases-sdd">Fases SDD</a></li>
+              <li><a href="#modelos-ia">Modelos de IA</a></li>
+              <li><a href="#niveles-esfuerzo">Niveles de Esfuerzo</a></li>
+              <li><a href="#estrategias-modelo">Estrategias de Modelo</a></li>
+            </ul>
+          </li>
+          <li class="docs-nav-section">
+            <div class="docs-nav-title"><i class="ph ph-terminal"></i> Referencia de Comandos</div>
+            <ul class="docs-nav-items">
+              <li><a href="#slash-commands">Slash Commands</a></li>
+              <li><a href="#ai-tools">AI Tools</a></li>
+              <li><a href="#powershell-cmd">PowerShell</a></li>
+            </ul>
+          </li>
+          <li class="docs-nav-section">
+            <div class="docs-nav-title"><i class="ph ph-users"></i> Agentes Ryou</div>
+            <ul class="docs-nav-items">
+              <li><a href="#agent-orchestrator">Orchestrator</a></li>
+              <li><a href="#agent-planner">Planner</a></li>
+              <li><a href="#agent-builder">Builder</a></li>
+              <li><a href="#agent-architect">Architect</a></li>
+              <li><a href="#agent-reviewer">Reviewer</a></li>
+              <li><a href="#agent-debugger">Debugger</a></li>
+              <li><a href="#agent-documentation">Documentation</a></li>
+            </ul>
+          </li>
+          <li class="docs-nav-section">
+            <div class="docs-nav-title"><i class="ph ph-toggle-left"></i> ModeProfiles</div>
+            <ul class="docs-nav-items">
+              <li><a href="#profile-ryouset">RyouSet</a></li>
+              <li><a href="#profile-fast">Fast</a></li>
+              <li><a href="#profile-architecture">Architecture</a></li>
+              <li><a href="#profile-ui">UI</a></li>
+              <li><a href="#profile-debug">Debug</a></li>
+              <li><a href="#profile-enterprise">Enterprise</a></li>
+              <li><a href="#profile-legacy">Legacy</a></li>
+              <li><a href="#profile-minimal">Minimal</a></li>
+            </ul>
+          </li>
+          <li class="docs-nav-section">
+            <div class="docs-nav-title"><i class="ph ph-gear"></i> Personalizacion</div>
+            <ul class="docs-nav-items">
+              <li><a href="#crear-modeprofile">Crear ModeProfile Custom</a></li>
+              <li><a href="#editar-agentes">Editar Agentes</a></li>
+              <li><a href="#reglas-globales">Reglas Globales</a></li>
+            </ul>
+          </li>
+          <li class="docs-nav-section">
+            <div class="docs-nav-title"><i class="ph ph-briefcase"></i> Casos de Uso</div>
+            <ul class="docs-nav-items">
+              <li><a href="#caso-crud">CRUD Simple</a></li>
+              <li><a href="#caso-arquitectura">Arquitectura Compleja</a></li>
+              <li><a href="#caso-ui">UI Development</a></li>
+              <li><a href="#caso-debugging">Debugging</a></li>
+            </ul>
+          </li>
+          <li class="docs-nav-section">
+            <div class="docs-nav-title"><i class="ph ph-question"></i> Soporte</div>
+            <ul class="docs-nav-items">
+              <li><a href="#faq">FAQ</a></li>
+              <li><a href="#troubleshooting">Troubleshooting</a></li>
+            </ul>
+          </li>
+        </ul>
+      </nav>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="docs-main" id="docsMain">
+
+      <!-- Docs Hero -->
+      <div class="docs-hero reveal">
+        <div class="section-label">
+          <i class="ph ph-book-open"></i>
+          Documentacion
+        </div>
+        <h1 class="section-title">Guia completa de <span class="gradient-text">RASS</span></h1>
+        <p class="section-desc">Referencia tecnica completa: instalacion, comandos, agentes, ModeProfiles, personalizacion y troubleshooting.</p>
+        <div class="docs-hero-badges">
+          <span class="badge badge-blue">v3.0.0</span>
+          <span class="badge badge-purple">MIT License</span>
+          <span class="badge badge-green">Open Source</span>
+        </div>
+      </div>
+
+      <!-- Getting Started -->
+      <section class="docs-section reveal" id="que-es-rass">
+        <h2><i class="ph ph-hexagon"></i> Que es RASS?</h2>
+        <p class="lead">
+          <strong>RASS (Ryou Adaptive SDD System)</strong> es un framework de <strong>Sub-Agent Driven Development (SDD)</strong> disenado especificamente para OpenCode Go. Es el primer "Sistema Operativo de Desarrollo IA Adaptativo" que ajusta dinamicamente su flujo de trabajo segun la complejidad de cada tarea.
+        </p>
+        <p>
+          A diferencia de los asistentes de IA tradicionales que usan un unico modelo y un flujo fijo, RASS implementa un sistema de <strong>7 agentes especializados</strong> coordinados por un orchestrator, cada uno con el <strong>modelo de IA optimo</strong> para su funcion especifica.
+        </p>
+        <p>
+          La caracteristica distintiva de RASS es su sistema de <strong>ModeProfiles</strong>: 8 configuraciones predefinidas que determinan cuantas fases SDD se ejecutan y que agentes participan. Una tarea simple como un CRUD usa 3 fases (Fast), mientras que un sistema enterprise usa 8 fases completas (Enterprise).
+        </p>
+        <h3>Version Actual</h3>
+        <div class="table-wrapper">
+          <table>
+            <tr><th>Propiedad</th><th>Valor</th></tr>
+            <tr><td>Version</td><td><span class="badge badge-blue">3.0.0</span></td></tr>
+            <tr><td>Nombre completo</td><td>Ryou Adaptive SDD System</td></tr>
+            <tr><td>Autor</td><td>Kevin Ortiz / Keorsoft</td></tr>
+            <tr><td>Licencia</td><td>MIT License (Open Source)</td></tr>
+            <tr><td>Stack</td><td>.NET 9, C#, PowerShell, OpenCode Go</td></tr>
+            <tr><td>Design System</td><td>MeridianUI</td></tr>
+          </table>
+        </div>
+      </section>
+
+      <section class="docs-section reveal" id="filosofia">
+        <h2><i class="ph ph-lightbulb"></i> Filosofia</h2>
+        <p class="lead">
+          RASS no es solo una herramienta. Es una filosofia de desarrollo con tres principios fundamentales:
+        </p>
+        <h3>1. "Conceptos > Codigo"</h3>
+        <p>
+          El valor no esta en la cantidad de codigo generado, sino en la calidad de los conceptos y decisiones de arquitectura. RASS prioriza el diseno correcto sobre la implementacion rapida.
+        </p>
+        <h3>2. "El humano siempre lidera"</h3>
+        <p>
+          Los agentes de RASS son <strong>herramientas</strong>, no reemplazos. El desarrollador humano toma las decisiones finales, aprueba los cambios y dirige la estrategia. La IA se adapta al humano, no al reves.
+        </p>
+        <h3>3. "El modelo correcto, para la tarea correcta"</h3>
+        <p>
+          El problema hoy no es "tener una IA". Es usar el <strong>modelo correcto, con el flujo correcto, para la tarea correcta</strong>. RASS resuelve esto con model routing inteligente y pipelines adaptativos.
+        </p>
+        <div class="code-block">
+          <div class="code-header">
+            <span class="code-lang">text</span>
+          </div>
+          <pre><code># Principios de diseno de RASS
+- Sin agentes recursivos (evita bucles infinitos)
+- Sin especificaciones masivas para tareas triviales
+- Adaptacion real: simple = 3 fases, complejo = 8 fases
+- Contexto eficiente: solo los agentes necesarios participan
+- Transparencia total: cada decision es visible y auditable</code></pre>
+        </div>
+      </section>
+
+      <section class="docs-section reveal" id="arquitectura-general">
+        <h2><i class="ph ph-tree-structure"></i> Arquitectura General</h2>
+        <p class="lead">
+          RASS se organiza en capas modulares dentro del directorio <code>.opencode/</code> de tu proyecto:
+        </p>
+        <div class="code-block">
+          <div class="code-header">
+            <span class="code-lang">tree</span>
+            <button class="code-copy" data-copy=".opencode/
+├── plugin.js              # Server plugin
+├── tui.js                 # TUI plugin (slash commands)
+├── rass-core.js           # Core logic
+├── package.json           # Plugin manifest
+├── sdd.config.json        # Global config
+├── agents/                # 7 Ryou agent prompts
+│   ├── ryou-orchestrator.md
+│   ├── planner.md
+│   ├── builder.md
+│   ├── architect.md
+│   ├── reviewer.md
+│   ├── debugger.md
+│   └── documentation.md
+├── rules/                 # Global rules
+│   ├── global-rules.md
+│   └── meridianui.md
+├── sdd-profiles/          # 8 ModeProfile definitions
+│   ├── ryouset.json
+│   ├── fast.json
+│   ├── architecture.json
+│   ├── ui.json
+│   ├── debug.json
+│   ├── enterprise.json
+│   ├── legacy.json
+│   └── minimal.json
+├── phases/                # System prompts per phase
+│   ├── orchestrator.md
+│   ├── init.md
+│   ├── explore.md
+│   ├── propose.md
+│   ├── design.md
+│   ├── apply.md
+│   ├── verify.md
+│   └── archive.md
+└── runtime/               # Current state
+    ├── current-modeprofile.json
+    └── runtime.generated.json"><i class="ph ph-copy"></i> Copiar</button>
+          </div>
+          <pre><code><span style="color: var(--accent-blue);">.opencode/</span>
+├── <span style="color: var(--text-secondary);">plugin.js</span>              <span style="color: var(--text-dim);"># Server plugin</span>
+├── <span style="color: var(--text-secondary);">tui.js</span>                 <span style="color: var(--text-dim);"># TUI plugin (slash commands)</span>
+├── <span style="color: var(--text-secondary);">rass-core.js</span>           <span style="color: var(--text-dim);"># Core logic</span>
+├── <span style="color: var(--text-secondary);">package.json</span>           <span style="color: var(--text-dim);"># Plugin manifest</span>
+├── <span style="color: var(--text-secondary);">sdd.config.json</span>        <span style="color: var(--text-dim);"># Global config</span>
+│
+├── <span style="color: var(--accent-blue);">agents/</span>                  <span style="color: var(--text-dim);"># 7 Ryou agent prompts</span>
+│   ├── <span style="color: var(--accent-purple);">ryou-orchestrator.md</span>
+│   ├── <span style="color: var(--text-secondary);">planner.md</span>
+│   ├── <span style="color: var(--text-secondary);">builder.md</span>
+│   ├── <span style="color: var(--text-secondary);">architect.md</span>
+│   ├── <span style="color: var(--text-secondary);">reviewer.md</span>
+│   ├── <span style="color: var(--text-secondary);">debugger.md</span>
+│   └── <span style="color: var(--text-secondary);">documentation.md</span>
+│
+├── <span style="color: var(--accent-blue);">rules/</span>                   <span style="color: var(--text-dim);"># Global rules</span>
+│   ├── <span style="color: var(--text-secondary);">global-rules.md</span>
+│   └── <span style="color: var(--text-secondary);">meridianui.md</span>
+│
+├── <span style="color: var(--accent-blue);">sdd-profiles/</span>            <span style="color: var(--text-dim);"># 8 ModeProfile definitions</span>
+│   ├── <span style="color: var(--accent-purple);">ryouset.json</span>         <span style="color: var(--text-dim);"># Default</span>
+│   ├── <span style="color: var(--text-secondary);">fast.json</span>
+│   ├── <span style="color: var(--text-secondary);">architecture.json</span>
+│   ├── <span style="color: var(--text-secondary);">ui.json</span>
+│   ├── <span style="color: var(--text-secondary);">debug.json</span>
+│   ├── <span style="color: var(--text-secondary);">enterprise.json</span>
+│   ├── <span style="color: var(--text-secondary);">legacy.json</span>
+│   └── <span style="color: var(--text-secondary);">minimal.json</span>
+│
+├── <span style="color: var(--accent-blue);">phases/</span>                  <span style="color: var(--text-dim);"># System prompts per phase</span>
+│   ├── <span style="color: var(--text-secondary);">orchestrator.md</span>
+│   ├── <span style="color: var(--text-secondary);">init.md</span>
+│   ├── <span style="color: var(--text-secondary);">explore.md</span>
+│   ├── <span style="color: var(--text-secondary);">propose.md</span>
+│   ├── <span style="color: var(--text-secondary);">design.md</span>
+│   ├── <span style="color: var(--text-secondary);">apply.md</span>
+│   ├── <span style="color: var(--text-secondary);">verify.md</span>
+│   └── <span style="color: var(--text-secondary);">archive.md</span>
+│
+└── <span style="color: var(--accent-blue);">runtime/</span>                 <span style="color: var(--text-dim);"># Current state</span>
+    ├── <span style="color: var(--text-secondary);">current-modeprofile.json</span>
+    └── <span style="color: var(--text-secondary);">runtime.generated.json</span></code></pre>
+        </div>
+        <h3>Componentes Principales</h3>
+        <ul>
+          <li><strong>plugin.js</strong> — Plugin del servidor que intercepta solicitudes y coordina agentes</li>
+          <li><strong>tui.js</strong> — Interfaz de terminal para comandos slash y configuracion visual</li>
+          <li><strong>rass-core.js</strong> — Logica central: routing de modelos, gestion de fases, estado</li>
+          <li><strong>sdd.config.json</strong> — Configuracion global del framework</li>
+          <li><strong>agents/</strong> — Prompts especializados para cada uno de los 7 agentes</li>
+          <li><strong>rules/</strong> — Reglas globales que aplican a todos los agentes (estilo de codigo, convenciones)</li>
+          <li><strong>sdd-profiles/</strong> — Definiciones JSON de los 8 ModeProfiles</li>
+          <li><strong>phases/</strong> — Prompts del sistema para cada fase del pipeline SDD</li>
+          <li><strong>runtime/</strong> — Estado actual: ModeProfile activo, historial, metadatos</li>
+        </ul>
+      </section>
+
+      <!-- Instalacion -->
+      <section class="docs-section reveal" id="requisitos">
+        <h2><i class="ph ph-check-circle"></i> Requisitos</h2>
+        <p class="lead">
+          Antes de instalar RASS, asegurate de cumplir con estos requisitos minimos:
+        </p>
+        <div class="table-wrapper">
+          <table>
+            <tr><th>Requisito</th><th>Version</th><th>Notas</th></tr>
+            <tr><td>Node.js</td><td>18+</td><td>Requerido para el TUI installer</td></tr>
+            <tr><td>OpenCode Go</td><td>Latest</td><td>Editor IA compatible con plugins</td></tr>
+            <tr><td>.NET SDK</td><td>9.0+</td><td>Para proyectos C# / .NET</td></tr>
+            <tr><td>PowerShell</td><td>7+</td><td>Para scripts de automatizacion</td></tr>
+            <tr><td>Git</td><td>2.40+</td><td>Para clonar y actualizar</td></tr>
+          </table>
+        </div>
+        <h3>Requisitos de Modelos de IA</h3>
+        <p>RASS requiere acceso a los siguientes modelos de IA (a traves de OpenCode Go):</p>
+        <ul>
+          <li><code>opencode-go/glm-5.1</code> — Orquestacion, planificacion, arquitectura</li>
+          <li><code>opencode-go/kimi-k2.6</code> — Implementacion, refactorizacion, C#/.NET</li>
+          <li><code>opencode-go/deepseek-v4-pro</code> — Debugging, revision, performance</li>
+          <li><code>opencode-go/deepseek-v4-flash</code> — Documentacion, tareas pequenas</li>
+        </ul>
+      </section>
+
+      <section class="docs-section reveal" id="instalacion-global">
+        <h2><i class="ph ph-globe"></i> Instalacion Global</h2>
+        <p class="lead">
+          La instalacion global instala RASS como un plugin del sistema de OpenCode, disponible para todos los proyectos.
+        </p>
+        <h3>Paso 1: Clonar el repositorio</h3>
+        <div class="code-block">
+          <div class="code-header">
+            <span class="code-lang">bash</span>
+            <button class="code-copy" data-copy="git clone https://github.com/keorgtz/RASS.git"><i class="ph ph-copy"></i> Copiar</button>
+          </div>
+          <pre><code>git clone https://github.com/keorgtz/RASS.git</code></pre>
+        </div>
+        <h3>Paso 2: Ejecutar el instalador TUI</h3>
+        <div class="code-block">
+          <div class="code-header">
+            <span class="code-lang">bash</span>
+            <button class="code-copy" data-copy="cd RASS/installer
+npm install
+node index.js"><i class="ph ph-copy"></i> Copiar</button>
+          </div>
+          <pre><code>cd RASS/installer
+npm install
+node index.js</code></pre>
+        </div>
+        <h3>Paso 3: Seleccionar configuracion</h3>
+        <p>El TUI installer te guiara a traves de:</p>
+        <ol>
+          <li>Seleccion del ModeProfile por defecto (recomendado: <strong>RyouSet</strong>)</li>
+          <li>Activacion de agentes (todos activados por defecto)</li>
+          <li>Configuracion de rutas y directorios</li>
+          <li>Verificacion de conectividad con modelos de IA</li>
+        </ol>
+        <h3>Paso 4: Verificar instalacion</h3>
+        <div class="code-block">
+          <div class="code-header">
+            <span class="code-lang">bash</span>
+            <button class="code-copy" data-copy="/rass-setup"><i class="ph ph-copy"></i> Copiar</button>
+          </div>
+          <pre><code>/rass-setup</code></pre>
+        </div>
+        <p>Este comando muestra el estado actual de RASS, incluyendo el ModeProfile activo y la configuracion de agentes.</p>
+      </section>
+
+      <section class="docs-section reveal" id="instalacion-local">
+        <h2><i class="ph ph-folder"></i> Instalacion Local</h2>
+        <p class="lead">
+          Para instalar RASS solo en un proyecto especifico (sin afectar la configuracion global):
+        </p>
+        <div class="code-block">
+          <div class="code-header">
+            <span class="code-lang">bash</span>
+            <button class="code-copy" data-copy="cd tu-proyecto
+git clone https://github.com/keorgtz/RASS.git .rass
+node .rass/installer/index.js --local"><i class="ph ph-copy"></i> Copiar</button>
+          </div>
+          <pre><code>cd tu-proyecto
+git clone https://github.com/keorgtz/RASS.git .rass
+node .rass/installer/index.js --local</code></pre>
+        </div>
+        <p>La instalacion local crea la estructura <code>.opencode/</code> dentro del proyecto actual sin modificar la configuracion global de OpenCode.</p>
+      </section>
+
+      <section class="docs-section reveal" id="desinstalacion">
+        <h2><i class="ph ph-trash"></i> Desinstalacion</h2>
+        <p class="lead">
+          Para remover RASS completamente del sistema:
+        </p>
+        <div class="code-block">
+          <div class="code-header">
+            <span class="code-lang">bash</span>
+            <button class="code-copy" data-copy="node RASS/installer/index.js --uninstall"><i class="ph ph-copy"></i> Copiar</button>
+          </div>
+          <pre><code>node RASS/installer/index.js --uninstall</code></pre>
+        </div>
+        <p>Esto eliminara:</p>
+        <ul>
+          <li>Los plugins de OpenCode (plugin.js, tui.js, rass-core.js)</li>
+          <li>Los directorios <code>agents/</code>, <code>rules/</code>, <code>sdd-profiles/</code>, <code>phases/</code></li>
+          <li>El estado de runtime (conservando backups en <code>runtime/backup/</code>)</li>
+        </ul>
+        <p>Para desinstalacion local, simplemente elimina el directorio <code>.opencode/</code> del proyecto.</p>
+      </section>
+
+      <!-- Conceptos Clave -->
+      <section class="docs-section reveal" id="modeprofiles">
+        <h2><i class="ph ph-toggle-left"></i> ModeProfiles</h2>
+        <p class="lead">
+          Los <strong>ModeProfiles</strong> son el corazon de RASS. Definen que fases SDD se ejecutan, que agentes participan y que modelo de IA se usa en cada fase.
+        </p>
+        <p>
+          Un ModeProfile es un archivo JSON que especifica:
+        </p>
+        <ul>
+          <li><strong>name</strong> — Nombre identificador del perfil</li>
+          <li><strong>phases</strong> — Array ordenado de fases a ejecutar</li>
+          <li><strong>effort</strong> — Nivel de esfuerzo: <code>low</code>, <code>medium</code>, <code>high</code>, <code>extreme</code></li>
+          <li><strong>model_strategy</strong> — <code>single</code> (un modelo para todo) o <code>per-phase</code> (modelo por fase)</li>
+          <li><strong>agents</strong> — Lista de agentes activos en este perfil</li>
+          <li><strong>description</strong> — Proposito y casos de uso recomendados</li>
+        </ul>
+        <h3>Estructura de un ModeProfile</h3>
+        <div class="code-block">
+          <div class="code-header">
+            <span class="code-lang">json</span>
+            <button class="code-copy" data-copy='{
+  "name": "fast",
+  "version": "3.0.0",
+  "phases": ["orchestrator", "apply", "verify"],
+  "effort": "low",
+  "model_strategy": "single",
+  "primary_model": "opencode-go/kimi-k2.6",
+  "agents": ["ryou-orchestrator", "builder", "reviewer"],
+  "description": "CRUDs, simple UI, APIs. Minima sobrecarga.",
+  "max_steps": 120
+}'><i class="ph ph-copy"></i> Copiar</button>
+          </div>
+          <pre><code>{
+  "name": "fast",
+  "version": "3.0.0",
+  "phases": ["orchestrator", "apply", "verify"],
+  "effort": "low",
+  "model_strategy": "single",
+  "primary_model": "opencode-go/kimi-k2.6",
+  "agents": ["ryou-orchestrator", "builder", "reviewer"],
+  "description": "CRUDs, simple UI, APIs. Minima sobrecarga.",
+  "max_steps": 120
+}</code></pre>
+        </div>
+        <h3>Comparativa de ModeProfiles</h3>
+        <div class="table-wrapper">
+          <table>
+            <tr><th>Perfil</th><th>Fases</th><th>Esfuerzo</th><th>Modelo</th><th>Ideal Para</th></tr>
+            <tr><td>RyouSet</td><td>8</td><td>medium</td><td>per-phase</td><td>Flujo completo (default)</td></tr>
+            <tr><td>Fast</td><td>3</td><td>low</td><td>single</td><td>CRUDs, APIs simples</td></tr>
+            <tr><td>Architecture</td><td>8</td><td>high</td><td>per-phase</td><td>Sistemas complejos</td></tr>
+            <tr><td>UI</td><td>4</td><td>medium</td><td>per-phase</td><td>Desarrollo visual</td></tr>
+            <tr><td>Debug</td><td>4</td><td>medium</td><td>per-phase</td><td>Diagnostico de bugs</td></tr>
+            <tr><td>Enterprise</td><td>8</td><td>extreme</td><td>per-phase</td><td>Mission-critical</td></tr>
+            <tr><td>Legacy</td><td>6</td><td>high</td><td>per-phase</td><td>Refactorizacion</td></tr>
+            <tr><td>Minimal</td><td>3</td><td>low</td><td>single</td><td>Prototipos rapidos</td></tr>
+          </table>
+        </div>
+      </section>
+
+      <section class="docs-section reveal" id="fases-sdd">
+        <h2><i class="ph ph-steps"></i> Fases SDD</h2>
+        <p class="lead">
+          RASS implementa 8 fases de Sub-Agent Driven Development. Cada fase tiene un proposito especifico y un prompt de sistema optimizado.
+        </p>
+        <div class="table-wrapper">
+          <table>
+            <tr><th>Fase</th><th>Proposito</th><th>Agente Principal</th><th>Modelo</th></tr>
+            <tr><td><strong>orchestrator</strong></td><td>Analiza la solicitud, determina complejidad y selecciona ModeProfile</td><td>ryou-orchestrator</td><td>GLM-5.1</td></tr>
+            <tr><td><strong>init</strong></td><td>Inicializa el contexto, carga reglas y configura el entorno</td><td>planner</td><td>GLM-5.1</td></tr>
+            <tr><td><strong>explore</strong></td><td>Explora el codebase, identifica dependencias y riesgos</td><td>architect</td><td>GLM-5.1</td></tr>
+            <tr><td><strong>propose</strong></td><td>Propone soluciones, evalua tradeoffs y presenta opciones</td><td>architect</td><td>GLM-5.1</td></tr>
+            <tr><td><strong>design</strong></td><td>Crea el diseno detallado: diagramas, interfaces, contratos</td><td>architect</td><td>GLM-5.1</td></tr>
+            <tr><td><strong>apply</strong></td><td>Implementa el codigo segun el diseno aprobado</td><td>builder</td><td>Kimi K2.6</td></tr>
+            <tr><td><strong>verify</strong></td><td>Valida el codigo: tests, revision, seguridad, performance</td><td>reviewer</td><td>DeepSeek V4 Pro</td></tr>
+            <tr><td><strong>archive</strong></td><td>Genera documentacion, changelog y resume el estado</td><td>documentation</td><td>DeepSeek V4 Flash</td></tr>
+          </table>
+        </div>
+        <h3>Flujo de Fases por ModeProfile</h3>
+        <div class="code-block">
+          <div class="code-header">
+            <span class="code-lang">text</span>
+          </div>
+          <pre><code>RyouSet:     [orchestrator] → [init] → [explore] → [propose] → [design] → [apply] → [verify] → [archive]
+Fast:        [orchestrator] → [apply] → [verify]
+Architecture:[orchestrator] → [init] → [explore] → [propose] → [design] → [apply] → [verify] → [archive]
+UI:          [orchestrator] → [design] → [apply] → [verify]
+Debug:       [orchestrator] → [explore] → [apply] → [verify]
+Enterprise:  [orchestrator] → [init] → [explore] → [propose] → [design] → [apply] → [verify] → [archive]
+Legacy:      [orchestrator] → [init] → [explore] → [propose] → [apply] → [verify]
+Minimal:     [orchestrator] → [explore] → [apply]</code></pre>
+        </div>
+      </section>
+
+      <section class="docs-section reveal" id="modelos-ia">
+        <h2><i class="ph ph-cpu"></i> Modelos de IA</h2>
+        <p class="lead">
+          RASS soporta 4 modelos de IA de OpenCode Go, cada uno optimizado para roles especificos:
+        </p>
+        <div class="table-wrapper">
+          <table>
+            <tr><th>Modelo</th><th>Proveedor</th><th>Fortalezas</th><th>Roles en RASS</th></tr>
+            <tr><td><code>opencode-go/glm-5.1</code></td><td>Zhipu AI</td><td>Razonamiento, orquestacion, planificacion</td><td>Orchestrator, Planner, Architect</td></tr>
+            <tr><td><code>opencode-go/kimi-k2.6</code></td><td>Moonshot AI</td><td>Implementacion, C#, .NET, codigo largo</td><td>Builder</td></tr>
+            <tr><td><code>opencode-go/deepseek-v4-pro</code></td><td>DeepSeek</td><td>Debugging, analisis profundo, revision</td><td>Reviewer, Debugger</td></tr>
+            <tr><td><code>opencode-go/deepseek-v4-flash</code></td><td>DeepSeek</td><td>Velocidad, tareas pequenas, resumen</td><td>Documentation</td></tr>
+          </table>
+        </div>
+        <h3>Model Routing</h3>
+        <p>
+          Cuando <code>model_strategy</code> es <code>per-phase</code>, RASS asigna automaticamente el modelo optimo para cada fase:
+        </p>
+        <div class="code-block">
+          <div class="code-header">
+            <span class="code-lang">json</span>
+            <button class="code-copy" data-copy='{
+  "phase_models": {
+    "orchestrator": "opencode-go/glm-5.1",
+    "init": "opencode-go/glm-5.1",
+    "explore": "opencode-go/glm-5.1",
+    "propose": "opencode-go/glm-5.1",
+    "design": "opencode-go/glm-5.1",
+    "apply": "opencode-go/kimi-k2.6",
+    "verify": "opencode-go/deepseek-v4-pro",
+    "archive": "opencode-go/deepseek-v4-flash"
+  }
+}'><i class="ph ph-copy"></i> Copiar</button>
+          </div>
+          <pre><code>{
+  "phase_models": {
+    "orchestrator": "opencode-go/glm-5.1",
+    "init": "opencode-go/glm-5.1",
+    "explore": "opencode-go/glm-5.1",
+    "propose": "opencode-go/glm-5.1",
+    "design": "opencode-go/glm-5.1",
+    "apply": "opencode-go/kimi-k2.6",
+    "verify": "opencode-go/deepseek-v4-pro",
+    "archive": "opencode-go/deepseek-v4-flash"
+  }
+}</code></pre>
+        </div>
+      </section>
+
+      <section class="docs-section reveal" id="niveles-esfuerzo">
+        <h2><i class="ph ph-gauge"></i> Niveles de Esfuerzo</h2>
+        <p class="lead">
+          Los niveles de esfuerzo controlan la profundidad y cantidad de pasos que cada agente ejecuta:
+        </p>
+        <div class="table-wrapper">
+          <table>
+            <tr><th>Nivel</th><th>Descripcion</th><th>Max Steps</th><th>Uso Tipico</th></tr>
+            <tr><td><span class="badge badge-green">low</span></td><td>Iteracion rapida, minimo contexto</td><td>~120</td><td>Prototipos, CRUDs, fixes simples</td></tr>
+            <tr><td><span class="badge badge-blue">medium</span></td><td>Balance entre velocidad y profundidad</td><td>~240</td><td>Features estandar, UI components</td></tr>
+            <tr><td><span class="badge badge-orange">high</span></td><td>Analisis profundo, multiples iteraciones</td><td>~480</td><td>Arquitectura, refactorizacion legacy</td></tr>
+            <tr><td><span class="badge badge-red">extreme</span></td><td>Maxima rigurosidad, revision exhaustiva</td><td>~800</td><td>Sistemas mission-critical, compliance</td></tr>
+          </table>
+        </div>
+        <p>El nivel de esfuerzo se configura en cada ModeProfile y afecta:</p>
+        <ul>
+          <li>Numero maximo de pasos por agente</li>
+          <li>Profundidad de exploracion en fase <code>explore</code></li>
+          <li>Cantidad de alternativas en fase <code>propose</code></li>
+          <li>Rigor de revision en fase <code>verify</code></li>
+        </ul>
+      </section>
+
+      <section class="docs-section reveal" id="estrategias-modelo">
+        <h2><i class="ph ph-strategy"></i> Estrategias de Modelo</h2>
+        <p class="lead">
+          RASS soporta dos estrategias de asignacion de modelos:
+        </p>
+        <h3>Single Model</h3>
+        <p>
+          Un unico modelo de IA maneja todas las fases. Ideal para tareas simples donde el overhead de cambio de modelo no justifica el beneficio.
+        </p>
+        <div class="code-block">
+          <div class="code-header">
+            <span class="code-lang">json</span>
+            <button class="code-copy" data-copy='{
+  "model_strategy": "single",
+  "primary_model": "opencode-go/kimi-k2.6"
+}'><i class="ph ph-copy"></i> Copiar</button>
+          </div>
+          <pre><code>{
+  "model_strategy": "single",
+  "primary_model": "opencode-go/kimi-k2.6"
+}</code></pre>
+        </div>
+        <h3>Per-Phase Model</h3>
+        <p>
+          Cada fase usa el modelo optimo para su proposito. Mayor calidad pero mas overhead de contexto. Recomendado para tareas complejas.
+        </p>
+        <div class="code-block">
+          <div class="code-header">
+            <span class="code-lang">json</span>
+            <button class="code-copy" data-copy='{
+  "model_strategy": "per-phase",
+  "phase_models": {
+    "orchestrator": "opencode-go/glm-5.1",
+    "apply": "opencode-go/kimi-k2.6",
+    "verify": "opencode-go/deepseek-v4-pro"
+  }
+}'><i class="ph ph-copy"></i> Copiar</button>
+          </div>
+          <pre><code>{
+  "model_strategy": "per-phase",
+  "phase_models": {
+    "orchestrator": "opencode-go/glm-5.1",
+    "apply": "opencode-go/kimi-k2.6",
+    "verify": "opencode-go/deepseek-v4-pro"
+  }
+}</code></pre>
+        </div>
+      </section>
+
+      <!-- Referencia de Comandos -->
+      <section class="docs-section reveal" id="slash-commands">
+        <h2><i class="ph ph-command"></i> Slash Commands</h2>
+        <p class="lead">
+          Comandos integrados en OpenCode Go para gestionar RASS sin salir del editor.
+        </p>
+        <h3><code>/sdd</code> — ModeProfile Manager</h3>
+        <p>Gestiona ModeProfiles: lista, cambia, crea, edita y elimina perfiles.</p>
+        <div class="code-block">
+          <div class="code-header">
+            <span class="code-lang">opencode</span>
+            <button class="code-copy" data-copy="/sdd list              # Lista todos los ModeProfiles
+/sdd switch fast       # Cambia a perfil Fast
+/sdd create mymode     # Crea nuevo ModeProfile
+/sdd edit fast         # Edita perfil Fast
+/sdd delete oldmode    # Elimina perfil"><i class="ph ph-copy"></i> Copiar</button>
+          </div>
+          <pre><code>/sdd list              # Lista todos los ModeProfiles
+/sdd switch fast       # Cambia a perfil Fast
+/sdd create mymode     # Crea nuevo ModeProfile
+/sdd edit fast         # Edita perfil Fast
+/sdd delete oldmode    # Elimina perfil</code></pre>
+        </div>
+        <h3><code>/sdd-mode</code> / <code>/sm</code> — Quick Mode Switch</h3>
+        <p>Cambia rapidamente de ModeProfile sin menu interactivo.</p>
+        <div class="code-block">
+          <div class="code-header">
+            <span class="code-lang">opencode</span>
+            <button class="code-copy" data-copy="/sdd-mode fast
+/sm ui
+/sm enterprise"><i class="ph ph-copy"></i> Copiar</button>
+          </div>
+          <pre><code>/sdd-mode fast
+/sm ui
+/sm enterprise</code></pre>
+        </div>
+        <h3><code>/sdd-profile</code> / <code>/sp</code> — Quick Profile Switch</h3>
+        <p>Alias alternativo para cambio rapido de perfil.</p>
+        <div class="code-block">
+          <div class="code-header">
+            <span class="code-lang">opencode</span>
+            <button class="code-copy" data-copy="/sdd-profile architecture
+/sp debug"><i class="ph ph-copy"></i> Copiar</button>
+          </div>
+          <pre><code>/sdd-profile architecture
+/sp debug</code></pre>
+        </div>
+        <h3><code>/rass-setup</code> / <code>/rs</code> — Setup & Status</h3>
+        <p>Muestra estado, despliega agentes o verifica configuracion.</p>
+        <div class="code-block">
+          <div class="code-header">
+            <span class="code-lang">opencode</span>
+            <button class="code-copy" data-copy="/rass-setup status     # Estado actual de RASS
+/rass-setup deploy     # Despliega agentes a config
+/rass-setup check      # Verifica configuracion
+/rs"><i class="ph ph-copy"></i> Copiar</button>
+          </div>
+          <pre><code>/rass-setup status     # Estado actual de RASS
+/rass-setup deploy     # Despliega agentes a config
+/rass-setup check      # Verifica configuracion
+/rs</code></pre>
+        </div>
+      </section>
+
+      <section class="docs-section reveal" id="ai-tools">
+        <h2><i class="ph ph-magic-wand"></i> AI Tools</h2>
+        <p class="lead">
+          Herramientas programaticas que los agentes pueden invocar para gestionar RASS desde codigo.
+        </p>
+        <h3><code>sdd_mode_profile</code></h3>
+        <p>Gestiona ModeProfiles programaticamente.</p>
+        <div class="code-block">
+          <div class="code-header">
+            <span class="code-lang">python</span>
+            <button class="code-copy" data-copy='# Listar perfiles
+sdd_mode_profile(action="list")
+
+# Cambiar de perfil
+sdd_mode_profile(action="switch", name="fast")
+
+# Crear perfil custom
+sdd_mode_profile(
+    action="create",
+    name="my-custom",
+    phases="orchestrator,apply,verify",
+    effort="low",
+    model_strategy="single",
+    primary="opencode-go/kimi-k2.6"
+)
+
+# Obtener estado actual
+sdd_mode_profile(action="status")'><i class="ph ph-copy"></i> Copiar</button>
+          </div>
+          <pre><code># Listar perfiles
+sdd_mode_profile(action="list")
+
+# Cambiar de perfil
+sdd_mode_profile(action="switch", name="fast")
+
+# Crear perfil custom
+sdd_mode_profile(
+    action="create",
+    name="my-custom",
+    phases="orchestrator,apply,verify",
+    effort="low",
+    model_strategy="single",
+    primary="opencode-go/kimi-k2.6"
+)
+
+# Obtener estado actual
+sdd_mode_profile(action="status")</code></pre>
+        </div>
+        <h3><code>rass_setup</code></h3>
+        <p>Gestiona la configuracion de agentes y estado de RASS.</p>
+        <div class="code-block">
+          <div class="code-header">
+            <span class="code-lang">python</span>
+            <button class="code-copy" data-copy='# Ver estado completo
+rass_setup(action="status")
+
+# Desplegar agentes a configuracion
+rass_setup(action="deploy")
+
+# Verificar que agentes estan configurados
+rass_setup(action="check")'><i class="ph ph-copy"></i> Copiar</button>
+          </div>
+          <pre><code># Ver estado completo
+rass_setup(action="status")
+
+# Desplegar agentes a configuracion
+rass_setup(action="deploy")
+
+# Verificar que agentes estan configurados
+rass_setup(action="check")</code></pre>
+        </div>
+      </section>
+
+      <section class="docs-section reveal" id="powershell-cmd">
+        <h2><i class="ph ph-terminal"></i> PowerShell Commands</h2>
+        <p class="lead">
+          Comandos de PowerShell para gestion de RASS desde la terminal.
+        </p>
+        <div class="code-block">
+          <div class="code-header">
+            <span class="code-lang">powershell</span>
+            <button class="code-copy" data-copy="# Cambiar ModeProfile
+sdd-mode fast
+sdd-mode ui
+sdd-mode enterprise
+
+# Cambiar perfil (alias)
+sdd-profile architecture
+
+# Ver estado
+rass-setup status"><i class="ph ph-copy"></i> Copiar</button>
+          </div>
+          <pre><code># Cambiar ModeProfile
+sdd-mode fast
+sdd-mode ui
+sdd-mode enterprise
+
+# Cambiar perfil (alias)
+sdd-profile architecture
+
+# Ver estado
+rass-setup status</code></pre>
+        </div>
+        <p>Estos comandos son wrappers de PowerShell que invocan la logica de <code>rass-core.js</code> directamente, utilies para scripts de CI/CD o automatizacion.</p>
+      </section>
+
+      <!-- Agentes -->
+      <section class="docs-section reveal" id="agent-orchestrator">
+        <h2><i class="ph ph-crown"></i> Orchestrator</h2>
+        <p class="lead">
+          El <strong>Orchestrator</strong> es el cerebro de RASS. Recibe la solicitud del usuario, analiza la complejidad y decide que ModeProfile y agentes activar.
+        </p>
+        <div class="table-wrapper">
+          <table>
+            <tr><th>Propiedad</th><th>Valor</th></tr>
+            <tr><td>ID</td><td><code>ryou-orchestrator</code></td></tr>
+            <tr><td>Modelo</td><td><code>opencode-go/glm-5.1</code></td></tr>
+            <tr><td>Pasos</td><td>40</td></tr>
+            <tr><td>Rol</td><td>Enrutamiento, delegacion, coordinacion</td></tr>
+          </table>
+        </div>
+        <h3>Responsabilidades</h3>
+        <ul>
+          <li>Analizar la solicitud del usuario y determinar complejidad</li>
+          <li>Seleccionar el ModeProfile mas adecuado (o confirmar con el usuario)</li>
+          <li>Delegar a los agentes especializados segun la fase actual</li>
+          <li>Coordinar la transicion entre fases</li>
+          <li>Detectar cuando una tarea requiere cambio de ModeProfile</li>
+        </ul>
+        <h3>Ejemplo de Prompt</h3>
+        <div class="code-block">
+          <div class="code-header">
+            <span class="code-lang">markdown</span>
+          </div>
+          <pre><code># Ryou Orchestrator v3.0.0
+
+Eres el orchestrator de RASS. Tu trabajo es:
+1. Analizar la solicitud del usuario
+2. Determinar la complejidad (simple, moderada, compleja)
+3. Seleccionar el ModeProfile optimo
+4. Delegar al agente especializado de la fase actual
+
+Reglas:
+- Nunca implementes codigo directamente
+- Siempre delega al builder para implementacion
+- Si la tarea es un bug, activa el debugger
+- Si la tarea es UI pura, usa ModeProfile UI</code></pre>
+        </div>
+      </section>
+
+      <section class="docs-section reveal" id="agent-planner">
+        <h2><i class="ph ph-map-trifold"></i> Planner</h2>
+        <p class="lead">
+          El <strong>Planner</strong> descompone el trabajo en fases ejecutables, identifica riesgos y crea planes detallados.
+        </p>
+        <div class="table-wrapper">
+          <table>
+            <tr><th>Propiedad</th><th>Valor</th></tr>
+            <tr><td>ID</td><td><code>planner</code></td></tr>
+            <tr><td>Modelo</td><td><code>opencode-go/glm-5.1</code></td></tr>
+            <tr><td>Pasos</td><td>14</td></tr>
+            <tr><td>Rol</td><td>Planificacion, descomposicion, gestion de riesgos</td></tr>
+          </table>
+        </div>
+        <h3>Responsabilidades</h3>
+        <ul>
+          <li>Descomponer tareas grandes en subtareas manejables</li>
+          <li>Identificar riesgos y dependencias</li>
+          <li>Estimar esfuerzo y secuencia de ejecucion</li>
+          <li>Crear checkpoints y criterios de aceptacion</li>
+        </ul>
+      </section>
+
+      <section class="docs-section reveal" id="agent-builder">
+        <h2><i class="ph ph-hammer"></i> Builder</h2>
+        <p class="lead">
+          El <strong>Builder</strong> es el implementador principal. Especialista en C#, .NET, EF Core, XAML, Blazor y MAUI.
+        </p>
+        <div class="table-wrapper">
+          <table>
+            <tr><th>Propiedad</th><th>Valor</th></tr>
+            <tr><td>ID</td><td><code>builder</code></td></tr>
+            <tr><td>Modelo</td><td><code>opencode-go/kimi-k2.6</code></td></tr>
+            <tr><td>Pasos</td><td>40</td></tr>
+            <tr><td>Rol</td><td>Implementacion, refactors, C#/.NET, UI</td></tr>
+          </table>
+        </div>
+        <h3>Stack Tecnico</h3>
+        <ul>
+          <li>C# 12 / .NET 9</li>
+          <li>Entity Framework Core</li>
+          <li>ASP.NET Core (APIs, Blazor)</li>
+          <li>.NET MAUI</li>
+          <li>Avalonia UI</li>
+          <li>WPF / XAML</li>
+          <li>MeridianUI Design System</li>
+        </ul>
+        <h3>Responsabilidades</h3>
+        <ul>
+          <li>Implementar codigo segun el diseno aprobado</li>
+          <li>Seguir las reglas globales y convenciones de estilo</li>
+          <li>Generar tests unitarios cuando corresponda</li>
+          <li>Respetar los limites arquitectonicos definidos</li>
+        </ul>
+      </section>
+
+      <section class="docs-section reveal" id="agent-architect">
+        <h2><i class="ph ph-buildings"></i> Architect</h2>
+        <p class="lead">
+          El <strong>Architect</strong> define limites, flujo de datos y evalua tradeoffs de diseno.
+        </p>
+        <div class="table-wrapper">
+          <table>
+            <tr><th>Propiedad</th><th>Valor</th></tr>
+            <tr><td>ID</td><td><code>architect</code></td></tr>
+            <tr><td>Modelo</td><td><code>opencode-go/glm-5.1</code></td></tr>
+            <tr><td>Pasos</td><td>16</td></tr>
+            <tr><td>Rol</td><td>Arquitectura, limites, data flow, tradeoffs</td></tr>
+          </table>
+        </div>
+        <h3>Responsabilidades</h3>
+        <ul>
+          <li>Definir limites de capas (Domain, Application, Infrastructure, Presentation)</li>
+          <li>Diseñar flujo de datos entre componentes</li>
+          <li>Evaluar tradeoffs (performance vs. mantenibilidad)</li>
+          <li>Crear diagramas de arquitectura (ASCII o descriptivos)</li>
+          <li>Asegurar direccion de dependencias correcta</li>
+        </ul>
+      </section>
+
+      <section class="docs-section reveal" id="agent-reviewer">
+        <h2><i class="ph ph-eye"></i> Reviewer</h2>
+        <p class="lead">
+          El <strong>Reviewer</strong> es el control de calidad. Detecta bugs, regresiones, problemas de performance y seguridad.
+        </p>
+        <div class="table-wrapper">
+          <table>
+            <tr><th>Propiedad</th><th>Valor</th></tr>
+            <tr><td>ID</td><td><code>reviewer</code></td></tr>
+            <tr><td>Modelo</td><td><code>opencode-go/deepseek-v4-pro</code></td></tr>
+            <tr><td>Pasos</td><td>18</td></tr>
+            <tr><td>Rol</td><td>Revision, bugs, regresiones, performance, seguridad</td></tr>
+          </table>
+        </div>
+        <h3>Checklist de Revision</h3>
+        <ul>
+          <li>Correctitud logica y manejo de edge cases</li>
+          <li>Regresiones (cambios que rompen funcionalidad existente)</li>
+          <li>Performance (N+1 queries, allocations innecesarias)</li>
+          <li>Seguridad (inyeccion, validacion de inputs, secrets)</li>
+          <li>Calidad de codigo (nombres, complejidad, duplicacion)</li>
+          <li>Tests (cobertura, casos de prueba relevantes)</li>
+        </ul>
+      </section>
+
+      <section class="docs-section reveal" id="agent-debugger">
+        <h2><i class="ph ph-bug"></i> Debugger</h2>
+        <p class="lead">
+          El <strong>Debugger</strong> encuentra la causa raiz de bugs, analiza tests fallidos y errores de runtime.
+        </p>
+        <div class="table-wrapper">
+          <table>
+            <tr><th>Propiedad</th><th>Valor</th></tr>
+            <tr><td>ID</td><td><code>debugger</code></td></tr>
+            <tr><td>Modelo</td><td><code>opencode-go/deepseek-v4-pro</code></td></tr>
+            <tr><td>Pasos</td><td>26</td></tr>
+            <tr><td>Rol</td><td>Diagnostico, root cause, tests fallidos, runtime errors</td></tr>
+          </table>
+        </div>
+        <h3>Metodologia</h3>
+        <ul>
+          <li>Reproducir el error consistentemente</li>
+          <li>Aislar el componente problematico</li>
+          <li>Identificar la causa raiz (no solo el sintoma)</li>
+          <li>Proponer fix con minimo impacto</li>
+          <li>Verificar que el fix no introduce regresiones</li>
+        </ul>
+      </section>
+
+      <section class="docs-section reveal" id="agent-documentation">
+        <h2><i class="ph ph-pencil-simple"></i> Documentation</h2>
+        <p class="lead">
+          El agente de <strong>Documentation</strong> genera Markdown, HTML summaries y changelogs claros y mantenibles.
+        </p>
+        <div class="table-wrapper">
+          <table>
+            <tr><th>Propiedad</th><th>Valor</th></tr>
+            <tr><td>ID</td><td><code>documentation</code></td></tr>
+            <tr><td>Modelo</td><td><code>opencode-go/deepseek-v4-flash</code></td></tr>
+            <tr><td>Pasos</td><td>12</td></tr>
+            <tr><td>Rol</td><td>Markdown, HTML summaries, changelogs</td></tr>
+          </table>
+        </div>
+        <h3>Salidas Generadas</h3>
+        <ul>
+          <li>Resumen de cambios en formato Markdown</li>
+          <li>HTML summaries con estilo MeridianUI</li>
+          <li>Changelogs estructurados (Added, Changed, Fixed, Removed)</li>
+          <li>Actualizacion de documentacion existente</li>
+        </ul>
+      </section>
+
+      <!-- ModeProfiles Detail -->
+      <section class="docs-section reveal" id="profile-ryouset">
+        <h2><i class="ph ph-star"></i> RyouSet (Default)</h2>
+        <p class="lead">
+          El ModeProfile por defecto. Balance optimo entre profundidad y velocidad para la mayoria de las tareas.
+        </p>
+        <div class="table-wrapper">
+          <table>
+            <tr><th>Propiedad</th><th>Valor</th></tr>
+            <tr><td>Fases</td><td>8 (completo)</td></tr>
+            <tr><td>Esfuerzo</td><td><span class="badge badge-blue">medium</span></td></tr>
+            <tr><td>Model Strategy</td><td>per-phase</td></tr>
+            <tr><td>Agentes</td><td>Todos (7)</td></tr>
+          </table>
+        </div>
+        <p><strong>Flujo:</strong> orchestrator &rarr; init &rarr; explore &rarr; propose &rarr; design &rarr; apply &rarr; verify &rarr; archive</p>
+        <p><strong>Ideal para:</strong> Features nuevas, desarrollo estandar, tareas donde se necesita balance entre velocidad y calidad.</p>
+      </section>
+
+      <section class="docs-section reveal" id="profile-fast">
+        <h2><i class="ph ph-lightning"></i> Fast</h2>
+        <p class="lead">
+          Maxima velocidad para tareas simples. Solo 3 fases, un solo modelo.
+        </p>
+        <div class="table-wrapper">
+          <table>
+            <tr><th>Propiedad</th><th>Valor</th></tr>
+            <tr><td>Fases</td><td>3</td></tr>
+            <tr><td>Esfuerzo</td><td><span class="badge badge-green">low</span></td></tr>
+            <tr><td>Model Strategy</td><td>single (Kimi K2.6)</td></tr>
+            <tr><td>Agentes</td><td>Orchestrator, Builder, Reviewer</td></tr>
+          </table>
+        </div>
+        <p><strong>Flujo:</strong> orchestrator &rarr; apply &rarr; verify</p>
+        <p><strong>Ideal para:</strong> CRUDs, endpoints simples, UI components basicos, fixes triviales.</p>
+      </section>
+
+      <section class="docs-section reveal" id="profile-architecture">
+        <h2><i class="ph ph-buildings"></i> Architecture</h2>
+        <p class="lead">
+          Diseno profundo antes de implementar. Ideal para sistemas complejos y trabajo offline.
+        </p>
+        <div class="table-wrapper">
+          <table>
+            <tr><th>Propiedad</th><th>Valor</th></tr>
+            <tr><td>Fases</td><td>8</td></tr>
+            <tr><td>Esfuerzo</td><td><span class="badge badge-orange">high</span></td></tr>
+            <tr><td>Model Strategy</td><td>per-phase</td></tr>
+            <tr><td>Agentes</td><td>Todos (7)</td></tr>
+          </table>
+        </div>
+        <p><strong>Flujo:</strong> orchestrator &rarr; init &rarr; explore &rarr; propose &rarr; design &rarr; apply &rarr; verify &rarr; archive</p>
+        <p><strong>Ideal para:</strong> Sistemas distribuidos, offline-first, microservicios, arquitecturas que requieren planificacion extensa.</p>
+      </section>
+
+      <section class="docs-section reveal" id="profile-ui">
+        <h2><i class="ph ph-paint-brush"></i> UI</h2>
+        <p class="lead">
+          Enfocado en diseno visual e implementacion de interfaces con MeridianUI.
+        </p>
+        <div class="table-wrapper">
+          <table>
+            <tr><th>Propiedad</th><th>Valor</th></tr>
+            <tr><td>Fases</td><td>4</td></tr>
+            <tr><td>Esfuerzo</td><td><span class="badge badge-blue">medium</span></td></tr>
+            <tr><td>Model Strategy</td><td>per-phase</td></tr>
+            <tr><td>Agentes</td><td>Orchestrator, Architect, Builder, Reviewer</td></tr>
+          </table>
+        </div>
+        <p><strong>Flujo:</strong> orchestrator &rarr; design &rarr; apply &rarr; verify</p>
+        <p><strong>Ideal para:</strong> MAUI, Blazor, Avalonia, WPF, paginas web, componentes UI con MeridianUI.</p>
+      </section>
+
+      <section class="docs-section reveal" id="profile-debug">
+        <h2><i class="ph ph-bug"></i> Debug</h2>
+        <p class="lead">
+          Especializado en diagnostico y resolucion de bugs, concurrencia y memory leaks.
+        </p>
+        <div class="table-wrapper">
+          <table>
+            <tr><th>Propiedad</th><th>Valor</th></tr>
+            <tr><td>Fases</td><td>4</td></tr>
+            <tr><td>Esfuerzo</td><td><span class="badge badge-blue">medium</span></td></tr>
+            <tr><td>Model Strategy</td><td>per-phase</td></tr>
+            <tr><td>Agentes</td><td>Orchestrator, Debugger, Builder, Reviewer</td></tr>
+          </table>
+        </div>
+        <p><strong>Flujo:</strong> orchestrator &rarr; explore &rarr; apply &rarr; verify</p>
+        <p><strong>Ideal para:</strong> Bugs complejos, race conditions, memory leaks, tests fallidos intermitentes.</p>
+      </section>
+
+      <section class="docs-section reveal" id="profile-enterprise">
+        <h2><i class="ph ph-shield-check"></i> Enterprise</h2>
+        <p class="lead">
+          Maxima rigurosidad para sistemas mission-critical. 8 fases con esfuerzo extremo.
+        </p>
+        <div class="table-wrapper">
+          <table>
+            <tr><th>Propiedad</th><th>Valor</th></tr>
+            <tr><td>Fases</td><td>8</td></tr>
+            <tr><td>Esfuerzo</td><td><span class="badge badge-red">extreme</span></td></tr>
+            <tr><td>Model Strategy</td><td>per-phase</td></tr>
+            <tr><td>Agentes</td><td>Todos (7)</td></tr>
+          </table>
+        </div>
+        <p><strong>Flujo:</strong> orchestrator &rarr; init &rarr; explore &rarr; propose &rarr; design &rarr; apply &rarr; verify &rarr; archive</p>
+        <p><strong>Ideal para:</strong> Sistemas financieros, salud, infraestructura critica, donde un error cuesta millones.</p>
+      </section>
+
+      <section class="docs-section reveal" id="profile-legacy">
+        <h2><i class="ph ph-arrows-clockwise"></i> Legacy</h2>
+        <p class="lead">
+          Refactorizacion cuidadosa de codigo existente. Explora antes de cambiar.
+        </p>
+        <div class="table-wrapper">
+          <table>
+            <tr><th>Propiedad</th><th>Valor</th></tr>
+            <tr><td>Fases</td><td>6</td></tr>
+            <tr><td>Esfuerzo</td><td><span class="badge badge-orange">high</span></td></tr>
+            <tr><td>Model Strategy</td><td>per-phase</td></tr>
+            <tr><td>Agentes</td><td>Orchestrator, Planner, Architect, Builder, Reviewer, Debugger</td></tr>
+          </table>
+        </div>
+        <p><strong>Flujo:</strong> orchestrator &rarr; init &rarr; explore &rarr; propose &rarr; apply &rarr; verify</p>
+        <p><strong>Ideal para:</strong> Modernizacion de codigo legacy, migraciones, refactorizacion de sistemas antiguos.</p>
+      </section>
+
+      <section class="docs-section reveal" id="profile-minimal">
+        <h2><i class="ph ph-minus-circle"></i> Minimal</h2>
+        <p class="lead">
+          Iteraciones rapidas con minimo consumo de tokens. Ideal para prototipos.
+        </p>
+        <div class="table-wrapper">
+          <table>
+            <tr><th>Propiedad</th><th>Valor</th></tr>
+            <tr><td>Fases</td><td>3</td></tr>
+            <tr><td>Esfuerzo</td><td><span class="badge badge-green">low</span></td></tr>
+            <tr><td>Model Strategy</td><td>single</td></tr>
+            <tr><td>Agentes</td><td>Orchestrator, Builder</td></tr>
+          </table>
+        </div>
+        <p><strong>Flujo:</strong> orchestrator &rarr; explore &rarr; apply</p>
+        <p><strong>Ideal para:</strong> Prototipos, pruebas de concepto, exploracion rapida, bajo consumo de tokens.</p>
+      </section>
+
+      <!-- Personalizacion -->
+      <section class="docs-section reveal" id="crear-modeprofile">
+        <h2><i class="ph ph-plus-circle"></i> Crear ModeProfile Custom</h2>
+        <p class="lead">
+          Puedes crear ModeProfiles personalizados para flujos de trabajo especificos de tu equipo.
+        </p>
+        <h3>Paso 1: Crear archivo JSON</h3>
+        <div class="code-block">
+          <div class="code-header">
+            <span class="code-lang">json</span>
+            <button class="code-copy" data-copy='{
+  "name": "api-dev",
+  "version": "3.0.0",
+  "phases": ["orchestrator", "design", "apply", "verify"],
+  "effort": "medium",
+  "model_strategy": "per-phase",
+  "phase_models": {
+    "orchestrator": "opencode-go/glm-5.1",
+    "design": "opencode-go/glm-5.1",
+    "apply": "opencode-go/kimi-k2.6",
+    "verify": "opencode-go/deepseek-v4-pro"
+  },
+  "agents": ["ryou-orchestrator", "architect", "builder", "reviewer"],
+  "description": "Desarrollo de APIs REST con diseno de contratos",
+  "max_steps": 240,
+  "custom_rules": ["api-rest", "openapi-3"]
+}'><i class="ph ph-copy"></i> Copiar</button>
+          </div>
+          <pre><code>{
+  "name": "api-dev",
+  "version": "3.0.0",
+  "phases": ["orchestrator", "design", "apply", "verify"],
+  "effort": "medium",
+  "model_strategy": "per-phase",
+  "phase_models": {
+    "orchestrator": "opencode-go/glm-5.1",
+    "design": "opencode-go/glm-5.1",
+    "apply": "opencode-go/kimi-k2.6",
+    "verify": "opencode-go/deepseek-v4-pro"
+  },
+  "agents": ["ryou-orchestrator", "architect", "builder", "reviewer"],
+  "description": "Desarrollo de APIs REST con diseno de contratos",
+  "max_steps": 240,
+  "custom_rules": ["api-rest", "openapi-3"]
+}</code></pre>
+        </div>
+        <h3>Paso 2: Guardar en sdd-profiles/</h3>
+        <div class="code-block">
+          <div class="code-header">
+            <span class="code-lang">bash</span>
+            <button class="code-copy" data-copy="cp api-dev.json .opencode/sdd-profiles/
+/sdd switch api-dev"><i class="ph ph-copy"></i> Copiar</button>
+          </div>
+          <pre><code>cp api-dev.json .opencode/sdd-profiles/
+/sdd switch api-dev</code></pre>
+        </div>
+      </section>
+
+      <section class="docs-section reveal" id="editar-agentes">
+        <h2><i class="ph ph-pencil"></i> Editar Agentes</h2>
+        <p class="lead">
+          Los prompts de los agentes se encuentran en <code>.opencode/agents/</code> como archivos Markdown. Puedes editarlos para ajustar su comportamiento.
+        </p>
+        <h3>Estructura de un Prompt de Agente</h3>
+        <div class="code-block">
+          <div class="code-header">
+            <span class="code-lang">markdown</span>
+          </div>
+          <pre><code># [Nombre del Agente] v3.0.0
+
+## Rol
+[Descripcion del rol y responsabilidades]
+
+## Stack
+- Tecnologia 1
+- Tecnologia 2
+
+## Reglas
+1. Regla especifica del agente
+2. Otra regla importante
+
+## Prohibido
+- [ ] No hacer X
+- [ ] No hacer Y
+
+## Output
+[Formato esperado de salida]</code></pre>
+        </div>
+        <p><strong>Nota:</strong> Despues de editar un prompt de agente, ejecuta <code>/rass-setup deploy</code> para recargar la configuracion.</p>
+      </section>
+
+      <section class="docs-section reveal" id="reglas-globales">
+        <h2><i class="ph ph-scroll"></i> Reglas Globales</h2>
+        <p class="lead">
+          Las reglas globales aplican a <strong>todos</strong> los agentes. Se encuentran en <code>.opencode/rules/</code>.
+        </p>
+        <h3>Archivos de Reglas</h3>
+        <ul>
+          <li><code>global-rules.md</code> — Convenciones de codigo, estilo, patrones prohibidos</li>
+          <li><code>meridianui.md</code> — Reglas especificas del design system MeridianUI</li>
+        </ul>
+        <h3>Ejemplo de global-rules.md</h3>
+        <div class="code-block">
+          <div class="code-header">
+            <span class="code-lang">markdown</span>
+          </div>
+          <pre><code># Global Rules v3.0.0
+
+## Codigo
+- Usar C# 12 features cuando apliquen
+- Preferir async/await sobre .Result o .Wait()
+- Propagar CancellationToken cuando sea natural
+- Validar inputs en los boundaries
+
+## Arquitectura
+- Preservar direccion de dependencias
+- Domain no depende de Infrastructure
+- Usar IQueryable hasta materializacion
+- AsNoTracking() para lecturas
+
+## Prohibido
+- Hardcodear secrets
+- async void (excepto event handlers)
+- Prematuro ToList()
+- N+1 queries</code></pre>
+        </div>
+      </section>
+
+      <!-- Casos de Uso -->
+      <section class="docs-section reveal" id="caso-crud">
+        <h2><i class="ph ph-database"></i> Caso: CRUD Simple</h2>
+        <p class="lead">
+          Crear un endpoint CRUD para una entidad <code>Product</code>.
+        </p>
+        <h3>ModeProfile Recomendado: Fast</h3>
+        <div class="code-block">
+          <div class="code-header">
+            <span class="code-lang">opencode</span>
+            <button class="code-copy" data-copy="/sm fast
+
+Crea un endpoint CRUD para la entidad Product con:
+- GET /api/products (paginado)
+- GET /api/products/{id}
+- POST /api/products
+- PUT /api/products/{id}
+- DELETE /api/products/{id}
+
+Usa EF Core, DTOs y validacion con FluentValidation."><i class="ph ph-copy"></i> Copiar</button>
+          </div>
+          <pre><code>/sm fast
+
+Crea un endpoint CRUD para la entidad Product con:
+- GET /api/products (paginado)
+- GET /api/products/{id}
+- POST /api/products
+- PUT /api/products/{id}
+- DELETE /api/products/{id}
+
+Usa EF Core, DTOs y validacion con FluentValidation.</code></pre>
+        </div>
+        <p><strong>Flujo esperado:</strong></p>
+        <ol>
+          <li><strong>orchestrator</strong> — Detecta tarea simple, confirma ModeProfile Fast</li>
+          <li><strong>apply</strong> (builder / Kimi K2.6) — Implementa controllers, DTOs, validacion</li>
+          <li><strong>verify</strong> (reviewer / DeepSeek V4 Pro) — Revisa calidad y completa tests</li>
+        </ol>
+        <p><strong>Tiempo estimado:</strong> 2-3 minutos. <strong>Tokens estimados:</strong> ~8,000.</p>
+      </section>
+
+      <section class="docs-section reveal" id="caso-arquitectura">
+        <h2><i class="ph ph-buildings"></i> Caso: Arquitectura Compleja</h2>
+        <p class="lead">
+          Disenar un sistema de microservicios con event sourcing.
+        </p>
+        <h3>ModeProfile Recomendado: Architecture</h3>
+        <div class="code-block">
+          <div class="code-header">
+            <span class="code-lang">opencode</span>
+            <button class="code-copy" data-copy="/sm architecture
+
+Necesito disenar un sistema de pedidos con:
+- Microservicios: Orders, Inventory, Payments, Shipping
+- Comunicacion async via RabbitMQ
+- Event sourcing con PostgreSQL
+- API Gateway con YARP
+- Observabilidad con OpenTelemetry
+
+Genera la arquitectura completa antes de implementar."><i class="ph ph-copy"></i> Copiar</button>
+          </div>
+          <pre><code>/sm architecture
+
+Necesito disenar un sistema de pedidos con:
+- Microservicios: Orders, Inventory, Payments, Shipping
+- Comunicacion async via RabbitMQ
+- Event sourcing con PostgreSQL
+- API Gateway con YARP
+- Observabilidad con OpenTelemetry
+
+Genera la arquitectura completa antes de implementar.</code></pre>
+        </div>
+        <p><strong>Flujo esperado:</strong></p>
+        <ol>
+          <li><strong>orchestrator</strong> — Detecta complejidad alta, activa Architecture</li>
+          <li><strong>init</strong> — Carga contexto de microservicios y event sourcing</li>
+          <li><strong>explore</strong> — Investiga patrones, anti-patrones, tecnologias</li>
+          <li><strong>propose</strong> — Presenta 2-3 alternativas de arquitectura con tradeoffs</li>
+          <li><strong>design</strong> — Crea diagramas, define contratos, API specs</li>
+          <li><strong>apply</strong> — Implementa la estructura base de cada microservicio</li>
+          <li><strong>verify</strong> — Revisa integridad, consistencia, tests</li>
+          <li><strong>archive</strong> — Documenta decisiones de arquitectura</li>
+        </ol>
+        <p><strong>Tiempo estimado:</strong> 15-20 minutos. <strong>Tokens estimados:</strong> ~45,000.</p>
+      </section>
+
+      <section class="docs-section reveal" id="caso-ui">
+        <h2><i class="ph ph-paint-brush"></i> Caso: UI Development</h2>
+        <p class="lead">
+          Crear una pantalla de dashboard con MeridianUI en .NET MAUI.
+        </p>
+        <h3>ModeProfile Recomendado: UI</h3>
+        <div class="code-block">
+          <div class="code-header">
+            <span class="code-lang">opencode</span>
+            <button class="code-copy" data-copy="/sm ui
+
+Crea una pantalla de Dashboard para .NET MAUI con:
+- Grid de KPIs con cards glassmorphism
+- Chart de ventas mensuales
+- Lista de actividades recientes
+- Menu lateral navegable
+
+Usa MeridianUI tokens y componentes."><i class="ph ph-copy"></i> Copiar</button>
+          </div>
+          <pre><code>/sm ui
+
+Crea una pantalla de Dashboard para .NET MAUI con:
+- Grid de KPIs con cards glassmorphism
+- Chart de ventas mensuales
+- Lista de actividades recientes
+- Menu lateral navegable
+
+Usa MeridianUI tokens y componentes.</code></pre>
+        </div>
+        <p><strong>Flujo esperado:</strong></p>
+        <ol>
+          <li><strong>orchestrator</strong> — Detecta tarea UI, activa ModeProfile UI</li>
+          <li><strong>design</strong> (architect / GLM-5.1) — Crea layout, define componentes, estados</li>
+          <li><strong>apply</strong> (builder / Kimi K2.6) — Implementa XAML, ViewModels, bindings</li>
+          <li><strong>verify</strong> (reviewer / DeepSeek V4 Pro) — Revisa accesibilidad, responsive, performance</li>
+        </ol>
+      </section>
+
+      <section class="docs-section reveal" id="caso-debugging">
+        <h2><i class="ph ph-bug"></i> Caso: Debugging</h2>
+        <p class="lead">
+          Diagnosticar un memory leak en un servicio de background.
+        </p>
+        <h3>ModeProfile Recomendado: Debug</h3>
+        <div class="code-block">
+          <div class="code-header">
+            <span class="code-lang">opencode</span>
+            <button class="code-copy" data-copy="/sm debug
+
+El servicio BackgroundOrderProcessor tiene un memory leak.
+- Uso de memoria crece 50MB cada hora
+- No se liberan objetos OrderContext
+- Usa IHostedService con timer
+
+Encuentra la causa raiz y propone el fix."><i class="ph ph-copy"></i> Copiar</button>
+          </div>
+          <pre><code>/sm debug
+
+El servicio BackgroundOrderProcessor tiene un memory leak.
+- Uso de memoria crece 50MB cada hora
+- No se liberan objetos OrderContext
+- Usa IHostedService con timer
+
+Encuentra la causa raiz y propone el fix.</code></pre>
+        </div>
+        <p><strong>Flujo esperado:</strong></p>
+        <ol>
+          <li><strong>orchestrator</strong> — Detecta bug, activa ModeProfile Debug</li>
+          <li><strong>explore</strong> (debugger / DeepSeek V4 Pro) — Analiza codigo, identifica patrones sospechosos</li>
+          <li><strong>apply</strong> (builder / Kimi K2.6) — Implementa fix (ej: using statement, dispose pattern)</li>
+          <li><strong>verify</strong> (reviewer / DeepSeek V4 Pro) — Valida que el fix resuelve el leak sin regresiones</li>
+        </ol>
+      </section>
+
+      <!-- FAQ -->
+      <section class="docs-section reveal" id="faq">
+        <h2><i class="ph ph-question"></i> FAQ</h2>
+
+        <h3>Que diferencia a RASS de otros frameworks de IA?</h3>
+        <p>RASS es el unico framework que <strong>adapta dinamicamente</strong> el pipeline segun la complejidad. Otros usan un flujo fijo de 5-8 fases para todo. RASS usa 3 fases para un CRUD y 8 para un sistema enterprise. Eso se traduce en menos tokens, menos tiempo y menos frustracion.</p>
+
+        <h3>Puedo usar RASS sin OpenCode?</h3>
+        <p>RASS esta disenado como plugin de OpenCode, pero funciona con cualquier modelo conectado a OpenCode, incluyendo modelos locales via LM Studio u Ollama. La integracion con el sistema de agentes de OpenCode es parte de su valor.</p>
+
+        <h3>Es RASS open source?</h3>
+        <p><strong>Si.</strong> RASS es <strong>Open Source bajo MIT License</strong>. Puedes clonarlo, modificarlo y contribuir. El codigo esta disponible en <a href="https://github.com/keorgtz/RASS" target="_blank">GitHub</a>.</p>
+
+        <h3>Puedo crear mis propios ModeProfiles?</h3>
+        <p>Si. Crea un archivo JSON en <code>.opencode/sdd-profiles/</code> y usalo con <code>/sdd switch mi-perfil</code>. Ver la seccion <a href="#crear-modeprofile">Crear ModeProfile Custom</a>.</p>
+
+        <h3>Que pasa si un agente falla?</h3>
+        <p>El orchestrator detecta el fallo y puede: (1) reintentar con el mismo agente, (2) delegar a un agente alternativo (ej: debugger para un builder fallido), o (3) escalar al usuario con un resumen del problema.</p>
+
+        <h3>Puedo desactivar agentes que no necesito?</h3>
+        <p>Si. Edita el ModeProfile activo y remueve agentes del array <code>agents</code>. O usa el TUI installer para desactivarlos globalmente.</p>
+
+        <h3>Como actualizo RASS a una nueva version?</h3>
+        <div class="code-block">
+          <div class="code-header">
+            <span class="code-lang">bash</span>
+            <button class="code-copy" data-copy="cd RASS
+git pull origin main
+cd installer
+npm install
+node index.js --update"><i class="ph ph-copy"></i> Copiar</button>
+          </div>
+          <pre><code>cd RASS
+git pull origin main
+cd installer
+npm install
+node index.js --update</code></pre>
+        </div>
+
+        <h3>RASS funciona offline?</h3>
+        <p>Parcialmente. Los ModeProfiles <strong>Architecture</strong> y <strong>Enterprise</strong> estan disenados para generar especificaciones completas offline que puedes implementar despues. Pero la ejecucion de agentes requiere conectividad a los modelos de IA.</p>
+
+        <h3>Cuanto cuesta usar RASS?</h3>
+        <p><strong>Gratis.</strong> RASS es Open Source bajo MIT License. Solo pagas por los tokens de IA que uses con tus proveedores (OpenAI, Anthropic, Gemini, etc.) o si usas modelos locales, no hay costo adicional.</p>
+      </section>
+
+      <!-- Troubleshooting -->
+      <section class="docs-section reveal" id="troubleshooting">
+        <h2><i class="ph ph-wrench"></i> Troubleshooting</h2>
+
+        <h3>Error: "ModeProfile not found"</h3>
+        <p><strong>Causa:</strong> El archivo JSON del ModeProfile no existe o tiene errores de sintaxis.</p>
+        <p><strong>Solucion:</strong></p>
+        <div class="code-block">
+          <div class="code-header">
+            <span class="code-lang">bash</span>
+            <button class="code-copy" data-copy="# Verificar que el archivo existe
+ls .opencode/sdd-profiles/
+
+# Validar JSON
+node -e "JSON.parse(require('fs').readFileSync('.opencode/sdd-profiles/fast.json'))"
+
+# Resetear a default
+/sdd switch ryouset"><i class="ph ph-copy"></i> Copiar</button>
+          </div>
+          <pre><code># Verificar que el archivo existe
+ls .opencode/sdd-profiles/
+
+# Validar JSON
+node -e "JSON.parse(require('fs').readFileSync('.opencode/sdd-profiles/fast.json'))"
+
+# Resetear a default
+/sdd switch ryouset</code></pre>
+        </div>
+
+        <h3>Error: "Agent not configured"</h3>
+        <p><strong>Causa:</strong> El prompt del agente no se desplego correctamente.</p>
+        <p><strong>Solucion:</strong></p>
+        <div class="code-block">
+          <div class="code-header">
+            <span class="code-lang">bash</span>
+            <button class="code-copy" data-copy="/rass-setup deploy
+/rass-setup check"><i class="ph ph-copy"></i> Copiar</button>
+          </div>
+          <pre><code>/rass-setup deploy
+/rass-setup check</code></pre>
+        </div>
+
+        <h3>Error: "Model not available"</h3>
+        <p><strong>Causa:</strong> OpenCode Go no tiene acceso al modelo especificado en el ModeProfile.</p>
+        <p><strong>Solucion:</strong></p>
+        <ul>
+          <li>Verifica que tienes creditos/API keys configuradas en OpenCode</li>
+          <li>Cambia el modelo en el ModeProfile a uno disponible</li>
+          <li>Usa <code>model_strategy: "single"</code> con un modelo que si tengas disponible</li>
+        </ul>
+
+        <h3>Performance lenta en fase "explore"</h3>
+        <p><strong>Causa:</strong> Proyectos grandes con muchos archivos.</p>
+        <p><strong>Solucion:</strong></p>
+        <ul>
+          <li>Usa ModeProfile <strong>Fast</strong> para tareas localizadas</li>
+          <li>Reduce el scope en la solicitud (menciona archivos especificos)</li>
+          <li>Aumenta <code>max_steps</code> si el agente necesita mas tiempo</li>
+        </ul>
+
+        <h3>El builder genera codigo que no compila</h3>
+        <p><strong>Causa:</strong> Contexto insuficiente o reglas globales no cargadas.</p>
+        <p><strong>Solucion:</strong></p>
+        <ul>
+          <li>Verifica que <code>.opencode/rules/global-rules.md</code> existe y es valido</li>
+          <li>Proporciona mas contexto en la solicitud (interfaces existentes, DTOs)</li>
+          <li>Usa <code>/rass-setup check</code> para verificar estado</li>
+        </ul>
+
+        <h3>Como reporto un bug de RASS?</h3>
+        <p>Contacta a Keorsoft via:</p>
+        <ul>
+          <li>WhatsApp: <a href="https://wa.me/523327633233">+52 332 763 3233</a></li>
+          <li>GitHub Issues: <a href="https://github.com/keorgtz/RASS/issues">github.com/keorgtz/RASS</a></li>
+        </ul>
+      </section>
+
+    </main>
+  </div>
+
+  <!-- Mobile Sidebar Toggle -->
+  <button class="docs-mobile-toggle" id="docsMobileToggle" aria-label="Toggle sidebar">
+    <i class="ph ph-list"></i>
+  </button>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer-container">
+      <div class="footer-brand">
+        <a href="index.html" class="footer-logo">
+          <i class="ph ph-hexagon"></i>
+          <span>RASS</span>
+        </a>
+        <p>El primer Sistema Operativo de Desarrollo IA Adaptativo para OpenCode.</p>
+      </div>
+      <div class="footer-links">
+        <h4>Producto</h4>
+        <ul>
+          <li><a href="index.html#caracteristicas">Caracteristicas</a></li>
+          <li><a href="index.html#arquitectura">Arquitectura</a></li>
+          <li><a href="index.html#agentes">Agentes</a></li>
+          <li><a href="index.html#instalacion">Instalacion</a></li>
+        </ul>
+      </div>
+      <div class="footer-links">
+        <h4>Recursos</h4>
+        <ul>
+          <li><a href="docs.html">Documentacion</a></li>
+          <li><a href="docs.html#faq">FAQ</a></li>
+          <li><a href="docs.html#troubleshooting">Troubleshooting</a></li>
+        </ul>
+      </div>
+      <div class="footer-links">
+        <h4>Contacto</h4>
+        <ul>
+          <li><a href="https://github.com/keorgtz/RASS" target="_blank" rel="noopener">GitHub</a></li>
+          <li><a href="https://wa.me/523327633233" target="_blank" rel="noopener">WhatsApp</a></li>
+          <li><a href="../index.html">Keorsoft</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p> 2026 Keorsoft. RASS es Open Source bajo MIT License.</p>
+      <div class="footer-social">
+        <a href="https://github.com/keorgtz/RASS" target="_blank" rel="noopener" aria-label="GitHub"><i class="ph ph-github-logo"></i></a>
+        <a href="https://wa.me/523327633233" target="_blank" rel="noopener" aria-label="WhatsApp"><i class="ph ph-whatsapp-logo"></i></a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+  <script src="js/docs.js"></script>
+</body>
+</html>

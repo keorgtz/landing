@@ -3,7 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Keorsoft — Soluciones Integrales para tu Empresa</title>
+  <title>Keorsoft — Tecnología que Impulsa tu Negocio</title>
+  <meta name="description" content="Keorsoft es una empresa de tecnología especializada en desarrollo de software, inteligencia artificial, frameworks UI y soluciones SaaS para empresas.">
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
@@ -28,14 +29,36 @@
 
     <div class="hidden md:block w-px h-5 mx-2" style="background:var(--card-border)"></div>
 
-    <div class="flex items-center font-semibold overflow-x-auto max-w-[200px] sm:max-w-[300px] md:max-w-none" style="scrollbar-width: none;">
-      <a href="#inicio"    class="pill-nav-link whitespace-nowrap">Inicio</a>
-      <a href="#servicios" class="pill-nav-link whitespace-nowrap">Servicios</a>
-      <a href="#productos" class="pill-nav-link whitespace-nowrap">Productos</a>
-      <a href="#nosotros"  class="pill-nav-link whitespace-nowrap hidden sm:inline-block">Nosotros</a>
+    <div class="hidden md:flex items-center font-semibold">
+      <a href="#inicio"    class="pill-nav-link">Inicio</a>
+      <a href="#servicios" class="pill-nav-link">Servicios</a>
+      <a href="#productos" class="pill-nav-link">Productos</a>
+      <a href="#opensource" class="pill-nav-link">Open Source</a>
+      <a href="#nosotros"  class="pill-nav-link">Nosotros</a>
+      <a href="#contacto" class="pill-nav-link">Contacto</a>
+    </div>
+
+    <!-- Mobile nav dropdown -->
+    <div class="md:hidden relative">
+      <button id="mobile-menu-btn" class="pill-nav-link flex items-center gap-1">
+        <span class="material-symbols-rounded" style="font-size:18px">menu</span>
+        <span class="text-xs">Menú</span>
+      </button>
+      <div id="mobile-menu" class="hidden absolute top-full right-0 mt-2 w-48 rounded-2xl border p-2 flex flex-col gap-1" style="background:var(--nav-bg);border-color:var(--nav-border);backdrop-filter:blur(20px)">
+        <a href="#inicio"    class="pill-nav-link text-left">Inicio</a>
+        <a href="#servicios" class="pill-nav-link text-left">Servicios</a>
+        <a href="#productos" class="pill-nav-link text-left">Productos</a>
+        <a href="#opensource" class="pill-nav-link text-left">Open Source</a>
+        <a href="#nosotros"  class="pill-nav-link text-left">Nosotros</a>
+        <a href="#contacto" class="pill-nav-link text-left">Contacto</a>
+      </div>
     </div>
 
     <div class="hidden md:block w-px h-5 mx-2" style="background:var(--card-border)"></div>
+
+    <button id="theme-toggle" class="w-9 h-9 rounded-full flex items-center justify-center text-[color:var(--txt-2)] hover:text-[color:var(--txt-1)] hover:bg-[color:var(--card-hover)] transition-colors" aria-label="Cambiar tema">
+      <span class="material-symbols-rounded" style="font-size:18px" id="theme-icon">light_mode</span>
+    </button>
 
     <a href="https://wa.me/523327633233" target="_blank" class="hidden sm:inline-flex items-center gap-2 px-5 py-2.5 rounded-full font-bold text-sm text-white" style="background:var(--kr-blue);font-family:var(--font);box-shadow:0 4px 14px rgba(14,152,248,.4)">
       Contactar
@@ -54,22 +77,36 @@
       <div class="text-center lg:text-left">
         <span class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-xs font-bold mb-6 tracking-widest uppercase hero-badge" style="font-family:var(--font)">
           <span class="material-symbols-rounded fill" style="font-size:14px">rocket_launch</span>
-          Impulsamos tu Negocio
+          Tecnología de Clase Mundial
         </span>
         <h1 class="text-4xl sm:text-5xl md:text-6xl xl:text-[4rem] font-extrabold leading-[1.1] mb-6 tracking-tight text-[color:var(--txt-1)]" style="font-family:var(--font-display)">
-          Soluciones integrales para la <span class="text-gradient">evolución de tu Pyme.</span>
+          No solo servicios.<br>Construimos <span class="text-gradient">tecnología.</span>
         </h1>
         <p class="text-base sm:text-lg mb-8 leading-relaxed max-w-xl mx-auto lg:mx-0 text-[color:var(--txt-2)]" style="font-family:var(--font)">
-          En Keorsoft centralizamos tus necesidades tecnológicas. Desarrollamos software a la medida, aseguramos tu información, diseñamos experiencias únicas e instalamos infraestructuras robustas de red y hardware.
+          Keorsoft es una empresa de tecnología enfocada en crear soluciones de software de escritorio y web, herramientas de IA, frameworks UI propietarios y productos SaaS que transforman industrias.
         </p>
+        <div class="flex flex-wrap justify-center lg:justify-start gap-3 mb-8">
+          <span class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-semibold border" style="background:rgba(14,152,248,.08);border-color:rgba(14,152,248,.2);color:var(--kr-blue)">
+            <span class="material-symbols-rounded" style="font-size:14px">code</span> Software Development
+          </span>
+          <span class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-semibold border" style="background:rgba(139,92,246,.08);border-color:rgba(139,92,246,.2);color:var(--vi)">
+            <span class="material-symbols-rounded" style="font-size:14px">smart_toy</span> AI Tools
+          </span>
+          <span class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-semibold border" style="background:rgba(99,102,241,.08);border-color:rgba(99,102,241,.2);color:var(--in)">
+            <span class="material-symbols-rounded" style="font-size:14px">palette</span> UI Frameworks
+          </span>
+          <span class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-semibold border" style="background:rgba(16,185,129,.08);border-color:rgba(16,185,129,.2);color:var(--em)">
+            <span class="material-symbols-rounded" style="font-size:14px">cloud</span> SaaS Products
+          </span>
+        </div>
         <div class="flex flex-col sm:flex-row justify-center lg:justify-start gap-4">
           <a href="https://wa.me/523327633233" target="_blank" class="btn-primary flex items-center justify-center gap-2.5 px-8 py-4 rounded-2xl font-bold text-sm" style="font-family:var(--font)">
             <i class="fa-brands fa-whatsapp text-lg"></i>
             Hablemos de tu Proyecto
           </a>
-          <a href="#servicios" class="btn-secondary flex items-center justify-center gap-2 px-8 py-4 rounded-2xl font-bold text-sm" style="font-family:var(--font)">
-            <span class="material-symbols-rounded" style="font-size:18px">grid_view</span>
-            Ver Servicios
+          <a href="#productos" class="btn-secondary flex items-center justify-center gap-2 px-8 py-4 rounded-2xl font-bold text-sm" style="font-family:var(--font)">
+            <span class="material-symbols-rounded" style="font-size:18px">inventory_2</span>
+            Ver Productos
           </a>
         </div>
       </div>
@@ -88,22 +125,22 @@
             </div>
 
             <!-- Floating service nodes -->
-            <div class="absolute top-[10%] left-[10%] bg-[color:var(--bg-2)] border border-[color:var(--card-border)] p-3 rounded-2xl shadow-xl flex items-center gap-3 backdrop-blur-md">
+            <div class="absolute top-[10%] left-[10%] bg-[color:var(--bg-2)] border border-[color:var(--card-border)] p-3 rounded-2xl shadow-xl flex items-center gap-3 backdrop-blur-md animate-float">
                 <div class="w-10 h-10 rounded-full bg-emerald-500/10 text-emerald-600 flex items-center justify-center"><span class="material-symbols-rounded" style="font-size:20px">code</span></div>
                 <div><p class="text-xs font-bold text-[color:var(--txt-1)] leading-tight">Software</p><p class="text-[10px] text-[color:var(--txt-3)]">Pymes</p></div>
             </div>
 
-            <div class="absolute bottom-[15%] right-[5%] bg-[color:var(--bg-2)] border border-[color:var(--card-border)] p-3 rounded-2xl shadow-xl flex items-center gap-3 backdrop-blur-md">
+            <div class="absolute bottom-[15%] right-[5%] bg-[color:var(--bg-2)] border border-[color:var(--card-border)] p-3 rounded-2xl shadow-xl flex items-center gap-3 backdrop-blur-md animate-float" style="animation-delay:1s">
                 <div class="w-10 h-10 rounded-full bg-blue-500/10 text-blue-600 flex items-center justify-center"><span class="material-symbols-rounded" style="font-size:20px">router</span></div>
                 <div><p class="text-xs font-bold text-[color:var(--txt-1)] leading-tight">Redes</p><p class="text-[10px] text-[color:var(--txt-3)]">Infraestructura</p></div>
             </div>
 
-            <div class="absolute top-[20%] right-[0%] bg-[color:var(--bg-2)] border border-[color:var(--card-border)] p-3 rounded-2xl shadow-xl flex items-center gap-3 backdrop-blur-md">
+            <div class="absolute top-[20%] right-[0%] bg-[color:var(--bg-2)] border border-[color:var(--card-border)] p-3 rounded-2xl shadow-xl flex items-center gap-3 backdrop-blur-md animate-float" style="animation-delay:2s">
                 <div class="w-10 h-10 rounded-full bg-purple-500/10 text-purple-600 flex items-center justify-center"><span class="material-symbols-rounded" style="font-size:20px">security</span></div>
                 <div><p class="text-xs font-bold text-[color:var(--txt-1)] leading-tight">Seguridad</p><p class="text-[10px] text-[color:var(--txt-3)]">Protección</p></div>
             </div>
 
-            <div class="absolute bottom-[20%] left-[0%] bg-[color:var(--bg-2)] border border-[color:var(--card-border)] p-3 rounded-2xl shadow-xl flex items-center gap-3 backdrop-blur-md">
+            <div class="absolute bottom-[20%] left-[0%] bg-[color:var(--bg-2)] border border-[color:var(--card-border)] p-3 rounded-2xl shadow-xl flex items-center gap-3 backdrop-blur-md animate-float" style="animation-delay:3s">
                 <div class="w-10 h-10 rounded-full bg-amber-500/10 text-amber-600 flex items-center justify-center"><span class="material-symbols-rounded" style="font-size:20px">design_services</span></div>
                 <div><p class="text-xs font-bold text-[color:var(--txt-1)] leading-tight">UX/UI</p><p class="text-[10px] text-[color:var(--txt-3)]">Diseño</p></div>
             </div>
@@ -141,27 +178,110 @@
   </div>
 </section>
 
+<!-- ══ NOSOTROS / ABOUT US ═══════════════════════════════════════ -->
+<section id="nosotros" class="py-24 sm:py-32 section-main relative">
+  <div class="absolute top-0 right-0 w-96 h-96 bg-blue-500/5 rounded-full blur-[100px] pointer-events-none"></div>
+  <div class="absolute bottom-0 left-0 w-96 h-96 bg-purple-500/5 rounded-full blur-[100px] pointer-events-none"></div>
+
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+    <div class="text-center max-w-2xl mx-auto mb-16 scroll-reveal">
+      <p class="text-blue-600 font-semibold tracking-wide text-sm mb-3 uppercase">Quiénes Somos</p>
+      <h2 class="text-3xl sm:text-4xl md:text-5xl font-extrabold text-[color:var(--txt-1)] mb-6 tracking-tight" style="font-family:var(--font-display)">
+        Más que una consultora.<br>Somos una <span class="text-gradient">empresa de tecnología.</span>
+      </h2>
+      <p class="text-[color:var(--txt-2)] text-lg leading-relaxed">
+        Keorsoft nace de la convicción de que el software empresarial puede ser potente, hermoso y accesible al mismo tiempo.
+      </p>
+    </div>
+
+    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
+      <!-- Who we are -->
+      <div class="about-card scroll-reveal" style="--c-bg: var(--kr-blue); --i-bg: rgba(14,152,248,0.1); --i-color: #0E98F8;">
+        <div class="sc-icon"><span class="material-symbols-rounded fill" style="font-size:28px">corporate_fare</span></div>
+        <h3 class="text-xl font-bold text-[color:var(--txt-1)] mb-3" style="font-family:var(--font-display)">Quiénes Somos</h3>
+        <p class="text-[color:var(--txt-2)] leading-relaxed text-sm">
+          Keorsoft es una empresa de tecnología enfocada en crear soluciones de software de escritorio y web. Combinamos ingeniería de precisión con diseño excepcional para entregar productos que superan expectativas.
+        </p>
+      </div>
+
+      <!-- Our Focus -->
+      <div class="about-card scroll-reveal" style="--c-bg: var(--vi); --i-bg: rgba(139,92,246,0.1); --i-color: #8B5CF6; animation-delay:.1s">
+        <div class="sc-icon"><span class="material-symbols-rounded fill" style="font-size:28px">target</span></div>
+        <h3 class="text-xl font-bold text-[color:var(--txt-1)] mb-3" style="font-family:var(--font-display)">Nuestro Enfoque</h3>
+        <p class="text-[color:var(--txt-2)] leading-relaxed text-sm">
+          Alta personalización por cliente y vertical. Excelencia en UI/UX con nuestro lenguaje visual propietario <strong>MeridianUI</strong>. Cada producto se adapta a las necesidades específicas de tu industria.
+        </p>
+      </div>
+
+      <!-- Mission -->
+      <div class="about-card scroll-reveal" style="--c-bg: var(--em); --i-bg: rgba(16,185,129,0.1); --i-color: #10B981; animation-delay:.2s">
+        <div class="sc-icon"><span class="material-symbols-rounded fill" style="font-size:28px">flag</span></div>
+        <h3 class="text-xl font-bold text-[color:var(--txt-1)] mb-3" style="font-family:var(--font-display)">Nuestra Misión</h3>
+        <p class="text-[color:var(--txt-2)] leading-relaxed text-sm">
+          Construir herramientas que empoderen a desarrolladores y empresas. Creemos que la tecnología debe ser un multiplicador de capacidades, no una barrera.
+        </p>
+      </div>
+
+      <!-- Values -->
+      <div class="about-card md:col-span-2 lg:col-span-3 scroll-reveal" style="--c-bg: var(--am); --i-bg: rgba(245,158,11,0.1); --i-color: #F59E0B; animation-delay:.3s">
+        <div class="flex flex-col md:flex-row gap-8 items-start">
+          <div class="md:w-1/3">
+            <div class="sc-icon"><span class="material-symbols-rounded fill" style="font-size:28px">stars</span></div>
+            <h3 class="text-xl font-bold text-[color:var(--txt-1)] mb-3" style="font-family:var(--font-display)">Nuestros Valores</h3>
+            <p class="text-[color:var(--txt-2)] leading-relaxed text-sm">
+              Los principios que guían cada línea de código y cada decisión de diseño.
+            </p>
+          </div>
+          <div class="md:w-2/3 grid sm:grid-cols-3 gap-4">
+            <div class="value-item">
+              <div class="w-10 h-10 rounded-xl bg-blue-500/10 text-blue-500 flex items-center justify-center mb-3">
+                <span class="material-symbols-rounded fill" style="font-size:20px">lightbulb</span>
+              </div>
+              <h4 class="font-bold text-[color:var(--txt-1)] text-sm mb-1">Innovación</h4>
+              <p class="text-xs text-[color:var(--txt-3)]">Exploramos constantemente nuevas tecnologías y metodologías para mantenernos a la vanguardia.</p>
+            </div>
+            <div class="value-item">
+              <div class="w-10 h-10 rounded-xl bg-purple-500/10 text-purple-500 flex items-center justify-center mb-3">
+                <span class="material-symbols-rounded fill" style="font-size:20px">award_star</span>
+              </div>
+              <h4 class="font-bold text-[color:var(--txt-1)] text-sm mb-1">Calidad</h4>
+              <p class="text-xs text-[color:var(--txt-3)]">Código limpio, arquitectura sólida y atención al detalle en cada entrega.</p>
+            </div>
+            <div class="value-item">
+              <div class="w-10 h-10 rounded-xl bg-emerald-500/10 text-emerald-500 flex items-center justify-center mb-3">
+                <span class="material-symbols-rounded fill" style="font-size:20px">developer_mode</span>
+              </div>
+              <h4 class="font-bold text-[color:var(--txt-1)] text-sm mb-1">Developer Experience</h4>
+              <p class="text-xs text-[color:var(--txt-3)]">Herramientas que los desarrolladores disfrutan usar. Documentación clara, APIs intuitivas.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- ══ SERVICIOS ═════════════════════════════════════════════════ -->
-<section id="servicios" class="py-24 sm:py-32 section-main relative">
+<section id="servicios" class="py-24 sm:py-32 section-alt relative">
   <div class="absolute top-0 right-0 w-96 h-96 bg-blue-500/5 rounded-full blur-[100px] pointer-events-none"></div>
   <div class="absolute bottom-0 left-0 w-96 h-96 bg-purple-500/5 rounded-full blur-[100px] pointer-events-none"></div>
 
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
 
-    <div class="text-center max-w-2xl mx-auto mb-16">
+    <div class="text-center max-w-2xl mx-auto mb-16 scroll-reveal">
       <p class="text-blue-600 font-semibold tracking-wide text-sm mb-3 uppercase">Áreas de Especialidad</p>
       <h2 class="text-3xl sm:text-4xl md:text-5xl font-extrabold text-[color:var(--txt-1)] mb-6 tracking-tight" style="font-family:var(--font-display)">
         Todo lo que tu empresa necesita en <span class="text-gradient">un solo lugar.</span>
       </h2>
       <p class="text-[color:var(--txt-2)] text-lg leading-relaxed">
-        Olvídate de contratar múltiples proveedores. En Keorsoft cubrimos desde el desarrollo de tu plataforma hasta la infraestructura física y la seguridad que la respalda.
+        Olvídate de contratar múltiples proveedores. En Keorsoft cubrimos desde el desarrollo de tu plataforma hasta la infraestructura física, la seguridad y la inteligencia artificial.
       </p>
     </div>
 
-    <div class="grid md:grid-cols-2 gap-6 lg:gap-8">
+    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
 
       <!-- Software -->
-      <div class="service-card" style="--c-bg: var(--in); --i-bg: rgba(99,102,241,0.1); --i-color: #6366F1;">
+      <div class="service-card scroll-reveal" style="--c-bg: var(--in); --i-bg: rgba(99,102,241,0.1); --i-color: #6366F1;">
         <div class="sc-icon"><span class="material-symbols-rounded fill" style="font-size:28px">code_blocks</span></div>
         <h3 class="text-xl font-bold text-[color:var(--txt-1)] mb-3" style="font-family:var(--font-display)">Software Empresarial (Pymes)</h3>
         <p class="text-[color:var(--txt-2)] leading-relaxed text-sm mb-6">
@@ -175,7 +295,7 @@
       </div>
 
       <!-- Redes y Hardware -->
-      <div class="service-card" style="--c-bg: var(--kr-blue); --i-bg: rgba(14,152,248,0.1); --i-color: #0E98F8;">
+      <div class="service-card scroll-reveal" style="--c-bg: var(--kr-blue); --i-bg: rgba(14,152,248,0.1); --i-color: #0E98F8; animation-delay:.1s">
         <div class="sc-icon"><span class="material-symbols-rounded fill" style="font-size:28px">router</span></div>
         <h3 class="text-xl font-bold text-[color:var(--txt-1)] mb-3" style="font-family:var(--font-display)">Infraestructura de Redes y Hardware</h3>
         <p class="text-[color:var(--txt-2)] leading-relaxed text-sm mb-6">
@@ -189,7 +309,7 @@
       </div>
 
       <!-- Ciberseguridad -->
-      <div class="service-card" style="--c-bg: var(--em); --i-bg: rgba(16,185,129,0.1); --i-color: #10B981;">
+      <div class="service-card scroll-reveal" style="--c-bg: var(--em); --i-bg: rgba(16,185,129,0.1); --i-color: #10B981; animation-delay:.2s">
         <div class="sc-icon"><span class="material-symbols-rounded fill" style="font-size:28px">shield_lock</span></div>
         <h3 class="text-xl font-bold text-[color:var(--txt-1)] mb-3" style="font-family:var(--font-display)">Ciberseguridad Básica</h3>
         <p class="text-[color:var(--txt-2)] leading-relaxed text-sm mb-6">
@@ -203,7 +323,7 @@
       </div>
 
       <!-- Diseño UX/UI -->
-      <div class="service-card" style="--c-bg: var(--am); --i-bg: rgba(245,158,11,0.1); --i-color: #F59E0B;">
+      <div class="service-card scroll-reveal" style="--c-bg: var(--am); --i-bg: rgba(245,158,11,0.1); --i-color: #F59E0B; animation-delay:.3s">
         <div class="sc-icon"><span class="material-symbols-rounded fill" style="font-size:28px">palette</span></div>
         <h3 class="text-xl font-bold text-[color:var(--txt-1)] mb-3" style="font-family:var(--font-display)">Diseño UX / UI</h3>
         <p class="text-[color:var(--txt-2)] leading-relaxed text-sm mb-6">
@@ -216,121 +336,610 @@
         </ul>
       </div>
 
+      <!-- AI Consulting -->
+      <div class="service-card scroll-reveal" style="--c-bg: var(--vi); --i-bg: rgba(139,92,246,0.1); --i-color: #8B5CF6; animation-delay:.4s">
+        <div class="sc-icon"><span class="material-symbols-rounded fill" style="font-size:28px">smart_toy</span></div>
+        <h3 class="text-xl font-bold text-[color:var(--txt-1)] mb-3" style="font-family:var(--font-display)">AI Consulting & Integration</h3>
+        <p class="text-[color:var(--txt-2)] leading-relaxed text-sm mb-6">
+          Ayudamos a las empresas a integrar inteligencia artificial en sus flujos de trabajo. Desde chatbots y automatización hasta análisis predictivo y generación de contenido.
+        </p>
+        <ul class="space-y-2 mb-6 text-sm text-[color:var(--txt-3)]">
+          <li class="flex items-center gap-2"><span class="material-symbols-rounded text-purple-500" style="font-size:16px">check</span>Automatización de Procesos con IA</li>
+          <li class="flex items-center gap-2"><span class="material-symbols-rounded text-purple-500" style="font-size:16px">check</span>Integración de APIs de IA (OpenAI, Claude, Gemini)</li>
+          <li class="flex items-center gap-2"><span class="material-symbols-rounded text-purple-500" style="font-size:16px">check</span>Consultoría Estratégica de IA</li>
+        </ul>
+      </div>
+
+      <!-- Custom .NET Development -->
+      <div class="service-card scroll-reveal" style="--c-bg: var(--or); --i-bg: rgba(249,115,22,0.1); --i-color: #F97316; animation-delay:.5s">
+        <div class="sc-icon"><span class="material-symbols-rounded fill" style="font-size:28px">terminal</span></div>
+        <h3 class="text-xl font-bold text-[color:var(--txt-1)] mb-3" style="font-family:var(--font-display)">Custom .NET Development</h3>
+        <p class="text-[color:var(--txt-2)] leading-relaxed text-sm mb-6">
+          Especialistas en el ecosistema .NET moderno. Desarrollamos aplicaciones de escritorio, web y multiplataforma con las últimas tecnologías de Microsoft.
+        </p>
+        <ul class="space-y-2 mb-6 text-sm text-[color:var(--txt-3)]">
+          <li class="flex items-center gap-2"><span class="material-symbols-rounded text-orange-500" style="font-size:16px">check</span>.NET 9, WPF, Avalonia, Blazor, MAUI</li>
+          <li class="flex items-center gap-2"><span class="material-symbols-rounded text-orange-500" style="font-size:16px">check</span>Entity Framework Core & SQL Server</li>
+          <li class="flex items-center gap-2"><span class="material-symbols-rounded text-orange-500" style="font-size:16px">check</span>ASP.NET Core APIs y Microservicios</li>
+        </ul>
+      </div>
+
+      <!-- Enterprise Architecture -->
+      <div class="service-card md:col-span-2 lg:col-span-3 scroll-reveal" style="--c-bg: var(--kr-blue); --i-bg: rgba(14,152,248,0.1); --i-color: #0E98F8; animation-delay:.6s">
+        <div class="flex flex-col md:flex-row gap-8 items-start">
+          <div class="md:w-1/3">
+            <div class="sc-icon"><span class="material-symbols-rounded fill" style="font-size:28px">account_tree</span></div>
+            <h3 class="text-xl font-bold text-[color:var(--txt-1)] mb-3" style="font-family:var(--font-display)">Enterprise Architecture</h3>
+            <p class="text-[color:var(--txt-2)] leading-relaxed text-sm">
+              Diseñamos arquitecturas escalables y mantenibles para aplicaciones empresariales de alto rendimiento.
+            </p>
+          </div>
+          <div class="md:w-2/3 grid sm:grid-cols-3 gap-4">
+            <div class="value-item">
+              <div class="w-10 h-10 rounded-xl bg-blue-500/10 text-blue-500 flex items-center justify-center mb-3">
+                <span class="material-symbols-rounded fill" style="font-size:20px">layers</span>
+              </div>
+              <h4 class="font-bold text-[color:var(--txt-1)] text-sm mb-1">Clean Architecture</h4>
+              <p class="text-xs text-[color:var(--txt-3)]">Separación de responsabilidades, testabilidad y mantenibilidad a largo plazo.</p>
+            </div>
+            <div class="value-item">
+              <div class="w-10 h-10 rounded-xl bg-purple-500/10 text-purple-500 flex items-center justify-center mb-3">
+                <span class="material-symbols-rounded fill" style="font-size:20px">sync_alt</span>
+              </div>
+              <h4 class="font-bold text-[color:var(--txt-1)] text-sm mb-1">CQRS</h4>
+              <p class="text-xs text-[color:var(--txt-3)]">Separación de lecturas y escrituras para máximo rendimiento y escalabilidad.</p>
+            </div>
+            <div class="value-item">
+              <div class="w-10 h-10 rounded-xl bg-emerald-500/10 text-emerald-500 flex items-center justify-center mb-3">
+                <span class="material-symbols-rounded fill" style="font-size:20px">domain</span>
+              </div>
+              <h4 class="font-bold text-[color:var(--txt-1)] text-sm mb-1">Domain-Driven Design</h4>
+              <p class="text-xs text-[color:var(--txt-3)]">Modelado del negocio en código. Ubiquitous language, aggregates, value objects.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
     </div>
   </div>
 </section>
 
 <!-- ══ PRODUCTOS ════════════════════════════════════════════════ -->
-<section id="productos" class="py-24 sm:py-32 section-alt relative overflow-hidden">
+<section id="productos" class="py-24 sm:py-32 section-main relative overflow-hidden">
   <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-purple-500/5 rounded-full blur-[120px] pointer-events-none"></div>
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-    <div class="text-center max-w-2xl mx-auto mb-16">
+    <div class="text-center max-w-2xl mx-auto mb-16 scroll-reveal">
       <p class="text-purple-500 font-semibold tracking-wide text-sm mb-3 uppercase">Productos & Frameworks</p>
       <h2 class="text-3xl sm:text-4xl md:text-5xl font-extrabold text-[color:var(--txt-1)] mb-6 tracking-tight" style="font-family:var(--font-display)">
-        Herramientas de próxima <span class="text-gradient">generación.</span>
+        Tecnología propia de <span class="text-gradient">próxima generación.</span>
       </h2>
       <p class="text-[color:var(--txt-2)] text-lg leading-relaxed">
-        Descubre nuestros productos in-house diseñados para acelerar y optimizar los flujos de trabajo de desarrollo con Inteligencia Artificial.
+        Descubre nuestros productos in-house: un design system propietario, librerías de controles .NET, soluciones SaaS verticales y frameworks de código abierto.
       </p>
     </div>
 
-    <div class="grid lg:grid-cols-1 gap-6 lg:gap-8 max-w-5xl mx-auto">
-      <div class="service-card flex flex-col md:flex-row gap-8 items-center p-6 md:p-10" style="--c-bg: #8B5CF6; --i-bg: rgba(139, 92, 246, 0.1); --i-color: #8B5CF6;">
-        <div class="flex-1 text-center md:text-left">
-          <div class="sc-icon mx-auto md:mx-0 mb-4"><span class="material-symbols-rounded fill" style="font-size:32px">memory</span></div>
-          <h3 class="text-3xl font-extrabold text-[color:var(--txt-1)] mb-4" style="font-family:var(--font-display)">RASS Web</h3>
-          <p class="text-[color:var(--txt-2)] leading-relaxed text-base mb-6">
-            <strong>Ryou Adaptive SDD System</strong> es el primer Sistema Operativo de Desarrollo IA Adaptativo diseñado para OpenCode. Redefine la forma en la que programas con agentes, evitando el desperdicio de tokens y enfocándose en una arquitectura determinista.
-          </p>
-          <ul class="space-y-2 mb-8 text-sm text-[color:var(--txt-3)]">
-            <li class="flex items-center gap-2"><span class="material-symbols-rounded text-purple-500" style="font-size:18px">check_circle</span><strong>Plugin Visual:</strong> Dashboard nativo in-session para OpenCode y VS Code.</li>
-            <li class="flex items-center gap-2"><span class="material-symbols-rounded text-purple-500" style="font-size:18px">check_circle</span><strong>Instalación Global:</strong> Un script instala CLI y Extensión sin dependencias externas.</li>
-          </ul>
-          <a href="RASSWeb/index.html" class="inline-flex items-center justify-center w-full md:w-auto gap-2 px-8 py-4 rounded-2xl font-bold text-sm text-white hover:-translate-y-1 transition-transform" style="background: linear-gradient(135deg, #6366F1, #8B5CF6); box-shadow: 0 10px 25px rgba(139, 92, 246, 0.3);">
-            Explorar el Framework <span class="material-symbols-rounded" style="font-size:20px">arrow_forward</span>
+    <div class="grid lg:grid-cols-2 gap-6 lg:gap-8">
+
+      <!-- MeridianUI -->
+      <div class="product-card scroll-reveal" style="--c-bg: var(--kr-blue); --i-bg: rgba(14,152,248,0.1); --i-color: #0E98F8;">
+        <div class="flex items-start gap-4 mb-4">
+          <div class="sc-icon shrink-0"><span class="material-symbols-rounded fill" style="font-size:28px">auto_awesome_mosaic</span></div>
+          <div>
+            <div class="flex items-center gap-2 mb-1">
+              <h3 class="text-xl font-bold text-[color:var(--txt-1)]" style="font-family:var(--font-display)">MeridianUI</h3>
+              <span class="badge badge-internal">Internal</span>
+            </div>
+            <p class="text-xs text-[color:var(--txt-3)] font-medium">Design System & UI Framework Component KIT</p>
+          </div>
+        </div>
+        <p class="text-[color:var(--txt-2)] leading-relaxed text-sm mb-4">
+          Un lenguaje visual propietario que fusiona Fluent Design, Material Expressive y el toque distintivo de Keorsoft. Tono enterprise-soft con un sistema semántico de 5 niveles de color, densidad controlada y animaciones silenciosas (≤200ms).
+        </p>
+        <div class="space-y-2 mb-6">
+          <div class="feature-row"><span class="material-symbols-rounded text-blue-500" style="font-size:16px">check_circle</span><span class="text-sm text-[color:var(--txt-3)]">Sistema semántico de 5 niveles de color</span></div>
+          <div class="feature-row"><span class="material-symbols-rounded text-blue-500" style="font-size:16px">check_circle</span><span class="text-sm text-[color:var(--txt-3)]">Densidad controlada por contexto</span></div>
+          <div class="feature-row"><span class="material-symbols-rounded text-blue-500" style="font-size:16px">check_circle</span><span class="text-sm text-[color:var(--txt-3)]">Animaciones silenciosas ≤200ms, sin gradientes ruidosos</span></div>
+        </div>
+        <div class="flex items-center gap-2 text-xs text-[color:var(--txt-3)] pt-4 border-t border-[color:var(--card-border)]">
+          <span class="material-symbols-rounded" style="font-size:14px">deployed_code</span>
+          Usado en: <strong class="text-[color:var(--txt-2)]">SHEndevour</strong> y todos los productos Keorsoft
+        </div>
+      </div>
+
+      <!-- Controls & Libraries for .NET/C# -->
+      <div class="product-card scroll-reveal" style="--c-bg: var(--in); --i-bg: rgba(99,102,241,0.1); --i-color: #6366F1; animation-delay:.1s">
+        <div class="flex items-start gap-4 mb-4">
+          <div class="sc-icon shrink-0"><span class="material-symbols-rounded fill" style="font-size:28px">widgets</span></div>
+          <div>
+            <div class="flex items-center gap-2 mb-1">
+              <h3 class="text-xl font-bold text-[color:var(--txt-1)]" style="font-family:var(--font-display)">Controls & Libraries for .NET</h3>
+              <span class="badge badge-internal">Internal</span>
+            </div>
+            <p class="text-xs text-[color:var(--txt-3)] font-medium">Componentes avanzados para WPF, MAUI y Blazor</p>
+          </div>
+        </div>
+        <p class="text-[color:var(--txt-2)] leading-relaxed text-sm mb-4">
+          Librerías de controles de alto rendimiento para el ecosistema .NET. DataGrids con filtrado avanzado, schedulers para planificación de recursos, formularios con validación integrada y componentes de gráficos.
+        </p>
+        <div class="space-y-2 mb-6">
+          <div class="feature-row"><span class="material-symbols-rounded text-indigo-500" style="font-size:16px">check_circle</span><span class="text-sm text-[color:var(--txt-3)]">DataGrids con filtrado, ordenamiento y agrupación</span></div>
+          <div class="feature-row"><span class="material-symbols-rounded text-indigo-500" style="font-size:16px">check_circle</span><span class="text-sm text-[color:var(--txt-3)]">Schedulers/Calendars para planificación de recursos</span></div>
+          <div class="feature-row"><span class="material-symbols-rounded text-indigo-500" style="font-size:16px">check_circle</span><span class="text-sm text-[color:var(--txt-3)]">Form controllers con validación y charting components</span></div>
+        </div>
+        <div class="flex items-center gap-2 text-xs text-[color:var(--txt-3)] pt-4 border-t border-[color:var(--card-border)]">
+          <span class="material-symbols-rounded" style="font-size:14px">code</span>
+          Plataformas: <strong class="text-[color:var(--txt-2)]">WPF, .NET MAUI, Blazor</strong>
+        </div>
+      </div>
+
+      <!-- SaaS Products -->
+      <div class="product-card scroll-reveal" style="--c-bg: var(--em); --i-bg: rgba(16,185,129,0.1); --i-color: #10B981; animation-delay:.2s">
+        <div class="flex items-start gap-4 mb-4">
+          <div class="sc-icon shrink-0"><span class="material-symbols-rounded fill" style="font-size:28px">cloud</span></div>
+          <div>
+            <div class="flex items-center gap-2 mb-1">
+              <h3 class="text-xl font-bold text-[color:var(--txt-1)]" style="font-family:var(--font-display)">SaaS Products</h3>
+              <span class="badge badge-live">Live</span>
+            </div>
+            <p class="text-xs text-[color:var(--txt-3)] font-medium">Soluciones SaaS verticales para industrias específicas</p>
+          </div>
+        </div>
+        <p class="text-[color:var(--txt-2)] leading-relaxed text-sm mb-4">
+          Pequeñas soluciones SaaS diseñadas para verticales específicos. Cada producto está construido con alta personalización para su industria, utilizando MeridianUI y arquitectura moderna.
+        </p>
+        <div class="bg-[color:var(--bg-3)] rounded-xl p-4 mb-4 border border-[color:var(--card-border)]">
+          <div class="flex items-center gap-3 mb-2">
+            <div class="w-8 h-8 rounded-lg bg-emerald-500/10 text-emerald-500 flex items-center justify-center">
+              <span class="material-symbols-rounded fill" style="font-size:18px">hotel</span>
+            </div>
+            <div>
+              <h4 class="font-bold text-[color:var(--txt-1)] text-sm">SHEndevour</h4>
+              <p class="text-xs text-[color:var(--txt-3)]">Sistema de Gestión Hotelera</p>
+            </div>
+          </div>
+          <p class="text-xs text-[color:var(--txt-3)]">Versiones Desktop (WPF) y Web. Control total de reservas, habitaciones, facturación y reportes.</p>
+        </div>
+        <div class="flex items-center gap-2 text-xs text-[color:var(--txt-3)] pt-4 border-t border-[color:var(--card-border)]">
+          <span class="material-symbols-rounded" style="font-size:14px">schedule</span>
+          Próximamente: más soluciones verticales
+        </div>
+      </div>
+
+      <!-- RASS -->
+      <div class="product-card scroll-reveal" style="--c-bg: var(--vi); --i-bg: rgba(139,92,246,0.1); --i-color: #8B5CF6; animation-delay:.3s">
+        <div class="flex items-start gap-4 mb-4">
+          <div class="sc-icon shrink-0"><span class="material-symbols-rounded fill" style="font-size:28px">memory</span></div>
+          <div>
+            <div class="flex items-center gap-2 mb-1">
+              <h3 class="text-xl font-bold text-[color:var(--txt-1)]" style="font-family:var(--font-display)">RASS</h3>
+              <span class="badge badge-oss">Open Source</span>
+            </div>
+            <p class="text-xs text-[color:var(--txt-3)] font-medium">Ryou Adaptive SDD System</p>
+          </div>
+        </div>
+        <p class="text-[color:var(--txt-2)] leading-relaxed text-sm mb-4">
+          El primer Sistema Operativo de Desarrollo IA Adaptativo diseñado para OpenCode. Redefine la forma en la que programas con agentes, evitando el desperdicio de tokens y enfocándose en una arquitectura determinista.
+        </p>
+        <div class="space-y-2 mb-6">
+          <div class="feature-row"><span class="material-symbols-rounded text-purple-500" style="font-size:16px">check_circle</span><span class="text-sm text-[color:var(--txt-3)]">Plugin Visual: Dashboard nativo in-session</span></div>
+          <div class="feature-row"><span class="material-symbols-rounded text-purple-500" style="font-size:16px">check_circle</span><span class="text-sm text-[color:var(--txt-3)]">Instalación Global: un script instala CLI y Extensión</span></div>
+          <div class="feature-row"><span class="material-symbols-rounded text-purple-500" style="font-size:16px">check_circle</span><span class="text-sm text-[color:var(--txt-3)]">Arquitectura determinista y adaptativa</span></div>
+        </div>
+        <a href="RASSWeb/index.html" class="inline-flex items-center gap-2 px-6 py-3 rounded-xl font-bold text-sm text-white hover:-translate-y-1 transition-transform" style="background: linear-gradient(135deg, #6366F1, #8B5CF6); box-shadow: 0 8px 20px rgba(139, 92, 246, 0.3);">
+          Explorar RASS <span class="material-symbols-rounded" style="font-size:18px">arrow_forward</span>
+        </a>
+      </div>
+
+      <!-- RACSP -->
+      <div class="product-card lg:col-span-2 scroll-reveal" style="--c-bg: var(--or); --i-bg: rgba(249,115,22,0.1); --i-color: #F97316; animation-delay:.4s">
+        <div class="flex flex-col md:flex-row gap-8 items-start">
+          <div class="md:w-2/3">
+            <div class="flex items-start gap-4 mb-4">
+              <div class="sc-icon shrink-0"><span class="material-symbols-rounded fill" style="font-size:28px">hub</span></div>
+              <div>
+                <div class="flex items-center gap-2 mb-1 flex-wrap">
+                  <h3 class="text-xl font-bold text-[color:var(--txt-1)]" style="font-family:var(--font-display)">RACSP</h3>
+                  <span class="badge badge-oss">Open Source</span>
+                  <span class="badge badge-live">v2.0.0</span>
+                </div>
+                <p class="text-xs text-[color:var(--txt-3)] font-medium">Ryou AI Cross SDD Protocol</p>
+              </div>
+            </div>
+            <p class="text-[color:var(--txt-2)] leading-relaxed text-sm mb-4">
+              Protocolo de colaboración multi-agente para agentes de IA (Claude, OpenCode, Gemini, etc.). Un protocolo nativo de proyecto con cerebro compartido, perfiles SDD adaptativos y prevención automática de conflictos. <strong>Production-Grade.</strong>
+            </p>
+            <div class="grid sm:grid-cols-2 gap-2 mb-6">
+              <div class="feature-row"><span class="material-symbols-rounded text-orange-500" style="font-size:16px">check_circle</span><span class="text-sm text-[color:var(--txt-3)]">Cerebro compartido entre agentes</span></div>
+              <div class="feature-row"><span class="material-symbols-rounded text-orange-500" style="font-size:16px">check_circle</span><span class="text-sm text-[color:var(--txt-3)]">Perfiles SDD adaptativos</span></div>
+              <div class="feature-row"><span class="material-symbols-rounded text-orange-500" style="font-size:16px">check_circle</span><span class="text-sm text-[color:var(--txt-3)]">Prevención automática de conflictos</span></div>
+              <div class="feature-row"><span class="material-symbols-rounded text-orange-500" style="font-size:16px">check_circle</span><span class="text-sm text-[color:var(--txt-3)]">Compatible con múltiples agentes IA</span></div>
+            </div>
+            <a href="RACSPWeb/index.html" class="inline-flex items-center gap-2 px-6 py-3 rounded-xl font-bold text-sm text-white hover:-translate-y-1 transition-transform" style="background: linear-gradient(135deg, #F97316, #FB923C); box-shadow: 0 8px 20px rgba(249, 115, 22, 0.3);">
+              Explorar RACSP <span class="material-symbols-rounded" style="font-size:18px">arrow_forward</span>
+            </a>
+          </div>
+          <div class="md:w-1/3 w-full rounded-2xl overflow-hidden border border-[color:var(--card-border)] bg-[#050b18] p-4 md:p-5 shadow-2xl relative">
+            <div class="absolute inset-0 bg-gradient-to-tr from-orange-500/5 to-amber-500/10 blur-2xl"></div>
+            <div class="flex items-center gap-2 mb-3 border-b border-white/10 pb-2">
+              <div class="w-2.5 h-2.5 rounded-full bg-red-500/80"></div>
+              <div class="w-2.5 h-2.5 rounded-full bg-yellow-500/80"></div>
+              <div class="w-2.5 h-2.5 rounded-full bg-green-500/80"></div>
+              <span class="text-[10px] text-slate-500 font-mono ml-2">racsp / protocol</span>
+            </div>
+            <pre class="text-[10px] md:text-xs text-slate-300 font-mono leading-relaxed relative z-10 overflow-x-auto whitespace-pre-wrap"><code><span class="text-slate-500"># RACSP v2.0.0 — Multi-Agent Protocol</span>
+<span class="text-orange-400">agents:</span>
+  - <span class="text-blue-400">claude</span> (architect)
+  - <span class="text-green-400">opencode</span> (builder)
+  - <span class="text-purple-400">gemini</span> (reviewer)
+
+<span class="text-orange-400">shared_brain:</span> <span class="text-amber-300">enabled</span>
+<span class="text-orange-400">conflict_prevention:</span> <span class="text-amber-300">auto</span>
+<span class="text-orange-400">status:</span> <span class="text-emerald-400">production-grade</span></code></pre>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ══ OPEN SOURCE ═══════════════════════════════════════════════ -->
+<section id="opensource" class="py-24 sm:py-32 section-alt relative overflow-hidden">
+  <div class="absolute top-0 right-0 w-96 h-96 bg-emerald-500/5 rounded-full blur-[100px] pointer-events-none"></div>
+  <div class="absolute bottom-0 left-0 w-96 h-96 bg-blue-500/5 rounded-full blur-[100px] pointer-events-none"></div>
+
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+    <div class="text-center max-w-2xl mx-auto mb-16 scroll-reveal">
+      <p class="text-emerald-500 font-semibold tracking-wide text-sm mb-3 uppercase">Comunidad & Código Abierto</p>
+      <h2 class="text-3xl sm:text-4xl md:text-5xl font-extrabold text-[color:var(--txt-1)] mb-6 tracking-tight" style="font-family:var(--font-display)">
+        Contribuimos al <span class="text-gradient">ecosistema open source.</span>
+      </h2>
+      <p class="text-[color:var(--txt-2)] text-lg leading-relaxed">
+        Creemos en el poder de la colaboración. Nuestros frameworks de IA son de código abierto para impulsar la comunidad de desarrolladores.
+      </p>
+    </div>
+
+    <div class="grid md:grid-cols-2 gap-6 lg:gap-8 max-w-5xl mx-auto">
+      <!-- RASS Open Source -->
+      <div class="oss-card scroll-reveal" style="--c-bg: var(--vi); --i-bg: rgba(139,92,246,0.1); --i-color: #8B5CF6;">
+        <div class="flex items-center gap-4 mb-6">
+          <div class="sc-icon"><span class="material-symbols-rounded fill" style="font-size:28px">memory</span></div>
+          <div>
+            <h3 class="text-xl font-bold text-[color:var(--txt-1)]" style="font-family:var(--font-display)">RASS</h3>
+            <p class="text-xs text-[color:var(--txt-3)]">Ryou Adaptive SDD System</p>
+          </div>
+        </div>
+        <p class="text-[color:var(--txt-2)] leading-relaxed text-sm mb-6">
+          Framework de desarrollo IA adaptativo para OpenCode. Sistema operativo de desarrollo que evita loops infinitos y optimiza el uso de tokens.
+        </p>
+        <div class="flex flex-wrap gap-2 mb-6">
+          <span class="oss-badge"><span class="material-symbols-rounded" style="font-size:12px">star</span> Open Source</span>
+          <span class="oss-badge"><span class="material-symbols-rounded" style="font-size:12px">tag</span> v1.0.0</span>
+          <span class="oss-badge"><span class="material-symbols-rounded" style="font-size:12px">gavel</span> MIT License</span>
+        </div>
+        <div class="flex items-center gap-3">
+          <a href="RASSWeb/index.html" class="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl font-bold text-sm text-white hover:-translate-y-1 transition-transform" style="background: linear-gradient(135deg, #6366F1, #8B5CF6); box-shadow: 0 6px 16px rgba(139, 92, 246, 0.3);">
+            Explorar <span class="material-symbols-rounded" style="font-size:16px">arrow_forward</span>
+          </a>
+          <a href="https://github.com/keorgtz/RASS" target="_blank" class="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl font-bold text-sm border hover:bg-[color:var(--card-hover)] transition-colors" style="border-color:var(--card-border);color:var(--txt-2)">
+            <i class="fa-brands fa-github"></i> GitHub
           </a>
         </div>
-        <div class="w-full md:w-1/2 rounded-2xl overflow-hidden border border-[color:var(--card-border)] bg-[#050b18] p-4 md:p-6 shadow-2xl relative">
-          <div class="absolute inset-0 bg-gradient-to-tr from-indigo-500/5 to-purple-500/10 blur-2xl"></div>
-          <div class="flex items-center gap-2 mb-4 border-b border-white/10 pb-3">
-            <div class="w-3 h-3 rounded-full bg-red-500/80"></div>
-            <div class="w-3 h-3 rounded-full bg-yellow-500/80"></div>
-            <div class="w-3 h-3 rounded-full bg-green-500/80"></div>
-            <span class="text-xs text-slate-500 font-mono ml-2">powershell / opencode</span>
+      </div>
+
+      <!-- RACSP Open Source -->
+      <div class="oss-card scroll-reveal" style="--c-bg: var(--or); --i-bg: rgba(249,115,22,0.1); --i-color: #F97316; animation-delay:.1s">
+        <div class="flex items-center gap-4 mb-6">
+          <div class="sc-icon"><span class="material-symbols-rounded fill" style="font-size:28px">hub</span></div>
+          <div>
+            <h3 class="text-xl font-bold text-[color:var(--txt-1)]" style="font-family:var(--font-display)">RACSP</h3>
+            <p class="text-xs text-[color:var(--txt-3)]">Ryou AI Cross SDD Protocol</p>
           </div>
-          <pre class="text-xs md:text-sm text-slate-300 font-mono leading-loose relative z-10 overflow-x-auto whitespace-pre-wrap sm:whitespace-pre"><code><span class="text-slate-500"># 1. Instalación Global Unificada</span>
-<span class="text-blue-400">pwsh</span> .\install.ps1
-
-<span class="text-purple-400">> ✔ RASS CLI y Plugin instalados.</span>
-
-<span class="text-slate-500"># 2. Interfaz Visual In-Session</span>
-<span class="text-slate-300">En OpenCode o VS Code ejecutá:</span>
-<span class="text-green-400">Ctrl+Shift+P</span> > RASS: Open SDD Dashboard</code></pre>
         </div>
+        <p class="text-[color:var(--txt-2)] leading-relaxed text-sm mb-6">
+          Protocolo multi-agente para colaboración entre agentes de IA. Cerebro compartido, perfiles adaptativos y prevención de conflictos. Production-Grade v2.0.0.
+        </p>
+        <div class="flex flex-wrap gap-2 mb-6">
+          <span class="oss-badge"><span class="material-symbols-rounded" style="font-size:12px">star</span> Open Source</span>
+          <span class="oss-badge"><span class="material-symbols-rounded" style="font-size:12px">tag</span> v2.0.0</span>
+          <span class="oss-badge"><span class="material-symbols-rounded" style="font-size:12px">gavel</span> MIT License</span>
+          <span class="oss-badge" style="background:rgba(16,185,129,.1);color:var(--em);border-color:rgba(16,185,129,.2)"><span class="material-symbols-rounded" style="font-size:12px">verified</span> Production</span>
+        </div>
+        <div class="flex items-center gap-3">
+            <a href="RACSPWeb/index.html" class="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl font-bold text-sm text-white hover:-translate-y-1 transition-transform" style="background: linear-gradient(135deg, #F97316, #FB923C); box-shadow: 0 6px 16px rgba(249, 115, 22, 0.3);">
+              Explorar RACSP <span class="material-symbols-rounded" style="font-size:18px">arrow_forward</span>
+            </a>
+          <a href="https://github.com/keorgtz/RACSP" target="_blank" class="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl font-bold text-sm border hover:bg-[color:var(--card-hover)] transition-colors" style="border-color:var(--card-border);color:var(--txt-2)">
+            <i class="fa-brands fa-github"></i> GitHub
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <div class="mt-16 text-center scroll-reveal">
+      <div class="inline-flex items-center gap-3 px-6 py-3 rounded-2xl border" style="background:var(--card);border-color:var(--card-border)">
+        <span class="material-symbols-rounded text-emerald-500" style="font-size:20px">groups</span>
+        <p class="text-sm text-[color:var(--txt-2)]">
+          <strong class="text-[color:var(--txt-1)]">Comunidad driven.</strong> Contribuciones, issues y pull requests son bienvenidos.
+        </p>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ══ BANNER CTA / CONTACTO ════════════════════════════════════════════════ -->
-<section id="contacto" class="py-20 relative overflow-hidden" style="background: linear-gradient(135deg, var(--hero-from) 0%, var(--hero-to) 100%);">
-  <div class="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGNpcmNsZSBjeD0iMSIgY3k9IjEiIHI9IjEiIGZpbGw9InJnYmEoMCwwLDAsMC4wNSkiLz48L3N2Zz4=')] opacity-50"></div>
-  <div class="max-w-4xl mx-auto px-4 text-center relative z-10">
-    <h2 class="text-3xl sm:text-4xl font-extrabold text-[color:var(--txt-1)] mb-6 tracking-tight" style="font-family:var(--font-display)">
-      ¿Listo para llevar tu empresa al siguiente nivel?
-    </h2>
-    <p class="text-[color:var(--txt-2)] text-lg mb-8 max-w-2xl mx-auto">
-      Agenda una consulta gratuita y descubramos juntos cómo la tecnología puede resolver tus desafíos operativos hoy mismo.
-    </p>
-    <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
-      <a href="https://wa.me/523327633233" target="_blank" class="inline-flex items-center justify-center w-full sm:w-auto gap-2 px-8 py-4 rounded-2xl font-bold text-sm text-white bg-[#25D366] shadow-[0_10px_20px_rgba(37,211,102,0.2)] hover:opacity-90 transition-opacity">
-        <i class="fa-brands fa-whatsapp text-lg"></i>
-        WhatsApp: 33 2763 3233
-      </a>
-      <a href="tel:+523327633233" class="inline-flex items-center justify-center w-full sm:w-auto gap-2 px-8 py-4 rounded-2xl font-bold text-sm text-[color:var(--txt-1)] bg-[color:var(--card)] border border-[color:var(--card-border)] hover:bg-[color:var(--card-hover)] transition-colors">
-        <span class="material-symbols-rounded" style="font-size:20px">call</span>
-        Llamar directo
-      </a>
+<!-- ══ CONTACTO ════════════════════════════════════════════════ -->
+<section id="contacto" class="py-24 sm:py-32 section-main relative">
+  <div class="absolute top-0 right-0 w-96 h-96 bg-blue-500/5 rounded-full blur-[100px] pointer-events-none"></div>
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+    <div class="text-center max-w-2xl mx-auto mb-16 scroll-reveal">
+      <p class="text-blue-600 font-semibold tracking-wide text-sm mb-3 uppercase">Contacto</p>
+      <h2 class="text-3xl sm:text-4xl md:text-5xl font-extrabold text-[color:var(--txt-1)] mb-6 tracking-tight" style="font-family:var(--font-display)">
+        Hablemos de tu <span class="text-gradient">próximo proyecto.</span>
+      </h2>
+      <p class="text-[color:var(--txt-2)] text-lg leading-relaxed">
+        Estamos listos para ayudarte a transformar tu negocio con tecnología de clase mundial.
+      </p>
+    </div>
+
+    <div class="grid lg:grid-cols-2 gap-8 lg:gap-12 max-w-5xl mx-auto">
+      <!-- Contact Info -->
+      <div class="scroll-reveal">
+        <div class="space-y-6">
+          <div class="contact-info-item">
+            <div class="w-12 h-12 rounded-2xl bg-green-500/10 text-green-500 flex items-center justify-center shrink-0">
+              <i class="fa-brands fa-whatsapp text-xl"></i>
+            </div>
+            <div>
+              <h4 class="font-bold text-[color:var(--txt-1)] text-sm mb-1">WhatsApp</h4>
+              <a href="https://wa.me/523327633233" target="_blank" class="text-[color:var(--txt-2)] hover:text-[color:var(--kr-blue)] transition-colors text-sm">+52 33 2763 3233</a>
+            </div>
+          </div>
+
+          <div class="contact-info-item">
+            <div class="w-12 h-12 rounded-2xl bg-blue-500/10 text-blue-500 flex items-center justify-center shrink-0">
+              <span class="material-symbols-rounded fill" style="font-size:22px">call</span>
+            </div>
+            <div>
+              <h4 class="font-bold text-[color:var(--txt-1)] text-sm mb-1">Teléfono</h4>
+              <a href="tel:+523327633233" class="text-[color:var(--txt-2)] hover:text-[color:var(--kr-blue)] transition-colors text-sm">+52 33 2763 3233</a>
+            </div>
+          </div>
+
+          <div class="contact-info-item">
+            <div class="w-12 h-12 rounded-2xl bg-purple-500/10 text-purple-500 flex items-center justify-center shrink-0">
+              <span class="material-symbols-rounded fill" style="font-size:22px">mail</span>
+            </div>
+            <div>
+              <h4 class="font-bold text-[color:var(--txt-1)] text-sm mb-1">Email</h4>
+              <a href="mailto:Kevin00ortizgtz@gmail.com" class="text-[color:var(--txt-2)] hover:text-[color:var(--kr-blue)] transition-colors text-sm">Kevin00ortizgtz@gmail.com</a>
+            </div>
+          </div>
+
+          <div class="contact-info-item">
+            <div class="w-12 h-12 rounded-2xl bg-amber-500/10 text-amber-500 flex items-center justify-center shrink-0">
+              <span class="material-symbols-rounded fill" style="font-size:22px">location_on</span>
+            </div>
+            <div>
+              <h4 class="font-bold text-[color:var(--txt-1)] text-sm mb-1">Ubicación</h4>
+              <p class="text-[color:var(--txt-2)] text-sm">Guadalajara, México</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="mt-8 pt-8 border-t border-[color:var(--card-border)]">
+          <h4 class="font-bold text-[color:var(--txt-1)] text-sm mb-4">Síguenos</h4>
+          <div class="flex items-center gap-3">
+            <a href="#" class="social-icon" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+            <a href="#" class="social-icon" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+            <a href="#" class="social-icon" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+            <a href="https://github.com/keorgtz" target="_blank" class="social-icon" aria-label="GitHub"><i class="fa-brands fa-github"></i></a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Contact Form -->
+      <div class="contact-form-wrapper scroll-reveal" style="animation-delay:.1s">
+        <form id="contact-form" class="space-y-4">
+          <div>
+            <label for="name" class="block text-xs font-semibold text-[color:var(--txt-2)] mb-2 uppercase tracking-wider">Nombre</label>
+            <input type="text" id="name" name="name" required class="form-input" placeholder="Tu nombre completo">
+          </div>
+          <div>
+            <label for="email" class="block text-xs font-semibold text-[color:var(--txt-2)] mb-2 uppercase tracking-wider">Email</label>
+            <input type="email" id="email" name="email" required class="form-input" placeholder="tu@email.com">
+          </div>
+          <div>
+            <label for="message" class="block text-xs font-semibold text-[color:var(--txt-2)] mb-2 uppercase tracking-wider">Mensaje</label>
+            <textarea id="message" name="message" rows="4" required class="form-input resize-none" placeholder="Cuéntanos sobre tu proyecto..."></textarea>
+          </div>
+          <button type="submit" class="w-full btn-primary flex items-center justify-center gap-2.5 px-8 py-4 rounded-2xl font-bold text-sm" style="font-family:var(--font)">
+            <span class="material-symbols-rounded" style="font-size:18px">send</span>
+            Enviar Mensaje
+          </button>
+        </form>
+        <div id="form-success" class="hidden mt-4 p-4 rounded-xl bg-emerald-500/10 border border-emerald-500/20 text-emerald-600 text-sm text-center">
+          <span class="material-symbols-rounded inline-block mb-1" style="font-size:20px">check_circle</span>
+          <p>¡Mensaje enviado! Te contactaremos pronto.</p>
+        </div>
+      </div>
     </div>
   </div>
 </section>
 
 <!-- ══ FOOTER ════════════════════════════════════════════════════ -->
-<footer class="footer py-12">
+<footer class="footer py-16">
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-    <div class="flex flex-col md:flex-row justify-between items-center gap-6">
-      <div class="flex items-center gap-2">
-        <div class="w-8 h-8 rounded-full flex items-center justify-center font-bold text-white text-sm" style="background:linear-gradient(135deg, var(--kr-blue), var(--vi))">K</div>
-        <span class="text-sm font-extrabold tracking-tighter uppercase text-[color:var(--txt-1)]" style="font-family:var(--font-display)">
-          KEOR<span class="text-blue-500">SOFT</span>
-        </span>
+    <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-10 mb-12">
+      <!-- Company Info -->
+      <div class="lg:col-span-1">
+        <div class="flex items-center gap-2 mb-4">
+          <div class="w-8 h-8 rounded-full flex items-center justify-center font-bold text-white text-sm" style="background:linear-gradient(135deg, var(--kr-blue), var(--vi))">K</div>
+          <span class="text-sm font-extrabold tracking-tighter uppercase text-[color:var(--txt-1)]" style="font-family:var(--font-display)">
+            KEOR<span class="text-blue-500">SOFT</span>
+          </span>
+        </div>
+        <p class="text-sm text-[color:var(--txt-3)] leading-relaxed mb-4">
+          Empresa de tecnología enfocada en crear soluciones de software de escritorio y web, herramientas de IA, frameworks UI y productos SaaS.
+        </p>
+        <div class="flex items-center gap-3">
+          <a href="#" class="social-icon" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+          <a href="#" class="social-icon" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+          <a href="#" class="social-icon" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+          <a href="https://github.com/keorgtz" target="_blank" class="social-icon" aria-label="GitHub"><i class="fa-brands fa-github"></i></a>
+        </div>
       </div>
-      
-      <div class="flex items-center gap-6 text-sm font-medium text-[color:var(--txt-2)]">
-        <a href="#inicio" class="hover:text-[color:var(--kr-blue)] transition-colors">Inicio</a>
-        <a href="#servicios" class="hover:text-[color:var(--kr-blue)] transition-colors">Servicios</a>
-        <a href="#contacto" class="hover:text-[color:var(--kr-blue)] transition-colors">Contacto</a>
+
+      <!-- Quick Links -->
+      <div>
+        <h4 class="font-bold text-[color:var(--txt-1)] text-sm mb-4 uppercase tracking-wider">Secciones</h4>
+        <ul class="space-y-2">
+          <li><a href="#inicio" class="footer-link">Inicio</a></li>
+          <li><a href="#servicios" class="footer-link">Servicios</a></li>
+          <li><a href="#productos" class="footer-link">Productos</a></li>
+          <li><a href="#opensource" class="footer-link">Open Source</a></li>
+          <li><a href="#nosotros" class="footer-link">Nosotros</a></li>
+          <li><a href="#contacto" class="footer-link">Contacto</a></li>
+        </ul>
       </div>
-      
-      <div class="flex items-center gap-4">
-        <a href="#" class="w-10 h-10 rounded-full bg-[color:var(--card-border)] flex items-center justify-center text-[color:var(--txt-2)] hover:bg-[color:var(--kr-blue)] hover:text-white transition-colors">
-          <i class="fa-brands fa-linkedin-in"></i>
-        </a>
-        <a href="#" class="w-10 h-10 rounded-full bg-[color:var(--card-border)] flex items-center justify-center text-[color:var(--txt-2)] hover:bg-[color:var(--kr-blue)] hover:text-white transition-colors">
-          <i class="fa-brands fa-facebook-f"></i>
-        </a>
-        <a href="#" class="w-10 h-10 rounded-full bg-[color:var(--card-border)] flex items-center justify-center text-[color:var(--txt-2)] hover:bg-[color:var(--kr-blue)] hover:text-white transition-colors">
-          <i class="fa-brands fa-instagram"></i>
-        </a>
+
+      <!-- Products -->
+      <div>
+        <h4 class="font-bold text-[color:var(--txt-1)] text-sm mb-4 uppercase tracking-wider">Productos</h4>
+        <ul class="space-y-2">
+          <li><a href="#productos" class="footer-link">MeridianUI</a></li>
+          <li><a href="#productos" class="footer-link">Controls & Libraries</a></li>
+          <li><a href="#productos" class="footer-link">SHEndevour</a></li>
+          <li><a href="RASSWeb/index.html" class="footer-link">RASS</a></li>
+          <li><a href="RACSPWeb/index.html" class="footer-link">RACSP</a></li>
+        </ul>
+      </div>
+
+      <!-- Contact -->
+      <div>
+        <h4 class="font-bold text-[color:var(--txt-1)] text-sm mb-4 uppercase tracking-wider">Contacto</h4>
+        <ul class="space-y-3">
+          <li class="flex items-center gap-2 text-sm text-[color:var(--txt-3)]">
+            <span class="material-symbols-rounded" style="font-size:16px">location_on</span>
+            Guadalajara, México
+          </li>
+          <li class="flex items-center gap-2 text-sm text-[color:var(--txt-3)]">
+            <span class="material-symbols-rounded" style="font-size:16px">mail</span>
+            <a href="mailto:Kevin00ortizgtz@gmail.com" class="hover:text-[color:var(--kr-blue)] transition-colors">Kevin00ortizgtz@gmail.com</a>
+          </li>
+          <li class="flex items-center gap-2 text-sm text-[color:var(--txt-3)]">
+            <span class="material-symbols-rounded" style="font-size:16px">call</span>
+            <a href="tel:+523327633233" class="hover:text-[color:var(--kr-blue)] transition-colors">+52 33 2763 3233</a>
+          </li>
+          <li class="flex items-center gap-2 text-sm text-[color:var(--txt-3)]">
+            <i class="fa-brands fa-whatsapp" style="font-size:14px"></i>
+            <a href="https://wa.me/523327633233" target="_blank" class="hover:text-[color:var(--kr-blue)] transition-colors">WhatsApp</a>
+          </li>
+        </ul>
       </div>
     </div>
-    
-    <div class="mt-12 pt-8 border-t border-[color:var(--card-border)] text-center flex flex-col md:flex-row justify-between items-center gap-4">
+
+    <div class="pt-8 border-t border-[color:var(--card-border)] flex flex-col md:flex-row justify-between items-center gap-4">
       <p class="text-xs text-[color:var(--txt-3)] font-medium">&copy; 2026 Keorsoft. Todos los derechos reservados.</p>
       <p class="text-xs text-[color:var(--txt-3)] flex items-center gap-1">Diseñado con <span class="material-symbols-rounded fill text-red-500" style="font-size:14px">favorite</span> por Keorsoft UX/UI</p>
     </div>
   </div>
 </footer>
+
+<!-- ══ SCRIPTS ═══════════════════════════════════════════════════ -->
+<script>
+  // Theme Toggle
+  const themeToggle = document.getElementById('theme-toggle');
+  const themeIcon = document.getElementById('theme-icon');
+  const html = document.documentElement;
+
+  function updateThemeIcon() {
+    const isDark = html.getAttribute('data-theme') === 'dark';
+    themeIcon.textContent = isDark ? 'light_mode' : 'dark_mode';
+  }
+
+  themeToggle.addEventListener('click', () => {
+    const current = html.getAttribute('data-theme');
+    const next = current === 'dark' ? 'light' : 'dark';
+    html.setAttribute('data-theme', next);
+    updateThemeIcon();
+  });
+
+  updateThemeIcon();
+
+  // Mobile Menu
+  const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+  const mobileMenu = document.getElementById('mobile-menu');
+
+  mobileMenuBtn.addEventListener('click', (e) => {
+    e.stopPropagation();
+    mobileMenu.classList.toggle('hidden');
+  });
+
+  document.addEventListener('click', (e) => {
+    if (!mobileMenu.contains(e.target) && !mobileMenuBtn.contains(e.target)) {
+      mobileMenu.classList.add('hidden');
+    }
+  });
+
+  mobileMenu.querySelectorAll('a').forEach(link => {
+    link.addEventListener('click', () => mobileMenu.classList.add('hidden'));
+  });
+
+  // Scroll Reveal (Intersection Observer)
+  const revealElements = document.querySelectorAll('.scroll-reveal');
+  const revealObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('revealed');
+        revealObserver.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+
+  revealElements.forEach(el => revealObserver.observe(el));
+
+  // Active Nav Link on Scroll
+  const sections = document.querySelectorAll('section[id]');
+  const navLinks = document.querySelectorAll('.pill-nav-link');
+
+  function updateActiveNav() {
+    const scrollPos = window.scrollY + 150;
+    sections.forEach(section => {
+      const top = section.offsetTop;
+      const height = section.offsetHeight;
+      const id = section.getAttribute('id');
+      if (scrollPos >= top && scrollPos < top + height) {
+        navLinks.forEach(link => {
+          link.classList.remove('active');
+          if (link.getAttribute('href') === '#' + id) {
+            link.classList.add('active');
+          }
+        });
+      }
+    });
+  }
+
+  window.addEventListener('scroll', updateActiveNav, { passive: true });
+  updateActiveNav();
+
+  // Contact Form
+  const contactForm = document.getElementById('contact-form');
+  const formSuccess = document.getElementById('form-success');
+
+  contactForm.addEventListener('submit', (e) => {
+    e.preventDefault();
+    // Simulate form submission
+    contactForm.style.opacity = '0.5';
+    contactForm.style.pointerEvents = 'none';
+    setTimeout(() => {
+      contactForm.reset();
+      contactForm.style.opacity = '1';
+      contactForm.style.pointerEvents = 'auto';
+      formSuccess.classList.remove('hidden');
+      setTimeout(() => formSuccess.classList.add('hidden'), 5000);
+    }, 1000);
+  });
+</script>
 
 </body>
 </html>
