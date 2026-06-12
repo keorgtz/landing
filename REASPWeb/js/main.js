@@ -1,6 +1,6 @@
 /**
- * RASS Website — Main JavaScript
- * Ryou Adaptive SDD System v3.0.0
+  * REASP Website — Main JavaScript
+  * Ryou Enterprise Adaptive SDD Protocol v3.0.0
  * Keorsoft 2026
  */
 
