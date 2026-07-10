@@ -368,16 +368,15 @@ section {
   flex-wrap: wrap;
   gap: 2.5rem 3rem;
   padding-top: 2rem;
-  border-top: 1px solid var(--border-light);
   margin-top: 1.5rem;
 }
 
-.badge {
+.hero-badges .badge {
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
-  padding-left: 1rem;
-  border-left: 2px solid var(--accent-cyan);
+  padding: 0;
+  border: none;
 }
 
 .badge-val {
@@ -825,6 +824,10 @@ section {
   }
 }
 
+.pillar-card-wide {
+  grid-column: 1 / -1;
+}
+
 .pillar-card {
   padding: 2.5rem;
   position: relative;
@@ -925,6 +928,32 @@ section {
 .pillar-card.indigo .pillar-item svg { color: var(--accent-indigo); }
 .pillar-card.cyan .pillar-item svg { color: var(--accent-cyan); }
 .pillar-card.purple .pillar-item svg { color: var(--accent-purple); }
+
+.architecture-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1rem;
+}
+
+.architecture-item {
+  padding: 1.25rem;
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.03);
+}
+
+.architecture-title {
+  font-family: var(--font-display);
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 0.5rem;
+}
+
+.architecture-desc {
+  font-size: 0.9rem;
+  line-height: 1.6;
+  color: var(--text-secondary);
+}
 
 /* ============================================
    12. Products · EPIC 05 PART 02
@@ -2042,6 +2071,10 @@ section {
 
   .hero-badges {
     gap: 1rem;
+  }
+
+  .architecture-grid {
+    grid-template-columns: 1fr;
   }
 
   .footer-container {
