@@ -85,6 +85,13 @@
               <li><a href="#modelos-ia">Modelos de IA</a></li>
               <li><a href="#niveles-esfuerzo">Niveles de Esfuerzo</a></li>
               <li><a href="#estrategias-modelo">Estrategias de Modelo</a></li>
+              <li><a href="#proveedores">Proveedores</a></li>
+            </ul>
+          </li>
+          <li class="docs-nav-section">
+            <div class="docs-nav-title"><i class="ph ph-tree-structure"></i> Metodologia</div>
+            <ul class="docs-nav-items">
+              <li><a href="#refi-v2">REFI v2 &middot; Epic + PART</a></li>
             </ul>
           </li>
           <li class="docs-nav-section">
@@ -665,6 +672,158 @@ Minimal:     [orchestrator] → [explore] → [apply]</code></pre>
   }
 }</code></pre>
         </div>
+      </section>
+
+      <!-- Multi-Proveedor -->
+      <section class="docs-section reveal" id="proveedores">
+        <h2><i class="ph ph-stack"></i> Soporte Multi-Proveedor</h2>
+        <p class="lead">
+          El tool <code>sdd_mode_profile</code> acepta el argumento opcional <code>provider</code> para validar que el modelo pertenezca a un proveedor especifico. 4 providers preconfigurados + opcion de custom models.
+        </p>
+
+        <h3>Providers preconfigurados</h3>
+        <div class="code-block">
+          <div class="code-header">
+            <span class="code-lang">bash</span>
+            <button class="code-copy" data-copy="sdd_mode_profile(action=&quot;list&quot;)"><i class="ph ph-copy"></i> Copiar</button>
+          </div>
+          <pre><code>$ sdd_mode_profile(action="list")
+
+Providers disponibles:
+  - opencode-go    (6 models)  [preseleccionado]
+    Models: GLM-5.1, Kimi K2.7 Code, DeepSeek V4 Pro, ...
+  - anthropic      (3 models)
+    Models: claude-sonnet-4-5, claude-opus-4, claude-haiku-4-5
+  - openai         (3 models)
+    Models: gpt-5, gpt-5-mini, o3-pro
+  - google         (2 models)
+    Models: gemini-2.5-pro, gemini-2.5-flash</code></pre>
+        </div>
+
+        <h3>Uso del argumento <code>provider</code></h3>
+        <p>Cuando se especifica <code>provider</code>, el tool valida que el modelo pertenezca a ese proveedor. Si no coincide, retorna error.</p>
+        <div class="code-block">
+          <div class="code-header">
+            <span class="code-lang">bash</span>
+            <button class="code-copy" data-copy="sdd_mode_profile(action=&quot;create&quot;, name=&quot;fast-test&quot;, primary=&quot;opencode-go/kimi-k2.6&quot;, provider=&quot;opencode-go&quot;)"><i class="ph ph-copy"></i> Copiar</button>
+          </div>
+          <pre><code># Forzar provider especifico (valida que el primary pertenezca al provider)
+$ sdd_mode_profile(action="create", name="fast-test",
+    primary="opencode-go/kimi-k2.6",
+    provider="opencode-go")
+&gt; OK, no warning
+
+# Mismatch &rarr; rechazado
+$ sdd_mode_profile(action="create", name="bad",
+    primary="anthropic/claude-sonnet-4-5",
+    provider="opencode-go")
+&gt; Error: Primary model 'anthropic/claude-sonnet-4-5' does not belong to provider 'opencode-go'</code></pre>
+        </div>
+
+        <h3>Custom models</h3>
+        <p>Para providers beta o modelos nuevos no listados, REASP acepta el modelo con un warning (no error).</p>
+        <div class="code-block">
+          <div class="code-header">
+            <span class="code-lang">bash</span>
+            <button class="code-copy" data-copy="sdd_mode_profile(action=&quot;create&quot;, name=&quot;experimental&quot;, primary=&quot;opencode-go/experimental-v1&quot;, provider=&quot;opencode-go&quot;)"><i class="ph ph-copy"></i> Copiar</button>
+          </div>
+          <pre><code># Custom model &rarr; warning, no error
+$ sdd_mode_profile(action="create", name="experimental",
+    primary="opencode-go/experimental-v1",
+    provider="opencode-go")
+&gt; OK, warning: "Model 'experimental-v1' not in catalog of 'opencode-go' (custom)"</code></pre>
+        </div>
+
+        <h3>Compatibilidad</h3>
+        <p>El argumento <code>provider</code> es opcional. ModeProfiles existentes sin provider siguen funcionando identico (backward-compatible).</p>
+
+        <h3>Tests</h3>
+        <p>86 tests pasan (65 unitarios + 21 E2E) cubriendo:</p>
+        <ul>
+          <li>Estructura de providers y modelos con <code>fullId</code>.</li>
+          <li><code>discoverProviders(null)</code> retorna fallback; con mock parsea runtime.</li>
+          <li>Validacion de modelos (validos, custom, invalidos, edge cases).</li>
+          <li>createModeProfile con provider validation, custom models, mix cross-provider.</li>
+          <li>switchModeProfile + getStatus genera runtime correcto con providers por fase.</li>
+        </ul>
+      </section>
+
+      <!-- REFI v2 -->
+      <section class="docs-section reveal" id="refi-v2">
+        <h2><i class="ph ph-tree-structure"></i> REFI v2 &middot; Epic + PART</h2>
+        <p class="lead">
+          Metodologia de planificacion empresarial con Epic (subsistema) y PART (15 secciones + 8 quality gates). Workflow de 3 pasadas con 2 STOP gates que esperan confirmacion del usuario antes de codigo.
+        </p>
+
+        <h3>Workflow de 3 pasadas (con 2 STOP gates)</h3>
+        <div class="code-block">
+          <div class="code-header">
+            <span class="code-lang">bash</span>
+            <button class="code-copy" data-copy="refi-v2-workflow"><i class="ph ph-copy"></i> Copiar</button>
+          </div>
+          <pre><code>Ryou EFI Planner
+  |
+  +-- Pass 1: Epic Breakdown
+  |   +-- request.md
+  |   +-- master-blueprint.md
+  |   +-- epics/matrix.md
+  |   +-- epics/&lt;epic&gt;/README.md
+  |        \-&gt; STOP &middot; WAIT FOR USER &middot;   &lt;-- Gate A
+  |
+  +-- Pass 2: PART Detail (per EPIC)
+  |   +-- epics/&lt;epic&gt;/parts/PARTnn.md (15 sec + 8 gates)
+  |        \-&gt; STOP &middot; entre EPICs &middot;   &lt;-- Gate B
+  |
+  +-- Pass 3: Orchestration &amp; Hand-off
+      +-- orchestration-map.md
+      +-- progress.md
+      +-- verification.md
+       \-&gt; HANDOFF TO ORCHESTRATOR</code></pre>
+        </div>
+
+        <h3>Las 8 quality gates</h3>
+        <table class="mode-table">
+          <thead>
+            <tr><th>#</th><th>Quality Gate</th><th>Funcion</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>1</td><td>Architecture Review</td><td>Diseno vs invariantes / ADRs del proyecto.</td></tr>
+            <tr><td>2</td><td>Scope &amp; Completeness Audit</td><td>Tabla declared vs actual, gaps clasificados.</td></tr>
+            <tr><td>3</td><td>UX/Design Review</td><td>MeridianUI si UI; contratos si no UI.</td></tr>
+            <tr><td>4</td><td>Manual / Runtime Validation</td><td>Checklist ejecutado con tickboxes.</td></tr>
+            <tr><td>5</td><td>Defect Closure</td><td>Defectos de gates 1-4 cerrados en el mismo PART.</td></tr>
+            <tr><td>6</td><td>Technical Documentation</td><td>Docs tecnicos producidos.</td></tr>
+            <tr><td>7</td><td>User Documentation</td><td>Docs de usuario producidos.</td></tr>
+            <tr><td>8</td><td>Final Review &amp; Sign-off</td><td>Build 0/0 + suite verde + Acceptance Criteria re-leido + firma.</td></tr>
+          </tbody>
+        </table>
+
+        <h3>Estructura de un PART</h3>
+        <p>Cada PART tiene 15 secciones obligatorias:</p>
+        <ol>
+          <li>Purpose</li>
+          <li>Current State</li>
+          <li>Comparison against baseline</li>
+          <li>Missing / Required Scope</li>
+          <li>UX Problems</li>
+          <li>Backend / Logic Problems</li>
+          <li>Frontend / Presentation Problems</li>
+          <li>Technical Debt</li>
+          <li>Required Improvements (verbo + objeto + medida)</li>
+          <li>Implementation Plan</li>
+          <li>Automated Test Plan</li>
+          <li>Manual Validation Checklist</li>
+          <li>Technical Documentation</li>
+          <li>User Documentation</li>
+          <li>Acceptance Criteria (testable)</li>
+        </ol>
+        <p>Cada PART termina con un footer de 8 casillas verificables (una por quality gate) que se firman en orden estricto antes de cerrar el PART.</p>
+
+        <h3>Anti-hallucination block</h3>
+        <p>Las secciones §3 (Comparison), §9 (Required Improvements), §10 (Implementation Plan), y §15 (Acceptance Criteria) tienen reglas anti-alucinacion que prohiben inventar archivos, endpoints, columnas, o criterios subjetivos.</p>
+
+        <h3>Backward-compatible</h3>
+        <p>Los 4 paquetes legacy (<code>reasp-backup-manager</code>, <code>linux-compat</code>, <code>multi-agent-compatibility</code>, <code>sdd-profile-provider-support</code>) siguen funcionando con REFI v2. El flag <code>epic_part.legacy_domain_shards_fallback: true</code> los acepta sin tocarlos.</p>
       </section>
 
       <!-- Referencia de Comandos -->
@@ -1551,7 +1710,65 @@ node index.js --update</code></pre>
       <section class="docs-section reveal" id="troubleshooting">
         <h2><i class="ph ph-wrench"></i> Troubleshooting</h2>
 
+        <h3>Instalacion duplicada en PATH (Windows)</h3>
+        <p><strong>Sintoma:</strong> <code>reasp --version</code> retorna la version antigua. Las funciones nuevas no aparecen tras actualizar el tarball.</p>
+        <p><strong>Causa:</strong> 3 instalaciones simultaneas posibles en Windows:</p>
+        <ul>
+          <li><code>C:\Program Files\REASP\</code> — instalacion antigua con prioridad alta en PATH.</li>
+          <li><code>%APPDATA%\npm\node_modules\reasp-cli</code> — instalacion npm global correcta.</li>
+          <li><code>~\KeorSoft\Development\AITools\REASP</code> — repo de desarrollo.</li>
+        </ul>
+        <p><strong>Solucion A — Sincronizar manualmente (como admin):</strong></p>
+        <div class="code-block">
+          <div class="code-header">
+            <span class="code-lang">powershell</span>
+            <button class="code-copy" data-copy="robocopy &quot;C:\Users\kevin\KeorSoft\Development\AITools\REASP&quot; &quot;C:\Program Files\REASP&quot; /MIR /XD .git node_modules installer\node_modules"><i class="ph ph-copy"></i> Copiar</button>
+          </div>
+          <pre><code>robocopy "C:\Users\kevin\KeorSoft\Development\AITools\REASP" `
+         "C:\Program Files\REASP" `
+         /MIR /XD .git node_modules installer\node_modules</code></pre>
+        </div>
+        <p><strong>Solucion B — Eliminar (como admin):</strong></p>
+        <div class="code-block">
+          <div class="code-header">
+            <span class="code-lang">powershell</span>
+            <button class="code-copy" data-copy="Remove-Item -LiteralPath &quot;C:\Program Files\REASP&quot; -Recurse -Force"><i class="ph ph-copy"></i> Copiar</button>
+          </div>
+          <pre><code>Remove-Item -LiteralPath "C:\Program Files\REASP" -Recurse -Force</code></pre>
+        </div>
+        <p>Despues de cualquier opcion, regenera y reinstala:</p>
+        <div class="code-block">
+          <div class="code-header">
+            <span class="code-lang">bash</span>
+            <button class="code-copy" data-copy="npm pack &amp;&amp; npm install -g reasp-cli-1.0.1.tgz"><i class="ph ph-copy"></i> Copiar</button>
+          </div>
+          <pre><code>npm pack &amp;&amp; npm install -g reasp-cli-1.0.1.tgz</code></pre>
+        </div>
+
+        <h3>Proveedores no aparecen en el selector del TUI</h3>
+        <p><strong>Sintoma:</strong> Al configurar un ModeProfile, el selector de proveedores muestra una lista vacia o solo <code>opencode-go</code>.</p>
+        <p><strong>Causa:</strong> <code>api.state.provider</code> no se inicializa correctamente. Esto ocurre con versiones de OpenCode anteriores a 1.17.17.</p>
+        <p><strong>Solucion:</strong></p>
+        <ol>
+          <li>Verificar version de OpenCode: <code>opencode --version</code> (debe ser 1.17.17 o superior).</li>
+          <li>Si es inferior, actualizar: <code>npm install -g opencode@latest</code>.</li>
+          <li>Reinstalar REASP: <code>npm install -g reasp-cli</code>.</li>
+        </ol>
+
         <h3>Error: "ModeProfile not found"</h3>
+        <p><strong>Sintoma:</strong> Al ejecutar <code>reasp switch my-profile</code>, retorna "ModeProfile not found" aunque el perfil existe en el repo.</p>
+        <p><strong>Causa:</strong> Hash mismatch entre el repo (<code>REASP/.opencode/</code>) y el plugin instalado (<code>~/.config/opencode/</code>).</p>
+        <p><strong>Solucion — Sincronizar manualmente:</strong></p>
+        <div class="code-block">
+          <div class="code-header">
+            <span class="code-lang">bash</span>
+            <button class="code-copy" data-copy="node scripts/sync-reasp.js push"><i class="ph ph-copy"></i> Copiar</button>
+          </div>
+          <pre><code>node scripts/sync-reasp.js push</code></pre>
+        </div>
+        <p>Esto copia <code>.opencode/</code> &rarr; <code>~/.config/opencode/</code> y refresca el runtime desde el ModeProfile activo.</p>
+
+        <h3>Error: "ModeProfile not found" (sintaxis JSON)</h3>
         <p><strong>Causa:</strong> El archivo JSON del ModeProfile no existe o tiene errores de sintaxis.</p>
         <p><strong>Solucion:</strong></p>
         <div class="code-block">

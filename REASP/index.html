@@ -54,7 +54,7 @@
     <div class="hero-content">
       <div class="hero-badge reveal">
         <i class="ph ph-sparkle"></i>
-        <span>v3.0.0 — Disponible Ahora</span>
+        <span>Framework v3.0.0 · CLI v1.0.1</span>
       </div>
       <h1 class="hero-title reveal reveal-delay-1">
         Sub-Agent Driven Development<br>
@@ -74,7 +74,7 @@
         </a>
       </div>
       <div class="hero-version reveal reveal-delay-4">
-        <i class="ph ph-git-commit"></i> Version 3.0.0 | .NET 9 | C# | PowerShell | OpenCode Go
+        <i class="ph ph-git-commit"></i> Framework v3.0.0 · CLI v1.0.1 | .NET 9 | C# | PowerShell | OpenCode Go
       </div>
     </div>
   </section>
@@ -145,12 +145,22 @@
         <div class="card feature-card reveal reveal-delay-1">
           <div class="icon" style="background: rgba(6,182,212,0.1); color: var(--accent-cyan);"><i class="ph ph-command"></i></div>
           <h3>Slash Commands</h3>
-          <p>Comandos rapidos integrados en OpenCode: <code>/sdd</code>, <code>/sdd-mode</code>, <code>/sdd-profile</code>, <code>/rass-setup</code>, <code>/reasp-setup</code>. Gestiona perfiles y workflows sin salir del editor.</p>
+          <p>Comandos rapidos integrados en OpenCode: <code>/sdd</code>, <code>/sdd-mode</code>, <code>/sdd-profile</code>, <code>/rass-setup</code>, <code>/reasp-setup</code>, <code>/share</code>, <code>/unshare</code>. Gestiona perfiles, workflows y sesiones compartidas sin salir del editor.</p>
         </div>
         <div class="card feature-card reveal reveal-delay-2">
           <div class="icon" style="background: rgba(236,72,153,0.1); color: var(--accent-pink);"><i class="ph ph-magic-wand"></i></div>
           <h3>AI Tools Programaticos</h3>
           <p>Herramientas <code>sdd_mode_profile</code> y <code>rass_setup</code> para gestion programatica de perfiles y agentes. Automatiza la configuracion desde codigo.</p>
+        </div>
+        <div class="card feature-card reveal reveal-delay-2">
+          <div class="icon" style="background: rgba(6,182,212,0.1); color: var(--accent-cyan);"><i class="ph ph-stack"></i></div>
+          <h3>Soporte Multi-Proveedor</h3>
+          <p>Selección explicita de proveedor en <code>sdd_mode_profile</code> con validacion. 4 providers preconfigurados (opencode-go, anthropic, openai, google) + opcion de custom models. 86 tests pasan.</p>
+        </div>
+        <div class="card feature-card reveal reveal-delay-2">
+          <div class="icon" style="background: rgba(139,92,246,0.1); color: var(--accent-purple);"><i class="ph ph-tree-structure"></i></div>
+          <h3>REFI v2 &middot; Epic + PART</h3>
+          <p>Metodologia de planificacion empresarial con Epic (subsistema) y PART (15 secciones + 8 quality gates). Workflow de 3 pasadas con 2 STOP gates que esperan confirmacion del usuario antes de codigo.</p>
         </div>
       </div>
     </div>
@@ -387,6 +397,7 @@
             <li><i class="ph ph-check"></i> <strong>Documentacion automatica</strong> — Markdown y HTML summaries</li>
             <li><i class="ph ph-check"></i> <strong>Sin bucles infinitos</strong> — Fases definidas, ejecucion controlada</li>
             <li><i class="ph ph-check"></i> <strong>Open Source</strong> — MIT License, codigo abierto y transparente</li>
+            <li><i class="ph ph-check"></i> <strong>REFI v2 Compatible</strong> — Workflow de planificacion con Epic + PART, 8 quality gates mecanicos, 2 STOP gates. Backward-compatible con 4 paquetes legacy preservados.</li>
           </ul>
         </div>
         <div class="card pros-cons-card cons reveal reveal-delay-1">
@@ -469,6 +480,14 @@
           <i class="ph ph-git-branch"></i>
           <span>Git Integration</span>
         </div>
+        <div class="compat-item">
+          <i class="ph ph-linux-logo"></i>
+          <span>Linux/Unix + Volta</span>
+        </div>
+        <div class="compat-item">
+          <i class="ph ph-package"></i>
+          <span>MeridianUI Global Installer</span>
+        </div>
       </div>
     </div>
   </section>
@@ -482,62 +501,55 @@
           Instalacion
         </div>
         <h2 class="section-title">Comienza en <span class="gradient-text-purple">minutos</span></h2>
-        <p class="section-desc">Instalacion simple con el TUI installer de REASP.</p>
+        <p class="section-desc">Instalacion global con npm. Disponible en Windows, Linux y macOS.</p>
       </div>
       <div class="install-steps reveal">
         <div class="install-step">
           <div class="step-number">1</div>
           <div class="step-content">
-            <h3>Clonar el repositorio</h3>
-            <p>Obtiene la ultima version de REASP desde GitHub.</p>
+            <h3>Instalar REASP globalmente</h3>
+            <p>Instala el CLI <code>reasp-cli</code> (v1.0.1) globalmente via npm. Esto hace que el comando <code>reasp</code> este disponible en todo tu sistema.</p>
             <div class="code-block">
               <div class="code-header">
                 <span class="code-lang">bash</span>
-                <button class="code-copy" data-copy="git clone https://github.com/keorgtz/REASP.git"><i class="ph ph-copy"></i> Copiar</button>
+                <button class="code-copy" data-copy="npm install -g reasp-cli"><i class="ph ph-copy"></i> Copiar</button>
               </div>
-              <pre><code>git clone https://github.com/keorgtz/REASP.git</code></pre>
+              <pre><code>npm install -g reasp-cli</code></pre>
             </div>
           </div>
         </div>
         <div class="install-step">
           <div class="step-number">2</div>
           <div class="step-content">
-            <h3>Entrar al directorio del instalador</h3>
-            <p>Navega al directorio que contiene el TUI installer.</p>
+            <h3>Ejecutar el instalador TUI</h3>
+            <p>Lanza el TUI interactivo para configurar REASP en tus agentes detectados (OpenCode, Claude Code, Gemini CLI, Codex, Antigravity CLI).</p>
             <div class="code-block">
               <div class="code-header">
                 <span class="code-lang">bash</span>
-                <button class="code-copy" data-copy="cd REASP/installer"><i class="ph ph-copy"></i> Copiar</button>
+                <button class="code-copy" data-copy="reasp install"><i class="ph ph-copy"></i> Copiar</button>
               </div>
-              <pre><code>cd REASP/installer</code></pre>
+              <pre><code>reasp install</code></pre>
             </div>
           </div>
         </div>
         <div class="install-step">
           <div class="step-number">3</div>
           <div class="step-content">
-            <h3>Instalar dependencias</h3>
-            <p>El instalador necesita Node.js para ejecutar la interfaz TUI.</p>
-            <div class="code-block">
-              <div class="code-header">
-                <span class="code-lang">bash</span>
-                <button class="code-copy" data-copy="npm install"><i class="ph ph-copy"></i> Copiar</button>
-              </div>
-              <pre><code>npm install</code></pre>
-            </div>
+            <h3>Seleccionar agente y ModeProfile</h3>
+            <p>El TUI detecta agentes instalados y te permite seleccionar el ModeProfile deseado. Tambien puedes elegir el proveedor y modelo en un flujo de 2 pasos (4 providers: opencode-go, anthropic, openai, google).</p>
           </div>
         </div>
         <div class="install-step">
           <div class="step-number">4</div>
           <div class="step-content">
-            <h3>Ejecutar el instalador</h3>
-            <p>Lanza el TUI interactivo para configurar REASP con tus preferencias.</p>
+            <h3>Verificar instalacion</h3>
+            <p>Comprueba que REASP esta correctamente instalado y conectado a tu agente.</p>
             <div class="code-block">
               <div class="code-header">
                 <span class="code-lang">bash</span>
-                <button class="code-copy" data-copy="node index.js"><i class="ph ph-copy"></i> Copiar</button>
+                <button class="code-copy" data-copy="reasp status"><i class="ph ph-copy"></i> Copiar</button>
               </div>
-              <pre><code>node index.js</code></pre>
+              <pre><code>reasp status</code></pre>
             </div>
           </div>
         </div>

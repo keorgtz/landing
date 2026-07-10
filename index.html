@@ -1,403 +1,382 @@
 <!DOCTYPE html>
-<html lang="es" class="scroll-smooth" data-theme="dark">
+<html lang="es">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Keorsoft — Tecnología que Impulsa tu Negocio</title>
   <meta name="description" content="Keorsoft es una empresa de tecnología especializada en desarrollo de software, inteligencia artificial, frameworks UI y soluciones SaaS para empresas.">
-  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Tailwind CDN eliminado · EPIC 01 PART 02 -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&display=block" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;500;600;700;800&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+  <!-- Material Symbols eliminado (iconos reemplazados por SVG inline) · EPIC 01 PART 02 -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
   <link rel="stylesheet" href="css/Styles.css">
 </head>
-<body class="antialiased selection:bg-blue-500 selection:text-white">
+<body>
 
-<!-- ══ NAVEGACIÓN ════════════════════════════════════════════════ -->
-<nav class="fixed top-0 z-50 flex justify-center w-full pt-4 px-4" style="pointer-events:none">
-  <div class="nav-pill flex items-center gap-1" style="pointer-events:auto">
-
-    <a href="#inicio" class="flex items-center gap-2 px-4 py-2 rounded-full">
-      <div class="w-8 h-8 rounded-full flex items-center justify-center font-bold text-white text-sm" style="background:linear-gradient(135deg, var(--kr-blue), var(--vi))">
-        K
-      </div>
-      <span class="hidden sm:inline text-sm font-extrabold tracking-tighter uppercase text-[color:var(--txt-1)]" style="font-family:var(--font-display)">
-        KEOR<span class="text-blue-500">SOFT</span>
-      </span>
+<!-- ══ NAVEGACIÓN · EPIC 08 PART 01 ═════════════════════════════════════ -->
+<header class="site-header">
+  <div class="nav-container">
+    <!-- Logo -->
+    <a href="#inicio" class="logo">
+      <img src="assets/KeorsoftK-Icon.svg" alt="Keorsoft" width="32" height="32">
+      Keorsoft
     </a>
 
-    <div class="hidden md:block w-px h-5 mx-2" style="background:var(--card-border)"></div>
+    <!-- Desktop nav -->
+    <nav>
+      <ul class="nav-menu">
+        <li><a href="#inicio" class="nav-link">Inicio</a></li>
+        <li><a href="#servicios" class="nav-link">Servicios</a></li>
+        <li><a href="#productos" class="nav-link">Productos</a></li>
+        <li><a href="#opensource" class="nav-link">Open Source</a></li>
+        <li><a href="#nosotros" class="nav-link">Nosotros</a></li>
+        <li><a href="#contacto" class="nav-link">Contacto</a></li>
+      </ul>
+    </nav>
 
-    <div class="hidden md:flex items-center font-semibold">
-      <a href="#inicio"    class="pill-nav-link">Inicio</a>
-      <a href="#servicios" class="pill-nav-link">Servicios</a>
-      <a href="#productos" class="pill-nav-link">Productos</a>
-      <a href="#opensource" class="pill-nav-link">Open Source</a>
-      <a href="#nosotros"  class="pill-nav-link">Nosotros</a>
-      <a href="#contacto" class="pill-nav-link">Contacto</a>
-    </div>
+    <!-- CTA "Contactar" -->
+    <a href="https://wa.me/523327633233" target="_blank" rel="noopener noreferrer" class="nav-cta-btn">Contactar</a>
 
-    <!-- Mobile nav dropdown -->
-    <div class="md:hidden relative">
-      <button id="mobile-menu-btn" class="pill-nav-link flex items-center gap-1">
-        <span class="material-symbols-rounded" style="font-size:18px">menu</span>
-        <span class="text-xs">Menú</span>
-      </button>
-      <div id="mobile-menu" class="hidden absolute top-full right-0 mt-2 w-48 rounded-2xl border p-2 flex flex-col gap-1" style="background:var(--nav-bg);border-color:var(--nav-border);backdrop-filter:blur(20px)">
-        <a href="#inicio"    class="pill-nav-link text-left">Inicio</a>
-        <a href="#servicios" class="pill-nav-link text-left">Servicios</a>
-        <a href="#productos" class="pill-nav-link text-left">Productos</a>
-        <a href="#opensource" class="pill-nav-link text-left">Open Source</a>
-        <a href="#nosotros"  class="pill-nav-link text-left">Nosotros</a>
-        <a href="#contacto" class="pill-nav-link text-left">Contacto</a>
-      </div>
-    </div>
-
-    <div class="hidden md:block w-px h-5 mx-2" style="background:var(--card-border)"></div>
-
-    <button id="theme-toggle" class="w-9 h-9 rounded-full flex items-center justify-center text-[color:var(--txt-2)] hover:text-[color:var(--txt-1)] hover:bg-[color:var(--card-hover)] transition-colors" aria-label="Cambiar tema">
-      <span class="material-symbols-rounded" style="font-size:18px" id="theme-icon">light_mode</span>
+    <!-- Hamburger (mobile) -->
+    <button class="menu-toggle" id="menuToggle" aria-label="Menú">
+      <span></span>
+      <span></span>
+      <span></span>
     </button>
-
-    <a href="https://wa.me/523327633233" target="_blank" class="hidden sm:inline-flex items-center gap-2 px-5 py-2.5 rounded-full font-bold text-sm text-white" style="background:var(--kr-blue);font-family:var(--font);box-shadow:0 4px 14px rgba(14,152,248,.4)">
-      Contactar
-    </a>
   </div>
-</nav>
+
+  <!-- Mobile menu dropdown (compatibilidad con script inline #mobile-menu) -->
+  <div id="mobile-menu" class="hidden">
+    <a href="#inicio" class="nav-link-mobile">Inicio</a>
+    <a href="#servicios" class="nav-link-mobile">Servicios</a>
+    <a href="#productos" class="nav-link-mobile">Productos</a>
+    <a href="#opensource" class="nav-link-mobile">Open Source</a>
+    <a href="#nosotros" class="nav-link-mobile">Nosotros</a>
+    <a href="#contacto" class="nav-link-mobile">Contacto</a>
+  </div>
+</header>
 
 <!-- ══ HERO ══════════════════════════════════════════════════════ -->
-<section id="inicio" class="hero-section pt-32 pb-20 lg:pt-40 lg:pb-32 relative overflow-hidden flex items-center min-h-[90vh]">
-  <div class="hero-bg-orb orb-1"></div>
-  <div class="hero-bg-orb orb-2"></div>
+<!-- ══ HERO · EPIC 02 PART 01 ══════════════════════════════════════════════ -->
+<section id="inicio" class="hero" style="padding-top:8rem; padding-bottom:5rem;">
+  <!-- Background glow mesh + grid -->
+  <div class="bg-glow-container">
+    <div class="bg-glow-1"></div>
+    <div class="bg-glow-2"></div>
+    <div class="bg-glow-3"></div>
+  </div>
+  <div class="bg-grid"></div>
 
-  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full">
-    <div class="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
-
-      <div class="text-center lg:text-left">
-        <span class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-xs font-bold mb-6 tracking-widest uppercase hero-badge" style="font-family:var(--font)">
-          <span class="material-symbols-rounded fill" style="font-size:14px">rocket_launch</span>
-          Tecnología de Clase Mundial
-        </span>
-        <h1 class="text-4xl sm:text-5xl md:text-6xl xl:text-[4rem] font-extrabold leading-[1.1] mb-6 tracking-tight text-[color:var(--txt-1)]" style="font-family:var(--font-display)">
-          No solo servicios.<br>Construimos <span class="text-gradient">tecnología.</span>
-        </h1>
-        <p class="text-base sm:text-lg mb-8 leading-relaxed max-w-xl mx-auto lg:mx-0 text-[color:var(--txt-2)]" style="font-family:var(--font)">
-          Keorsoft es una empresa de tecnología enfocada en crear soluciones de software de escritorio y web, herramientas de IA, frameworks UI propietarios y productos SaaS que transforman industrias.
-        </p>
-        <div class="flex flex-wrap justify-center lg:justify-start gap-3 mb-8">
-          <span class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-semibold border" style="background:rgba(14,152,248,.08);border-color:rgba(14,152,248,.2);color:var(--kr-blue)">
-            <span class="material-symbols-rounded" style="font-size:14px">code</span> Software Development
-          </span>
-          <span class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-semibold border" style="background:rgba(139,92,246,.08);border-color:rgba(139,92,246,.2);color:var(--vi)">
-            <span class="material-symbols-rounded" style="font-size:14px">smart_toy</span> AI Tools
-          </span>
-          <span class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-semibold border" style="background:rgba(99,102,241,.08);border-color:rgba(99,102,241,.2);color:var(--in)">
-            <span class="material-symbols-rounded" style="font-size:14px">palette</span> UI Frameworks
-          </span>
-          <span class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-semibold border" style="background:rgba(16,185,129,.08);border-color:rgba(16,185,129,.2);color:var(--em)">
-            <span class="material-symbols-rounded" style="font-size:14px">cloud</span> SaaS Products
-          </span>
-        </div>
-        <div class="flex flex-col sm:flex-row justify-center lg:justify-start gap-4">
-          <a href="https://wa.me/523327633233" target="_blank" class="btn-primary flex items-center justify-center gap-2.5 px-8 py-4 rounded-2xl font-bold text-sm" style="font-family:var(--font)">
-            <i class="fa-brands fa-whatsapp text-lg"></i>
-            Hablemos de tu Proyecto
-          </a>
-          <a href="#productos" class="btn-secondary flex items-center justify-center gap-2 px-8 py-4 rounded-2xl font-bold text-sm" style="font-family:var(--font)">
-            <span class="material-symbols-rounded" style="font-size:18px">inventory_2</span>
-            Ver Productos
-          </a>
-        </div>
+  <div class="hero-content">
+    <div class="section-tag">
+      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+        <path d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 0 0-2.91-.09z"/>
+        <path d="M12 15l-3-3a22 22 0 0 1 2-3.95A12.88 12.88 0 0 1 22 2c0 2.72-.78 7.5-6 11a22.35 22.35 0 0 1-4 2z"/>
+        <path d="M9 12H4s.55-3.03 2-4c1.62-1.08 5 0 5 0"/>
+        <path d="M12 15v5s3.03-.55 4-2c1.08-1.62 0-5 0-5"/>
+      </svg>
+      Tecnología de Clase Mundial
+    </div>
+    <h1 class="hero-title">
+      No solo servicios.<br>Construimos <span class="hero-title-accent">tecnología.</span>
+    </h1>
+    <p class="hero-subtitle">
+      Keorsoft es una empresa de tecnología enfocada en crear soluciones de software de escritorio y web, herramientas de IA, frameworks UI propietarios y productos SaaS que transforman industrias.
+    </p>
+    <div class="hero-buttons">
+      <a href="https://wa.me/523327633233" target="_blank" rel="noopener noreferrer" class="btn btn-primary">
+        <i class="fa-brands fa-whatsapp"></i>
+        Hablemos de tu Proyecto
+      </a>
+      <a href="#productos" class="btn btn-secondary">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/><polyline points="3.27 6.96 12 12.01 20.73 6.96"/><line x1="12" y1="22.08" x2="12" y2="12"/></svg>
+        Ver Productos
+      </a>
+    </div>
+    <div class="hero-badges">
+      <div class="badge">
+        <span class="badge-val">360°</span>
+        <span class="badge-lbl">Soluciones Integrales</span>
       </div>
-
-      <div class="flex justify-center mt-8 lg:mt-0 relative">
-        <div class="w-full max-w-[500px] aspect-square relative flex items-center justify-center">
-            <!-- Decorative rings -->
-            <div class="absolute inset-0 border border-slate-300/30 rounded-full animate-[spin_60s_linear_infinite]"></div>
-            <div class="absolute inset-8 border border-blue-400/30 rounded-full animate-[spin_40s_linear_infinite_reverse]"></div>
-            <div class="absolute inset-16 border border-purple-400/30 rounded-full animate-[spin_30s_linear_infinite]"></div>
-            
-            <!-- Center piece -->
-            <div class="w-48 h-48 rounded-full bg-[color:var(--bg-2)] border border-[color:var(--card-border)] flex items-center justify-center relative z-10 shadow-[0_0_80px_rgba(14,152,248,0.15)] backdrop-blur-xl">
-                <div class="absolute inset-0 rounded-full bg-gradient-to-tr from-blue-500/10 to-purple-500/10 blur-xl"></div>
-                <span class="material-symbols-rounded fill text-6xl text-gradient">domain</span>
-            </div>
-
-            <!-- Floating service nodes -->
-            <div class="absolute top-[10%] left-[10%] bg-[color:var(--bg-2)] border border-[color:var(--card-border)] p-3 rounded-2xl shadow-xl flex items-center gap-3 backdrop-blur-md animate-float">
-                <div class="w-10 h-10 rounded-full bg-emerald-500/10 text-emerald-600 flex items-center justify-center"><span class="material-symbols-rounded" style="font-size:20px">code</span></div>
-                <div><p class="text-xs font-bold text-[color:var(--txt-1)] leading-tight">Software</p><p class="text-[10px] text-[color:var(--txt-3)]">Pymes</p></div>
-            </div>
-
-            <div class="absolute bottom-[15%] right-[5%] bg-[color:var(--bg-2)] border border-[color:var(--card-border)] p-3 rounded-2xl shadow-xl flex items-center gap-3 backdrop-blur-md animate-float" style="animation-delay:1s">
-                <div class="w-10 h-10 rounded-full bg-blue-500/10 text-blue-600 flex items-center justify-center"><span class="material-symbols-rounded" style="font-size:20px">router</span></div>
-                <div><p class="text-xs font-bold text-[color:var(--txt-1)] leading-tight">Redes</p><p class="text-[10px] text-[color:var(--txt-3)]">Infraestructura</p></div>
-            </div>
-
-            <div class="absolute top-[20%] right-[0%] bg-[color:var(--bg-2)] border border-[color:var(--card-border)] p-3 rounded-2xl shadow-xl flex items-center gap-3 backdrop-blur-md animate-float" style="animation-delay:2s">
-                <div class="w-10 h-10 rounded-full bg-purple-500/10 text-purple-600 flex items-center justify-center"><span class="material-symbols-rounded" style="font-size:20px">security</span></div>
-                <div><p class="text-xs font-bold text-[color:var(--txt-1)] leading-tight">Seguridad</p><p class="text-[10px] text-[color:var(--txt-3)]">Protección</p></div>
-            </div>
-
-            <div class="absolute bottom-[20%] left-[0%] bg-[color:var(--bg-2)] border border-[color:var(--card-border)] p-3 rounded-2xl shadow-xl flex items-center gap-3 backdrop-blur-md animate-float" style="animation-delay:3s">
-                <div class="w-10 h-10 rounded-full bg-amber-500/10 text-amber-600 flex items-center justify-center"><span class="material-symbols-rounded" style="font-size:20px">design_services</span></div>
-                <div><p class="text-xs font-bold text-[color:var(--txt-1)] leading-tight">UX/UI</p><p class="text-[10px] text-[color:var(--txt-3)]">Diseño</p></div>
-            </div>
-        </div>
+      <div class="badge">
+        <span class="badge-val">100%</span>
+        <span class="badge-lbl">Adaptado a Pymes</span>
       </div>
-
+      <div class="badge">
+        <span class="badge-val">24/7</span>
+        <span class="badge-lbl">Infraestructura Segura</span>
+      </div>
+      <div class="badge">
+        <span class="badge-val">Calidad</span>
+        <span class="badge-lbl">Diseño &amp; Rendimiento</span>
+      </div>
     </div>
   </div>
-</section>
 
-<!-- ══ STATS STRIP ═══════════════════════════════════════════════ -->
-<section class="py-10 stats-strip border-y border-[color:var(--card-border)]">
-  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-    <div class="grid grid-cols-2 lg:grid-cols-4 gap-6 text-center divide-x divide-[color:var(--card-border)]">
-      <div>
-        <p class="text-3xl font-extrabold mb-1 text-[color:var(--txt-1)]" style="font-family:var(--font-display)">360°</p>
-        <p class="text-xs font-bold uppercase tracking-widest text-[color:var(--txt-3)]">Soluciones Integrales</p>
-      </div>
-      <div>
-        <p class="text-3xl font-extrabold mb-1 text-[color:var(--txt-1)]" style="font-family:var(--font-display)">100%</p>
-        <p class="text-xs font-bold uppercase tracking-widest text-[color:var(--txt-3)]">Adaptado a Pymes</p>
-      </div>
-      <div>
-        <p class="text-3xl font-extrabold mb-1 text-[color:var(--txt-1)]" style="font-family:var(--font-display)">24/7</p>
-        <p class="text-xs font-bold uppercase tracking-widest text-[color:var(--txt-3)]">Infraestructura Segura</p>
-      </div>
-      <div>
-        <div class="flex items-center justify-center gap-2 mb-1">
-          <span class="material-symbols-rounded fill text-blue-500" style="font-size:24px">verified</span>
-          <p class="text-3xl font-extrabold text-[color:var(--txt-1)]" style="font-family:var(--font-display)">Calidad</p>
+  <div class="hero-visual">
+    <div class="hero-glow-sphere"></div>
+    <div class="hero-visual-card glass-panel">
+      <div class="card-header">
+        <div class="mac-buttons">
+          <span class="mac-btn close"></span>
+          <span class="mac-btn min"></span>
+          <span class="mac-btn max"></span>
         </div>
-        <p class="text-xs font-bold uppercase tracking-widest text-[color:var(--txt-3)]">Diseño & Rendimiento</p>
+        <div class="card-title">
+          <span class="pulse-dot"></span>
+          keorsoft-agent-terminal
+        </div>
+        <div style="width: 40px;"></div>
+      </div>
+      <div class="terminal-content" id="termContent">
+        <!-- Populated by js/hero-terminal.js -->
       </div>
     </div>
   </div>
 </section>
+<!-- (Stats strip consolidada como hero-badges en el hero) -->
 
 <!-- ══ NOSOTROS / ABOUT US ═══════════════════════════════════════ -->
+<!-- ══ NOSOTROS · EPIC 03 PART 01 ═════════════════════════════════════════ -->
 <section id="nosotros" class="py-24 sm:py-32 section-main relative">
-  <div class="absolute top-0 right-0 w-96 h-96 bg-blue-500/5 rounded-full blur-[100px] pointer-events-none"></div>
-  <div class="absolute bottom-0 left-0 w-96 h-96 bg-purple-500/5 rounded-full blur-[100px] pointer-events-none"></div>
+  <!-- 2 bg orbs decorativos (esmeralda + púrpura) -->
+  <div class="about-bg-orb" style="top:0;right:0;width:24rem;height:24rem;background:radial-gradient(circle, rgba(99,102,241,0.06), transparent 70%);"></div>
+  <div class="about-bg-orb" style="bottom:0;left:0;width:24rem;height:24rem;background:radial-gradient(circle, rgba(168,85,247,0.05), transparent 70%);"></div>
 
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-    <div class="text-center max-w-2xl mx-auto mb-16 scroll-reveal">
-      <p class="text-blue-600 font-semibold tracking-wide text-sm mb-3 uppercase">Quiénes Somos</p>
-      <h2 class="text-3xl sm:text-4xl md:text-5xl font-extrabold text-[color:var(--txt-1)] mb-6 tracking-tight" style="font-family:var(--font-display)">
-        Más que una consultora.<br>Somos una <span class="text-gradient">empresa de tecnología.</span>
+    <!-- Section header -->
+    <div class="section-header scroll-reveal">
+      <div class="section-tag">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+          <circle cx="12" cy="12" r="10"/>
+          <circle cx="12" cy="12" r="6"/>
+          <circle cx="12" cy="12" r="2"/>
+        </svg>
+        Quiénes Somos
+      </div>
+      <h2 class="section-title">
+        Más que una consultora.<br>Somos una <span class="hero-title-accent">empresa de tecnología.</span>
       </h2>
-      <p class="text-[color:var(--txt-2)] text-lg leading-relaxed">
+      <p class="section-desc">
         Keorsoft nace de la convicción de que el software empresarial puede ser potente, hermoso y accesible al mismo tiempo.
       </p>
     </div>
 
-    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
-      <!-- Who we are -->
-      <div class="about-card scroll-reveal" style="--c-bg: var(--kr-blue); --i-bg: rgba(14,152,248,0.1); --i-color: #0E98F8;">
-        <div class="sc-icon"><span class="material-symbols-rounded fill" style="font-size:28px">corporate_fare</span></div>
-        <h3 class="text-xl font-bold text-[color:var(--txt-1)] mb-3" style="font-family:var(--font-display)">Quiénes Somos</h3>
-        <p class="text-[color:var(--txt-2)] leading-relaxed text-sm">
+    <!-- 4 cards en grid 3 cols (la 4ª full-width) -->
+    <div class="about-grid">
+
+      <!-- Card 1: Quiénes Somos (indigo) -->
+      <div class="about-card scroll-reveal" style="--card-accent: var(--accent-indigo); --card-accent-rgb: 99,102,241;">
+        <div class="sc-icon">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M3 21h18M3 7v14M21 7v14M6 21V4a1 1 0 0 1 1-1h10a1 1 0 0 1 1 1v17M9 9h.01M9 13h.01M9 17h.01M15 9h.01M15 13h.01M15 17h.01"/>
+          </svg>
+        </div>
+        <h3 class="about-card-title">Quiénes Somos</h3>
+        <p class="about-card-desc">
           Keorsoft es una empresa de tecnología enfocada en crear soluciones de software de escritorio y web. Combinamos ingeniería de precisión con diseño excepcional para entregar productos que superan expectativas.
         </p>
       </div>
 
-      <!-- Our Focus -->
-      <div class="about-card scroll-reveal" style="--c-bg: var(--vi); --i-bg: rgba(139,92,246,0.1); --i-color: #8B5CF6; animation-delay:.1s">
-        <div class="sc-icon"><span class="material-symbols-rounded fill" style="font-size:28px">target</span></div>
-        <h3 class="text-xl font-bold text-[color:var(--txt-1)] mb-3" style="font-family:var(--font-display)">Nuestro Enfoque</h3>
-        <p class="text-[color:var(--txt-2)] leading-relaxed text-sm">
+      <!-- Card 2: Nuestro Enfoque (púrpura) -->
+      <div class="about-card scroll-reveal" style="--card-accent: var(--accent-purple); --card-accent-rgb: 168,85,247; animation-delay:.1s">
+        <div class="sc-icon">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="12" cy="12" r="10"/>
+            <circle cx="12" cy="12" r="6"/>
+            <circle cx="12" cy="12" r="2"/>
+          </svg>
+        </div>
+        <h3 class="about-card-title">Nuestro Enfoque</h3>
+        <p class="about-card-desc">
           Alta personalización por cliente y vertical. Excelencia en UI/UX con nuestro lenguaje visual propietario <strong>MeridianUI</strong>. Cada producto se adapta a las necesidades específicas de tu industria.
         </p>
       </div>
 
-      <!-- Mission -->
-      <div class="about-card scroll-reveal" style="--c-bg: var(--em); --i-bg: rgba(16,185,129,0.1); --i-color: #10B981; animation-delay:.2s">
-        <div class="sc-icon"><span class="material-symbols-rounded fill" style="font-size:28px">flag</span></div>
-        <h3 class="text-xl font-bold text-[color:var(--txt-1)] mb-3" style="font-family:var(--font-display)">Nuestra Misión</h3>
-        <p class="text-[color:var(--txt-2)] leading-relaxed text-sm">
+      <!-- Card 3: Nuestra Misión (esmeralda) -->
+      <div class="about-card scroll-reveal" style="--card-accent: var(--accent-emerald); --card-accent-rgb: 16,185,129; animation-delay:.2s">
+        <div class="sc-icon">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M4 15s1-1 4-1 5 2 8 2 4-1 4-1V3s-1 1-4 1-5-2-8-2-4 1-4 1z"/>
+            <line x1="4" y1="22" x2="4" y2="15"/>
+          </svg>
+        </div>
+        <h3 class="about-card-title">Nuestra Misión</h3>
+        <p class="about-card-desc">
           Construir herramientas que empoderen a desarrolladores y empresas. Creemos que la tecnología debe ser un multiplicador de capacidades, no una barrera.
         </p>
       </div>
 
-      <!-- Values -->
-      <div class="about-card md:col-span-2 lg:col-span-3 scroll-reveal" style="--c-bg: var(--am); --i-bg: rgba(245,158,11,0.1); --i-color: #F59E0B; animation-delay:.3s">
-        <div class="flex flex-col md:flex-row gap-8 items-start">
-          <div class="md:w-1/3">
-            <div class="sc-icon"><span class="material-symbols-rounded fill" style="font-size:28px">stars</span></div>
-            <h3 class="text-xl font-bold text-[color:var(--txt-1)] mb-3" style="font-family:var(--font-display)">Nuestros Valores</h3>
-            <p class="text-[color:var(--txt-2)] leading-relaxed text-sm">
+      <!-- Card 4: Nuestros Valores (ámbar, full-width) -->
+      <div class="about-card about-card-wide scroll-reveal" style="--card-accent: var(--accent-amber); --card-accent-rgb: 245,158,11; animation-delay:.3s">
+        <div class="about-card-wide-inner">
+          <div class="about-card-header-side">
+            <div class="sc-icon">
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
+              </svg>
+            </div>
+            <h3 class="about-card-title">Nuestros Valores</h3>
+            <p class="about-card-desc">
               Los principios que guían cada línea de código y cada decisión de diseño.
             </p>
           </div>
-          <div class="md:w-2/3 grid sm:grid-cols-3 gap-4">
+          <div class="about-card-values">
             <div class="value-item">
-              <div class="w-10 h-10 rounded-xl bg-blue-500/10 text-blue-500 flex items-center justify-center mb-3">
-                <span class="material-symbols-rounded fill" style="font-size:20px">lightbulb</span>
+              <div class="value-icon" style="color:var(--accent-indigo);background:rgba(99,102,241,0.1);border-color:rgba(99,102,241,0.2);">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18h6M10 22h4M12 2a7 7 0 0 0-4 12.7c.6.4 1 .9 1 1.6V18h6v-1.7c0-.7.4-1.2 1-1.6A7 7 0 0 0 12 2z"/></svg>
               </div>
-              <h4 class="font-bold text-[color:var(--txt-1)] text-sm mb-1">Innovación</h4>
-              <p class="text-xs text-[color:var(--txt-3)]">Exploramos constantemente nuevas tecnologías y metodologías para mantenernos a la vanguardia.</p>
+              <h4 class="value-title">Innovación</h4>
+              <p class="value-desc">Exploramos constantemente nuevas tecnologías y metodologías para mantenernos a la vanguardia.</p>
             </div>
             <div class="value-item">
-              <div class="w-10 h-10 rounded-xl bg-purple-500/10 text-purple-500 flex items-center justify-center mb-3">
-                <span class="material-symbols-rounded fill" style="font-size:20px">award_star</span>
+              <div class="value-icon" style="color:var(--accent-purple);background:rgba(168,85,247,0.1);border-color:rgba(168,85,247,0.2);">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="7"/><polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"/></svg>
               </div>
-              <h4 class="font-bold text-[color:var(--txt-1)] text-sm mb-1">Calidad</h4>
-              <p class="text-xs text-[color:var(--txt-3)]">Código limpio, arquitectura sólida y atención al detalle en cada entrega.</p>
+              <h4 class="value-title">Calidad</h4>
+              <p class="value-desc">Código limpio, arquitectura sólida y atención al detalle en cada entrega.</p>
             </div>
             <div class="value-item">
-              <div class="w-10 h-10 rounded-xl bg-emerald-500/10 text-emerald-500 flex items-center justify-center mb-3">
-                <span class="material-symbols-rounded fill" style="font-size:20px">developer_mode</span>
+              <div class="value-icon" style="color:var(--accent-emerald);background:rgba(16,185,129,0.1);border-color:rgba(16,185,129,0.2);">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
               </div>
-              <h4 class="font-bold text-[color:var(--txt-1)] text-sm mb-1">Developer Experience</h4>
-              <p class="text-xs text-[color:var(--txt-3)]">Herramientas que los desarrolladores disfrutan usar. Documentación clara, APIs intuitivas.</p>
+              <h4 class="value-title">Developer Experience</h4>
+              <p class="value-desc">Herramientas que los desarrolladores disfrutan usar. Documentación clara, APIs intuitivas.</p>
             </div>
           </div>
         </div>
       </div>
+
     </div>
   </div>
 </section>
 
-<!-- ══ SERVICIOS ═════════════════════════════════════════════════ -->
+<!-- ══ SERVICIOS · EPIC 04 PART 01 ═════════════════════════════════════════ -->
 <section id="servicios" class="py-24 sm:py-32 section-alt relative">
-  <div class="absolute top-0 right-0 w-96 h-96 bg-blue-500/5 rounded-full blur-[100px] pointer-events-none"></div>
-  <div class="absolute bottom-0 left-0 w-96 h-96 bg-purple-500/5 rounded-full blur-[100px] pointer-events-none"></div>
+  <div class="about-bg-orb" style="top:0;right:0;width:24rem;height:24rem;background:radial-gradient(circle, rgba(99,102,241,0.06), transparent 70%);"></div>
+  <div class="about-bg-orb" style="bottom:0;left:0;width:24rem;height:24rem;background:radial-gradient(circle, rgba(168,85,247,0.05), transparent 70%);"></div>
 
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-
-    <div class="text-center max-w-2xl mx-auto mb-16 scroll-reveal">
-      <p class="text-blue-600 font-semibold tracking-wide text-sm mb-3 uppercase">Áreas de Especialidad</p>
-      <h2 class="text-3xl sm:text-4xl md:text-5xl font-extrabold text-[color:var(--txt-1)] mb-6 tracking-tight" style="font-family:var(--font-display)">
-        Todo lo que tu empresa necesita en <span class="text-gradient">un solo lugar.</span>
+    <!-- Section header -->
+    <div class="section-header scroll-reveal">
+      <div class="section-tag">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+          <rect x="2" y="3" width="20" height="14" rx="2" ry="2"/>
+          <line x1="8" y1="21" x2="16" y2="21"/>
+          <line x1="12" y1="17" x2="12" y2="21"/>
+        </svg>
+        Áreas de Especialidad
+      </div>
+      <h2 class="section-title">
+        Todo lo que tu empresa necesita en <span class="hero-title-accent">un solo lugar.</span>
       </h2>
-      <p class="text-[color:var(--txt-2)] text-lg leading-relaxed">
+      <p class="section-desc">
         Olvídate de contratar múltiples proveedores. En Keorsoft cubrimos desde el desarrollo de tu plataforma hasta la infraestructura física, la seguridad y la inteligencia artificial.
       </p>
     </div>
 
-    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
+    <!-- 3 pilares (consolidación 7→3) -->
+    <div class="pillars-grid">
 
-      <!-- Software -->
-      <div class="service-card scroll-reveal" style="--c-bg: var(--in); --i-bg: rgba(99,102,241,0.1); --i-color: #6366F1;">
-        <div class="sc-icon"><span class="material-symbols-rounded fill" style="font-size:28px">code_blocks</span></div>
-        <h3 class="text-xl font-bold text-[color:var(--txt-1)] mb-3" style="font-family:var(--font-display)">Software Empresarial (Pymes)</h3>
-        <p class="text-[color:var(--txt-2)] leading-relaxed text-sm mb-6">
-          Sistemas a la medida diseñados para optimizar y automatizar los procesos de tu negocio. Desde puntos de venta (POS), CRMs, ERPs, hasta plataformas web completas que escalan contigo.
-        </p>
-        <ul class="space-y-2 mb-6 text-sm text-[color:var(--txt-3)]">
-          <li class="flex items-center gap-2"><span class="material-symbols-rounded text-indigo-500" style="font-size:16px">check</span>Sistemas de Gestión / ERPs</li>
-          <li class="flex items-center gap-2"><span class="material-symbols-rounded text-indigo-500" style="font-size:16px">check</span>Aplicaciones Web a la Medida</li>
-          <li class="flex items-center gap-2"><span class="material-symbols-rounded text-indigo-500" style="font-size:16px">check</span>Puntos de Venta (POS)</li>
-        </ul>
-      </div>
-
-      <!-- Redes y Hardware -->
-      <div class="service-card scroll-reveal" style="--c-bg: var(--kr-blue); --i-bg: rgba(14,152,248,0.1); --i-color: #0E98F8; animation-delay:.1s">
-        <div class="sc-icon"><span class="material-symbols-rounded fill" style="font-size:28px">router</span></div>
-        <h3 class="text-xl font-bold text-[color:var(--txt-1)] mb-3" style="font-family:var(--font-display)">Infraestructura de Redes y Hardware</h3>
-        <p class="text-[color:var(--txt-2)] leading-relaxed text-sm mb-6">
-          No solo hacemos el software, construimos la pista por la que corre. Diseño, cableado estructurado, configuración de servidores e instalación de equipos de cómputo para tu oficina o local.
-        </p>
-        <ul class="space-y-2 mb-6 text-sm text-[color:var(--txt-3)]">
-          <li class="flex items-center gap-2"><span class="material-symbols-rounded text-blue-500" style="font-size:16px">check</span>Cableado Estructurado</li>
-          <li class="flex items-center gap-2"><span class="material-symbols-rounded text-blue-500" style="font-size:16px">check</span>Configuración de Servidores & Routers</li>
-          <li class="flex items-center gap-2"><span class="material-symbols-rounded text-blue-500" style="font-size:16px">check</span>Mantenimiento e Instalación de Hardware</li>
-        </ul>
-      </div>
-
-      <!-- Ciberseguridad -->
-      <div class="service-card scroll-reveal" style="--c-bg: var(--em); --i-bg: rgba(16,185,129,0.1); --i-color: #10B981; animation-delay:.2s">
-        <div class="sc-icon"><span class="material-symbols-rounded fill" style="font-size:28px">shield_lock</span></div>
-        <h3 class="text-xl font-bold text-[color:var(--txt-1)] mb-3" style="font-family:var(--font-display)">Ciberseguridad Básica</h3>
-        <p class="text-[color:var(--txt-2)] leading-relaxed text-sm mb-6">
-          Protegemos el activo más importante de tu empresa: la información. Implementamos protocolos de seguridad, firewalls, respaldos automatizados (backups) y protección contra amenazas comunes.
-        </p>
-        <ul class="space-y-2 mb-6 text-sm text-[color:var(--txt-3)]">
-          <li class="flex items-center gap-2"><span class="material-symbols-rounded text-emerald-500" style="font-size:16px">check</span>Configuración de Firewalls</li>
-          <li class="flex items-center gap-2"><span class="material-symbols-rounded text-emerald-500" style="font-size:16px">check</span>Políticas de Respaldo de Datos</li>
-          <li class="flex items-center gap-2"><span class="material-symbols-rounded text-emerald-500" style="font-size:16px">check</span>Protección de Redes Internas</li>
-        </ul>
-      </div>
-
-      <!-- Diseño UX/UI -->
-      <div class="service-card scroll-reveal" style="--c-bg: var(--am); --i-bg: rgba(245,158,11,0.1); --i-color: #F59E0B; animation-delay:.3s">
-        <div class="sc-icon"><span class="material-symbols-rounded fill" style="font-size:28px">palette</span></div>
-        <h3 class="text-xl font-bold text-[color:var(--txt-1)] mb-3" style="font-family:var(--font-display)">Diseño UX / UI</h3>
-        <p class="text-[color:var(--txt-2)] leading-relaxed text-sm mb-6">
-          Software funcional y estéticamente impecable. Creamos interfaces intuitivas que enamoran a tus usuarios y mejoran la productividad de tus empleados a través de un diseño centrado en el humano.
-        </p>
-        <ul class="space-y-2 mb-6 text-sm text-[color:var(--txt-3)]">
-          <li class="flex items-center gap-2"><span class="material-symbols-rounded text-amber-500" style="font-size:16px">check</span>Diseño de Interfaces Web y Móvil</li>
-          <li class="flex items-center gap-2"><span class="material-symbols-rounded text-amber-500" style="font-size:16px">check</span>Investigación de Usuarios (UX)</li>
-          <li class="flex items-center gap-2"><span class="material-symbols-rounded text-amber-500" style="font-size:16px">check</span>Prototipado Interactivo</li>
-        </ul>
-      </div>
-
-      <!-- AI Consulting -->
-      <div class="service-card scroll-reveal" style="--c-bg: var(--vi); --i-bg: rgba(139,92,246,0.1); --i-color: #8B5CF6; animation-delay:.4s">
-        <div class="sc-icon"><span class="material-symbols-rounded fill" style="font-size:28px">smart_toy</span></div>
-        <h3 class="text-xl font-bold text-[color:var(--txt-1)] mb-3" style="font-family:var(--font-display)">AI Consulting & Integration</h3>
-        <p class="text-[color:var(--txt-2)] leading-relaxed text-sm mb-6">
-          Ayudamos a las empresas a integrar inteligencia artificial en sus flujos de trabajo. Desde chatbots y automatización hasta análisis predictivo y generación de contenido.
-        </p>
-        <ul class="space-y-2 mb-6 text-sm text-[color:var(--txt-3)]">
-          <li class="flex items-center gap-2"><span class="material-symbols-rounded text-purple-500" style="font-size:16px">check</span>Automatización de Procesos con IA</li>
-          <li class="flex items-center gap-2"><span class="material-symbols-rounded text-purple-500" style="font-size:16px">check</span>Integración de APIs de IA (OpenAI, Claude, Gemini)</li>
-          <li class="flex items-center gap-2"><span class="material-symbols-rounded text-purple-500" style="font-size:16px">check</span>Consultoría Estratégica de IA</li>
-        </ul>
-      </div>
-
-      <!-- Custom .NET Development -->
-      <div class="service-card scroll-reveal" style="--c-bg: var(--or); --i-bg: rgba(249,115,22,0.1); --i-color: #F97316; animation-delay:.5s">
-        <div class="sc-icon"><span class="material-symbols-rounded fill" style="font-size:28px">terminal</span></div>
-        <h3 class="text-xl font-bold text-[color:var(--txt-1)] mb-3" style="font-family:var(--font-display)">Custom .NET Development</h3>
-        <p class="text-[color:var(--txt-2)] leading-relaxed text-sm mb-6">
-          Especialistas en el ecosistema .NET moderno. Desarrollamos aplicaciones de escritorio, web y multiplataforma con las últimas tecnologías de Microsoft.
-        </p>
-        <ul class="space-y-2 mb-6 text-sm text-[color:var(--txt-3)]">
-          <li class="flex items-center gap-2"><span class="material-symbols-rounded text-orange-500" style="font-size:16px">check</span>.NET 9, WPF, Avalonia, Blazor, MAUI</li>
-          <li class="flex items-center gap-2"><span class="material-symbols-rounded text-orange-500" style="font-size:16px">check</span>Entity Framework Core & SQL Server</li>
-          <li class="flex items-center gap-2"><span class="material-symbols-rounded text-orange-500" style="font-size:16px">check</span>ASP.NET Core APIs y Microservicios</li>
-        </ul>
-      </div>
-
-      <!-- Enterprise Architecture -->
-      <div class="service-card md:col-span-2 lg:col-span-3 scroll-reveal" style="--c-bg: var(--kr-blue); --i-bg: rgba(14,152,248,0.1); --i-color: #0E98F8; animation-delay:.6s">
-        <div class="flex flex-col md:flex-row gap-8 items-start">
-          <div class="md:w-1/3">
-            <div class="sc-icon"><span class="material-symbols-rounded fill" style="font-size:28px">account_tree</span></div>
-            <h3 class="text-xl font-bold text-[color:var(--txt-1)] mb-3" style="font-family:var(--font-display)">Enterprise Architecture</h3>
-            <p class="text-[color:var(--txt-2)] leading-relaxed text-sm">
-              Diseñamos arquitecturas escalables y mantenibles para aplicaciones empresariales de alto rendimiento.
-            </p>
-          </div>
-          <div class="md:w-2/3 grid sm:grid-cols-3 gap-4">
-            <div class="value-item">
-              <div class="w-10 h-10 rounded-xl bg-blue-500/10 text-blue-500 flex items-center justify-center mb-3">
-                <span class="material-symbols-rounded fill" style="font-size:20px">layers</span>
-              </div>
-              <h4 class="font-bold text-[color:var(--txt-1)] text-sm mb-1">Clean Architecture</h4>
-              <p class="text-xs text-[color:var(--txt-3)]">Separación de responsabilidades, testabilidad y mantenibilidad a largo plazo.</p>
-            </div>
-            <div class="value-item">
-              <div class="w-10 h-10 rounded-xl bg-purple-500/10 text-purple-500 flex items-center justify-center mb-3">
-                <span class="material-symbols-rounded fill" style="font-size:20px">sync_alt</span>
-              </div>
-              <h4 class="font-bold text-[color:var(--txt-1)] text-sm mb-1">CQRS</h4>
-              <p class="text-xs text-[color:var(--txt-3)]">Separación de lecturas y escrituras para máximo rendimiento y escalabilidad.</p>
-            </div>
-            <div class="value-item">
-              <div class="w-10 h-10 rounded-xl bg-emerald-500/10 text-emerald-500 flex items-center justify-center mb-3">
-                <span class="material-symbols-rounded fill" style="font-size:20px">domain</span>
-              </div>
-              <h4 class="font-bold text-[color:var(--txt-1)] text-sm mb-1">Domain-Driven Design</h4>
-              <p class="text-xs text-[color:var(--txt-3)]">Modelado del negocio en código. Ubiquitous language, aggregates, value objects.</p>
-            </div>
-          </div>
+      <!-- Pilar 1: Aplicaciones Enterprise (indigo) -->
+      <div class="pillar-card glass-panel indigo">
+        <div class="pillar-icon-box">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="2" y="3" width="20" height="14" rx="2" ry="2"/>
+            <line x1="8" y1="21" x2="16" y2="21"/>
+            <line x1="12" y1="17" x2="12" y2="21"/>
+          </svg>
         </div>
+        <h3 class="pillar-title">Aplicaciones Enterprise</h3>
+        <p class="pillar-desc">
+          Desarrollamos soluciones a medida robustas, escalables y adaptadas al flujo de trabajo de tu industria. Stack .NET 9 moderno con WPF, Blazor, MAUI y ASP.NET Core.
+        </p>
+        <ul class="pillar-list">
+          <li class="pillar-item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>
+            Sistemas CRM personalizados
+          </li>
+          <li class="pillar-item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>
+            Sistemas POS rápidos y sin fricción
+          </li>
+          <li class="pillar-item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>
+            PMS (Property Management Systems)
+          </li>
+          <li class="pillar-item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>
+            Integraciones API de alta disponibilidad
+          </li>
+        </ul>
+      </div>
+
+      <!-- Pilar 2: Infraestructura y Redes (cyan) -->
+      <div class="pillar-card glass-panel cyan">
+        <div class="pillar-icon-box">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="2" y="2" width="20" height="8" rx="2" ry="2"/>
+            <rect x="2" y="14" width="20" height="8" rx="2" ry="2"/>
+            <line x1="6" y1="6" x2="6.01" y2="6"/>
+            <line x1="6" y1="18" x2="6.01" y2="18"/>
+          </svg>
+        </div>
+        <h3 class="pillar-title">Infraestructura y Redes</h3>
+        <p class="pillar-desc">
+          Diseñamos y montamos la estructura física y lógica sobre la que corre el software más demandante. Desde racks hasta políticas de seguridad perimetral.
+        </p>
+        <ul class="pillar-list">
+          <li class="pillar-item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>
+            Instalación física de servidores y racks
+          </li>
+          <li class="pillar-item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>
+            Diseño e instalación de infraestructura de red
+          </li>
+          <li class="pillar-item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>
+            Protocolos de enrutamiento y seguridad
+          </li>
+          <li class="pillar-item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>
+            Auditorías de ciberseguridad básica
+          </li>
+        </ul>
+      </div>
+
+      <!-- Pilar 3: Developer & AI Tools (purple) -->
+      <div class="pillar-card glass-panel purple">
+        <div class="pillar-icon-box">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="16 18 22 12 16 6"/>
+            <polyline points="8 6 2 12 8 18"/>
+          </svg>
+        </div>
+        <h3 class="pillar-title">Developer &amp; AI Tools</h3>
+        <p class="pillar-desc">
+          Software avanzado, librerías y protocolos para empoderar a los equipos de desarrollo moderno. Incluye arquitectura empresarial con Clean Architecture, CQRS y DDD.
+        </p>
+        <ul class="pillar-list">
+          <li class="pillar-item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>
+            ReportsEngines de alto rendimiento
+          </li>
+          <li class="pillar-item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>
+            Protocolo IA Reasp (Anti-alucinaciones)
+          </li>
+          <li class="pillar-item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>
+            Paquetes de componentes UI (C#, JS)
+          </li>
+          <li class="pillar-item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>
+            Sistemas de diseño MeridianUI y AegisUI
+          </li>
+        </ul>
       </div>
 
     </div>
@@ -406,175 +385,283 @@
 
 <!-- ══ PRODUCTOS ════════════════════════════════════════════════ -->
 <section id="productos" class="py-24 sm:py-32 section-main relative overflow-hidden">
-  <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-purple-500/5 rounded-full blur-[120px] pointer-events-none"></div>
+  <div class="about-bg-orb" style="top:50%;left:50%;transform:translate(-50%,-50%);width:50rem;height:50rem;background:radial-gradient(circle, rgba(168,85,247,0.05), transparent 70%);"></div>
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-    <div class="text-center max-w-2xl mx-auto mb-16 scroll-reveal">
-      <p class="text-purple-500 font-semibold tracking-wide text-sm mb-3 uppercase">Productos & Frameworks</p>
-      <h2 class="text-3xl sm:text-4xl md:text-5xl font-extrabold text-[color:var(--txt-1)] mb-6 tracking-tight" style="font-family:var(--font-display)">
-        Tecnología propia de <span class="text-gradient">próxima generación.</span>
+    <div class="section-header scroll-reveal">
+      <div class="section-tag">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+          <rect x="3" y="3" width="7" height="7"/>
+          <rect x="14" y="3" width="7" height="7"/>
+          <rect x="14" y="14" width="7" height="7"/>
+          <rect x="3" y="14" width="7" height="7"/>
+        </svg>
+        Productos &amp; Frameworks
+      </div>
+      <h2 class="section-title">
+        Tecnología propia de <span class="hero-title-accent">próxima generación.</span>
       </h2>
-      <p class="text-[color:var(--txt-2)] text-lg leading-relaxed">
+      <p class="section-desc">
         Descubre nuestros productos in-house: un design system propietario, librerías de controles .NET, soluciones SaaS verticales y frameworks de código abierto.
       </p>
     </div>
 
-    <div class="grid lg:grid-cols-2 gap-6 lg:gap-8">
+    <div class="products-grid">
 
-      <!-- MeridianUI -->
-      <div class="product-card scroll-reveal" style="--c-bg: var(--kr-blue); --i-bg: rgba(14,152,248,0.1); --i-color: #0E98F8;">
-        <div class="flex items-start gap-4 mb-4">
-          <div class="sc-icon shrink-0"><span class="material-symbols-rounded fill" style="font-size:28px">auto_awesome_mosaic</span></div>
+      <!-- 1. MeridianUI (azul corporativo) -->
+      <div class="product-card scroll-reveal" style="--card-accent: #0E98F8; --card-accent-rgb: 14,152,248;">
+        <div class="product-card-header">
+          <div class="sc-icon">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="3" y="3" width="7" height="7" rx="1"/>
+              <rect x="14" y="3" width="7" height="7" rx="1"/>
+              <rect x="3" y="14" width="7" height="7" rx="1"/>
+              <rect x="14" y="14" width="7" height="7" rx="1" fill="currentColor" fill-opacity="0.3"/>
+            </svg>
+          </div>
           <div>
-            <div class="flex items-center gap-2 mb-1">
-              <h3 class="text-xl font-bold text-[color:var(--txt-1)]" style="font-family:var(--font-display)">MeridianUI</h3>
+            <div class="product-card-title-row">
+              <h3 class="product-card-title">MeridianUI</h3>
               <span class="badge badge-internal">Internal</span>
             </div>
-            <p class="text-xs text-[color:var(--txt-3)] font-medium">Design System & UI Framework Component KIT</p>
+            <p class="product-card-subtitle">Design System &amp; UI Framework Component KIT</p>
           </div>
         </div>
-        <p class="text-[color:var(--txt-2)] leading-relaxed text-sm mb-4">
+        <p class="product-card-desc">
           Un lenguaje visual propietario que fusiona Fluent Design, Material Expressive y el toque distintivo de Keorsoft. Tono enterprise-soft con un sistema semántico de 5 niveles de color, densidad controlada y animaciones silenciosas (≤200ms).
         </p>
-        <div class="space-y-2 mb-6">
-          <div class="feature-row"><span class="material-symbols-rounded text-blue-500" style="font-size:16px">check_circle</span><span class="text-sm text-[color:var(--txt-3)]">Sistema semántico de 5 niveles de color</span></div>
-          <div class="feature-row"><span class="material-symbols-rounded text-blue-500" style="font-size:16px">check_circle</span><span class="text-sm text-[color:var(--txt-3)]">Densidad controlada por contexto</span></div>
-          <div class="feature-row"><span class="material-symbols-rounded text-blue-500" style="font-size:16px">check_circle</span><span class="text-sm text-[color:var(--txt-3)]">Animaciones silenciosas ≤200ms, sin gradientes ruidosos</span></div>
+        <div class="product-features">
+          <div class="feature-row">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+            <span>Sistema semántico de 5 niveles de color</span>
+          </div>
+          <div class="feature-row">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+            <span>Densidad controlada por contexto</span>
+          </div>
+          <div class="feature-row">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+            <span>Animaciones silenciosas ≤200ms, sin gradientes ruidosos</span>
+          </div>
         </div>
-        <div class="flex items-center gap-2 text-xs text-[color:var(--txt-3)] pt-4 border-t border-[color:var(--card-border)]">
-          <span class="material-symbols-rounded" style="font-size:14px">deployed_code</span>
-          Usado en: <strong class="text-[color:var(--txt-2)]">SHEndevour</strong> y todos los productos Keorsoft
+        <div class="product-card-footer">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/><polyline points="3.27 6.96 12 12.01 20.73 6.96"/><line x1="12" y1="22.08" x2="12" y2="12"/></svg>
+          Usado en todos los productos Keorsoft
         </div>
       </div>
 
-      <!-- Controls & Libraries for .NET/C# -->
-      <div class="product-card scroll-reveal" style="--c-bg: var(--in); --i-bg: rgba(99,102,241,0.1); --i-color: #6366F1; animation-delay:.1s">
-        <div class="flex items-start gap-4 mb-4">
-          <div class="sc-icon shrink-0"><span class="material-symbols-rounded fill" style="font-size:28px">widgets</span></div>
+      <!-- 2. Controls & Libraries for .NET (indigo) -->
+      <div class="product-card scroll-reveal" style="--card-accent: var(--accent-indigo); --card-accent-rgb: 99,102,241; animation-delay:.1s">
+        <div class="product-card-header">
+          <div class="sc-icon">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="3" y="3" width="7" height="7"/>
+              <rect x="14" y="3" width="7" height="7"/>
+              <rect x="14" y="14" width="7" height="7"/>
+              <rect x="3" y="14" width="7" height="7"/>
+            </svg>
+          </div>
           <div>
-            <div class="flex items-center gap-2 mb-1">
-              <h3 class="text-xl font-bold text-[color:var(--txt-1)]" style="font-family:var(--font-display)">Controls & Libraries for .NET</h3>
+            <div class="product-card-title-row">
+              <h3 class="product-card-title">Controls &amp; Libraries for .NET</h3>
               <span class="badge badge-internal">Internal</span>
             </div>
-            <p class="text-xs text-[color:var(--txt-3)] font-medium">Componentes avanzados para WPF, MAUI y Blazor</p>
+            <p class="product-card-subtitle">Componentes avanzados para WPF, MAUI y Blazor</p>
           </div>
         </div>
-        <p class="text-[color:var(--txt-2)] leading-relaxed text-sm mb-4">
+        <p class="product-card-desc">
           Librerías de controles de alto rendimiento para el ecosistema .NET. DataGrids con filtrado avanzado, schedulers para planificación de recursos, formularios con validación integrada y componentes de gráficos.
         </p>
-        <div class="space-y-2 mb-6">
-          <div class="feature-row"><span class="material-symbols-rounded text-indigo-500" style="font-size:16px">check_circle</span><span class="text-sm text-[color:var(--txt-3)]">DataGrids con filtrado, ordenamiento y agrupación</span></div>
-          <div class="feature-row"><span class="material-symbols-rounded text-indigo-500" style="font-size:16px">check_circle</span><span class="text-sm text-[color:var(--txt-3)]">Schedulers/Calendars para planificación de recursos</span></div>
-          <div class="feature-row"><span class="material-symbols-rounded text-indigo-500" style="font-size:16px">check_circle</span><span class="text-sm text-[color:var(--txt-3)]">Form controllers con validación y charting components</span></div>
+        <div class="product-features">
+          <div class="feature-row">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+            <span>DataGrids con filtrado, ordenamiento y agrupación</span>
+          </div>
+          <div class="feature-row">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+            <span>Schedulers/Calendars para planificación de recursos</span>
+          </div>
+          <div class="feature-row">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+            <span>Form controllers con validación y charting components</span>
+          </div>
         </div>
-        <div class="flex items-center gap-2 text-xs text-[color:var(--txt-3)] pt-4 border-t border-[color:var(--card-border)]">
-          <span class="material-symbols-rounded" style="font-size:14px">code</span>
-          Plataformas: <strong class="text-[color:var(--txt-2)]">WPF, .NET MAUI, Blazor</strong>
+        <div class="product-card-footer">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
+          Plataformas: <strong>WPF, .NET MAUI, Blazor</strong>
         </div>
       </div>
 
-      <!-- SaaS Products -->
-      <div class="product-card scroll-reveal" style="--c-bg: var(--em); --i-bg: rgba(16,185,129,0.1); --i-color: #10B981; animation-delay:.2s">
-        <div class="flex items-start gap-4 mb-4">
-          <div class="sc-icon shrink-0"><span class="material-symbols-rounded fill" style="font-size:28px">cloud</span></div>
+      <!-- 3. SaaS Products (esmeralda) -->
+      <div class="product-card scroll-reveal" style="--card-accent: var(--accent-emerald); --card-accent-rgb: 16,185,129; animation-delay:.2s">
+        <div class="product-card-header">
+          <div class="sc-icon">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M18 10h-1.26A8 8 0 1 0 9 20h9a5 5 0 0 0 0-10z"/>
+            </svg>
+          </div>
           <div>
-            <div class="flex items-center gap-2 mb-1">
-              <h3 class="text-xl font-bold text-[color:var(--txt-1)]" style="font-family:var(--font-display)">SaaS Products</h3>
+            <div class="product-card-title-row">
+              <h3 class="product-card-title">SaaS Products</h3>
               <span class="badge badge-live">Live</span>
             </div>
-            <p class="text-xs text-[color:var(--txt-3)] font-medium">Soluciones SaaS verticales para industrias específicas</p>
+            <p class="product-card-subtitle">Soluciones SaaS verticales para industrias específicas</p>
           </div>
         </div>
-        <p class="text-[color:var(--txt-2)] leading-relaxed text-sm mb-4">
+        <p class="product-card-desc">
           Pequeñas soluciones SaaS diseñadas para verticales específicos. Cada producto está construido con alta personalización para su industria, utilizando MeridianUI y arquitectura moderna.
         </p>
-        <div class="bg-[color:var(--bg-3)] rounded-xl p-4 mb-4 border border-[color:var(--card-border)]">
-          <div class="flex items-center gap-3 mb-2">
-            <div class="w-8 h-8 rounded-lg bg-emerald-500/10 text-emerald-500 flex items-center justify-center">
-              <span class="material-symbols-rounded fill" style="font-size:18px">hotel</span>
-            </div>
-            <div>
-              <h4 class="font-bold text-[color:var(--txt-1)] text-sm">SHEndevour</h4>
-              <p class="text-xs text-[color:var(--txt-3)]">Sistema de Gestión Hotelera</p>
-            </div>
-          </div>
-          <p class="text-xs text-[color:var(--txt-3)]">Versiones Desktop (WPF) y Web. Control total de reservas, habitaciones, facturación y reportes.</p>
-        </div>
-        <div class="flex items-center gap-2 text-xs text-[color:var(--txt-3)] pt-4 border-t border-[color:var(--card-border)]">
-          <span class="material-symbols-rounded" style="font-size:14px">schedule</span>
+        <div class="product-card-footer">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
           Próximamente: más soluciones verticales
         </div>
       </div>
 
-      <!-- REASP -->
-      <div class="product-card scroll-reveal" style="--c-bg: var(--vi); --i-bg: rgba(139,92,246,0.1); --i-color: #8B5CF6; animation-delay:.3s">
-        <div class="flex items-start gap-4 mb-4">
-          <div class="sc-icon shrink-0"><span class="material-symbols-rounded fill" style="font-size:28px">memory</span></div>
-          <div>
-            <div class="flex items-center gap-2 mb-1">
-              <h3 class="text-xl font-bold text-[color:var(--txt-1)]" style="font-family:var(--font-display)">REASP</h3>
-              <span class="badge badge-oss">Open Source</span>
-            </div>
-            <p class="text-xs text-[color:var(--txt-3)] font-medium">Ryou Enterprise Adaptive SDD Protocol</p>
-          </div>
-        </div>
-        <p class="text-[color:var(--txt-2)] leading-relaxed text-sm mb-4">
-          El primer Sistema Operativo de Desarrollo IA Adaptativo diseñado para OpenCode. Redefine la forma en la que programas con agentes, evitando el desperdicio de tokens y enfocándose en una arquitectura determinista.
-        </p>
-        <div class="space-y-2 mb-6">
-          <div class="feature-row"><span class="material-symbols-rounded text-purple-500" style="font-size:16px">check_circle</span><span class="text-sm text-[color:var(--txt-3)]">Plugin Visual: Dashboard nativo in-session</span></div>
-          <div class="feature-row"><span class="material-symbols-rounded text-purple-500" style="font-size:16px">check_circle</span><span class="text-sm text-[color:var(--txt-3)]">Instalación Global: un script instala CLI y Extensión</span></div>
-          <div class="feature-row"><span class="material-symbols-rounded text-purple-500" style="font-size:16px">check_circle</span><span class="text-sm text-[color:var(--txt-3)]">Arquitectura determinista y adaptativa</span></div>
-        </div>
-        <a href="REASP/index.html" class="inline-flex items-center gap-2 px-6 py-3 rounded-xl font-bold text-sm text-white hover:-translate-y-1 transition-transform" style="background: linear-gradient(135deg, #6366F1, #8B5CF6); box-shadow: 0 8px 20px rgba(139, 92, 246, 0.3);">
-          Explorar REASP <span class="material-symbols-rounded" style="font-size:18px">arrow_forward</span>
-        </a>
-      </div>
-
-      <!-- RACSP -->
-      <div class="product-card lg:col-span-2 scroll-reveal" style="--c-bg: var(--or); --i-bg: rgba(249,115,22,0.1); --i-color: #F97316; animation-delay:.4s">
-        <div class="flex flex-col md:flex-row gap-8 items-start">
-          <div class="md:w-2/3">
-            <div class="flex items-start gap-4 mb-4">
-              <div class="sc-icon shrink-0"><span class="material-symbols-rounded fill" style="font-size:28px">hub</span></div>
+      <!-- 4. REASP (purple, full-width con code-block) -->
+      <div class="product-card product-card-wide scroll-reveal" style="--card-accent: var(--accent-purple); --card-accent-rgb: 168,85,247; grid-column: auto; animation-delay:.3s">
+        <div class="product-card-wide-inner">
+          <div class="product-card-wide-content">
+            <div class="product-card-header">
+              <div class="sc-icon">
+                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <rect x="2" y="4" width="20" height="16" rx="2"/>
+                  <line x1="2" y1="10" x2="22" y2="10"/>
+                  <line x1="7" y1="15" x2="7" y2="15"/>
+                </svg>
+              </div>
               <div>
-                <div class="flex items-center gap-2 mb-1 flex-wrap">
-                  <h3 class="text-xl font-bold text-[color:var(--txt-1)]" style="font-family:var(--font-display)">RACSP</h3>
+                <div class="product-card-title-row">
+                  <h3 class="product-card-title">REASP</h3>
                   <span class="badge badge-oss">Open Source</span>
-                  <span class="badge badge-live">v2.0.0</span>
                 </div>
-                <p class="text-xs text-[color:var(--txt-3)] font-medium">Ryou AI Cross SDD Protocol</p>
+                <p class="product-card-subtitle">Ryou Enterprise Adaptive SDD Protocol</p>
               </div>
             </div>
-            <p class="text-[color:var(--txt-2)] leading-relaxed text-sm mb-4">
-              Protocolo de colaboración multi-agente para agentes de IA (Claude, OpenCode, Gemini, etc.). Un protocolo nativo de proyecto con cerebro compartido, perfiles SDD adaptativos y prevención automática de conflictos. <strong>Production-Grade.</strong>
-            </p>
-            <div class="grid sm:grid-cols-2 gap-2 mb-6">
-              <div class="feature-row"><span class="material-symbols-rounded text-orange-500" style="font-size:16px">check_circle</span><span class="text-sm text-[color:var(--txt-3)]">Cerebro compartido entre agentes</span></div>
-              <div class="feature-row"><span class="material-symbols-rounded text-orange-500" style="font-size:16px">check_circle</span><span class="text-sm text-[color:var(--txt-3)]">Perfiles SDD adaptativos</span></div>
-              <div class="feature-row"><span class="material-symbols-rounded text-orange-500" style="font-size:16px">check_circle</span><span class="text-sm text-[color:var(--txt-3)]">Prevención automática de conflictos</span></div>
-              <div class="feature-row"><span class="material-symbols-rounded text-orange-500" style="font-size:16px">check_circle</span><span class="text-sm text-[color:var(--txt-3)]">Compatible con múltiples agentes IA</span></div>
+            <p class="product-card-desc">El primer Sistema Operativo de Desarrollo IA Adaptativo diseñado para OpenCode. Redefine la forma en la que programas con agentes, evitando el desperdicio de tokens y enfocándose en una arquitectura determinista. <strong>Production-Grade.</strong></p>
+            <div class="product-features-grid">
+              <div class="feature-row">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                <span>Plugin Visual: Dashboard nativo in-session</span>
+              </div>
+              <div class="feature-row">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                <span>Instalación Global: un script instala CLI y Extensión</span>
+              </div>
+              <div class="feature-row">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                <span>Arquitectura determinista y adaptativa</span>
+              </div>
+              <div class="feature-row">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                <span>8 Agentes Especializados</span>
+              </div>
             </div>
-            <a href="RACSP/index.html" class="inline-flex items-center gap-2 px-6 py-3 rounded-xl font-bold text-sm text-white hover:-translate-y-1 transition-transform" style="background: linear-gradient(135deg, #F97316, #FB923C); box-shadow: 0 8px 20px rgba(249, 115, 22, 0.3);">
-              Explorar RACSP <span class="material-symbols-rounded" style="font-size:18px">arrow_forward</span>
+            <a href="REASP/index.html" class="btn-cta-purple">
+              Explorar REASP
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
             </a>
           </div>
-          <div class="md:w-1/3 w-full rounded-2xl overflow-hidden border border-[color:var(--card-border)] bg-[#050b18] p-4 md:p-5 shadow-2xl relative">
-            <div class="absolute inset-0 bg-gradient-to-tr from-orange-500/5 to-amber-500/10 blur-2xl"></div>
-            <div class="flex items-center gap-2 mb-3 border-b border-white/10 pb-2">
-              <div class="w-2.5 h-2.5 rounded-full bg-red-500/80"></div>
-              <div class="w-2.5 h-2.5 rounded-full bg-yellow-500/80"></div>
-              <div class="w-2.5 h-2.5 rounded-full bg-green-500/80"></div>
-              <span class="text-[10px] text-slate-500 font-mono ml-2">racsp / protocol</span>
+          <div class="racsp-codeblock">
+            <div class="racsp-codeblock-overlay"></div>
+            <div class="card-header">
+              <div class="mac-buttons">
+                <span class="mac-btn close"></span>
+                <span class="mac-btn min"></span>
+                <span class="mac-btn max"></span>
+              </div>
+              <span class="racsp-codeblock-title">reasp / stack</span>
+              <div style="width: 40px;"></div>
             </div>
-            <pre class="text-[10px] md:text-xs text-slate-300 font-mono leading-relaxed relative z-10 overflow-x-auto whitespace-pre-wrap"><code><span class="text-slate-500"># RACSP v2.0.0 — Multi-Agent Protocol</span>
-<span class="text-orange-400">agents:</span>
-  - <span class="text-blue-400">claude</span> (architect)
-  - <span class="text-green-400">opencode</span> (builder)
-  - <span class="text-purple-400">gemini</span> (reviewer)
+            <pre class="racsp-codeblock-code"><code><span class="cb-comment"># REASP v1.0.1 — Adaptive SDD Stack</span>
+<span class="cb-key">framework:</span> <span class="cb-bool">reasp</span>
+<span class="cb-key">phases:</span>
+  - <span class="cb-agent-claude">orchestrator</span>  <span class="cb-comment">(GLM-5.1)</span>
+  - <span class="cb-agent-opencode">apply</span>       <span class="cb-comment">(Kimi K2.7)</span>
+  - <span class="cb-agent-gemini">verify</span>       <span class="cb-comment">(DeepSeek V4)</span>
 
-<span class="text-orange-400">shared_brain:</span> <span class="text-amber-300">enabled</span>
-<span class="text-orange-400">conflict_prevention:</span> <span class="text-amber-300">auto</span>
-<span class="text-orange-400">status:</span> <span class="text-emerald-400">production-grade</span></code></pre>
+<span class="cb-key">providers:</span>
+  - opencode-go    <span class="cb-bool">active</span>
+  - anthropic      <span class="cb-bool">active</span>
+  - openai         <span class="cb-bool">active</span>
+  - google         <span class="cb-bool">active</span>
+
+<span class="cb-key">status:</span> <span class="cb-status">production-grade</span></code></pre>
+          </div>
+        </div>
+      </div>
+
+      <!-- 5. RACSP (orange, full-width con code-block) -->
+      <div class="product-card product-card-wide scroll-reveal" style="--card-accent: var(--accent-orange); --card-accent-rgb: 249,115,22; grid-column: auto; animation-delay:.4s">
+        <div class="product-card-wide-inner">
+          <div class="product-card-wide-content">
+            <div class="product-card-header">
+              <div class="sc-icon">
+                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <circle cx="12" cy="12" r="3"/>
+                  <circle cx="4" cy="4" r="2"/>
+                  <circle cx="20" cy="4" r="2"/>
+                  <circle cx="4" cy="20" r="2"/>
+                  <circle cx="20" cy="20" r="2"/>
+                  <line x1="9.5" y1="6.5" x2="6" y2="4"/>
+                  <line x1="14.5" y1="6.5" x2="18" y2="4"/>
+                  <line x1="9.5" y1="17.5" x2="6" y2="20"/>
+                  <line x1="14.5" y1="17.5" x2="18" y2="20"/>
+                </svg>
+              </div>
+              <div>
+                <div class="product-card-title-row product-card-title-row-wrap">
+                  <h3 class="product-card-title">RACSP</h3>
+                  <span class="badge badge-oss">Open Source</span>
+                  <span class="badge badge-version">v2.0.0</span>
+                </div>
+                <p class="product-card-subtitle">Ryou AI Cross SDD Protocol</p>
+              </div>
+            </div>
+            <p class="product-card-desc">
+              Protocolo de colaboración multi-agente para agentes de IA (Claude, OpenCode, Gemini, etc.). Un protocolo nativo de proyecto con cerebro compartido, perfiles SDD adaptativos y prevención automática de conflictos. <strong>Production-Grade.</strong>
+            </p>
+            <div class="product-features-grid">
+              <div class="feature-row">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                <span>Cerebro compartido entre agentes</span>
+              </div>
+              <div class="feature-row">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                <span>Perfiles SDD adaptativos</span>
+              </div>
+              <div class="feature-row">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                <span>Prevención automática de conflictos</span>
+              </div>
+              <div class="feature-row">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                <span>Compatible con múltiples agentes IA</span>
+              </div>
+            </div>
+            <a href="RACSP/index.html" class="btn-cta-orange">
+              Explorar RACSP
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+            </a>
+          </div>
+          <div class="racsp-codeblock">
+            <div class="racsp-codeblock-overlay"></div>
+            <div class="card-header">
+              <div class="mac-buttons">
+                <span class="mac-btn close"></span>
+                <span class="mac-btn min"></span>
+                <span class="mac-btn max"></span>
+              </div>
+              <span class="racsp-codeblock-title">racsp / protocol</span>
+              <div style="width: 40px;"></div>
+            </div>
+            <pre class="racsp-codeblock-code"><code><span class="cb-comment"># RACSP v2.0.0 — Multi-Agent Protocol</span>
+<span class="cb-key">agents:</span>
+  - <span class="cb-agent-claude">claude</span> <span class="cb-comment">(architect)</span>
+  - <span class="cb-agent-opencode">opencode</span> <span class="cb-comment">(builder)</span>
+  - <span class="cb-agent-gemini">gemini</span> <span class="cb-comment">(reviewer)</span>
+
+<span class="cb-key">shared_brain:</span> <span class="cb-bool">enabled</span>
+<span class="cb-key">conflict_prevention:</span> <span class="cb-bool">auto</span>
+<span class="cb-key">status:</span> <span class="cb-status">production-grade</span></code></pre>
           </div>
         </div>
       </div>
@@ -584,83 +671,114 @@
 </section>
 
 <!-- ══ OPEN SOURCE ═══════════════════════════════════════════════ -->
+<!-- ══ OPEN SOURCE · EPIC 06 PART 01 ═════════════════════════════════════ -->
 <section id="opensource" class="py-24 sm:py-32 section-alt relative overflow-hidden">
-  <div class="absolute top-0 right-0 w-96 h-96 bg-emerald-500/5 rounded-full blur-[100px] pointer-events-none"></div>
-  <div class="absolute bottom-0 left-0 w-96 h-96 bg-blue-500/5 rounded-full blur-[100px] pointer-events-none"></div>
+  <div class="about-bg-orb" style="top:0;right:0;width:24rem;height:24rem;background:radial-gradient(circle, rgba(16,185,129,0.06), transparent 70%);"></div>
+  <div class="about-bg-orb" style="bottom:0;left:0;width:24rem;height:24rem;background:radial-gradient(circle, rgba(14,152,248,0.06), transparent 70%);"></div>
 
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-    <div class="text-center max-w-2xl mx-auto mb-16 scroll-reveal">
-      <p class="text-emerald-500 font-semibold tracking-wide text-sm mb-3 uppercase">Comunidad & Código Abierto</p>
-      <h2 class="text-3xl sm:text-4xl md:text-5xl font-extrabold text-[color:var(--txt-1)] mb-6 tracking-tight" style="font-family:var(--font-display)">
-        Contribuimos al <span class="text-gradient">ecosistema open source.</span>
+    <div class="section-header scroll-reveal">
+      <div class="section-tag">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+          <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/>
+        </svg>
+        Comunidad &amp; Código Abierto
+      </div>
+      <h2 class="section-title">
+        Contribuimos al <span class="hero-title-accent">ecosistema open source.</span>
       </h2>
-      <p class="text-[color:var(--txt-2)] text-lg leading-relaxed">
+      <p class="section-desc">
         Creemos en el poder de la colaboración. Nuestros frameworks de IA son de código abierto para impulsar la comunidad de desarrolladores.
       </p>
     </div>
 
-    <div class="grid md:grid-cols-2 gap-6 lg:gap-8 max-w-5xl mx-auto">
-      <!-- REASP Open Source -->
-      <div class="oss-card scroll-reveal" style="--c-bg: var(--vi); --i-bg: rgba(139,92,246,0.1); --i-color: #8B5CF6;">
-        <div class="flex items-center gap-4 mb-6">
-          <div class="sc-icon"><span class="material-symbols-rounded fill" style="font-size:28px">memory</span></div>
+    <div class="oss-grid">
+      <!-- REASP Open Source (purple) -->
+      <div class="oss-card scroll-reveal" style="--card-accent: var(--accent-purple); --card-accent-rgb: 168,85,247;">
+        <div class="oss-card-header">
+          <div class="sc-icon">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="2" y="4" width="20" height="16" rx="2"/>
+              <line x1="2" y1="10" x2="22" y2="10"/>
+              <line x1="7" y1="15" x2="7" y2="15"/>
+            </svg>
+          </div>
           <div>
-            <h3 class="text-xl font-bold text-[color:var(--txt-1)]" style="font-family:var(--font-display)">REASP</h3>
-            <p class="text-xs text-[color:var(--txt-3)]">Ryou Enterprise Adaptive SDD Protocol</p>
+            <h3 class="oss-card-title">REASP</h3>
+            <p class="oss-card-subtitle">Ryou Enterprise Adaptive SDD Protocol</p>
           </div>
         </div>
-        <p class="text-[color:var(--txt-2)] leading-relaxed text-sm mb-6">
+        <p class="oss-card-desc">
           Framework de desarrollo IA adaptativo para OpenCode. Sistema operativo de desarrollo que evita loops infinitos y optimiza el uso de tokens.
         </p>
-        <div class="flex flex-wrap gap-2 mb-6">
-          <span class="oss-badge"><span class="material-symbols-rounded" style="font-size:12px">star</span> Open Source</span>
-          <span class="oss-badge"><span class="material-symbols-rounded" style="font-size:12px">tag</span> v1.0.0</span>
-          <span class="oss-badge"><span class="material-symbols-rounded" style="font-size:12px">gavel</span> MIT License</span>
+        <div class="oss-badges">
+          <span class="oss-badge"><svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg> Open Source</span>
+          <span class="oss-badge"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"/><line x1="7" y1="7" x2="7.01" y2="7"/></svg> v1.0.0</span>
+          <span class="oss-badge"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L4 6v6c0 5 3.5 9.5 8 11 4.5-1.5 8-6 8-11V6l-8-4z"/></svg> MIT License</span>
         </div>
-        <div class="flex items-center gap-3">
-          <a href="REASP/index.html" class="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl font-bold text-sm text-white hover:-translate-y-1 transition-transform" style="background: linear-gradient(135deg, #6366F1, #8B5CF6); box-shadow: 0 6px 16px rgba(139, 92, 246, 0.3);">
-            Explorar <span class="material-symbols-rounded" style="font-size:16px">arrow_forward</span>
+        <div class="oss-card-ctas">
+          <a href="REASP/index.html" class="btn-cta-purple">
+            Explorar
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
           </a>
-          <a href="https://github.com/keorgtz/REASP" target="_blank" class="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl font-bold text-sm border hover:bg-[color:var(--card-hover)] transition-colors" style="border-color:var(--card-border);color:var(--txt-2)">
+          <a href="https://github.com/keorgtz/REASP" target="_blank" rel="noopener noreferrer" class="btn-outline">
             <i class="fa-brands fa-github"></i> GitHub
           </a>
         </div>
       </div>
 
-      <!-- RACSP Open Source -->
-      <div class="oss-card scroll-reveal" style="--c-bg: var(--or); --i-bg: rgba(249,115,22,0.1); --i-color: #F97316; animation-delay:.1s">
-        <div class="flex items-center gap-4 mb-6">
-          <div class="sc-icon"><span class="material-symbols-rounded fill" style="font-size:28px">hub</span></div>
+      <!-- RACSP Open Source (orange) -->
+      <div class="oss-card scroll-reveal" style="--card-accent: var(--accent-orange); --card-accent-rgb: 249,115,22; animation-delay:.1s">
+        <div class="oss-card-header">
+          <div class="sc-icon">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="3"/>
+              <circle cx="4" cy="4" r="2"/>
+              <circle cx="20" cy="4" r="2"/>
+              <circle cx="4" cy="20" r="2"/>
+              <circle cx="20" cy="20" r="2"/>
+              <line x1="9.5" y1="6.5" x2="6" y2="4"/>
+              <line x1="14.5" y1="6.5" x2="18" y2="4"/>
+              <line x1="9.5" y1="17.5" x2="6" y2="20"/>
+              <line x1="14.5" y1="17.5" x2="18" y2="20"/>
+            </svg>
+          </div>
           <div>
-            <h3 class="text-xl font-bold text-[color:var(--txt-1)]" style="font-family:var(--font-display)">RACSP</h3>
-            <p class="text-xs text-[color:var(--txt-3)]">Ryou AI Cross SDD Protocol</p>
+            <h3 class="oss-card-title">RACSP</h3>
+            <p class="oss-card-subtitle">Ryou AI Cross SDD Protocol</p>
           </div>
         </div>
-        <p class="text-[color:var(--txt-2)] leading-relaxed text-sm mb-6">
+        <p class="oss-card-desc">
           Protocolo multi-agente para colaboración entre agentes de IA. Cerebro compartido, perfiles adaptativos y prevención de conflictos. Production-Grade v2.0.0.
         </p>
-        <div class="flex flex-wrap gap-2 mb-6">
-          <span class="oss-badge"><span class="material-symbols-rounded" style="font-size:12px">star</span> Open Source</span>
-          <span class="oss-badge"><span class="material-symbols-rounded" style="font-size:12px">tag</span> v2.0.0</span>
-          <span class="oss-badge"><span class="material-symbols-rounded" style="font-size:12px">gavel</span> MIT License</span>
-          <span class="oss-badge" style="background:rgba(16,185,129,.1);color:var(--em);border-color:rgba(16,185,129,.2)"><span class="material-symbols-rounded" style="font-size:12px">verified</span> Production</span>
+        <div class="oss-badges">
+          <span class="oss-badge"><svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg> Open Source</span>
+          <span class="oss-badge"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"/><line x1="7" y1="7" x2="7.01" y2="7"/></svg> v2.0.0</span>
+          <span class="oss-badge"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L4 6v6c0 5 3.5 9.5 8 11 4.5-1.5 8-6 8-11V6l-8-4z"/></svg> MIT License</span>
+          <span class="oss-badge oss-badge-production"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg> Production</span>
         </div>
-        <div class="flex items-center gap-3">
-            <a href="RACSP/index.html" class="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl font-bold text-sm text-white hover:-translate-y-1 transition-transform" style="background: linear-gradient(135deg, #F97316, #FB923C); box-shadow: 0 6px 16px rgba(249, 115, 22, 0.3);">
-              Explorar RACSP <span class="material-symbols-rounded" style="font-size:18px">arrow_forward</span>
-            </a>
-          <a href="https://github.com/keorgtz/RACSP" target="_blank" class="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl font-bold text-sm border hover:bg-[color:var(--card-hover)] transition-colors" style="border-color:var(--card-border);color:var(--txt-2)">
+        <div class="oss-card-ctas">
+          <a href="RACSP/index.html" class="btn-cta-orange">
+            Explorar RACSP
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+          </a>
+          <a href="https://github.com/keorgtz/RACSP" target="_blank" rel="noopener noreferrer" class="btn-outline">
             <i class="fa-brands fa-github"></i> GitHub
           </a>
         </div>
       </div>
     </div>
 
-    <div class="mt-16 text-center scroll-reveal">
-      <div class="inline-flex items-center gap-3 px-6 py-3 rounded-2xl border" style="background:var(--card);border-color:var(--card-border)">
-        <span class="material-symbols-rounded text-emerald-500" style="font-size:20px">groups</span>
-        <p class="text-sm text-[color:var(--txt-2)]">
-          <strong class="text-[color:var(--txt-1)]">Comunidad driven.</strong> Contribuciones, issues y pull requests son bienvenidos.
+    <div class="oss-banner-wrap scroll-reveal">
+      <div class="oss-banner">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color:var(--accent-emerald);">
+          <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+          <circle cx="9" cy="7" r="4"/>
+          <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
+          <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+        </svg>
+        <p class="oss-banner-text">
+          <strong>Comunidad driven.</strong> Contribuciones, issues y pull requests son bienvenidos.
         </p>
       </div>
     </div>
@@ -668,97 +786,111 @@
 </section>
 
 <!-- ══ CONTACTO ════════════════════════════════════════════════ -->
+<!-- ══ CONTACTO · EPIC 07 PART 01 ═════════════════════════════════════════ -->
 <section id="contacto" class="py-24 sm:py-32 section-main relative">
-  <div class="absolute top-0 right-0 w-96 h-96 bg-blue-500/5 rounded-full blur-[100px] pointer-events-none"></div>
+  <div class="about-bg-orb" style="top:0;right:0;width:24rem;height:24rem;background:radial-gradient(circle, rgba(99,102,241,0.06), transparent 70%);"></div>
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-    <div class="text-center max-w-2xl mx-auto mb-16 scroll-reveal">
-      <p class="text-blue-600 font-semibold tracking-wide text-sm mb-3 uppercase">Contacto</p>
-      <h2 class="text-3xl sm:text-4xl md:text-5xl font-extrabold text-[color:var(--txt-1)] mb-6 tracking-tight" style="font-family:var(--font-display)">
-        Hablemos de tu <span class="text-gradient">próximo proyecto.</span>
+    <div class="section-header scroll-reveal">
+      <div class="section-tag">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+          <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/>
+        </svg>
+        Contacto
+      </div>
+      <h2 class="section-title">
+        Hablemos de tu <span class="hero-title-accent">próximo proyecto.</span>
       </h2>
-      <p class="text-[color:var(--txt-2)] text-lg leading-relaxed">
+      <p class="section-desc">
         Estamos listos para ayudarte a transformar tu negocio con tecnología de clase mundial.
       </p>
     </div>
 
-    <div class="grid lg:grid-cols-2 gap-8 lg:gap-12 max-w-5xl mx-auto">
-      <!-- Contact Info -->
+    <div class="contact-grid">
+      <!-- LEFT: Contact Info + Social -->
       <div class="scroll-reveal">
-        <div class="space-y-6">
+        <div class="contact-info-list">
           <div class="contact-info-item">
-            <div class="w-12 h-12 rounded-2xl bg-green-500/10 text-green-500 flex items-center justify-center shrink-0">
-              <i class="fa-brands fa-whatsapp text-xl"></i>
+            <div class="contact-info-icon contact-info-icon-whatsapp">
+              <i class="fa-brands fa-whatsapp"></i>
             </div>
             <div>
-              <h4 class="font-bold text-[color:var(--txt-1)] text-sm mb-1">WhatsApp</h4>
-              <a href="https://wa.me/523327633233" target="_blank" class="text-[color:var(--txt-2)] hover:text-[color:var(--kr-blue)] transition-colors text-sm">+52 33 2763 3233</a>
+              <h4 class="contact-info-title">WhatsApp</h4>
+              <a href="https://wa.me/523327633233" target="_blank" rel="noopener noreferrer" class="contact-info-link">+52 33 2763 3233</a>
             </div>
           </div>
 
           <div class="contact-info-item">
-            <div class="w-12 h-12 rounded-2xl bg-blue-500/10 text-blue-500 flex items-center justify-center shrink-0">
-              <span class="material-symbols-rounded fill" style="font-size:22px">call</span>
+            <div class="contact-info-icon contact-info-icon-phone">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13 1.05.37 2.07.72 3.06a2 2 0 0 1-.45 2.11L8.09 10.05a16 16 0 0 0 6 6l1.16-1.16a2 2 0 0 1 2.11-.45c.99.35 2.01.59 3.06.72A2 2 0 0 1 22 16.92z"/>
+              </svg>
             </div>
             <div>
-              <h4 class="font-bold text-[color:var(--txt-1)] text-sm mb-1">Teléfono</h4>
-              <a href="tel:+523327633233" class="text-[color:var(--txt-2)] hover:text-[color:var(--kr-blue)] transition-colors text-sm">+52 33 2763 3233</a>
+              <h4 class="contact-info-title">Teléfono</h4>
+              <a href="tel:+523327633233" class="contact-info-link">+52 33 2763 3233</a>
             </div>
           </div>
 
           <div class="contact-info-item">
-            <div class="w-12 h-12 rounded-2xl bg-purple-500/10 text-purple-500 flex items-center justify-center shrink-0">
-              <span class="material-symbols-rounded fill" style="font-size:22px">mail</span>
+            <div class="contact-info-icon contact-info-icon-email">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+                <polyline points="22,6 12,13 2,6"/>
+              </svg>
             </div>
             <div>
-              <h4 class="font-bold text-[color:var(--txt-1)] text-sm mb-1">Email</h4>
-              <a href="mailto:Kevin00ortizgtz@gmail.com" class="text-[color:var(--txt-2)] hover:text-[color:var(--kr-blue)] transition-colors text-sm">Kevin00ortizgtz@gmail.com</a>
+              <h4 class="contact-info-title">Email</h4>
+              <a href="mailto:Kevin00ortizgtz@gmail.com" class="contact-info-link">Kevin00ortizgtz@gmail.com</a>
             </div>
           </div>
 
           <div class="contact-info-item">
-            <div class="w-12 h-12 rounded-2xl bg-amber-500/10 text-amber-500 flex items-center justify-center shrink-0">
-              <span class="material-symbols-rounded fill" style="font-size:22px">location_on</span>
+            <div class="contact-info-icon contact-info-icon-location">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/>
+                <circle cx="12" cy="10" r="3"/>
+              </svg>
             </div>
             <div>
-              <h4 class="font-bold text-[color:var(--txt-1)] text-sm mb-1">Ubicación</h4>
-              <p class="text-[color:var(--txt-2)] text-sm">Guadalajara, México</p>
+              <h4 class="contact-info-title">Ubicación</h4>
+              <p class="contact-info-text">Guadalajara, México</p>
             </div>
           </div>
         </div>
 
-        <div class="mt-8 pt-8 border-t border-[color:var(--card-border)]">
-          <h4 class="font-bold text-[color:var(--txt-1)] text-sm mb-4">Síguenos</h4>
-          <div class="flex items-center gap-3">
+        <div class="contact-social">
+          <h4 class="contact-social-title">Síguenos</h4>
+          <div class="contact-social-icons">
             <a href="#" class="social-icon" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
             <a href="#" class="social-icon" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
             <a href="#" class="social-icon" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
-            <a href="https://github.com/keorgtz" target="_blank" class="social-icon" aria-label="GitHub"><i class="fa-brands fa-github"></i></a>
+            <a href="https://github.com/keorgtz" target="_blank" rel="noopener noreferrer" class="social-icon" aria-label="GitHub"><i class="fa-brands fa-github"></i></a>
           </div>
         </div>
       </div>
 
-      <!-- Contact Form -->
+      <!-- RIGHT: Contact Form -->
       <div class="contact-form-wrapper scroll-reveal" style="animation-delay:.1s">
-        <form id="contact-form" class="space-y-4">
-          <div>
-            <label for="name" class="block text-xs font-semibold text-[color:var(--txt-2)] mb-2 uppercase tracking-wider">Nombre</label>
+        <form id="contact-form" class="contact-form">
+          <div class="form-group">
+            <label for="name" class="form-label">Nombre</label>
             <input type="text" id="name" name="name" required class="form-input" placeholder="Tu nombre completo">
           </div>
-          <div>
-            <label for="email" class="block text-xs font-semibold text-[color:var(--txt-2)] mb-2 uppercase tracking-wider">Email</label>
+          <div class="form-group">
+            <label for="email" class="form-label">Email</label>
             <input type="email" id="email" name="email" required class="form-input" placeholder="tu@email.com">
           </div>
-          <div>
-            <label for="message" class="block text-xs font-semibold text-[color:var(--txt-2)] mb-2 uppercase tracking-wider">Mensaje</label>
-            <textarea id="message" name="message" rows="4" required class="form-input resize-none" placeholder="Cuéntanos sobre tu proyecto..."></textarea>
+          <div class="form-group">
+            <label for="message" class="form-label">Mensaje</label>
+            <textarea id="message" name="message" rows="4" required class="form-input form-textarea" placeholder="Cuéntanos sobre tu proyecto..."></textarea>
           </div>
-          <button type="submit" class="w-full btn-primary flex items-center justify-center gap-2.5 px-8 py-4 rounded-2xl font-bold text-sm" style="font-family:var(--font)">
-            <span class="material-symbols-rounded" style="font-size:18px">send</span>
+          <button type="submit" class="btn btn-primary btn-submit">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
             Enviar Mensaje
           </button>
         </form>
-        <div id="form-success" class="hidden mt-4 p-4 rounded-xl bg-emerald-500/10 border border-emerald-500/20 text-emerald-600 text-sm text-center">
-          <span class="material-symbols-rounded inline-block mb-1" style="font-size:20px">check_circle</span>
+        <div id="form-success" class="form-success hidden">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
           <p>¡Mensaje enviado! Te contactaremos pronto.</p>
         </div>
       </div>
@@ -767,179 +899,92 @@
 </section>
 
 <!-- ══ FOOTER ════════════════════════════════════════════════════ -->
-<footer class="footer py-16">
-  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-    <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-10 mb-12">
-      <!-- Company Info -->
-      <div class="lg:col-span-1">
-        <div class="flex items-center gap-2 mb-4">
-          <div class="w-8 h-8 rounded-full flex items-center justify-center font-bold text-white text-sm" style="background:linear-gradient(135deg, var(--kr-blue), var(--vi))">K</div>
-          <span class="text-sm font-extrabold tracking-tighter uppercase text-[color:var(--txt-1)]" style="font-family:var(--font-display)">
-            KEOR<span class="text-blue-500">SOFT</span>
-          </span>
-        </div>
-        <p class="text-sm text-[color:var(--txt-3)] leading-relaxed mb-4">
-          Empresa de tecnología enfocada en crear soluciones de software de escritorio y web, herramientas de IA, frameworks UI y productos SaaS.
-        </p>
-        <div class="flex items-center gap-3">
-          <a href="#" class="social-icon" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
-          <a href="#" class="social-icon" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
-          <a href="#" class="social-icon" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
-          <a href="https://github.com/keorgtz" target="_blank" class="social-icon" aria-label="GitHub"><i class="fa-brands fa-github"></i></a>
-        </div>
-      </div>
-
-      <!-- Quick Links -->
-      <div>
-        <h4 class="font-bold text-[color:var(--txt-1)] text-sm mb-4 uppercase tracking-wider">Secciones</h4>
-        <ul class="space-y-2">
-          <li><a href="#inicio" class="footer-link">Inicio</a></li>
-          <li><a href="#servicios" class="footer-link">Servicios</a></li>
-          <li><a href="#productos" class="footer-link">Productos</a></li>
-          <li><a href="#opensource" class="footer-link">Open Source</a></li>
-          <li><a href="#nosotros" class="footer-link">Nosotros</a></li>
-          <li><a href="#contacto" class="footer-link">Contacto</a></li>
-        </ul>
-      </div>
-
-      <!-- Products -->
-      <div>
-        <h4 class="font-bold text-[color:var(--txt-1)] text-sm mb-4 uppercase tracking-wider">Productos</h4>
-        <ul class="space-y-2">
-          <li><a href="#productos" class="footer-link">MeridianUI</a></li>
-          <li><a href="#productos" class="footer-link">Controls & Libraries</a></li>
-          <li><a href="#productos" class="footer-link">SHEndevour</a></li>
-          <li><a href="REASP/index.html" class="footer-link">REASP</a></li>
-          <li><a href="RACSP/index.html" class="footer-link">RACSP</a></li>
-        </ul>
-      </div>
-
-      <!-- Contact -->
-      <div>
-        <h4 class="font-bold text-[color:var(--txt-1)] text-sm mb-4 uppercase tracking-wider">Contacto</h4>
-        <ul class="space-y-3">
-          <li class="flex items-center gap-2 text-sm text-[color:var(--txt-3)]">
-            <span class="material-symbols-rounded" style="font-size:16px">location_on</span>
-            Guadalajara, México
-          </li>
-          <li class="flex items-center gap-2 text-sm text-[color:var(--txt-3)]">
-            <span class="material-symbols-rounded" style="font-size:16px">mail</span>
-            <a href="mailto:Kevin00ortizgtz@gmail.com" class="hover:text-[color:var(--kr-blue)] transition-colors">Kevin00ortizgtz@gmail.com</a>
-          </li>
-          <li class="flex items-center gap-2 text-sm text-[color:var(--txt-3)]">
-            <span class="material-symbols-rounded" style="font-size:16px">call</span>
-            <a href="tel:+523327633233" class="hover:text-[color:var(--kr-blue)] transition-colors">+52 33 2763 3233</a>
-          </li>
-          <li class="flex items-center gap-2 text-sm text-[color:var(--txt-3)]">
-            <i class="fa-brands fa-whatsapp" style="font-size:14px"></i>
-            <a href="https://wa.me/523327633233" target="_blank" class="hover:text-[color:var(--kr-blue)] transition-colors">WhatsApp</a>
-          </li>
-        </ul>
+<!-- ══ FOOTER · EPIC 08 PART 02 ═════════════════════════════════════════ -->
+<footer class="site-footer">
+  <div class="footer-container">
+    <!-- Column 1: Brand -->
+    <div class="footer-brand">
+      <a href="#inicio" class="logo" style="font-size:1.25rem;">
+        <img src="assets/KeorsoftK-Icon.svg" alt="Keorsoft" width="28" height="28">
+        Keorsoft
+      </a>
+      <p class="footer-desc">
+        Empresa de tecnología enfocada en crear soluciones de software de escritorio y web, herramientas de IA, frameworks UI y productos SaaS.
+      </p>
+      <div class="footer-social" style="margin-top:0;">
+        <a href="#" class="social-icon" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+        <a href="#" class="social-icon" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+        <a href="#" class="social-icon" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+        <a href="https://github.com/keorgtz" target="_blank" rel="noopener noreferrer" class="social-icon" aria-label="GitHub"><i class="fa-brands fa-github"></i></a>
       </div>
     </div>
 
-    <div class="pt-8 border-t border-[color:var(--card-border)] flex flex-col md:flex-row justify-between items-center gap-4">
-      <p class="text-xs text-[color:var(--txt-3)] font-medium">&copy; 2026 Keorsoft. Todos los derechos reservados.</p>
-      <p class="text-xs text-[color:var(--txt-3)] flex items-center gap-1">Diseñado con <span class="material-symbols-rounded fill text-red-500" style="font-size:14px">favorite</span> por Keorsoft UX/UI</p>
+    <!-- Column 2: Secciones -->
+    <div class="footer-links-col">
+      <h4 class="footer-col-title">Secciones</h4>
+      <ul class="footer-links">
+        <li><a href="#inicio" class="footer-link">Inicio</a></li>
+        <li><a href="#servicios" class="footer-link">Servicios</a></li>
+        <li><a href="#productos" class="footer-link">Productos</a></li>
+        <li><a href="#opensource" class="footer-link">Open Source</a></li>
+        <li><a href="#nosotros" class="footer-link">Nosotros</a></li>
+        <li><a href="#contacto" class="footer-link">Contacto</a></li>
+      </ul>
     </div>
+
+    <!-- Column 3: Productos -->
+    <div class="footer-links-col">
+      <h4 class="footer-col-title">Productos</h4>
+      <ul class="footer-links">
+        <li><a href="#productos" class="footer-link">MeridianUI</a></li>
+        <li><a href="#productos" class="footer-link">Controls &amp; Libraries</a></li>
+
+        <li><a href="REASP/index.html" class="footer-link">REASP</a></li>
+        <li><a href="RACSP/index.html" class="footer-link">RACSP</a></li>
+      </ul>
+    </div>
+
+    <!-- Column 4: Contacto -->
+    <div class="footer-links-col">
+      <h4 class="footer-col-title">Contacto</h4>
+      <ul class="footer-links">
+        <li class="footer-contact-item">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/>
+            <circle cx="12" cy="10" r="3"/>
+          </svg>
+          Guadalajara, México
+        </li>
+        <li class="footer-contact-item">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+            <polyline points="22,6 12,13 2,6"/>
+          </svg>
+          <a href="mailto:Kevin00ortizgtz@gmail.com" class="footer-link">Kevin00ortizgtz@gmail.com</a>
+        </li>
+        <li class="footer-contact-item">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13 1.05.37 2.07.72 3.06a2 2 0 0 1-.45 2.11L8.09 10.05a16 16 0 0 0 6 6l1.16-1.16a2 2 0 0 1 2.11-.45c.99.35 2.01.59 3.06.72A2 2 0 0 1 22 16.92z"/>
+          </svg>
+          <a href="tel:+523327633233" class="footer-link">+52 33 2763 3233</a>
+        </li>
+        <li class="footer-contact-item">
+          <i class="fa-brands fa-whatsapp" style="font-size:14px"></i>
+          <a href="https://wa.me/523327633233" target="_blank" rel="noopener noreferrer" class="footer-link">WhatsApp</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- Bottom -->
+  <div class="footer-bottom">
+    <span>&copy; 2026 Keorsoft. Todos los derechos reservados.</span>
+    <span>Diseñado con <span style="color:#ef4444;">&hearts;</span> por Keorsoft UX/UI</span>
   </div>
 </footer>
 
-<!-- ══ SCRIPTS ═══════════════════════════════════════════════════ -->
-<script>
-  // Theme Toggle
-  const themeToggle = document.getElementById('theme-toggle');
-  const themeIcon = document.getElementById('theme-icon');
-  const html = document.documentElement;
-
-  function updateThemeIcon() {
-    const isDark = html.getAttribute('data-theme') === 'dark';
-    themeIcon.textContent = isDark ? 'light_mode' : 'dark_mode';
-  }
-
-  themeToggle.addEventListener('click', () => {
-    const current = html.getAttribute('data-theme');
-    const next = current === 'dark' ? 'light' : 'dark';
-    html.setAttribute('data-theme', next);
-    updateThemeIcon();
-  });
-
-  updateThemeIcon();
-
-  // Mobile Menu
-  const mobileMenuBtn = document.getElementById('mobile-menu-btn');
-  const mobileMenu = document.getElementById('mobile-menu');
-
-  mobileMenuBtn.addEventListener('click', (e) => {
-    e.stopPropagation();
-    mobileMenu.classList.toggle('hidden');
-  });
-
-  document.addEventListener('click', (e) => {
-    if (!mobileMenu.contains(e.target) && !mobileMenuBtn.contains(e.target)) {
-      mobileMenu.classList.add('hidden');
-    }
-  });
-
-  mobileMenu.querySelectorAll('a').forEach(link => {
-    link.addEventListener('click', () => mobileMenu.classList.add('hidden'));
-  });
-
-  // Scroll Reveal (Intersection Observer)
-  const revealElements = document.querySelectorAll('.scroll-reveal');
-  const revealObserver = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('revealed');
-        revealObserver.unobserve(entry.target);
-      }
-    });
-  }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
-
-  revealElements.forEach(el => revealObserver.observe(el));
-
-  // Active Nav Link on Scroll
-  const sections = document.querySelectorAll('section[id]');
-  const navLinks = document.querySelectorAll('.pill-nav-link');
-
-  function updateActiveNav() {
-    const scrollPos = window.scrollY + 150;
-    sections.forEach(section => {
-      const top = section.offsetTop;
-      const height = section.offsetHeight;
-      const id = section.getAttribute('id');
-      if (scrollPos >= top && scrollPos < top + height) {
-        navLinks.forEach(link => {
-          link.classList.remove('active');
-          if (link.getAttribute('href') === '#' + id) {
-            link.classList.add('active');
-          }
-        });
-      }
-    });
-  }
-
-  window.addEventListener('scroll', updateActiveNav, { passive: true });
-  updateActiveNav();
-
-  // Contact Form
-  const contactForm = document.getElementById('contact-form');
-  const formSuccess = document.getElementById('form-success');
-
-  contactForm.addEventListener('submit', (e) => {
-    e.preventDefault();
-    // Simulate form submission
-    contactForm.style.opacity = '0.5';
-    contactForm.style.pointerEvents = 'none';
-    setTimeout(() => {
-      contactForm.reset();
-      contactForm.style.opacity = '1';
-      contactForm.style.pointerEvents = 'auto';
-      formSuccess.classList.remove('hidden');
-      setTimeout(() => formSuccess.classList.add('hidden'), 5000);
-    }, 1000);
-  });
-</script>
+<!-- ══ SCRIPTS · EPIC 09 PART 01 (consolidado en js/main.js) ═════════ -->
+<script src="js/main.js" defer></script>
 
 </body>
 </html>
