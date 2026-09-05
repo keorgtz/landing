@@ -3,8 +3,12 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Keorsoft — Tecnología que Impulsa tu Negocio</title>
-  <meta name="description" content="Keorsoft es una empresa de tecnología especializada en desarrollo de software, inteligencia artificial, frameworks UI y soluciones SaaS para empresas.">
+  <title>Keorsoft — Software, diseño e IA para llevar tu negocio más lejos</title>
+  <meta name="description" content="Creamos software de escritorio y web, integramos inteligencia artificial y construimos infraestructura para tu negocio. Descubre MeridianUI, REASP y RACSP. Desde Guadalajara, México.">
+  <meta name="color-scheme" content="dark light">
+  <meta name="theme-color" content="#05070a" id="theme-color">
+  <link rel="icon" href="assets/KeorsoftK-Icon.svg" type="image/svg+xml">
+  <script src="js/theme.js"></script>
   <!-- Tailwind CDN eliminado · EPIC 01 PART 02 -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -12,8 +16,15 @@
   <!-- Material Symbols eliminado (iconos reemplazados por SVG inline) · EPIC 01 PART 02 -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
   <link rel="stylesheet" href="css/Styles.css">
+  <link rel="stylesheet" href="css/experience.css">
+  <noscript><style>
+    .site-header .menu-toggle, .experience-selectors, .contact-form .btn-submit { display: none; }
+    #mobile-menu.hidden { display: flex !important; position: static; width: auto; margin: 0; border: 0; border-radius: 0; flex-direction: row; flex-wrap: wrap; justify-content: center; }
+    .experience-panel[hidden] { display: flex !important; }
+  </style></noscript>
 </head>
 <body>
+<a class="skip-link" href="#contenido">Saltar al contenido</a>
 
 <!-- ══ NAVEGACIÓN · EPIC 08 PART 01 ═════════════════════════════════════ -->
 <header class="site-header">
@@ -25,7 +36,7 @@
     </a>
 
     <!-- Desktop nav -->
-    <nav>
+    <nav aria-label="Navegación principal">
       <ul class="nav-menu">
         <li><a href="#inicio" class="nav-link">Inicio</a></li>
         <li><a href="#servicios" class="nav-link">Servicios</a></li>
@@ -36,15 +47,20 @@
       </ul>
     </nav>
 
-    <!-- CTA "Contactar" -->
+    <div class="nav-actions">
+    <button class="theme-toggle" id="themeToggle" type="button" aria-label="Cambiar tema" title="Cambiar tema" hidden>
+      <svg class="theme-sun" width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2m0 16v2M2 12h2m16 0h2M5 5l1.5 1.5m11 11L19 19M5 19l1.5-1.5m11-11L19 5"/></svg>
+      <svg class="theme-moon" width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M20.5 13A8.5 8.5 0 0 1 11 3.5 8.5 8.5 0 1 0 20.5 13Z"/></svg>
+    </button>
     <a href="https://wa.me/523327633233" target="_blank" rel="noopener noreferrer" class="nav-cta-btn">Contactar</a>
 
     <!-- Hamburger (mobile) -->
-    <button class="menu-toggle" id="menuToggle" aria-label="Menú">
+    <button class="menu-toggle" id="menuToggle" type="button" aria-label="Abrir menú" aria-expanded="false" aria-controls="mobile-menu">
       <span></span>
       <span></span>
       <span></span>
     </button>
+    </div>
   </div>
 
   <!-- Mobile menu dropdown (compatibilidad con script inline #mobile-menu) -->
@@ -60,7 +76,8 @@
 
 <!-- ══ HERO ══════════════════════════════════════════════════════ -->
 <!-- ══ HERO · EPIC 02 PART 01 ══════════════════════════════════════════════ -->
-<section id="inicio" class="hero" style="padding-top:8rem; padding-bottom:5rem;">
+<main id="contenido" tabindex="-1">
+<section id="inicio" class="hero">
   <!-- Background glow mesh + grid -->
   <div class="bg-glow-container">
     <div class="bg-glow-1"></div>
@@ -77,22 +94,22 @@
         <path d="M9 12H4s.55-3.03 2-4c1.62-1.08 5 0 5 0"/>
         <path d="M12 15v5s3.03-.55 4-2c1.08-1.62 0-5 0-5"/>
       </svg>
-      Tecnología de Clase Mundial
+      Ingeniería, diseño e inteligencia artificial
     </div>
     <h1 class="hero-title">
-      No solo servicios.<br>Construimos <span class="hero-title-accent">tecnología.</span>
+      Tu siguiente<br>gran idea.<br><span class="hero-title-accent">Nuestra tecnología.</span>
     </h1>
     <p class="hero-subtitle">
-      Keorsoft es una empresa de tecnología enfocada en crear soluciones de software de escritorio y web, herramientas de IA, frameworks UI propietarios y productos SaaS que transforman industrias.
+      Construimos el software que tu negocio necesita para avanzar. Aplicaciones de escritorio y web, herramientas de IA, frameworks UI propios y productos SaaS: ingeniería sólida con una experiencia que se siente diferente.
     </p>
     <div class="hero-buttons">
       <a href="https://wa.me/523327633233" target="_blank" rel="noopener noreferrer" class="btn btn-primary">
         <i class="fa-brands fa-whatsapp"></i>
-        Hablemos de tu Proyecto
+        Hablemos de tu proyecto
       </a>
       <a href="#productos" class="btn btn-secondary">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/><polyline points="3.27 6.96 12 12.01 20.73 6.96"/><line x1="12" y1="22.08" x2="12" y2="12"/></svg>
-        Ver Productos
+        Explorar productos
       </a>
     </div>
     <div class="hero-badges">
@@ -113,10 +130,26 @@
         <span class="badge-lbl">Diseño &amp; Rendimiento</span>
       </div>
     </div>
+    <a class="hero-explore" href="#experiencia"><span class="explore-line" aria-hidden="true"></span> Descubre cómo conectamos las piezas <span aria-hidden="true">↘</span></a>
   </div>
 
   <div class="hero-visual">
     <div class="hero-glow-sphere"></div>
+    <div class="scene-heading"><span><span class="pulse-dot"></span> KEORSOFT / ECOSISTEMA</span><button class="motion-toggle" id="motionToggle" type="button" aria-pressed="false" hidden>Pausar animación</button></div>
+    <div class="architecture-scene" aria-hidden="true">
+      <div class="scene-grid"></div>
+      <div class="orbit orbit-one"></div><div class="orbit orbit-two"></div>
+      <div class="scene-perspective">
+        <div class="architecture-stack">
+          <div class="stack-layer layer-foundation"><span class="layer-trace"></span><span class="layer-chip">.NET</span><span class="layer-corner">01 / FOUNDATION</span></div>
+          <div class="stack-layer layer-intelligence"><span class="layer-trace"></span><span class="layer-chip">AI</span><span class="layer-corner">02 / INTELLIGENCE</span></div>
+          <div class="stack-layer layer-interface"><div class="layer-topbar"><i></i><i></i><i></i></div><img src="assets/KeorsoftK-Icon.svg" width="82" height="82" alt=""><span class="layer-corner">03 / EXPERIENCE</span><div class="layer-bars"><i></i><i></i><i></i><i></i><i></i></div></div>
+        </div>
+      </div>
+      <div class="scene-label scene-label-ui"><span class="scene-label-icon">◈</span><div><strong>MeridianUI</strong><span>Diseño que conecta</span></div></div>
+      <div class="scene-label scene-label-ai"><span class="scene-label-icon">✳</span><div><strong>Inteligencia aplicada</strong><span>REASP + RACSP</span></div></div>
+      <div class="scene-coordinate">INGENIERÍA CON PROPÓSITO <span>↓</span> DISEÑADA POR KEORSOFT</div>
+    </div>
     <div class="hero-visual-card glass-panel">
       <div class="card-header">
         <div class="mac-buttons">
@@ -126,14 +159,51 @@
         </div>
         <div class="card-title">
           <span class="pulse-dot"></span>
-          keorsoft-agent-terminal
+          keorsoft / development
         </div>
-        <div style="width: 40px;"></div>
+        <span class="terminal-demo">DEMO</span>
       </div>
       <div class="terminal-content" id="termContent">
-        <!-- Populated by js/hero-terminal.js -->
+        <div class="terminal-line"><span class="term-prompt">›</span><span class="term-cmd">De la idea a una arquitectura con propósito.</span></div>
+        <div class="terminal-line"><span class="term-resp">Software + MeridianUI + inteligencia artificial.</span></div>
       </div>
     </div>
+  </div>
+</section>
+<div class="technology-strip" aria-label="Nuestro ecosistema tecnológico"><span class="strip-label">UN ECOSISTEMA. MUCHAS POSIBILIDADES.</span><div><span>.NET</span><span>MeridianUI</span><span>REASP</span><span>RACSP</span><span>Open Source</span></div></div>
+
+<section id="experiencia" class="experience-section section-main" aria-labelledby="experience-title">
+  <div class="experience-container">
+    <div class="experience-heading scroll-reveal"><div><span class="eyebrow">01 / TODO ESTÁ CONECTADO</span><h2 id="experience-title">De la primera idea<br>a un <span class="hero-title-accent">sistema completo.</span></h2></div><p>Una interfaz que invita a usarla. Software que resuelve lo importante. Inteligencia que amplía lo posible. Explora las capas de nuestro ecosistema.</p></div>
+    <div class="experience-workspace scroll-reveal">
+      <div class="experience-selectors" role="tablist" aria-label="Capas del ecosistema" aria-orientation="vertical">
+        <button class="experience-tab" id="tab-design" role="tab" aria-selected="true" aria-controls="panel-design" tabindex="0"><span class="tab-number">01</span><span><strong>Diseño que se siente.</strong><span>MeridianUI · Experiencia de usuario</span></span><span class="tab-arrow" aria-hidden="true">↗</span></button>
+        <button class="experience-tab" id="tab-software" role="tab" aria-selected="false" aria-controls="panel-software" tabindex="-1"><span class="tab-number">02</span><span><strong>Software que responde.</strong><span>.NET · Web · Escritorio</span></span><span class="tab-arrow" aria-hidden="true">↗</span></button>
+        <button class="experience-tab" id="tab-ai" role="tab" aria-selected="false" aria-controls="panel-ai" tabindex="-1"><span class="tab-number">03</span><span><strong>Inteligencia que suma.</strong><span>IA aplicada · REASP · RACSP</span></span><span class="tab-arrow" aria-hidden="true">↗</span></button>
+        <p class="workspace-note">Cada capa tiene un propósito.<br>Juntas, dan forma a tu siguiente proyecto.</p>
+      </div>
+      <div class="experience-stage">
+        <div id="panel-design" class="experience-panel" role="tabpanel" aria-labelledby="tab-design" tabindex="0">
+          <div class="demo-toolbar"><span><span class="demo-mark">M</span> MeridianUI <span class="demo-divider">/</span> Component studio</span><span class="demo-tag">VISTA CONCEPTUAL</span></div>
+          <div class="design-preview" aria-hidden="true">
+            <div class="preview-sidebar"><span class="sidebar-dot active"></span><span class="sidebar-dot"></span><span class="sidebar-dot"></span><span class="sidebar-dot"></span><span class="sidebar-bottom">K</span></div>
+            <div class="preview-main"><div class="preview-top"><div><span class="preview-kicker">TU ESPACIO DE TRABAJO</span><h3>Todo en su lugar.</h3></div><span class="preview-avatar">K</span></div><div class="preview-cards"><div><span>Interfaz</span><strong>Clara<span class="tiny-dot"></span></strong><div class="preview-sparkline"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div></div><div><span>Experiencia</span><strong>Fluida<span class="tiny-dot cyan-dot"></span></strong><div class="preview-wave"></div></div></div><div class="preview-task"><span class="preview-check">✓</span><span>Una misma identidad, en cada pantalla.</span><span class="preview-pill">Consistente</span></div><div class="preview-palette"><span>COLOR CON INTENCIÓN</span><i></i><i></i><i></i><i></i><i></i></div></div>
+          </div>
+          <div class="panel-caption"><p>Jerarquía clara, componentes consistentes y movimiento sutil. Así se construye una experiencia que acompaña a quien la usa.</p><a href="#productos">Conoce MeridianUI <span aria-hidden="true">↗</span></a></div>
+        </div>
+        <div id="panel-software" class="experience-panel" role="tabpanel" aria-labelledby="tab-software" tabindex="0" hidden>
+          <div class="demo-toolbar"><span><span class="demo-mark">K</span> Software a medida</span><span class="demo-tag">ARQUITECTURA CONCEPTUAL</span></div>
+          <div class="software-preview"><div class="software-endpoints"><span>Aplicación web</span><span>Escritorio</span><span>Multiplataforma</span></div><div class="connection-lines" aria-hidden="true"></div><div class="software-core"><span class="tiny-dot"></span><strong>Tu lógica de negocio</strong><span>APIs · Servicios · Integraciones</span></div><div class="connection-lines" aria-hidden="true"></div><div class="software-endpoints software-bottom"><span>Datos</span><span>Infraestructura</span><span>Seguridad</span></div></div>
+          <div class="panel-caption"><p>De un punto de venta a una plataforma empresarial. Conectamos procesos, datos e infraestructura alrededor de tu operación.</p><a href="#servicios">Explora los servicios <span aria-hidden="true">↗</span></a></div>
+        </div>
+        <div id="panel-ai" class="experience-panel" role="tabpanel" aria-labelledby="tab-ai" tabindex="0" hidden>
+          <div class="demo-toolbar"><span><span class="demo-mark">✳</span> Inteligencia aplicada</span><span class="demo-tag">FLUJO CONCEPTUAL</span></div>
+          <div class="ai-preview"><div class="ai-orb" aria-hidden="true"><span>✳</span></div><div class="ai-flow"><div><span>01</span><strong>Comprender</strong><small>Contexto y objetivos</small></div><span class="flow-connector" aria-hidden="true">→</span><div><span>02</span><strong>Coordinar</strong><small>Agentes y herramientas</small></div><span class="flow-connector" aria-hidden="true">→</span><div><span>03</span><strong>Verificar</strong><small>Resultados y criterios</small></div></div><p>REASP <span>Desarrollo adaptativo</span><span class="ai-plus">+</span> RACSP <span>Colaboración multiagente</span></p></div>
+          <div class="panel-caption"><p>Integramos IA en flujos concretos y construimos herramientas abiertas para desarrollar con agentes de forma más estructurada.</p><a href="#opensource">Explora nuestros frameworks <span aria-hidden="true">↗</span></a></div>
+        </div>
+      </div>
+    </div>
+    <div class="experience-footer"><span>DISEÑO CON INTENCIÓN.</span><span>INGENIERÍA CON CRITERIO.</span><span>TECNOLOGÍA CON PROPÓSITO.</span></div>
   </div>
 </section>
 <!-- (Stats strip consolidada como hero-badges en el hero) -->
@@ -160,7 +230,7 @@
         Más que una consultora.<br>Somos una <span class="hero-title-accent">empresa de tecnología.</span>
       </h2>
       <p class="section-desc">
-        Keorsoft nace de la convicción de que el software empresarial puede ser potente, hermoso y accesible al mismo tiempo.
+        Creemos que el software empresarial debe resolver problemas complejos y ser fácil de usar. Por eso unimos ingeniería, diseño y una visión de producto desde el primer día.
       </p>
     </div>
 
@@ -176,7 +246,7 @@
         </div>
         <h3 class="about-card-title">Quiénes Somos</h3>
         <p class="about-card-desc">
-          Keorsoft es una empresa de tecnología enfocada en crear soluciones de software de escritorio y web. Combinamos ingeniería de precisión con diseño excepcional para entregar productos que superan expectativas.
+          Somos una empresa de tecnología que crea software de escritorio y web. Combinamos ingeniería de precisión con diseño cuidado para convertir las necesidades de cada negocio en productos útiles, sólidos y accesibles.
         </p>
       </div>
 
@@ -191,7 +261,7 @@
         </div>
         <h3 class="about-card-title">Nuestro Enfoque</h3>
         <p class="about-card-desc">
-          Alta personalización por cliente y vertical. Excelencia en UI/UX con nuestro lenguaje visual propietario <strong>MeridianUI</strong>. Cada producto se adapta a las necesidades específicas de tu industria.
+          Partimos de tu operación, tus usuarios y tu industria. Adaptamos cada solución a ese contexto y cuidamos la experiencia con <strong>MeridianUI</strong>, nuestro lenguaje visual propietario de UI/UX.
         </p>
       </div>
 
@@ -205,7 +275,7 @@
         </div>
         <h3 class="about-card-title">Nuestra Misión</h3>
         <p class="about-card-desc">
-          Construir herramientas que empoderen a desarrolladores y empresas. Creemos que la tecnología debe ser un multiplicador de capacidades, no una barrera.
+          Construir herramientas que amplíen las capacidades de desarrolladores y empresas. Hacemos que la tecnología sea una oportunidad para crecer, con soluciones potentes que las personas puedan aprovechar.
         </p>
       </div>
 
@@ -270,10 +340,10 @@
         Áreas de Especialidad
       </div>
       <h2 class="section-title">
-        Todo lo que tu empresa necesita en <span class="hero-title-accent">un solo lugar.</span>
+        Las piezas que tu negocio necesita.<br><span class="hero-title-accent">Un equipo que las conecta.</span>
       </h2>
       <p class="section-desc">
-        Olvídate de contratar múltiples proveedores. En Keorsoft cubrimos desde el desarrollo de tu plataforma hasta la infraestructura física, la seguridad y la inteligencia artificial.
+        Del software a la infraestructura física, de la experiencia de usuario a la seguridad y la IA. Conectamos cada especialidad para que tu tecnología funcione como un conjunto.
       </p>
     </div>
 
@@ -321,7 +391,7 @@
         </div>
         <h3 class="pillar-title">Infraestructura de Redes y Hardware</h3>
         <p class="pillar-desc">
-          No solo hacemos el software, construimos la pista por la que corre. Diseño, cableado estructurado, configuración de servidores e instalación de equipos de cómputo para tu oficina o local.
+          Una buena solución necesita una base confiable. Diseñamos redes, instalamos cableado estructurado, configuramos servidores y ponemos en marcha los equipos de cómputo de tu oficina o local.
         </p>
         <ul class="pillar-list">
           <li class="pillar-item">
@@ -378,7 +448,7 @@
         </div>
         <h3 class="pillar-title">Diseño UX / UI</h3>
         <p class="pillar-desc">
-          Software funcional y estéticamente impecable. Creamos interfaces intuitivas que enamoran a tus usuarios y mejoran la productividad de tus empleados a través de un diseño centrado en el humano.
+          Interfaces claras que facilitan cada tarea. Investigamos cómo trabajan tus usuarios y traducimos ese conocimiento en experiencias web y móviles, prototipos interactivos y herramientas que ayudan a tu equipo a ser más productivo.
         </p>
         <ul class="pillar-list">
           <li class="pillar-item">
@@ -404,7 +474,7 @@
             <path d="M12 17h.01"/>
           </svg>
         </div>
-        <h3 class="pillar-title">AI Consulting &amp; Integration</h3>
+        <h3 class="pillar-title">Consultoría e integración de IA</h3>
         <p class="pillar-desc">
           Ayudamos a las empresas a integrar inteligencia artificial en sus flujos de trabajo. Desde chatbots y automatización hasta análisis predictivo y generación de contenido.
         </p>
@@ -431,9 +501,9 @@
             <polyline points="8 6 2 12 8 18"/>
           </svg>
         </div>
-        <h3 class="pillar-title">Custom .NET Development</h3>
+        <h3 class="pillar-title">Desarrollo .NET a medida</h3>
         <p class="pillar-desc">
-          Especialistas en el ecosistema .NET moderno. Desarrollamos aplicaciones de escritorio, web y multiplataforma con las últimas tecnologías de Microsoft.
+          Creamos aplicaciones de escritorio, web y multiplataforma con el ecosistema .NET. Elegimos la arquitectura y las herramientas según las necesidades de tu producto, sus integraciones y su evolución.
         </p>
         <ul class="pillar-list">
           <li class="pillar-item">
@@ -500,10 +570,10 @@
         Productos &amp; Frameworks
       </div>
       <h2 class="section-title">
-        Tecnología propia de <span class="hero-title-accent">próxima generación.</span>
+        Construimos para ti.<br><span class="hero-title-accent">También para lo que viene.</span>
       </h2>
       <p class="section-desc">
-        Descubre nuestros productos in-house: un design system propietario, librerías de controles .NET, soluciones SaaS verticales y frameworks de código abierto.
+        Nuestro ecosistema de tecnología propia reúne un sistema de diseño, librerías de controles .NET, soluciones SaaS para industrias específicas y frameworks abiertos para desarrollar con IA.
       </p>
     </div>
 
@@ -525,7 +595,7 @@
               <h3 class="product-card-title">MeridianUI</h3>
               <span class="badge badge-internal">Internal</span>
             </div>
-            <p class="product-card-subtitle">Design System &amp; UI Framework Component KIT</p>
+            <p class="product-card-subtitle">Sistema de diseño y kit de componentes UI</p>
           </div>
         </div>
         <p class="product-card-desc">
@@ -584,7 +654,7 @@
           </div>
           <div class="feature-row">
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
-            <span>Form controllers con validación y charting components</span>
+            <span>Controladores de formularios con validación y componentes de gráficos</span>
           </div>
         </div>
         <div class="product-card-footer">
@@ -881,9 +951,34 @@
           <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
         </svg>
         <p class="oss-banner-text">
-          <strong>Comunidad driven.</strong> Contribuciones, issues y pull requests son bienvenidos.
+          <strong>Construido con la comunidad.</strong> Tus contribuciones, reportes de errores y pull requests son bienvenidos.
         </p>
       </div>
+    </div>
+  </div>
+</section>
+
+<section id="proceso" class="process-section" aria-labelledby="process-title">
+  <div class="experience-container">
+    <div class="process-heading scroll-reveal"><span class="eyebrow">DE LA CONVERSACIÓN A LA CONSTRUCCIÓN</span><h2 id="process-title">Una gran solución empieza<br>por <span class="hero-title-accent">entender tu negocio.</span></h2><p>Así abordamos un proyecto: con contexto, decisiones claras y atención a cada detalle, desde la primera idea hasta su evolución.</p></div>
+    <div class="process-grid">
+      <article class="process-step scroll-reveal"><span>01 / DESCUBRIR</span><h3>Primero, escuchamos.</h3><p>Entendemos tus procesos, las necesidades de tus usuarios y el problema que vale la pena resolver.</p><small>CONTEXTO + PRIORIDADES</small></article>
+      <article class="process-step scroll-reveal"><span>02 / DAR FORMA</span><h3>Hacemos tangible la idea.</h3><p>Definimos el alcance, la experiencia de usuario y una arquitectura alineada con tu operación.</p><small>DISEÑO + ARQUITECTURA</small></article>
+      <article class="process-step scroll-reveal"><span>03 / CONSTRUIR</span><h3>Cuidamos cada pieza.</h3><p>Desarrollamos, integramos y verificamos el software con atención a su calidad, seguridad y usabilidad.</p><small>DESARROLLO + VALIDACIÓN</small></article>
+      <article class="process-step scroll-reveal"><span>04 / EVOLUCIONAR</span><h3>Pensamos en lo que sigue.</h3><p>Preparamos la puesta en marcha y definimos contigo las siguientes mejoras y necesidades de soporte.</p><small>LANZAMIENTO + EVOLUCIÓN</small></article>
+    </div>
+    <div class="project-banner scroll-reveal"><div><h3>¿Tienes una idea? Démosle forma.</h3><p>Cuéntanos qué quieres mejorar. Empezamos por ahí.</p></div><a href="#contacto" class="btn btn-primary">Conversemos sobre tu proyecto <span aria-hidden="true">↗</span></a></div>
+  </div>
+</section>
+
+<section id="preguntas" class="faq-section" aria-labelledby="faq-title">
+  <div class="experience-container faq-layout">
+    <div class="faq-heading scroll-reveal"><span class="eyebrow">ANTES DE EMPEZAR</span><h2 id="faq-title">Buenas preguntas.<br><span class="hero-title-accent">Respuestas claras.</span></h2><p>Un poco más de contexto para encontrar el punto de partida de tu proyecto.</p></div>
+    <div class="faq-items scroll-reveal">
+      <details><summary>¿Pueden crear una solución para mi pyme?</summary><p>Sí. Desarrollamos software a medida para pymes: puntos de venta, CRMs, ERPs y plataformas web. Partimos de tus procesos y prioridades para definir una solución acorde con tu negocio.</p></details>
+      <details><summary>¿También trabajan con sistemas existentes?</summary><p>Nuestros servicios incluyen desarrollo, infraestructura e integración de IA. Cuéntanos qué herramientas utilizas y qué necesitas conectar o mejorar; revisaremos el contexto para definir el alcance técnico.</p></details>
+      <details><summary>¿Qué diferencia hay entre MeridianUI, REASP y RACSP?</summary><p>MeridianUI es nuestro sistema de diseño propietario. REASP es un framework abierto de desarrollo adaptativo con IA para OpenCode. RACSP es un protocolo abierto para coordinar la colaboración entre agentes de IA. Puedes explorar las características y documentación de cada uno en la sección de productos.</p></details>
+      <details><summary>¿Necesito tener una especificación técnica?</summary><p>Puedes empezar por contarnos qué problema quieres resolver, quién usará la solución y cómo trabajan hoy. Esa conversación nos ayuda a identificar necesidades y dar forma a una propuesta de alcance.</p></details>
     </div>
   </div>
 </section>
@@ -904,7 +999,7 @@
         Hablemos de tu <span class="hero-title-accent">próximo proyecto.</span>
       </h2>
       <p class="section-desc">
-        Estamos listos para ayudarte a transformar tu negocio con tecnología de clase mundial.
+        Cuéntanos qué estás construyendo, qué quieres mejorar o qué proceso te está frenando. Encontraremos juntos el punto de partida.
       </p>
     </div>
 
@@ -974,33 +1069,36 @@
 
       <!-- RIGHT: Contact Form -->
       <div class="contact-form-wrapper scroll-reveal" style="animation-delay:.1s">
-        <form id="contact-form" class="contact-form">
+        <form id="contact-form" class="contact-form" aria-describedby="contact-form-note">
           <div class="form-group">
             <label for="name" class="form-label">Nombre</label>
-            <input type="text" id="name" name="name" required class="form-input" placeholder="Tu nombre completo">
+            <input type="text" id="name" name="name" required autocomplete="name" maxlength="120" class="form-input" placeholder="Tu nombre completo">
           </div>
           <div class="form-group">
             <label for="email" class="form-label">Email</label>
-            <input type="email" id="email" name="email" required class="form-input" placeholder="tu@email.com">
+            <input type="email" id="email" name="email" required autocomplete="email" maxlength="254" class="form-input" placeholder="tu@email.com">
           </div>
           <div class="form-group">
             <label for="message" class="form-label">Mensaje</label>
-            <textarea id="message" name="message" rows="4" required class="form-input form-textarea" placeholder="Cuéntanos sobre tu proyecto..."></textarea>
+            <textarea id="message" name="message" rows="4" required maxlength="3000" class="form-input form-textarea" placeholder="¿Qué te gustaría construir o mejorar?"></textarea>
           </div>
           <button type="submit" class="btn btn-primary btn-submit">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
-            Enviar Mensaje
+            Continuar en WhatsApp
           </button>
+          <p class="form-note" id="contact-form-note">Prepararemos tu mensaje para que puedas revisarlo y enviarlo en WhatsApp. También puedes <a href="mailto:Kevin00ortizgtz@gmail.com">escribirnos por correo</a>.</p>
+          <noscript><p class="form-note">Para contactarnos, <a href="https://wa.me/523327633233" target="_blank" rel="noopener noreferrer">abre WhatsApp directamente</a> o utiliza nuestro correo.</p></noscript>
         </form>
-        <div id="form-success" class="form-success hidden">
+        <div id="form-success" class="form-success hidden" role="status">
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
-          <p>¡Mensaje enviado! Te contactaremos pronto.</p>
+          <p>Tu mensaje está preparado. Revisa y confirma el envío en WhatsApp. <a id="whatsapp-fallback" href="https://wa.me/523327633233" target="_blank" rel="noopener noreferrer">Abrir WhatsApp</a>.</p>
         </div>
       </div>
     </div>
   </div>
 </section>
 
+</main>
 <!-- ══ FOOTER ════════════════════════════════════════════════════ -->
 <!-- ══ FOOTER · EPIC 08 PART 02 ═════════════════════════════════════════ -->
 <footer class="site-footer">

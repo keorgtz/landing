@@ -1,0 +1,13 @@
+{
+  "name": "keorsoft-landing",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Static Keorsoft landing page; development dependencies are only used for browser checks.",
+  "scripts": {
+    "test": "node --test tests/homepage.test.cjs"
+  },
+  "devDependencies": {
+    "@axe-core/playwright": "4.13.0",
+    "playwright": "1.63.0"
+  }
+}
